@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1FOTEAM Lead Response Audit by Aéllo</title>
+<title>1FOTEAM Marketplace Inquiry Response Audit by Aéllo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -97,6 +97,14 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .stat-card--danger { border-color: var(--danger); background: var(--danger-light); }
 .stat-card__number { font-family: 'Inter', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
 .stat-card__label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+/* Score circle */
+.score-circle-wrap { text-align: center; margin: 32px auto 40px; }
+.score-circle { position: relative; display: inline-block; }
+.score-circle__value { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.score-circle__number { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+.score-circle__total { font-size: 1.2rem; font-weight: 600; color: var(--gray-400); }
+.score-circle__label { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 12px; }
 
 /* Grade section */
 .grade-section { text-align: center; margin-bottom: 8px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 36px 32px 32px; max-width: 480px; margin-left: auto; margin-right: auto; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
@@ -197,6 +205,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 
 /* Annotation emphasis */
 .annot-card.emphasize { border-color: var(--success); box-shadow: 0 0 0 3px rgba(46,133,64,0.12); transform: scale(1.03); }
+.demo-hl { transition: all 0.4s ease; border-radius: 2px; padding: 1px 3px; margin: 0 -3px; }
+.demo-hl.active { background: rgba(213, 64, 43, 0.12); border-bottom: 2px solid var(--danger); }
 
 /* Book a demo section */
 .demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
@@ -489,7 +499,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       <div class="header__inner">
         <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
         <div class="header__right">
-          <span id="headerDealer">1FOTEAM Lead Response Audit</span>
+          <span id="headerDealer">1FOTEAM Marketplace Inquiry Response Audit</span>
           <span class="badge badge--danger" id="headerGrade">Score: 27 / 100</span>
         </div>
       </div>
@@ -498,30 +508,28 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 
   <section class="report-hero">
     <div class="container">
-      <h1 class="report-hero__title"><span id="heroDealer">1FOTEAM</span> Lead Response <span class="highlight">Audit</span></h1>
-      <p class="report-hero__subtitle">We mystery-shopped your dealership, scored your lead response, and benchmarked you against top performers. Here's what we found.</p>
+      <h1 class="report-hero__title"><span id="heroDealer">1FOTEAM</span> Marketplace Inquiry Response <span class="highlight">Audit</span></h1>
+      <p class="report-hero__subtitle">We mystery-shopped your dealership, scored your marketplace inquiry response, and benchmarked you against top performers. Here's what we found.</p>
 
-      <div class="stats-row" id="statsRow">
-        <div class="stat-card">
-          <div class="stat-card__number" style="color:var(--gray-900);">15</div>
-          <div class="stat-card__label">Active Listings</div>
+      <div class="score-circle-wrap">
+        <div class="score-circle">
+          <svg viewBox="0 0 120 120" width="160" height="160">
+            <circle cx="60" cy="60" r="54" fill="none" stroke="var(--gray-200)" stroke-width="8"/>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="var(--danger)" stroke-width="8"
+              stroke-dasharray="339.29" stroke-dashoffset="247.48"
+              stroke-linecap="round" transform="rotate(-90 60 60)"
+              style="transition: stroke-dashoffset 1.5s ease;"/>
+          </svg>
+          <div class="score-circle__value">
+            <span class="score-circle__number" style="color:var(--danger);">27</span>
+            <span class="score-circle__total">/100</span>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-card__number" style="color:var(--gray-900);">3</div>
-          <div class="stat-card__label">Marketplaces</div>
-        </div>
-        <div class="stat-card stat-card--warning">
-          <div class="stat-card__number" style="color:var(--warning);">0.5h</div>
-          <div class="stat-card__label">Your Response Time</div>
-        </div>
-        <div class="stat-card stat-card--danger">
-          <div class="stat-card__number" style="color:var(--danger);">&euro;709</div>
-          <div class="stat-card__label">Est. Monthly Revenue Leak</div>
-        </div>
+        <div class="score-circle__label">Your Current Score</div>
       </div>
 
       <div class="grade-section" style="max-width:720px;padding:40px 32px 36px;">
-        <p class="grade-section__label">Your lead response score</p>
+        <p class="grade-section__label">Your Current Marketplace Inquiry Response Score</p>
         <div class="thermo" style="margin-bottom:28px;">
           <div class="thermo__bar">
             <!-- You: 27/100 = 27% -->
@@ -575,14 +583,14 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           </div>
           <!-- Their original bad response — flies out after recognition -->
           <div class="demo-inbox__their-msg" id="demoTheirMsg">
-            <div class="demo-inbox__msg-label" style="font-size:12px;font-weight:800;color:var(--danger);text-transform:uppercase;letter-spacing:0.05em;">Your current response</div>
+            <div class="demo-inbox__msg-label" style="font-size:12px;font-weight:800;color:var(--danger);text-transform:uppercase;letter-spacing:0.05em;">YOUR CURRENT MYSTERY-SHOPPED RESPONSE</div>
             <div class="demo-inbox__msg-bubble">
               <div class="demo-inbox__msg-text" id="demoOldResponse"></div>
             </div>
             <div class="demo-inbox__bad-overlay" id="demoBadTags"></div>
           </div>
           <!-- Composer -->
-          <div class="demo-inbox__composer">
+          <div class="demo-inbox__composer" id="demoComposer" style="opacity:0;transition:opacity 0.8s ease;">
             <div class="demo-inbox__msg-label" style="font-size:12px;font-weight:800;color:#4F46E5;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;">Your response with A&euml;llo</div>
             <div class="demo-inbox__composer-row">
               <div class="demo-inbox__template-btn" id="demoTemplateBtn">&#9662; S&eacute;lectionner un mod&egrave;le...</div>
@@ -611,6 +619,9 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       </div>
     </div>
   </section>
+  <div style="text-align:center;padding:24px 0 48px;">
+    <a href="#screen-inbox" class="btn btn--primary btn--lg" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-inbox').classList.add('active');renderInbox();document.getElementById('screen-inbox').scrollIntoView({behavior:'smooth'});return false;">See Full Aello Tour &rarr;</a>
+  </div>
 
 
   <section class="dimensions">
@@ -659,12 +670,15 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <div class="pricing__card-price"><span class="pricing__card-price-amount">Free</span></div>
           <div class="pricing__card-trial">Always free</div>
           <ul class="pricing__card-features">
-            <li>Lead response audit</li>
+            <li>Marketplace inquiry response audit</li>
             <li>Lead Readiness Score</li>
             <li>Monthly mystery shop</li>
             <li>Score tracking over time</li>
           </ul>
-          <button class="btn btn--outline btn--full">Get my free audit</button>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
+            <span style="font-size:18px;">✓</span>
+            <span style="font-size:13px;font-weight:700;color:var(--success);">Inclus dans votre audit</span>
+          </div>
         </div>
         <div class="pricing__card pricing__card--popular">
           <div class="pricing__popular-badge">Most popular</div>
@@ -742,7 +756,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <div class="onboarding-card" style="border:3px solid var(--success);background:linear-gradient(180deg, var(--success-light) 0%, #d4edda 100%);transform:scale(1.03);">
           <div class="onboarding-card__num" style="background:var(--success);color:var(--white);width:52px;height:52px;font-size:22px;">&#10003;</div>
           <div class="onboarding-card__title" style="font-size:1.25rem;color:var(--success);">Money-back guarantee</div>
-          <p class="onboarding-card__desc" style="font-size:15px;color:var(--gray-700);font-weight:500;">If your lead response score doesn't improve in 90 days, we refund every penny. <strong>No questions asked.</strong></p>
+          <p class="onboarding-card__desc" style="font-size:15px;color:var(--gray-700);font-weight:500;">If your marketplace inquiry response score doesn't improve in 90 days, we refund every penny. <strong>No questions asked.</strong></p>
         </div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
@@ -874,7 +888,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <p style="color:var(--text-muted);font-size:15px;margin-top:8px;">Invest a little more in how you respond &mdash; and turn the leads you're already paying for into closed deals.</p>
       </div>
       <div class="dashboard__chart-wrap">
-        <div class="dashboard__chart-title">Projected Lead Response Score</div>
+        <div class="dashboard__chart-title">Projected Marketplace Inquiry Response Score</div>
         <div id="dashChart"></div>
       </div>
       <div class="dashboard__milestones" id="milestones"></div>
@@ -901,12 +915,15 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <div class="pricing__card-price"><span class="pricing__card-price-amount">Free</span></div>
           <div class="pricing__card-trial">Always free</div>
           <ul class="pricing__card-features">
-            <li>Lead response audit</li>
+            <li>Marketplace inquiry response audit</li>
             <li>Lead Readiness Score</li>
             <li>Monthly mystery shop</li>
             <li>Score tracking over time</li>
           </ul>
-          <button class="btn btn--outline btn--full">Get my free audit</button>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
+            <span style="font-size:18px;">✓</span>
+            <span style="font-size:13px;font-weight:700;color:var(--success);">Inclus dans votre audit</span>
+          </div>
         </div>
         <div class="pricing__card pricing__card--popular">
           <div class="pricing__popular-badge">Most popular</div>
@@ -1224,6 +1241,7 @@ function runDemoAnimation() {
   demoTimeouts = [];
 
   const theirMsg = document.getElementById('demoTheirMsg');
+  const composer = document.getElementById('demoComposer');
   const templateBtn = document.getElementById('demoTemplateBtn');
   const body = document.getElementById('demoComposerBody');
   const sendBtn = document.getElementById('demoSendBtn');
@@ -1233,6 +1251,7 @@ function runDemoAnimation() {
 
   // Reset everything
   theirMsg.classList.remove('collapsed');
+  composer.style.opacity = '0';
   templateBtn.classList.remove('selected');
   templateBtn.innerHTML = '&#9662; S\u00E9lectionner un mod\u00E8le...';
   body.textContent = 'R\u00E9digez votre r\u00E9ponse...';
@@ -1244,62 +1263,92 @@ function runDemoAnimation() {
   cursor.classList.remove('visible');
   annots.forEach(a => { a.classList.remove('visible'); a.classList.remove('emphasize'); });
 
-  // Phase 1: Show bad response for 3s so they recognize it
+  // Phase 1: Show bad response for 5s so they absorb it
   // (already visible from reset)
 
-  // Phase 2 (3s): Fly out the bad response
+  // Phase 2 (5s): Collapse the bad response
   demoTimeout(() => {
     theirMsg.classList.add('collapsed');
-  }, 3000);
+  }, 5000);
 
-  // Phase 3 (3.8s): Cursor appears, moves to template dropdown
+  // Phase 3 (6.5s): Fade in the Aello composer section
+  demoTimeout(() => {
+    composer.style.opacity = '1';
+  }, 6500);
+
+  // Phase 4 (7.5s): Cursor appears, moves to template dropdown
   demoTimeout(() => {
     cursor.classList.add('visible');
     moveCursor(cursor, templateBtn, 40, 8);
-  }, 3800);
+  }, 7500);
 
-  // Phase 4 (4.5s): Click template
+  // Phase 5 (8.5s): Click template
   demoTimeout(() => {
     templateBtn.classList.add('selected');
     templateBtn.innerHTML = '&#10003; availability_truck - FR';
-  }, 4500);
+  }, 8500);
 
-  // Phase 5 (5.2s): Response fills in
+  // Phase 6 (9.5s): Response fills in with highlight spans
   demoTimeout(() => {
     body.classList.remove('empty');
-    body.textContent = aGradeResponse;
-  }, 5200);
+    body.innerHTML = aGradeResponse
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>')
+      .replace('Bonjour Max', '<span class="demo-hl" data-annot="0">Bonjour Max</span>')
+      .replace('68\u00A0500', '<span class="demo-hl" data-annot="1">68\u00A0500</span>')
+      .replace('68 500', '<span class="demo-hl" data-annot="1">68 500</span>')
+      .replace('320 000 km', '<span class="demo-hl" data-annot="1">320 000 km</span>')
+      .replace('Quelques questions', '<span class="demo-hl" data-annot="2">Quelques questions</span>')
+      .replace('WhatsApp', '<span class="demo-hl" data-annot="3">WhatsApp</span>')
+      .replace('Jean-Marc Dupont', '<span class="demo-hl" data-annot="4">Jean-Marc Dupont</span>')
+      .replace('dossier complet', '<span class="demo-hl" data-annot="5">dossier complet</span>');
+  }, 9500);
 
-  // Phase 6 (5.5s): Hide cursor while they read
-  demoTimeout(() => { cursor.classList.remove('visible'); }, 5500);
+  // Phase 7 (10s): Hide cursor
+  demoTimeout(() => { cursor.classList.remove('visible'); }, 10000);
 
-  // Phase 7 (6s+): Annotations appear one by one with emphasis
+  // Phase 8 (11s+): Annotations appear one-by-one every 2500ms with email highlights
   annots.forEach((a, i) => {
     demoTimeout(() => {
+      // Remove previous highlights
+      body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
+      // Activate current highlights
+      body.querySelectorAll('[data-annot="' + i + '"]').forEach(el => {
+        el.classList.add('active');
+        el.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+      // Show annotation card
       a.classList.add('visible');
       a.classList.add('emphasize');
-    }, 6000 + i * 800);
+    }, 11000 + i * 2500);
     demoTimeout(() => {
       a.classList.remove('emphasize');
-    }, 6000 + (i + 1) * 800);
+    }, 11000 + i * 2500 + 2000);
   });
 
-  const annotEndTime = 6000 + annots.length * 800 + 3000; // 3s extra to read
+  const annotEndTime = 11000 + annots.length * 2500 + 3000; // 3s extra to read
 
-  // Phase 8: Cursor moves to Envoyer
+  // Clear last highlights before send phase
+  demoTimeout(() => {
+    body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
+  }, annotEndTime - 500);
+
+  // Phase 9: Cursor moves to Envoyer
   demoTimeout(() => {
     cursor.classList.add('visible');
     moveCursor(cursor, sendBtn, 30, 6);
   }, annotEndTime);
 
-  // Phase 9: Click send
+  // Phase 10: Click send
   demoTimeout(() => {
     sendBtn.classList.add('sent');
     sendBtn.textContent = '\u2714 Envoy\u00E9 !';
     cursor.classList.remove('visible');
   }, annotEndTime + 600);
 
-  // Phase 10: Sent overlay
+  // Phase 11: Sent overlay
   demoTimeout(() => { sentOverlay.classList.add('visible'); }, annotEndTime + 900);
   demoTimeout(() => { sentOverlay.classList.remove('visible'); }, annotEndTime + 2400);
 
