@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{dealer_name}} — Aéllo Copilot Report</title>
+<meta name="description" content="Free lead response audit for {{dealer_name}} — See your score and track improvement monthly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #007C89;
+  --primary-dark: #006570;
+  --primary-darker: #004F56;
+  --primary-light: #E8F5F6;
+  --primary-lighter: #C5E8EB;
+  --danger: #D5402B;
+  --danger-light: #FDF0EE;
+  --success: #2E8540;
+  --success-light: #EDF7EF;
+  --warning: #C77700;
+  --warning-light: #FFF7EB;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFB;
+  --gray-100: #F1F3F5;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --max-width: 1140px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 1px 2px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04), 0 12px 24px rgba(0,0,0,0.03);
+  --shadow-xl: 0 1px 3px rgba(0,0,0,0.06), 0 8px 16px rgba(0,0,0,0.04), 0 24px 48px rgba(0,0,0,0.03);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--primary); text-decoration: none; }
+h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.section { padding: 64px 0; }
+.section-alt { background: var(--gray-50); }
+.text-danger { color: var(--danger); }
+.text-primary { color: var(--primary); }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif; }
+.badge--primary { background: var(--primary-light); color: var(--primary-dark); }
+.badge--danger { background: var(--danger-light); color: var(--danger); }
+.badge--success { background: var(--success-light); color: var(--success); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: none; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.btn:active { transform: scale(0.98); }
+.btn--primary { background: var(--primary); color: var(--white); }
+.btn--primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn--white { background: var(--white); color: var(--primary-dark); }
+.btn--white:hover { background: var(--gray-50); transform: translateY(-1px); }
+.btn--outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn--outline:hover { background: var(--primary); color: var(--white); }
+.btn--full { width: 100%; }
+.btn--lg { padding: 14px 28px; font-size: 15px; }
+
+/* Audit form — stacked */
+.audit-form { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
+.audit-form input {
+  width: 100%; padding: 13px 16px; border: 2px solid var(--gray-200);
+  border-radius: var(--radius-sm); font-family: 'Inter', sans-serif;
+  font-size: 14px; outline: none; transition: border-color 0.2s;
+}
+.audit-form input:focus { border-color: var(--primary); }
+.audit-form input::placeholder { color: var(--gray-400); }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); padding: 12px 0; }
+.header__inner { display: flex; align-items: center; justify-content: space-between; }
+.header__logo img { height: 44px; width: auto; }
+.header__meta { display: flex; align-items: center; gap: 14px; }
+.header__dealer { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+/* Hero */
+.hero { padding: 56px 0 48px; background: linear-gradient(175deg, var(--gray-50) 0%, var(--white) 65%); }
+.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.hero h1 { margin-bottom: 16px; }
+.hero__subtitle { font-size: 16px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.7; }
+.hero__form { margin-bottom: 10px; }
+.hero__form-note { font-size: 12px; color: var(--text-muted); margin-bottom: 32px; }
+.hero__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat-card { text-align: center; padding: 18px 12px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
+.stat-card:hover { border-color: var(--gray-300); }
+.stat-card__number { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+.stat-card__label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Hero chart */
+.hero__chart { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 20px 20px; box-shadow: var(--shadow-lg); }
+.hero__chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.hero__chart-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-800); }
+.hero__chart-legend { display: flex; gap: 12px; }
+.hero__chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); font-weight: 500; }
+.hero__chart-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+.hero__chart svg { width: 100%; height: auto; display: block; }
+.hero__chart-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--gray-100); }
+.hero__chart-metric-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
+.hero__chart-metric-value { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--gray-900); line-height: 1.2; }
+.hero__chart-metric-change { font-size: 11px; font-weight: 700; margin-top: 2px; }
+@keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+.chart-line { stroke-dasharray: 1000; animation: drawLine 1.5s ease-out forwards; }
+.chart-dot { opacity: 0; animation: dotAppear 0.3s ease forwards; }
+@keyframes dotAppear { to { opacity: 1; } }
+
+/* Marketplace Cost */
+.marketplace-cost { padding: 56px 0; background: var(--gray-50); }
+.marketplace-cost__inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.marketplace-cost h2 { margin-bottom: 12px; }
+.marketplace-cost__subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6; }
+.marketplace-cost__platforms { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.marketplace-cost__platform { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 24px; text-align: center; min-width: 160px; }
+.marketplace-cost__platform-name { font-size: 13px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; }
+.marketplace-cost__platform-cost { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--gray-900); }
+.marketplace-cost__platform-period { font-size: 12px; color: var(--text-muted); }
+.marketplace-cost__plus { font-size: 1.5rem; font-weight: 300; color: var(--gray-400); }
+.marketplace-cost__equals { font-size: 1.5rem; font-weight: 300; color: var(--gray-400); }
+.marketplace-cost__total { background: var(--danger-light); border: 2px solid var(--danger); border-radius: var(--radius); padding: 20px 28px; text-align: center; min-width: 180px; }
+.marketplace-cost__total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); margin-bottom: 4px; }
+.marketplace-cost__total-amount { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 900; color: var(--danger); }
+.marketplace-cost__total-period { font-size: 12px; color: var(--danger); opacity: 0.7; }
+.marketplace-cost__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 480px; margin: 0 auto 28px; }
+.marketplace-cost__stat { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; text-align: center; }
+.marketplace-cost__stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 8px; }
+.marketplace-cost__stat-value { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; }
+.marketplace-cost__stat--danger .marketplace-cost__stat-value { color: var(--danger); }
+.marketplace-cost__stat--blurred .marketplace-cost__stat-value { filter: blur(8px); color: var(--gray-700); }
+.marketplace-cost__stat-hint { font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 8px; }
+
+/* Guarantee Section (new) */
+.guarantee-section { padding: 64px 0; background: linear-gradient(135deg, var(--gray-900) 0%, #1a2332 100%); color: var(--white); text-align: center; }
+.guarantee-section h2 { color: var(--white); margin-bottom: 16px; }
+.guarantee-section__body { font-size: 16px; color: var(--gray-400); max-width: 540px; margin: 0 auto 32px; line-height: 1.7; }
+.guarantee-section__ctas { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.guarantee-section__ctas .btn--white { background: var(--white); color: var(--primary-dark); }
+.guarantee-section__ctas .btn--outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+.guarantee-section__ctas .btn--outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+/* Scorecard */
+.scorecard { padding: 64px 0; }
+.scorecard__header { text-align: center; margin-bottom: 40px; }
+.scorecard__header h2 { margin-bottom: 8px; }
+.scorecard__header p { color: var(--text-muted); font-size: 15px; }
+.scorecard__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 740px; margin: 0 auto; }
+.scorecard__item { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; position: relative; transition: all 0.2s; }
+.scorecard__item:hover { box-shadow: var(--shadow-md); }
+.scorecard__item--revealed { border-color: var(--gray-300); }
+.scorecard__item--locked { }
+.scorecard__item-locked-score { position: relative; }
+.scorecard__item--locked .scorecard__item-score,
+.scorecard__item--locked .scorecard__item-bar { filter: blur(3px); opacity: 0.4; }
+.scorecard__item-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 8px; }
+.scorecard__item-name { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px; color: var(--gray-900); margin-bottom: 4px; }
+.scorecard__item-desc { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-bottom: 16px; }
+.scorecard__item-score { font-family: 'Inter', sans-serif; font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
+.scorecard__item-bar { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+.scorecard__item-bar-fill { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
+.scorecard__item-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.scorecard__item-lock-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.scorecard__item-lock-text { font-size: 13px; font-weight: 700; color: var(--primary); }
+.scorecard__cta { text-align: center; margin-top: 28px; max-width: 740px; margin-left: auto; margin-right: auto; }
+.scorecard__cta-text { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
+.scorecard__cta-text strong { color: var(--gray-800); }
+@media (max-width: 640px) {
+  .scorecard__grid { grid-template-columns: 1fr; }
+}
+
+/* (Revenue Leak section removed) */
+
+/* Pivot */
+.pivot { padding: 72px 0; text-align: center; background: linear-gradient(175deg, var(--white) 0%, var(--primary-light) 100%); }
+.pivot h2 { margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.pivot__scenario { max-width: 560px; margin: 0 auto; font-size: 17px; color: var(--gray-700); line-height: 1.8; }
+.pivot__scenario strong { color: var(--primary-dark); font-weight: 700; }
+
+/* Steps */
+.steps { padding: 64px 0; }
+.steps__header { text-align: center; margin-bottom: 48px; }
+.step { margin-bottom: 48px; }
+.step:last-child { margin-bottom: 0; }
+.step__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.step__inner--reversed { direction: rtl; }
+.step__inner--reversed > * { direction: ltr; }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 900; font-size: 16px; margin-bottom: 12px; }
+.step__content h3 { margin-bottom: 10px; }
+.step__content p { color: var(--gray-600); font-size: 15px; line-height: 1.7; }
+.step__image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); transition: transform 0.3s ease; }
+.step__image:hover { transform: translateY(-4px); }
+.step__image img { width: 100%; display: block; }
+
+/* Guarantee */
+.guarantee { padding: 56px 0; background: var(--gray-900); color: var(--white); text-align: center; }
+.guarantee h2 { color: var(--white); margin-bottom: 16px; }
+.guarantee__body { font-size: 16px; color: var(--gray-400); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
+.guarantee__contrast { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.guarantee__contrast-item { text-align: center; }
+.guarantee__contrast-number { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
+.guarantee__contrast-label { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+.guarantee__contrast-op { font-size: 1.5rem; color: var(--gray-600); font-weight: 300; }
+
+/* Logo bar — "Supported marketplaces" */
+.logo-bar { padding: 48px 0; background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+.logo-bar__label { text-align: center; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 28px; }
+.logo-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px 28px; max-width: 800px; margin: 0 auto; }
+.logo-bar__item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.65; transition: opacity 0.2s; }
+.logo-bar__item:hover { opacity: 1; }
+.logo-bar__icon { width: 72px; height: 72px; border-radius: 16px; background: var(--white); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: var(--gray-700); font-family: 'Inter', sans-serif; box-shadow: var(--shadow-sm); overflow: hidden; }
+.logo-bar__icon img { width: 50px; height: 50px; object-fit: contain; }
+.logo-bar__name { font-size: 12px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+
+/* Pricing */
+.pricing { padding: 56px 0; }
+.pricing h2 { text-align: center; margin-bottom: 6px; }
+.pricing__subtitle { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 36px; }
+.pricing__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
+.pricing__card { border: 2px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px 24px; display: flex; flex-direction: column; background: var(--white); transition: all 0.2s; }
+.pricing__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pricing__card--free { border-color: var(--gray-300); background: var(--gray-50); }
+.pricing__card--popular { border-color: var(--primary); border-width: 3px; box-shadow: 0 4px 24px rgba(0,124,137,0.18), var(--shadow-lg); position: relative; transform: scale(1.05); background: linear-gradient(180deg, var(--primary-light) 0%, var(--white) 40%); }
+.pricing__card--popular:hover { transform: scale(1.05) translateY(-3px); }
+.pricing__popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--white); padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.pricing__card-name { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.pricing__card-price { display: flex; align-items: baseline; gap: 3px; margin-bottom: 3px; }
+.pricing__card-price-amount { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.pricing__card-price-period { font-size: 14px; color: var(--text-muted); }
+.pricing__card-trial { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 20px; }
+.pricing__card-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex-grow: 1; }
+.pricing__card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.4; }
+.pricing__card-features li::before { content: '\2713'; font-weight: 800; color: var(--primary); flex-shrink: 0; }
+.pricing__card .btn { margin-top: auto; }
+
+/* (Final CTA section removed) */
+
+/* Footer */
+.footer { padding: 24px 0; border-top: 1px solid var(--gray-200); }
+.footer__inner { display: flex; align-items: center; justify-content: space-between; }
+.footer__brand img { height: 32px; width: auto; }
+.footer__meta { font-size: 11px; color: var(--gray-400); }
+.footer__meta a { color: var(--gray-500); }
+
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-up.is-visible { opacity: 1; transform: translateY(0); }
+.stagger > .fade-up:nth-child(2) { transition-delay: 0.06s; }
+.stagger > .fade-up:nth-child(3) { transition-delay: 0.12s; }
+.stagger > .fade-up:nth-child(4) { transition-delay: 0.18s; }
+
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 28px; }
+  .hero__chart { max-width: 480px; }
+  .step__inner, .step__inner--reversed { grid-template-columns: 1fr; gap: 28px; direction: ltr; }
+  .pricing__grid { grid-template-columns: 1fr 1fr; max-width: 500px; }
+  .marketplace-cost__platforms { flex-direction: column; }
+  .guarantee-section__ctas { flex-direction: column; }
+  .pricing__card--popular { transform: scale(1); }
+  .scorecard__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .section { padding: 44px 0; }
+  .hero { padding: 40px 0 32px; }
+  .stat-card { padding: 14px 8px; }
+  .stat-card__number { font-size: 1.2rem; }
+  .guarantee__contrast { flex-direction: column; gap: 12px; }
+  .pricing__grid { grid-template-columns: 1fr; max-width: 360px; }
+  .footer__inner { flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
+      <div class="header__meta">
+        <span class="header__dealer" id="headerDealer"></span>
+        <a href="#pricing" class="btn btn--primary" style="padding: 8px 18px; font-size: 13px;">Free audit</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__content">
+        <h1 id="heroHeadline"></h1>
+        <p class="hero__subtitle" id="heroSub"></p>
+        <div class="hero__form">
+          <form class="audit-form" onsubmit="handleSubmit(event)">
+            <input type="url" placeholder="votresite.com" required>
+            <button type="submit" class="btn btn--primary btn--full btn--lg">Voir votre score de r&eacute;ponse</button>
+          </form>
+        </div>
+        <p class="hero__form-note">&#128274; 100% gratuit. Sans carte bancaire. R&eacute;sultats en 24h.</p>
+        <div class="hero__stats stagger" id="heroStats"></div>
+      </div>
+      <!-- chart removed -->
+    </div>
+  </div>
+</section>
+
+<!-- MARKETPLACE COST -->
+<section class="marketplace-cost section-alt" id="marketplaceCost">
+  <div class="container">
+    <div class="marketplace-cost__inner">
+      <h2 class="fade-up">Vous investissez d&eacute;j&agrave; gros dans les marketplaces.</h2>
+      <p class="marketplace-cost__subtitle fade-up">Voici ce que vos abonnements vous co&ucirc;tent chaque mois&nbsp;:</p>
+      <div class="marketplace-cost__platforms fade-up" id="mcPlatforms"></div>
+      <div class="marketplace-cost__stats fade-up" id="mcStats"></div>
+      <a href="#hero" class="btn btn--primary btn--lg fade-up">Voir votre score d'audit &mdash; gratuit</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- GUARANTEE (response score) -->
+<section class="guarantee-section" id="guaranteeSection">
+  <div class="container">
+    <h2 class="fade-up">Votre score de r&eacute;ponse marketplace va s'am&eacute;liorer. Garanti.</h2>
+    <p class="guarantee-section__body fade-up">Utilisez Copilot pendant 90 jours. Si votre score ne s'am&eacute;liore pas, on vous rembourse int&eacute;gralement.</p>
+    <div class="guarantee-section__ctas fade-up">
+      <a href="#hero" class="btn btn--white btn--lg">Obtenir votre audit gratuit</a>
+      <a href="#steps" class="btn btn--outline-white btn--lg">Voir la d&eacute;mo produit</a>
+    </div>
+  </div>
+</section>
+
+<!-- PIVOT -->
+<section class="pivot" id="pivot">
+  <div class="container">
+    <h2 class="fade-up">What if every lead got a response in 2 minutes?</h2>
+    <p class="pivot__scenario fade-up" id="pivotScenario"></p>
+  </div>
+</section>
+
+<!-- STEPS — How to fix your score -->
+<section class="steps section-alt" id="steps">
+  <div class="container">
+    <div class="steps__header">
+      <h2 class="fade-up">See. Fix. Track.</h2>
+    </div>
+    <div class="step">
+      <div class="step__inner fade-up">
+        <div class="step__content">
+          <div class="step-number">1</div>
+          <h3>See what's broken.</h3>
+          <p>Your free audit reveals every gap in your response process — speed, quality, follow-up, across every platform.</p>
+        </div>
+        <div class="step__image"><img src="https://aello-copilot.com/images/lead_capture.gif" alt="Lead audit" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__inner step__inner--reversed fade-up">
+        <div class="step__content">
+          <div class="step-number">2</div>
+          <h3>Fix it in 30 seconds.</h3>
+          <p>Upgrade to Copilot: respond from your phone with smart templates. Two taps — personalized response sent.</p>
+        </div>
+        <div class="step__image"><img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Template response in action" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__inner fade-up">
+        <div class="step__content">
+          <div class="step-number">3</div>
+          <h3>Never lose a lead again.</h3>
+          <p>Monthly mystery shops track your score. Watch response times drop, close rates rise, and revenue follow.</p>
+        </div>
+        <div class="step__image"><img src="https://aello-copilot.com/images/vehicle_lead_scoring.gif" alt="Score improvement" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MARKETPLACE LOGO BAR -->
+<section class="logo-bar" id="platforms">
+  <div class="container">
+    <div class="logo-bar__label">Supported marketplaces across France &amp; Europe</div>
+    <div class="logo-bar__grid fade-up" id="logoBarGrid"></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing section section-alt" id="pricing">
+  <div class="container">
+    <h2 class="fade-up">Start free. Upgrade when you're ready.</h2>
+    <p class="pricing__subtitle fade-up">The audit is free — forever. Copilot is for dealers who want to fix what's broken.</p>
+    <div class="pricing__grid stagger">
+      <!-- Free -->
+      <div class="pricing__card pricing__card--free fade-up">
+        <div class="pricing__card-name">Audit</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-price-amount">Free</span>
+        </div>
+        <div class="pricing__card-trial">Always free</div>
+        <ul class="pricing__card-features">
+          <li>Lead response audit</li>
+          <li>Lead Readiness Score</li>
+          <li>Monthly mystery shop</li>
+          <li>Score tracking over time</li>
+        </ul>
+        <a href="#hero" class="btn btn--outline btn--full">Get my free audit</a>
+      </div>
+      <!-- Pro -->
+      <div class="pricing__card pricing__card--popular fade-up">
+        <div class="pricing__popular-badge">Most popular</div>
+        <div class="pricing__card-name">Pro</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-price-amount">&euro;49</span>
+          <span class="pricing__card-price-period">/mo</span>
+        </div>
+        <div class="pricing__card-trial">1 month free · Money-back guarantee</div>
+        <ul class="pricing__card-features">
+          <li>Everything in Audit</li>
+          <li>Up to 3 marketplaces</li>
+          <li>Smart response templates</li>
+          <li>WhatsApp, email &amp; website inquiries</li>
+          <li>Lead scoring &amp; deduplication</li>
+          <li>Monthly response monitoring</li>
+        </ul>
+        <a href="#hero" class="btn btn--primary btn--full">Start free trial</a>
+      </div>
+      <!-- Business -->
+      <div class="pricing__card fade-up">
+        <div class="pricing__card-name">Business</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-price-amount">&euro;99</span>
+          <span class="pricing__card-price-period">/mo</span>
+        </div>
+        <div class="pricing__card-trial">1 month free · Money-back guarantee</div>
+        <ul class="pricing__card-features">
+          <li>Everything in Pro</li>
+          <li>Auto team assignment</li>
+          <li>Advanced analytics</li>
+          <li>API &amp; DMS integrations</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="#hero" class="btn btn--outline btn--full">Contact sales</a>
+      </div>
+      <!-- Enterprise -->
+      <div class="pricing__card fade-up">
+        <div class="pricing__card-name">Enterprise</div>
+        <div class="pricing__card-price">
+          <span class="pricing__card-price-amount" style="font-size:1.6rem;">Let's talk</span>
+        </div>
+        <div class="pricing__card-trial">Custom pricing</div>
+        <ul class="pricing__card-features">
+          <li>Everything in Business</li>
+          <li>5+ marketplaces</li>
+          <li>Multi-location support</li>
+          <li>Custom integrations</li>
+          <li>Priority support &amp; SLA</li>
+        </ul>
+        <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
+      <div class="footer__meta">Report generated <span id="footerDate"></span> · <a href="mailto:charles@aello-group.co">charles@aello-group.co</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const dealerData = {
+  dealer_name: "1FOTEAM",
+  dealer_city: "Le Havre",
+  dealer_website: "1foteam.com",
+  total_listings: 47,
+  total_platforms: 3,
+  estimated_leads_per_month: 62,
+  marketplace_list: [
+    { name: "Europe-Camions", abbr: "EC", listings: 23, active: true },
+    { name: "LeBonCoin Pro", abbr: "LBC", listings: 15, active: true },
+    { name: "Autoline", abbr: "AL", listings: 9, active: true },
+    { name: "Mascus", abbr: "MA", listings: 0, active: false },
+    { name: "Truck1", abbr: "T1", listings: 0, active: false },
+    { name: "TrucksNL", abbr: "NL", listings: 0, active: false },
+    { name: "MachineryTrader", abbr: "MT", listings: 0, active: false },
+    { name: "BasWorld", abbr: "BW", listings: 0, active: false },
+  ],
+  mystery_shop_response_time: "18h 48min",
+  mystery_shop_response_minutes: 1128,
+  mystery_shop_platform: "Europe-Camions",
+  revenue_leak_monthly: 4750,
+  cost_per_lead: 18,
+  deals_lost_per_month: 3,
+  margin_per_sale: 1800,
+  generated_date: "March 2026",
+};
+
+function populatePage(d) {
+  document.title = `${d.dealer_name} — Aéllo Copilot Report`;
+  document.getElementById('headerDealer').textContent = `Report for ${d.dealer_name}`;
+
+  // Hero
+  document.getElementById('heroHeadline').innerHTML =
+    `Vous payez pour \u00eatre visible. Vos r\u00e9ponses vous font perdre des ventes.`;
+
+  document.getElementById('heroSub').innerHTML =
+    `Vous investissez dans les marketplaces chaque mois. R\u00e9pondez mieux pour conclure plus de ventes.`;
+
+  document.getElementById('heroStats').innerHTML = `
+    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);">${d.mystery_shop_response_time}</div><div class="stat-card__label">Temps de r\u00e9ponse</div></div>
+    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">27/100</div><div class="stat-card__label">Score de r\u00e9ponse</div><div style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;">D\u00e9bloquer \u2192</div></div>
+  `;
+
+  // (CPL chart removed)
+
+  // Marketplace cost visual
+  const activePlatforms = d.marketplace_list.filter(p => p.active);
+  const platformCosts = activePlatforms.map((p, i) => {
+    const cost = 500 + Math.round(Math.random() * 300); // ~€500-800 range
+    return { name: p.name, cost };
+  });
+  const totalMonthly = platformCosts.reduce((s, p) => s + p.cost, 0);
+  document.getElementById('mcPlatforms').innerHTML =
+    platformCosts.map((p, i) => `
+      <div class="marketplace-cost__platform">
+        <div class="marketplace-cost__platform-name">${p.name}</div>
+        <div class="marketplace-cost__platform-cost">\u20AC${p.cost}</div>
+        <div class="marketplace-cost__platform-period">/ mois</div>
+      </div>
+      ${i < platformCosts.length - 1 ? '<span class="marketplace-cost__plus">+</span>' : ''}
+    `).join('') + `
+      <span class="marketplace-cost__equals">=</span>
+      <div class="marketplace-cost__total">
+        <div class="marketplace-cost__total-label">Total mensuel</div>
+        <div class="marketplace-cost__total-amount">\u20AC${totalMonthly.toLocaleString('fr-FR')}</div>
+        <div class="marketplace-cost__total-period">/ mois</div>
+      </div>`;
+
+  document.getElementById('mcStats').innerHTML = `
+    <div class="marketplace-cost__stat marketplace-cost__stat--danger">
+      <div class="marketplace-cost__stat-label">Temps de r\u00e9ponse</div>
+      <div class="marketplace-cost__stat-value">${d.mystery_shop_response_time}</div>
+    </div>
+    <div class="marketplace-cost__stat marketplace-cost__stat--blurred">
+      <div class="marketplace-cost__stat-label">Score de r\u00e9ponse</div>
+      <div class="marketplace-cost__stat-value">27/100</div>
+      <div class="marketplace-cost__stat-hint">D\u00e9bloquer votre score \u2192</div>
+    </div>`;
+
+  // (Scorecard section removed)
+
+  // (Revenue leak section removed)
+
+  // Pivot
+  document.getElementById('pivotScenario').innerHTML =
+    `You're on the lot with a customer. Your phone buzzes — a buyer just asked about a <strong>DAF XF 480</strong> on ${d.mystery_shop_platform}. Two taps: a personalized response with the vehicle details, price, and your contact info is sent. <strong>You never left your conversation.</strong>`;
+
+  // (Old guarantee contrast removed)
+
+  // Logo bar — marketplace logos with real favicons
+  const allPlatforms = [
+    { name: 'Europe-Camions', domain: 'europe-camions.com' },
+    { name: 'LeBonCoin', domain: 'leboncoin.fr' },
+    { name: 'LeBonCoin Pro', domain: 'leboncoinpro.fr' },
+    { name: 'Autoline', domain: 'autoline-eu.com' },
+    { name: 'Mascus', domain: 'mascus.com' },
+    { name: 'Truck1', domain: 'truck1.eu' },
+    { name: 'TrucksNL', domain: 'trucksnl.com' },
+    { name: 'MachineryTrader', domain: 'machinerytrader.com' },
+    { name: 'BasWorld', domain: 'basworld.com' },
+    { name: 'TruckScout24', domain: 'truckscout24.de' },
+    { name: 'MachineryFinder', domain: 'machineryfinder.com' },
+  ];
+  document.getElementById('logoBarGrid').innerHTML = allPlatforms.map(p => `
+    <div class="logo-bar__item">
+      <div class="logo-bar__icon"><img src="https://www.google.com/s2/favicons?domain=${p.domain}&sz=64" alt="${p.name}"></div>
+      <div class="logo-bar__name">${p.name}</div>
+    </div>
+  `).join('');
+
+  // Footer
+  document.getElementById('footerDate').textContent = d.generated_date;
+}
+
+function initScrollAnimations() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const url = e.target.querySelector('input[type="url"]').value;
+  alert(`Thanks! We'll audit ${url} and send your report within 24 hours.`);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populatePage(dealerData);
+  requestAnimationFrame(() => initScrollAnimations());
+});
+</script>
+</body>
+</html>
