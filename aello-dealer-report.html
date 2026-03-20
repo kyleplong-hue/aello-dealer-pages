@@ -198,6 +198,11 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 /* Annotation emphasis */
 .annot-card.emphasize { border-color: var(--success); box-shadow: 0 0 0 3px rgba(46,133,64,0.12); transform: scale(1.03); }
 
+/* Book a demo section */
+.demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
+.demo-section h2 { margin-bottom: 12px; }
+.demo-section__embed { max-width: 800px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; box-shadow: var(--shadow-lg); }
+
 /* Replay button */
 .demo-inbox__replay { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--gray-200); background: var(--white); font-size: 11px; font-weight: 600; color: var(--gray-500); cursor: pointer; font-family: 'Inter', sans-serif; }
 .demo-inbox__replay:hover { background: var(--gray-50); color: var(--gray-700); }
@@ -628,7 +633,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <div id="heroChart" style="position:relative;"></div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn btn--primary btn--lg" onclick="scrollToPricing()">Book a call</button>
+        <a class="btn btn--primary btn--lg" href="#bookDemo">R&eacute;server une d&eacute;mo</a>
         <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()">Start free trial &rarr;</button>
       </div>
     </div>
@@ -741,8 +746,19 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         </div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn btn--primary btn--lg" onclick="scrollToPricing()">Book a call</button>
+        <a class="btn btn--primary btn--lg" href="#bookDemo">R&eacute;server une d&eacute;mo</a>
         <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()">Start free trial &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK A DEMO -->
+  <section class="demo-section" id="bookDemo">
+    <div class="container">
+      <h2 class="fade-up">R&eacute;server une d&eacute;mo</h2>
+      <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
+      <div class="demo-section__embed fade-up">
+        <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
       </div>
     </div>
   </section>
@@ -1021,7 +1037,7 @@ const sampleLeads = [
   { id: 1, name: "Max Schreiber", platform: "Europe-Camions", platformDomain: "europe-camions.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "18h ago", color: "#3B82F6", channel: "email",
     img: "https://images.unsplash.com/photo-1616432043562-3671ea2e5242?w=400&h=300&fit=crop",
     inquiry: "Bonjour, je suis int\u00E9ress\u00E9 par le DAF XF 480 FT que vous avez sur Europe-Camions. Quel est le prix et est-il disponible pour un transport international ? Merci, Max Schreiber" },
-  { id: 2, name: "Pierre Dubois", platform: "LeBonCoin", platformDomain: "leboncoin.fr", vehicle: "Renault T 460", price: "42 900 \u20AC", phone: "+33 6XX XXX XXX", time: "4h ago", color: "#F59E0B", channel: "email",
+  { id: 2, name: "Pierre Dubois", platform: "LeBonCoin", platformDomain: "leboncoin.fr", vehicle: "Renault T 460", price: "42 900 \u20AC", phone: "+33 6XX XXX XXX", time: "4h ago", color: "#F59E0B", channel: "whatsapp",
     img: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=400&h=300&fit=crop",
     inquiry: "Bonjour, le Renault T 460 r\u00E9f\u00E9rence #4821 est-il toujours disponible ? Je cherche un tracteur pour livraisons r\u00E9gionales. Pierre Dubois, Transports Dubois SARL." },
   { id: 3, name: "Hans M\u00FCller", platform: "Autoline", platformDomain: "autoline.info", vehicle: "Schmitz Cargobull Reefer", price: "23 500 \u20AC", phone: "+49 171 XXX XXXX", time: "2h ago", color: "#8B5CF6", channel: "email",
@@ -1030,9 +1046,9 @@ const sampleLeads = [
   { id: 4, name: "Ahmed Benali", platform: "TrucksNL", platformDomain: "trucksnl.com", vehicle: "Volvo FH 500", price: "89 000 \u20AC", phone: "+212 6XX XXX XXX", time: "1h ago", color: "#10B981", channel: "whatsapp",
     img: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=400&h=300&fit=crop",
     inquiry: "Hi, I saw the Volvo FH 500 on TrucksNL. Do you offer financing or leasing? I need it for Morocco delivery. WhatsApp preferred: +212 6XX XXX XXX. Ahmed" },
-  { id: 5, name: "Maria Santos", platform: "Europe-Camions", platformDomain: "europe-camions.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+351 9XX XXX XXX", time: "45min ago", color: "#3B82F6", channel: "email", duplicate: true, duplicateOf: 1,
+  { id: 5, name: "Max Schreiber", platform: "TruckScout24", platformDomain: "truckscout24.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "45min ago", color: "#3B82F6", channel: "whatsapp", duplicate: true, duplicateOf: 1,
     img: "https://images.unsplash.com/photo-1616432043562-3671ea2e5242?w=400&h=300&fit=crop",
-    inquiry: "Hello, what is the price for the DAF XF 480 FT? Is it available? Maria Santos, Santos Transport Lda, Portugal." },
+    inquiry: "Hi, I saw the DAF XF 480 FT on TruckScout24. Is it still available? What is the final price? Best regards, Max Schreiber" },
 ];
 
 const walkthroughSteps = [
@@ -1040,7 +1056,7 @@ const walkthroughSteps = [
   { target: ".inbox__list", title: "Your prospect list", text: "5 leads from 4 different marketplaces. Each shows the vehicle, status, and source \u2014 so you know what to do at a glance.", pos: "right" },
   { target: "[data-lead='1']", title: "Open a lead", text: "This is the lead from your mystery shop. Click to see the full conversation and vehicle details.", action: "selectLead", leadId: 1, pos: "right" },
   { target: ".inbox__composer", title: "Reply with a template", text: "Select a pre-written template, pick the language, and hit Envoyer. The buyer\u2019s name, vehicle, and price are auto-filled.", action: "sendReply", pos: "top" },
-  { target: ".inbox__list", title: "Automatic deduplication", text: "Watch \u2014 Max Schreiber and Maria Santos both inquired about the same DAF XF 480. Aello detects this automatically and merges them into one prospect. No double replies, no wasted time.", action: "dedup", pos: "right" },
+  { target: ".inbox__list", title: "Automatic deduplication", text: "Watch \u2014 Max Schreiber sent the same inquiry about the DAF XF 480 via both Europe-Camions and TruckScout24. Aello detects the duplicate automatically and merges them into one prospect. No double replies, no wasted time.", action: "dedup", pos: "right" },
   { target: "#chWA", title: "Switch channels instantly", text: "This buyer prefers WhatsApp. Switch channels without leaving your inbox \u2014 reply goes straight to their phone.", action: "selectLead", leadId: 4, pos: "top" },
   { target: "#followupBadge", title: "Automated follow-ups", text: "No reply after 2 days? Copilot sends an automated follow-up. Enterprise dealers have had these tools for years \u2014 now you do too.", action: "showFollowup", pos: "top" },
   { target: "#assignArea", title: "Route leads to the right person", text: "Assign leads to specific salespeople. Never let one fall through the cracks.", action: "showAssign", pos: "top" },
@@ -1048,11 +1064,11 @@ const walkthroughSteps = [
 ];
 
 const improvementData = [
-  { month: "Now", score: 27, color: "var(--danger)", label: "Your current score" },
-  { month: "Day 1", score: 45, color: "#E97B1A", label: "Connected & responding" },
-  { month: "Week 1", score: 60, color: "var(--warning)", label: "Faster than competitors" },
-  { month: "Month 1", score: 78, color: "#3B82F6", label: "Fully automated" },
-  { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class" },
+  { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
+  { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
+  { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
+  { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
+  { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
 ];
 
 const timelineSteps = [
@@ -1294,20 +1310,23 @@ function runDemoAnimation() {
 // ===== SCREEN 3: INBOX =====
 function renderInbox() {
   const list = document.getElementById('leadList');
+  const whatsappIcon = '<svg style="display:inline-block;vertical-align:middle;width:14px;height:14px;margin-left:4px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
   list.innerHTML = sampleLeads.map(l => {
     const statusClass = l.duplicate ? '' : (l.id === 1 ? 'inbox__lead-status--new' : l.id <= 3 ? 'inbox__lead-status--contacted' : 'inbox__lead-status--new');
     const statusText = l.duplicate ? '' : (l.id === 1 ? 'Nouveau' : l.id <= 3 ? 'Contact\u00E9' : 'Nouveau');
+    const channelIcon = l.channel === 'whatsapp' ? whatsappIcon : '';
     return `
     <div class="inbox__lead" data-lead="${l.id}" onclick="selectLead(${l.id})">
       <div class="inbox__lead-thumb" style="background:${l.color};">
         <span class="inbox__lead-thumb-initials">${l.name.split(' ').map(n=>n[0]).join('')}</span>
       </div>
       <div class="inbox__lead-info">
-        <div class="inbox__lead-name">${l.name} ${l.duplicate ? '<span class="inbox__lead-dup">DUPLICATE</span>' : ''}</div>
+        <div class="inbox__lead-name">${l.name} ${l.duplicate ? '<span class="inbox__lead-dup">DUPLICATE</span>' : ''}${channelIcon}</div>
         <div class="inbox__lead-vehicle">${l.vehicle}</div>
         <div class="inbox__lead-meta">
           ${statusText ? `<span class="inbox__lead-status ${statusClass}">${statusText}</span>` : ''}
           <span class="inbox__lead-platform">${l.platform}</span>
+          ${l.channel === 'whatsapp' ? '<span style="font-size:10px;font-weight:700;padding:1px 6px;border-radius:100px;background:#dcfce7;color:#25D366;">WhatsApp</span>' : ''}
         </div>
         <div class="inbox__lead-price">${l.price || ''}</div>
       </div>
@@ -1436,7 +1455,7 @@ function runDedupAnimation() {
     // Add matching vehicle badge to lead 1
     const badge1 = document.createElement('div');
     badge1.className = 'dedup-merge-badge';
-    badge1.textContent = '\uD83D\uDD17 DAF XF 480 FT \u2014 Same inquiry';
+    badge1.textContent = '\uD83D\uDD17 Max Schreiber \u2014 Same buyer, different channel';
     badge1.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--danger);color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(213,64,43,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
     lead1El.style.position = 'relative';
     lead1El.appendChild(badge1);
@@ -1600,8 +1619,9 @@ function renderChart(chartId, milestonesId) {
             <text x="${padL-8}" y="${(y1+y2)/2+4}" text-anchor="end" font-size="10" font-weight="700" fill="#9CA3AF" font-family="Inter,sans-serif">${b.label}</text>`;
   }).join('');
 
+  const xFractions = [0, 0.08, 0.15, 0.35, 1.0];
   const points = improvementData.map((d, i) => ({
-    x: padL + (i / (improvementData.length - 1)) * plotW,
+    x: padL + xFractions[i] * plotW,
     y: padT + (1 - d.score / maxScore) * plotH,
     ...d
   }));
@@ -1609,11 +1629,7 @@ function renderChart(chartId, milestonesId) {
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
   const last = points[points.length - 1];
 
-  // Milestone descriptions (skip "Now")
-  const milestoneLabels = [
-    '', // "Now" — no label
-    ...timelineSteps.map(s => s.title)
-  ];
+  // Milestone descriptions — all points get labels now
 
   // Build static SVG elements (hidden initially, animated via JS)
   const dots = points.map((p, i) => {
@@ -1634,10 +1650,11 @@ function renderChart(chartId, milestonesId) {
 
   // Milestone text boxes (foreignObject for rich text below dots)
   const milestoneTexts = points.map((p, i) => {
-    if (!milestoneLabels[i]) return '';
-    const textW = 160;
-    return `<foreignObject id="${chartId}_ms${i}" x="${Math.max(padL, Math.min(p.x - textW/2, W - padR - textW))}" y="${padT + plotH + 30}" width="${textW}" height="40" opacity="0">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-family:Inter,sans-serif;font-size:11px;font-weight:700;color:${p.color};line-height:1.3;padding:4px 8px;background:white;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">${milestoneLabels[i]}</div>
+    const label = improvementData[i].label;
+    if (!label) return '';
+    const textW = 200;
+    return `<foreignObject id="${chartId}_ms${i}" x="${Math.max(padL, Math.min(p.x - textW/2, W - padR - textW))}" y="${padT + plotH + 30}" width="${textW}" height="60" opacity="0">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-family:Inter,sans-serif;font-size:10px;font-weight:600;color:${p.color};line-height:1.4;padding:5px 8px;background:white;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);word-wrap:break-word;overflow-wrap:break-word;">${label}</div>
     </foreignObject>`;
   }).join('');
 
@@ -1707,11 +1724,25 @@ function animateChart(chartId) {
   line.setAttribute('opacity', '1');
 
   // For each point, calculate what fraction of the line to reveal
-  // Points are evenly spaced, so fraction = i / (n-1)
+  // Points use xFractions for non-equal spacing
+  const animXFractions = [0, 0.08, 0.15, 0.35, 1.0];
   let currentTime = 300; // initial delay
 
   for (let i = 0; i < n; i++) {
-    const fraction = i / (n - 1);
+    // Compute cumulative path length fraction based on segment distances
+    const fraction = (function() {
+      if (i === 0) return 0;
+      // Calculate cumulative Euclidean distance along the polyline up to point i
+      let totalDist = 0, distToI = 0;
+      for (let j = 1; j < n; j++) {
+        const dx = animXFractions[j] - animXFractions[j-1];
+        const dy = (improvementData[j].score - improvementData[j-1].score) / 100;
+        const seg = Math.sqrt(dx*dx + dy*dy);
+        totalDist += seg;
+        if (j <= i) distToI += seg;
+      }
+      return distToI / totalDist;
+    })();
     const targetOffset = pathLen * (1 - fraction);
 
     chartAnimTimeouts.push(setTimeout(() => {
@@ -1740,12 +1771,40 @@ function animateChart(chartId) {
           chartAnimTimeouts.push(setTimeout(() => {
             fadeOut(`${id}_ms${i}`, 800);
           }, 2000));
+          // After 3s pause, reset and replay the animation
+          chartAnimTimeouts.push(setTimeout(() => {
+            resetChart(id, n);
+            chartAnimTimeouts.push(setTimeout(() => {
+              animateChart(id);
+            }, 300));
+          }, 3000));
         }, 400));
       }
     }, currentTime));
 
     currentTime += STEP_DELAY;
   }
+}
+
+// Reset all chart elements to hidden state for replay
+function resetChart(chartId, n) {
+  const id = chartId;
+  const line = document.getElementById(`${id}_line`);
+  if (!line) return;
+  // Disable transitions for instant reset
+  line.style.transition = 'none';
+  const pathLen = line.getTotalLength ? line.getTotalLength() : 2000;
+  line.setAttribute('stroke-dashoffset', pathLen);
+  line.setAttribute('opacity', '0');
+  for (let i = 0; i < n; i++) {
+    [`${id}_dot${i}`, `${id}_score${i}`, `${id}_xlabel${i}`, `${id}_ms${i}`, `${id}_trophy`].forEach(elId => {
+      const el = document.getElementById(elId);
+      if (el) { el.style.transition = 'none'; el.setAttribute('opacity', '0'); }
+    });
+  }
+  // Also reset trophy separately (in case n changed)
+  const trophy = document.getElementById(`${id}_trophy`);
+  if (trophy) { trophy.style.transition = 'none'; trophy.setAttribute('opacity', '0'); }
 }
 
 // ===== SCREEN 4: DASHBOARD =====

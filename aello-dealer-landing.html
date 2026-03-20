@@ -98,7 +98,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .hero__subtitle { font-size: 16px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.7; }
 .hero__form { margin-bottom: 10px; }
 .hero__form-note { font-size: 12px; color: var(--text-muted); margin-bottom: 32px; }
-.hero__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.hero__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .stat-card { text-align: center; padding: 18px 12px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
 .stat-card:hover { border-color: var(--gray-300); }
 .stat-card__number { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
@@ -144,6 +144,26 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .marketplace-cost__stat--danger .marketplace-cost__stat-value { color: var(--danger); }
 .marketplace-cost__stat--blurred .marketplace-cost__stat-value { filter: blur(8px); color: var(--gray-700); }
 .marketplace-cost__stat-hint { font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 8px; }
+
+/* Leaderboard */
+.leaderboard { padding: 56px 0; }
+.leaderboard__inner { max-width: 640px; margin: 0 auto; text-align: center; }
+.leaderboard h2 { margin-bottom: 8px; }
+.leaderboard__subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; }
+.leaderboard__list { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.leaderboard__row { display: grid; grid-template-columns: 32px 1fr 100px 80px; align-items: center; gap: 12px; padding: 12px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); transition: all 0.2s; }
+.leaderboard__row--you { border: 2px solid var(--danger); background: var(--danger-light); }
+.leaderboard__row--best { border: 2px solid var(--success); background: var(--success-light); }
+.leaderboard__rank { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; color: var(--gray-400); text-align: center; }
+.leaderboard__row--you .leaderboard__rank { color: var(--danger); }
+.leaderboard__row--best .leaderboard__rank { color: var(--success); }
+.leaderboard__name { font-size: 14px; font-weight: 600; color: var(--gray-700); }
+.leaderboard__row--you .leaderboard__name { color: var(--danger); font-weight: 800; }
+.leaderboard__time { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-600); text-align: right; }
+.leaderboard__row--you .leaderboard__time { color: var(--danger); }
+.leaderboard__row--best .leaderboard__time { color: var(--success); }
+.leaderboard__bar-wrap { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+.leaderboard__bar { height: 100%; border-radius: 3px; }
 
 /* Guarantee Section (new) */
 .guarantee-section { padding: 64px 0; background: linear-gradient(135deg, var(--gray-900) 0%, #1a2332 100%); color: var(--white); text-align: center; }
@@ -315,21 +335,31 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <p class="hero__form-note">&#128274; 100% gratuit. Sans carte bancaire. R&eacute;sultats en 24h.</p>
         <div class="hero__stats stagger" id="heroStats"></div>
       </div>
-      <!-- chart removed -->
+      <div class="hero__chart fade-up" id="heroChart"></div>
     </div>
   </div>
 </section>
 
-<!-- MARKETPLACE COST -->
-<section class="marketplace-cost section-alt" id="marketplaceCost">
+<!-- MYSTERY SHOP LEADERBOARD -->
+<section class="leaderboard section-alt" id="leaderboard">
   <div class="container">
-    <div class="marketplace-cost__inner">
-      <h2 class="fade-up">Vous investissez d&eacute;j&agrave; gros dans les marketplaces.</h2>
-      <p class="marketplace-cost__subtitle fade-up">Voici ce que vos abonnements vous co&ucirc;tent chaque mois&nbsp;:</p>
-      <div class="marketplace-cost__platforms fade-up" id="mcPlatforms"></div>
-      <div class="marketplace-cost__stats fade-up" id="mcStats"></div>
-      <a href="#hero" class="btn btn--primary btn--lg fade-up">Voir votre score d'audit &mdash; gratuit</a>
+    <div class="leaderboard__inner">
+      <h2 class="fade-up">Comment vous vous situez face aux autres concessionnaires</h2>
+      <p class="leaderboard__subtitle fade-up">Temps de réponse moyen aux demandes marketplace</p>
+      <div class="leaderboard__list fade-up" id="leaderboardList"></div>
     </div>
+  </div>
+</section>
+
+<!-- SCORECARD -->
+<section class="scorecard" id="scorecard">
+  <div class="container">
+    <div class="scorecard__header">
+      <h2 class="fade-up">Votre score de réponse</h2>
+      <p class="fade-up">4 dimensions analysées. Une seule révélée.</p>
+    </div>
+    <div class="scorecard__grid stagger" id="scorecardGrid"></div>
+    <div class="scorecard__cta fade-up" id="scorecardCta"></div>
   </div>
 </section>
 
@@ -534,43 +564,161 @@ function populatePage(d) {
     <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">27/100</div><div class="stat-card__label">Score de r\u00e9ponse</div><div style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;">D\u00e9bloquer \u2192</div></div>
   `;
 
-  // (CPL chart removed)
+  // Hero chart — marketplace advertising budget growth
+  (function buildHeroChart() {
+    const container = document.getElementById('heroChart');
+    if (!container) return;
+    const listings = d.total_listings;
+    const platforms = d.total_platforms;
+    const costPerListing = 10;
+    const currentMonthly = Math.round(listings * costPerListing * platforms);
 
-  // Marketplace cost visual
-  const activePlatforms = d.marketplace_list.filter(p => p.active);
-  const platformCosts = activePlatforms.map((p, i) => {
-    const cost = 500 + Math.round(Math.random() * 300); // ~€500-800 range
-    return { name: p.name, cost };
-  });
-  const totalMonthly = platformCosts.reduce((s, p) => s + p.cost, 0);
-  document.getElementById('mcPlatforms').innerHTML =
-    platformCosts.map((p, i) => `
-      <div class="marketplace-cost__platform">
-        <div class="marketplace-cost__platform-name">${p.name}</div>
-        <div class="marketplace-cost__platform-cost">\u20AC${p.cost}</div>
-        <div class="marketplace-cost__platform-period">/ mois</div>
+    // Historical + projected data points (2010-2030)
+    const years = [];
+    const values = [];
+    for (let y = 2010; y <= 2030; y++) {
+      years.push(y);
+      const t = (y - 2010) / 15; // 0..1 by 2025
+      if (y <= 2025) {
+        // grow from ~200 to current level
+        const base = 200;
+        const v = base + (currentMonthly - base) * Math.pow(t, 1.3);
+        values.push(Math.round(v));
+      } else {
+        // projected: keep growing ~8% per year
+        const prev = values[values.length - 1];
+        values.push(Math.round(prev * 1.08));
+      }
+    }
+
+    const W = 440, H = 180, padL = 0, padR = 0, padT = 10, padB = 20;
+    const chartW = W - padL - padR, chartH = H - padT - padB;
+    const maxV = Math.max(...values) * 1.1;
+    const minV = 0;
+    const pts = values.map((v, i) => ({
+      x: padL + (i / (values.length - 1)) * chartW,
+      y: padT + chartH - ((v - minV) / (maxV - minV)) * chartH,
+      year: years[i],
+      val: v,
+      projected: years[i] > 2025
+    }));
+
+    const historicalPts = pts.filter(p => !p.projected);
+    const projectedPts = pts.filter(p => p.projected);
+    // include last historical point in projected line for continuity
+    const lastHistorical = historicalPts[historicalPts.length - 1];
+    const projectedLine = [lastHistorical, ...projectedPts];
+
+    const toPath = (arr) => arr.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    const toArea = (arr) => {
+      const line = toPath(arr);
+      return line + ` L${arr[arr.length - 1].x.toFixed(1)},${padT + chartH} L${arr[0].x.toFixed(1)},${padT + chartH} Z`;
+    };
+
+    const currentVal = values[years.indexOf(2025)] || currentMonthly;
+    const projected2030 = values[values.length - 1];
+
+    container.innerHTML = `
+      <div class="hero__chart-header">
+        <div class="hero__chart-title">Budget publicitaire marketplace</div>
+        <div class="hero__chart-legend">
+          <div class="hero__chart-legend-item"><div class="hero__chart-legend-dot" style="background:var(--primary);"></div>Historique</div>
+          <div class="hero__chart-legend-item"><div class="hero__chart-legend-dot" style="background:var(--danger);"></div>Projeté</div>
+        </div>
       </div>
-      ${i < platformCosts.length - 1 ? '<span class="marketplace-cost__plus">+</span>' : ''}
-    `).join('') + `
-      <span class="marketplace-cost__equals">=</span>
-      <div class="marketplace-cost__total">
-        <div class="marketplace-cost__total-label">Total mensuel</div>
-        <div class="marketplace-cost__total-amount">\u20AC${totalMonthly.toLocaleString('fr-FR')}</div>
-        <div class="marketplace-cost__total-period">/ mois</div>
+      <svg viewBox="0 0 ${W} ${H}" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="${toArea(historicalPts)}" fill="var(--primary-lighter)" opacity="0.35"/>
+        <path d="${toArea(projectedLine)}" fill="var(--danger-light)" opacity="0.5"/>
+        <path d="${toPath(historicalPts)}" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chart-line"/>
+        <path d="${toPath(projectedLine)}" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4"/>
+        ${historicalPts.filter((_, i) => i % 3 === 0 || i === historicalPts.length - 1).map((p, i) =>
+          `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="var(--primary)" class="chart-dot" style="animation-delay:${(i * 0.1).toFixed(1)}s;"/>`
+        ).join('')}
+        ${projectedPts.filter((_, i) => i % 2 === 0 || i === projectedPts.length - 1).map((p, i) =>
+          `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="var(--danger)" class="chart-dot" style="animation-delay:${(0.8 + i * 0.15).toFixed(2)}s;"/>`
+        ).join('')}
+        ${pts.filter((_, i) => i % 5 === 0 || i === pts.length - 1).map(p =>
+          `<text x="${p.x.toFixed(1)}" y="${padT + chartH + 14}" text-anchor="middle" font-size="9" fill="var(--gray-400)" font-family="Inter, sans-serif">${p.year}</text>`
+        ).join('')}
+      </svg>
+      <div class="hero__chart-footer">
+        <div>
+          <div class="hero__chart-metric-label">Votre budget actuel</div>
+          <div class="hero__chart-metric-value">\u20AC${currentVal.toLocaleString('fr-FR')}<span style="font-size:0.5em;color:var(--text-muted);">/mois</span></div>
+        </div>
+        <div style="text-align:right;">
+          <div class="hero__chart-metric-label">Projection 2030</div>
+          <div class="hero__chart-metric-value" style="color:var(--danger);">\u20AC${projected2030.toLocaleString('fr-FR')}<span style="font-size:0.5em;color:var(--text-muted);">/mois</span></div>
+          <div class="hero__chart-metric-change" style="color:var(--danger);">\u2191 ${Math.round((projected2030 / currentVal - 1) * 100)}%</div>
+        </div>
+      </div>
+    `;
+  })();
+
+  // Leaderboard — competitor response times
+  const competitors = [
+    { name: 'Meilleur concessionnaire', time: '12min', minutes: 12, best: true },
+    { name: 'Concessionnaire B', time: '45min', minutes: 45 },
+    { name: 'Concessionnaire C', time: '2h 10min', minutes: 130 },
+    { name: 'Moyenne du secteur', time: '4h 30min', minutes: 270 },
+    { name: 'Concessionnaire D', time: '8h 15min', minutes: 495 },
+    { name: d.dealer_name, time: d.mystery_shop_response_time, minutes: d.mystery_shop_response_minutes, you: true },
+    { name: 'Concessionnaire F', time: '22h 40min', minutes: 1360 },
+  ].sort((a, b) => a.minutes - b.minutes);
+  const maxMins = Math.max(...competitors.map(c => c.minutes));
+
+  document.getElementById('leaderboardList').innerHTML = competitors.map((c, i) => {
+    const cls = c.you ? 'leaderboard__row--you' : (c.best ? 'leaderboard__row--best' : '');
+    const barColor = c.you ? 'var(--danger)' : (c.best ? 'var(--success)' : 'var(--gray-300)');
+    const barW = Math.max(5, (c.minutes / maxMins) * 100);
+    return `
+      <div class="leaderboard__row ${cls}">
+        <div class="leaderboard__rank">#${i + 1}</div>
+        <div class="leaderboard__name">${c.you ? 'Vous (' + d.dealer_name + ')' : c.name}</div>
+        <div class="leaderboard__bar-wrap"><div class="leaderboard__bar" style="width:${barW}%;background:${barColor};"></div></div>
+        <div class="leaderboard__time">${c.time}</div>
       </div>`;
+  }).join('');
 
-  document.getElementById('mcStats').innerHTML = `
-    <div class="marketplace-cost__stat marketplace-cost__stat--danger">
-      <div class="marketplace-cost__stat-label">Temps de r\u00e9ponse</div>
-      <div class="marketplace-cost__stat-value">${d.mystery_shop_response_time}</div>
-    </div>
-    <div class="marketplace-cost__stat marketplace-cost__stat--blurred">
-      <div class="marketplace-cost__stat-label">Score de r\u00e9ponse</div>
-      <div class="marketplace-cost__stat-value">27/100</div>
-      <div class="marketplace-cost__stat-hint">D\u00e9bloquer votre score \u2192</div>
-    </div>`;
-
-  // (Scorecard section removed)
+  // Scorecard — 4 dimensions, only Speed revealed, 3 blurred
+  const speedScore = Math.max(5, Math.round(100 - (d.mystery_shop_response_minutes / 60) * 5));
+  const speedColor = speedScore < 40 ? 'var(--danger)' : speedScore < 70 ? 'var(--warning)' : 'var(--success)';
+  const scorecardItems = [
+    { name: 'Rapidit\u00e9', desc: 'Temps de r\u00e9ponse, comportement heures ouvr\u00e9es, \u00e9carts entre plateformes', score: speedScore, color: speedColor, revealed: true },
+    { name: 'Qualit\u00e9', desc: 'Personnalisation, transparence tarifaire, prochaines \u00e9tapes claires', score: 0, color: 'var(--gray-300)', revealed: false },
+    { name: 'Suivi', desc: 'Taux de deuxi\u00e8me r\u00e9ponse, taux de ghost, constance du pipeline', score: 0, color: 'var(--gray-300)', revealed: false },
+    { name: 'Score global', desc: 'Score composite — un seul chiffre, mis \u00e0 jour chaque mois', score: 0, color: 'var(--gray-300)', revealed: false },
+  ];
+  document.getElementById('scorecardGrid').innerHTML = scorecardItems.map(item => {
+    if (item.revealed) {
+      return `
+        <div class="scorecard__item scorecard__item--revealed fade-up">
+          <div class="scorecard__item-label">R\u00e9v\u00e9l\u00e9</div>
+          <div class="scorecard__item-name">${item.name}</div>
+          <div class="scorecard__item-desc">${item.desc}</div>
+          <div class="scorecard__item-score" style="color:${item.color};">${item.score}<span style="font-size:0.5em;color:var(--gray-400);">/100</span></div>
+          <div class="scorecard__item-bar"><div class="scorecard__item-bar-fill" style="width:${item.score}%;background:${item.color};"></div></div>
+        </div>`;
+    }
+    return `
+      <div class="scorecard__item scorecard__item--locked fade-up">
+        <div class="scorecard__item-label">Score</div>
+        <div class="scorecard__item-name">${item.name}</div>
+        <div class="scorecard__item-desc">${item.desc}</div>
+        <div class="scorecard__item-locked-score">
+          <div class="scorecard__item-score" style="color:var(--gray-300);">--<span style="font-size:0.5em;">/100</span></div>
+          <div class="scorecard__item-bar"><div class="scorecard__item-bar-fill" style="width:45%;background:var(--gray-200);"></div></div>
+          <div class="scorecard__item-overlay">
+            <div class="scorecard__item-lock-icon">&#128274;</div>
+            <div class="scorecard__item-lock-text">D\u00e9bloquer avec l'audit gratuit</div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('scorecardCta').innerHTML = `
+    <p class="scorecard__cta-text"><strong>Obtenez vos 4 scores — gratuitement.</strong></p>
+    <a href="#hero" class="btn btn--primary btn--lg">D\u00e9bloquer mon audit gratuit</a>
+  `;
 
   // (Revenue leak section removed)
 
