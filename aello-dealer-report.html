@@ -72,6 +72,14 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .btn--ghost { background: transparent; color: var(--gray-500); font-weight: 500; }
 .btn--ghost:hover { color: var(--gray-700); }
 
+/* Language switcher */
+.lang-switch { display: flex; gap: 0; }
+.lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 700; font-family: 'Inter', sans-serif; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-500); cursor: pointer; transition: all 0.15s; }
+.lang-btn:first-child { border-radius: 6px 0 0 6px; }
+.lang-btn:last-child { border-radius: 0 6px 6px 0; }
+.lang-btn:not(:first-child) { border-left: none; }
+.lang-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+
 /* Screens */
 .screen { display: none; }
 .screen.active { display: block; }
@@ -499,8 +507,13 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       <div class="header__inner">
         <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
         <div class="header__right">
-          <span id="headerDealer">Audit de R&eacute;ponse Marketplace &mdash; 1FOTEAM</span>
+          <span data-t="headerDealer">Audit de R&eacute;ponse Marketplace &mdash; 1FOTEAM</span>
           <span class="badge badge--danger" id="headerGrade">Score: 27 / 100</span>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+          </div>
         </div>
       </div>
     </div>
@@ -508,8 +521,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 
   <section class="report-hero">
     <div class="container">
-      <h1 class="report-hero__title">Audit de R&eacute;ponse Marketplace &mdash; <span id="heroDealer">1FOTEAM</span></h1>
-      <p class="report-hero__subtitle">Nous avons test&eacute; votre concession en mystery shopping, &eacute;valu&eacute; votre r&eacute;ponse aux demandes marketplace, et compar&eacute; vos performances aux meilleurs. Voici les r&eacute;sultats.</p>
+      <h1 class="report-hero__title" data-t="heroTitle">Audit de R&eacute;ponse Marketplace &mdash; <span id="heroDealer">1FOTEAM</span></h1>
+      <p class="report-hero__subtitle" data-t="heroSubtitle">Nous avons test&eacute; votre concession en mystery shopping, &eacute;valu&eacute; votre r&eacute;ponse aux demandes marketplace, et compar&eacute; vos performances aux meilleurs. Voici les r&eacute;sultats.</p>
 
       <div class="score-circle-wrap">
         <div class="score-circle">
@@ -525,11 +538,11 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
             <span class="score-circle__total">/100</span>
           </div>
         </div>
-        <div class="score-circle__label">Votre Score Actuel</div>
+        <div class="score-circle__label" data-t="yourCurrentScore">Votre Score Actuel</div>
       </div>
 
       <div class="grade-section" style="max-width:720px;padding:40px 32px 36px;">
-        <p class="grade-section__label">Votre Score Actuel de R&eacute;ponse Marketplace</p>
+        <p class="grade-section__label" data-t="thermoLabel">Votre Score Actuel de R&eacute;ponse Marketplace</p>
         <div class="thermo" style="margin-bottom:28px;">
           <div class="thermo__bar">
             <!-- You: 27/100 = 27% -->
@@ -537,7 +550,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
               <div class="thermo__pin thermo__pin--you"></div>
               <div class="thermo__label">
                 <span class="thermo__score" style="color:var(--danger);">27</span>
-                <span class="thermo__tag">Vous</span>
+                <span class="thermo__tag" data-t="thermoYou">Vous</span>
               </div>
             </div>
             <!-- Avg: 52/100 = 52% -->
@@ -545,7 +558,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
               <div class="thermo__pin thermo__pin--avg"></div>
               <div class="thermo__label">
                 <span class="thermo__score" style="color:var(--warning);">52</span>
-                <span class="thermo__tag">Moy. concessionnaire</span>
+                <span class="thermo__tag" data-t="thermoAvg">Moy. concessionnaire</span>
               </div>
             </div>
             <!-- Best: 90/100 = 90% -->
@@ -553,12 +566,12 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
               <div class="thermo__pin thermo__pin--best"></div>
               <div class="thermo__label">
                 <span class="thermo__score" style="color:var(--success);">90+</span>
-                <span class="thermo__tag">Meilleur du march&eacute;</span>
+                <span class="thermo__tag" data-t="thermoBest">Meilleur du march&eacute;</span>
               </div>
             </div>
           </div>
         </div>
-        <p style="font-size:17px;color:var(--text);font-weight:700;line-height:1.5;margin-top:48px;">Avec Aello, nous avons un plan pour vous amener au <span style="color:var(--success);">meilleur niveau en 90 jours</span>.</p>
+        <p style="font-size:17px;color:var(--text);font-weight:700;line-height:1.5;margin-top:48px;" data-t="thermoMessageFull">Avec Aello, nous avons un plan pour vous amener au <span style="color:var(--success);">meilleur niveau en 90 jours</span>.</p>
       </div>
 
     </div>
@@ -567,8 +580,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="comparison">
     <div class="container">
       <div class="comparison__header">
-        <h2>Un clic. R&eacute;ponse personnalis&eacute;e avec Aello.</h2>
-        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;">Regardez comment Copilot transforme votre r&eacute;ponse en une r&eacute;ponse gagnante &mdash; automatiquement.</p>
+        <h2 data-t="comparisonH2">Un clic. R&eacute;ponse personnalis&eacute;e avec Aello.</h2>
+        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;" data-t="comparisonSub">Regardez comment Copilot transforme votre r&eacute;ponse en une r&eacute;ponse gagnante &mdash; automatiquement.</p>
       </div>
       <div class="comparison__layout">
         <div class="demo-inbox" id="demoInbox" style="position:relative;">
@@ -583,7 +596,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           </div>
           <!-- Their original bad response — flies out after recognition -->
           <div class="demo-inbox__their-msg" id="demoTheirMsg">
-            <div class="demo-inbox__msg-label" style="font-size:12px;font-weight:800;color:var(--danger);text-transform:uppercase;letter-spacing:0.05em;">VOTRE R&Eacute;PONSE ACTUELLE (MYSTERY SHOP)</div>
+            <div class="demo-inbox__msg-label" style="font-size:12px;font-weight:800;color:var(--danger);text-transform:uppercase;letter-spacing:0.05em;" data-t="badResponseLabel">VOTRE R&Eacute;PONSE ACTUELLE (MYSTERY SHOP)</div>
             <div class="demo-inbox__msg-bubble">
               <div class="demo-inbox__msg-text" id="demoOldResponse"></div>
             </div>
@@ -591,15 +604,15 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           </div>
           <!-- Composer -->
           <div class="demo-inbox__composer" id="demoComposer" style="opacity:0;transition:opacity 0.8s ease;">
-            <div class="demo-inbox__msg-label" id="demoAelloLabel" style="font-size:12px;font-weight:800;color:#4F46E5;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;opacity:0;transition:opacity 0.8s;">VOTRE R&Eacute;PONSE AVEC A&Euml;LLO</div>
+            <div class="demo-inbox__msg-label" id="demoAelloLabel" style="font-size:12px;font-weight:800;color:#4F46E5;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;opacity:0;transition:opacity 0.8s;" data-t="aelloLabel">VOTRE R&Eacute;PONSE AVEC A&Euml;LLO</div>
             <div class="demo-inbox__composer-row">
-              <div class="demo-inbox__template-btn" id="demoTemplateBtn">&#9662; S&eacute;lectionner un mod&egrave;le...</div>
+              <div class="demo-inbox__template-btn" id="demoTemplateBtn" data-t="selectTemplate">&#9662; S&eacute;lectionner un mod&egrave;le...</div>
               <div class="demo-inbox__lang-btn">FR</div>
             </div>
-            <div class="demo-inbox__body empty" id="demoComposerBody">R&eacute;digez votre r&eacute;ponse...</div>
+            <div class="demo-inbox__body empty" id="demoComposerBody" data-t-placeholder="writeResponse">R&eacute;digez votre r&eacute;ponse...</div>
             <div class="demo-inbox__actions">
               <div></div>
-              <div class="demo-inbox__send-btn" id="demoSendBtn">Envoyer</div>
+              <div class="demo-inbox__send-btn" id="demoSendBtn" data-t="sendBtn">Envoyer</div>
             </div>
           </div>
           <!-- Fake cursor -->
@@ -607,7 +620,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <!-- Sent overlay -->
           <div class="demo-inbox__sent" id="demoSentOverlay">
             <div class="demo-inbox__sent-icon">&#10004;</div>
-            <div class="demo-inbox__sent-label">R&eacute;ponse envoy&eacute;e !</div>
+            <div class="demo-inbox__sent-label" data-t="sentLabel">R&eacute;ponse envoy&eacute;e !</div>
           </div>
         </div>
         <!-- Annotation cards -->
@@ -619,8 +632,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       </div>
       <!-- CTAs below the comparison -->
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px;">
-        <a href="#" class="btn btn--primary btn--lg" onclick="showScreen('inbox');return false;">Voir la visite compl&egrave;te Aello &rarr;</a>
-        <a href="#bookDemo" class="btn btn--outline btn--lg">R&eacute;server une d&eacute;mo</a>
+        <a href="#" class="btn btn--primary btn--lg" onclick="showScreen('inbox');return false;" data-t="tourCta">Voir la visite compl&egrave;te Aello &rarr;</a>
+        <a href="#bookDemo" class="btn btn--outline btn--lg" data-t="bookDemo">R&eacute;server une d&eacute;mo</a>
       </div>
     </div>
   </section>
@@ -629,7 +642,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="dimensions">
     <div class="container">
       <div class="dimensions__header">
-        <h2>Vos scores sur 6 dimensions</h2>
+        <h2 data-t="dimensionsH2">Vos scores sur 6 dimensions</h2>
       </div>
       <div class="dimensions__grid" id="dimensionGrid"></div>
     </div>
@@ -639,15 +652,15 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="milestone-section" id="milestoneSection">
     <div class="container">
       <div class="milestone-section__header">
-        <h2>Votre parcours vers l'excellence &mdash; 90 jours</h2>
-        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;">Voici exactement ce qui se passe quand vous passez &agrave; Aello.</p>
+        <h2 data-t="milestoneH2">Votre parcours vers l'excellence &mdash; 90 jours</h2>
+        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;" data-t="milestoneSub">Voici exactement ce qui se passe quand vous passez &agrave; Aello.</p>
       </div>
       <div class="dashboard__chart-wrap" style="max-width:800px;">
         <div id="heroChart" style="position:relative;"></div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a class="btn btn--primary btn--lg" href="#bookDemo">R&eacute;server une d&eacute;mo</a>
-        <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()">D&eacute;marrer l'essai gratuit &rarr;</button>
+        <a class="btn btn--primary btn--lg" href="#bookDemo" data-t="bookDemo">R&eacute;server une d&eacute;mo</a>
+        <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()" data-t="startTrial">D&eacute;marrer l'essai gratuit &rarr;</button>
       </div>
     </div>
   </section>
@@ -656,7 +669,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- MARKETPLACE LOGOS -->
   <section class="logo-bar" id="platforms">
     <div class="container">
-      <div class="logo-bar__label">Supported marketplaces across France &amp; Europe</div>
+      <div class="logo-bar__label" data-t="logoBarLabel">Supported marketplaces across France &amp; Europe</div>
       <div class="logo-bar__grid" id="logoBarGrid"></div>
     </div>
   </section>
@@ -664,72 +677,9 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- PRICING -->
   <section class="pricing section section-alt" id="pricing">
     <div class="container">
-      <h2>Commencez gratuitement. Passez &agrave; la vitesse sup&eacute;rieure quand vous &ecirc;tes pr&ecirc;t.</h2>
-      <p class="pricing__subtitle">L'audit est gratuit &mdash; pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
-      <div class="pricing__grid">
-        <div class="pricing__card pricing__card--free">
-          <div class="pricing__card-name">Audit</div>
-          <div class="pricing__card-price"><span class="pricing__card-price-amount">Gratuit</span></div>
-          <div class="pricing__card-trial">Toujours gratuit</div>
-          <ul class="pricing__card-features">
-            <li>Audit de r&eacute;ponse marketplace</li>
-            <li>Score de pr&eacute;paration leads</li>
-            <li>Mystery shop mensuel</li>
-            <li>Suivi du score dans le temps</li>
-          </ul>
-          <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
-            <span style="font-size:18px;">&#10003;</span>
-            <span style="font-size:13px;font-weight:700;color:var(--success);">Inclus dans votre audit</span>
-          </div>
-        </div>
-        <div class="pricing__card pricing__card--popular">
-          <div class="pricing__popular-badge">Le plus populaire</div>
-          <div class="pricing__card-name">Pro</div>
-          <div class="pricing__card-price">
-            <span class="pricing__card-price-amount">&euro;49</span>
-            <span class="pricing__card-price-period">/mois</span>
-          </div>
-          <div class="pricing__card-trial">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Audit</li>
-            <li>Jusqu'&agrave; 3 marketplaces</li>
-            <li>Templates de r&eacute;ponse intelligents</li>
-            <li>WhatsApp, email et demandes web</li>
-            <li>Scoring et d&eacute;duplication</li>
-            <li>Suivi mensuel des r&eacute;ponses</li>
-          </ul>
-          <button class="btn btn--primary btn--full" onclick="startTrial()">D&eacute;marrer l'essai gratuit</button>
-        </div>
-        <div class="pricing__card">
-          <div class="pricing__card-name">Business</div>
-          <div class="pricing__card-price">
-            <span class="pricing__card-price-amount">&euro;99</span>
-            <span class="pricing__card-price-period">/mois</span>
-          </div>
-          <div class="pricing__card-trial">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Pro</li>
-            <li>Attribution automatique d'&eacute;quipe</li>
-            <li>Analytique avanc&eacute;e</li>
-            <li>Int&eacute;grations API et DMS</li>
-            <li>Gestionnaire de compte d&eacute;di&eacute;</li>
-          </ul>
-          <a href="#bookDemo" class="btn btn--outline btn--full">Contacter les ventes</a>
-        </div>
-        <div class="pricing__card">
-          <div class="pricing__card-name">Entreprise</div>
-          <div class="pricing__card-price"><span class="pricing__card-price-amount" style="font-size:1.6rem;">Parlons-en</span></div>
-          <div class="pricing__card-trial">Prix sur mesure</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Business</li>
-            <li>5+ marketplaces</li>
-            <li>Support multi-sites</li>
-            <li>Int&eacute;grations personnalis&eacute;es</li>
-            <li>Support prioritaire et SLA</li>
-          </ul>
-          <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full">Nous contacter</a>
-        </div>
-      </div>
+      <h2 data-t="pricingH2">Commencez gratuitement. Passez &agrave; la vitesse sup&eacute;rieure quand vous &ecirc;tes pr&ecirc;t.</h2>
+      <p class="pricing__subtitle" data-t="pricingSub">L'audit est gratuit &mdash; pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
+      <div class="pricing__grid" id="reportPricingGrid"></div>
     </div>
   </section>
 
@@ -737,33 +687,33 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- 4-STEP ONBOARDING -->
   <section class="section section-alt" id="onboarding">
     <div class="container" style="text-align:center;">
-      <h2>Quatre &eacute;tapes. C'est tout.</h2>
-      <p style="color:var(--text-muted);font-size:15px;margin-top:8px;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;">La plupart des concessionnaires sont op&eacute;rationnels en moins de 30 minutes.</p>
+      <h2 data-t="onboardingH2">Quatre &eacute;tapes. C'est tout.</h2>
+      <p style="color:var(--text-muted);font-size:15px;margin-top:8px;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;" data-t="onboardingSub">La plupart des concessionnaires sont op&eacute;rationnels en moins de 30 minutes.</p>
       <div class="onboarding-grid">
         <div class="onboarding-card">
           <div class="onboarding-card__num">1</div>
-          <div class="onboarding-card__title">Identifiez les failles</div>
-          <p class="onboarding-card__desc">Votre audit gratuit r&eacute;v&egrave;le chaque faille &mdash; rapidit&eacute;, qualit&eacute;, suivi &mdash; sur toutes les plateformes.</p>
+          <div class="onboarding-card__title" data-t="step1Title">Identifiez les failles</div>
+          <p class="onboarding-card__desc" data-t="step1Desc">Votre audit gratuit r&eacute;v&egrave;le chaque faille &mdash; rapidit&eacute;, qualit&eacute;, suivi &mdash; sur toutes les plateformes.</p>
         </div>
         <div class="onboarding-card">
           <div class="onboarding-card__num">2</div>
-          <div class="onboarding-card__title">Connectez vos marketplaces</div>
-          <p class="onboarding-card__desc">Reliez Europe-Camions, LeBonCoin, Autoline &mdash; tous vos leads arrivent dans une seule inbox.</p>
+          <div class="onboarding-card__title" data-t="step2Title">Connectez vos marketplaces</div>
+          <p class="onboarding-card__desc" data-t="step2Desc">Reliez Europe-Camions, LeBonCoin, Autoline &mdash; tous vos leads arrivent dans une seule inbox.</p>
         </div>
         <div class="onboarding-card">
           <div class="onboarding-card__num">3</div>
-          <div class="onboarding-card__title">R&eacute;pondez en quelques secondes</div>
-          <p class="onboarding-card__desc">Les templates intelligents remplissent automatiquement le nom, le v&eacute;hicule et le prix. Deux taps &mdash; r&eacute;ponse envoy&eacute;e.</p>
+          <div class="onboarding-card__title" data-t="step3Title">R&eacute;pondez en quelques secondes</div>
+          <p class="onboarding-card__desc" data-t="step3Desc">Les templates intelligents remplissent automatiquement le nom, le v&eacute;hicule et le prix. Deux taps &mdash; r&eacute;ponse envoy&eacute;e.</p>
         </div>
         <div class="onboarding-card" style="border:3px solid var(--success);background:linear-gradient(180deg, var(--success-light) 0%, #d4edda 100%);transform:scale(1.03);">
           <div class="onboarding-card__num" style="background:var(--success);color:var(--white);width:52px;height:52px;font-size:22px;">&#10003;</div>
-          <div class="onboarding-card__title" style="font-size:1.25rem;color:var(--success);">Garantie satisfait ou rembours&eacute;</div>
-          <p class="onboarding-card__desc" style="font-size:15px;color:var(--gray-700);font-weight:500;">Si votre score de r&eacute;ponse marketplace ne s'am&eacute;liore pas en 90 jours, nous vous remboursons int&eacute;gralement. <strong>Sans condition.</strong></p>
+          <div class="onboarding-card__title" style="font-size:1.25rem;color:var(--success);" data-t="guaranteeTitle">Garantie satisfait ou rembours&eacute;</div>
+          <p class="onboarding-card__desc" style="font-size:15px;color:var(--gray-700);font-weight:500;" data-t="guaranteeDesc">Si votre score de r&eacute;ponse marketplace ne s'am&eacute;liore pas en 90 jours, nous vous remboursons int&eacute;gralement. <strong>Sans condition.</strong></p>
         </div>
       </div>
       <div style="margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a class="btn btn--primary btn--lg" href="#bookDemo">R&eacute;server une d&eacute;mo</a>
-        <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()">D&eacute;marrer l'essai gratuit &rarr;</button>
+        <a class="btn btn--primary btn--lg" href="#bookDemo" data-t="bookDemo">R&eacute;server une d&eacute;mo</a>
+        <button class="btn btn--outline btn--lg" onclick="scrollToProPlan()" data-t="startTrial">D&eacute;marrer l'essai gratuit &rarr;</button>
       </div>
     </div>
   </section>
@@ -771,8 +721,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- BOOK A DEMO -->
   <section class="demo-section" id="bookDemo">
     <div class="container">
-      <h2 class="fade-up">R&eacute;server une d&eacute;mo</h2>
-      <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
+      <h2 class="fade-up" data-t="demoH2">R&eacute;server une d&eacute;mo</h2>
+      <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up" data-t="demoSub">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
       <div class="demo-section__embed fade-up">
         <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
       </div>
@@ -853,7 +803,14 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
     <div class="container">
       <div class="header__inner">
         <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
-        <div class="header__right"><span id="dashDealer">Tableau de bord &mdash; 1FOTEAM</span></div>
+        <div class="header__right">
+          <span data-t="dashDealer">Tableau de bord &mdash; 1FOTEAM</span>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+            <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -861,24 +818,24 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- ROI wake-up -->
   <section style="padding:56px 0 0;text-align:center;">
     <div class="container">
-      <h2>Chaque semaine d'attente, des leads vous &eacute;chappent.</h2>
-      <p style="color:var(--text-muted);font-size:16px;max-width:580px;margin:12px auto 36px;line-height:1.7;">Vous payez d&eacute;j&agrave; pour vos annonces marketplace. Une r&eacute;ponse lente et g&eacute;n&eacute;rique, c'est de l'argent gaspill&eacute;. Les leads n'attendent pas &mdash; ils vont au concessionnaire qui r&eacute;pond en premier.</p>
-      <div class="stats-row" style="max-width:600px;">
+      <h2 data-t="dashH2">Chaque semaine d'attente, des leads vous &eacute;chappent.</h2>
+      <p style="color:var(--text-muted);font-size:16px;max-width:580px;margin:12px auto 36px;line-height:1.7;" data-t="dashSub">Vous payez d&eacute;j&agrave; pour vos annonces marketplace. Une r&eacute;ponse lente et g&eacute;n&eacute;rique, c'est de l'argent gaspill&eacute;. Les leads n'attendent pas &mdash; ils vont au concessionnaire qui r&eacute;pond en premier.</p>
+      <div class="stats-row" style="max-width:600px;" id="dashStatsRow">
         <div class="stat-card stat-card--danger">
           <div class="stat-card__number" style="color:var(--danger);">&euro;709</div>
-          <div class="stat-card__label">Revenus perdus / mois</div>
+          <div class="stat-card__label" data-t="dashStat0">Revenus perdus / mois</div>
         </div>
         <div class="stat-card stat-card--danger">
           <div class="stat-card__number" style="color:var(--danger);">18h</div>
-          <div class="stat-card__label">Votre temps de r&eacute;ponse</div>
+          <div class="stat-card__label" data-t="dashStat1">Votre temps de r&eacute;ponse</div>
         </div>
         <div class="stat-card stat-card--warning">
           <div class="stat-card__number" style="color:var(--warning);">60%</div>
-          <div class="stat-card__label">Leads perdus sans prix</div>
+          <div class="stat-card__label" data-t="dashStat2">Leads perdus sans prix</div>
         </div>
         <div class="stat-card" style="border-color:var(--success);background:var(--success-light);">
           <div class="stat-card__number" style="color:var(--success);">&lt;2min</div>
-          <div class="stat-card__label">Avec Copilot</div>
+          <div class="stat-card__label" data-t="dashStat3">Avec Copilot</div>
         </div>
       </div>
     </div>
@@ -888,11 +845,11 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="dashboard">
     <div class="container">
       <div class="dashboard__header">
-        <h2>De 27 &agrave; 90+ en 90 jours</h2>
-        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
+        <h2 data-t="dashChartH2">De 27 &agrave; 90+ en 90 jours</h2>
+        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;" data-t="dashChartSub">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
       </div>
       <div class="dashboard__chart-wrap">
-        <div class="dashboard__chart-title">Score de r&eacute;ponse marketplace projet&eacute;</div>
+        <div class="dashboard__chart-title" data-t="dashChartTitle">Score de r&eacute;ponse marketplace projet&eacute;</div>
         <div id="dashChart"></div>
       </div>
       <div class="dashboard__milestones" id="milestones"></div>
@@ -900,9 +857,9 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       <!-- CTA -->
       <div class="dashboard__cta">
         <div style="padding: 48px 24px;">
-          <h2>Arr&ecirc;tez de perdre du revenu. Concluez plus de ventes.</h2>
-          <p>Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am&eacute;liorent pas, vous ne payez rien.</p>
-          <button class="btn btn--white btn--lg" onclick="scrollToProPlan()">D&eacute;marrer l'essai gratuit &rarr;</button>
+          <h2 data-t="dashCtaH2">Arr&ecirc;tez de perdre du revenu. Concluez plus de ventes.</h2>
+          <p data-t="dashCtaSub">Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am&eacute;liorent pas, vous ne payez rien.</p>
+          <button class="btn btn--white btn--lg" onclick="scrollToProPlan()" data-t="startTrial">D&eacute;marrer l'essai gratuit &rarr;</button>
         </div>
       </div>
     </div>
@@ -911,72 +868,9 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <!-- Pricing table on dashboard -->
   <section class="pricing section section-alt" id="dashPricing">
     <div class="container">
-      <h2>Commencez gratuitement. Passez &agrave; la vitesse sup&eacute;rieure quand vous &ecirc;tes pr&ecirc;t.</h2>
-      <p class="pricing__subtitle">L'audit est gratuit &mdash; pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
-      <div class="pricing__grid">
-        <div class="pricing__card pricing__card--free">
-          <div class="pricing__card-name">Audit</div>
-          <div class="pricing__card-price"><span class="pricing__card-price-amount">Gratuit</span></div>
-          <div class="pricing__card-trial">Toujours gratuit</div>
-          <ul class="pricing__card-features">
-            <li>Audit de r&eacute;ponse marketplace</li>
-            <li>Score de pr&eacute;paration leads</li>
-            <li>Mystery shop mensuel</li>
-            <li>Suivi du score dans le temps</li>
-          </ul>
-          <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
-            <span style="font-size:18px;">&#10003;</span>
-            <span style="font-size:13px;font-weight:700;color:var(--success);">Inclus dans votre audit</span>
-          </div>
-        </div>
-        <div class="pricing__card pricing__card--popular">
-          <div class="pricing__popular-badge">Le plus populaire</div>
-          <div class="pricing__card-name">Pro</div>
-          <div class="pricing__card-price">
-            <span class="pricing__card-price-amount">&euro;49</span>
-            <span class="pricing__card-price-period">/mois</span>
-          </div>
-          <div class="pricing__card-trial">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Audit</li>
-            <li>Jusqu'&agrave; 3 marketplaces</li>
-            <li>Templates de r&eacute;ponse intelligents</li>
-            <li>WhatsApp, email et demandes web</li>
-            <li>Scoring et d&eacute;duplication</li>
-            <li>Suivi mensuel des r&eacute;ponses</li>
-          </ul>
-          <button class="btn btn--primary btn--full">D&eacute;marrer l'essai gratuit</button>
-        </div>
-        <div class="pricing__card">
-          <div class="pricing__card-name">Business</div>
-          <div class="pricing__card-price">
-            <span class="pricing__card-price-amount">&euro;99</span>
-            <span class="pricing__card-price-period">/mois</span>
-          </div>
-          <div class="pricing__card-trial">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Pro</li>
-            <li>Attribution automatique d'&eacute;quipe</li>
-            <li>Analytique avanc&eacute;e</li>
-            <li>Int&eacute;grations API et DMS</li>
-            <li>Gestionnaire de compte d&eacute;di&eacute;</li>
-          </ul>
-          <a href="#bookDemo" class="btn btn--outline btn--full">Contacter les ventes</a>
-        </div>
-        <div class="pricing__card">
-          <div class="pricing__card-name">Entreprise</div>
-          <div class="pricing__card-price"><span class="pricing__card-price-amount" style="font-size:1.6rem;">Parlons-en</span></div>
-          <div class="pricing__card-trial">Prix sur mesure</div>
-          <ul class="pricing__card-features">
-            <li>Tout dans Business</li>
-            <li>5+ marketplaces</li>
-            <li>Support multi-sites</li>
-            <li>Int&eacute;grations personnalis&eacute;es</li>
-            <li>Support prioritaire et SLA</li>
-          </ul>
-          <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full">Nous contacter</a>
-        </div>
-      </div>
+      <h2 data-t="pricingH2">Commencez gratuitement. Passez &agrave; la vitesse sup&eacute;rieure quand vous &ecirc;tes pr&ecirc;t.</h2>
+      <p class="pricing__subtitle" data-t="pricingSub">L'audit est gratuit &mdash; pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
+      <div class="pricing__grid" id="dashPricingGrid"></div>
     </div>
   </section>
 </div>
@@ -989,25 +883,247 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <div class="tooltip__footer">
     <span class="tooltip__step" id="tooltipStep"></span>
     <div class="tooltip__buttons">
-      <button class="tooltip__back" id="tooltipBack" onclick="goBackWalkthrough()" style="display:none;">Retour</button>
-      <button class="tooltip__next" id="tooltipNext" onclick="advanceWalkthrough()">Suivant</button>
+      <button class="tooltip__back" id="tooltipBack" onclick="goBackWalkthrough()" style="display:none;" data-t="tooltipBack">Retour</button>
+      <button class="tooltip__next" id="tooltipNext" onclick="advanceWalkthrough()" data-t="tooltipNext">Suivant</button>
     </div>
   </div>
 </div>
 
 <script>
+// ===== LANGUAGE =====
+let currentLang = 'fr';
+
+const T = {
+  headerDealer: { fr: 'Audit de R\u00e9ponse Marketplace \u2014 1FOTEAM', en: '1FOTEAM Marketplace Inquiry Response Audit', nl: 'Marketplace Reactie Audit \u2014 1FOTEAM' },
+  heroTitle: { fr: 'Audit de R\u00e9ponse Marketplace \u2014 <span id="heroDealer">1FOTEAM</span>', en: 'Marketplace Inquiry Response Audit \u2014 <span id="heroDealer">1FOTEAM</span>', nl: 'Marketplace Reactie Audit \u2014 <span id="heroDealer">1FOTEAM</span>' },
+  heroSubtitle: { fr: 'Nous avons test\u00e9 votre concession en mystery shopping, \u00e9valu\u00e9 votre r\u00e9ponse aux demandes marketplace, et compar\u00e9 vos performances aux meilleurs. Voici les r\u00e9sultats.', en: "We mystery-shopped your dealership, scored your marketplace inquiry response, and benchmarked you against top performers. Here\u2019s what we found.", nl: 'We hebben uw dealership mystery-geshopt, uw marketplace-reactie beoordeeld en vergeleken met de beste presteerders. Dit hebben we gevonden.' },
+  yourCurrentScore: { fr: 'Votre Score Actuel', en: 'Your Current Score', nl: 'Uw Huidige Score' },
+  thermoLabel: { fr: 'Votre Score Actuel de R\u00e9ponse Marketplace', en: 'Your Current Marketplace Response Score', nl: 'Uw Huidige Marketplace Reactiescore' },
+  thermoYou: { fr: 'Vous', en: 'You', nl: 'U' },
+  thermoAvg: { fr: 'Moy. concessionnaire', en: 'Avg dealer', nl: 'Gem. dealer' },
+  thermoBest: { fr: 'Meilleur du march\u00e9', en: 'Best in class', nl: 'Beste in klasse' },
+  thermoMessageFull: { fr: 'Avec Aello, nous avons un plan pour vous amener au <span style="color:var(--success);">meilleur niveau en 90 jours</span>.', en: 'With Aello, we have a plan to get you to <span style="color:var(--success);">best in class in 90 days</span>.', nl: 'Met Aello hebben we een plan om u naar het <span style="color:var(--success);">beste niveau in 90 dagen te brengen</span>.' },
+  comparisonH2: { fr: 'Un clic. R\u00e9ponse personnalis\u00e9e avec Aello.', en: 'One click. Personalized response with Aello.', nl: 'E\u00e9n klik. Gepersonaliseerd antwoord met Aello.' },
+  comparisonSub: { fr: 'Regardez comment Copilot transforme votre r\u00e9ponse en une r\u00e9ponse gagnante \u2014 automatiquement.', en: 'Watch how Copilot turns your reply into a deal-winning response \u2014 automatically.', nl: 'Bekijk hoe Copilot uw antwoord omzet in een winnend antwoord \u2014 automatisch.' },
+  badResponseLabel: { fr: 'VOTRE R\u00c9PONSE ACTUELLE (MYSTERY SHOP)', en: 'YOUR CURRENT MYSTERY-SHOPPED RESPONSE', nl: 'UW HUIDIGE REACTIE (MYSTERY SHOP)' },
+  aelloLabel: { fr: 'VOTRE R\u00c9PONSE AVEC A\u00cbLLO', en: 'YOUR RESPONSE WITH A\u00cbLLO', nl: 'UW REACTIE MET A\u00cbLLO' },
+  selectTemplate: { fr: '\u25be S\u00e9lectionner un mod\u00e8le...', en: '\u25be Select a template...', nl: '\u25be Selecteer een template...' },
+  writeResponse: { fr: 'R\u00e9digez votre r\u00e9ponse...', en: 'Write your response...', nl: 'Schrijf uw antwoord...' },
+  sendBtn: { fr: 'Envoyer', en: 'Send', nl: 'Verzenden' },
+  sentLabel: { fr: 'R\u00e9ponse envoy\u00e9e !', en: 'Response sent!', nl: 'Antwoord verzonden!' },
+  replayBtn: { fr: '\u21ba Revoir', en: '\u21ba Replay', nl: '\u21ba Opnieuw' },
+  tourCta: { fr: 'Voir la visite compl\u00e8te Aello \u2192', en: 'See full Aello tour \u2192', nl: 'Bekijk de volledige Aello tour \u2192' },
+  bookDemo: { fr: 'R\u00e9server une d\u00e9mo', en: 'Book a demo', nl: 'Demo reserveren' },
+  dimensionsH2: { fr: 'Vos scores sur 6 dimensions', en: 'Your scores across 6 dimensions', nl: 'Uw scores op 6 dimensies' },
+  copilotFix: { fr: 'Copilot corrige \u00e7a :', en: 'Copilot fixes this:', nl: 'Copilot lost dit op:' },
+  milestoneH2: { fr: "Votre parcours vers l'excellence \u2014 90 jours", en: 'Your path to best in class \u2014 90 days', nl: 'Uw pad naar de top \u2014 90 dagen' },
+  milestoneSub: { fr: 'Voici exactement ce qui se passe quand vous passez \u00e0 Aello.', en: "Here\u2019s exactly what happens when you switch to Aello.", nl: 'Dit is precies wat er gebeurt als u overstapt naar Aello.' },
+  startTrial: { fr: "D\u00e9marrer l'essai gratuit \u2192", en: 'Start free trial \u2192', nl: 'Start gratis proefperiode \u2192' },
+  logoBarLabel: { fr: 'Marketplaces support\u00e9es en France et en Europe', en: 'Supported marketplaces across France & Europe', nl: 'Ondersteunde marketplaces in Frankrijk en Europa' },
+  pricingH2: { fr: 'Commencez gratuitement. Passez \u00e0 la vitesse sup\u00e9rieure quand vous \u00eates pr\u00eat.', en: "Start free. Upgrade when you\u2019re ready.", nl: 'Begin gratis. Upgrade wanneer u klaar bent.' },
+  pricingSub: { fr: "L'audit est gratuit \u2014 pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.", en: "The audit is free \u2014 forever. Copilot is for dealers who want to fix what\u2019s broken.", nl: 'De audit is gratis \u2014 voor altijd. Copilot is voor dealers die willen verbeteren.' },
+  free: { fr: 'Gratuit', en: 'Free', nl: 'Gratis' },
+  alwaysFree: { fr: 'Toujours gratuit', en: 'Always free', nl: 'Altijd gratis' },
+  mostPopular: { fr: 'Le plus populaire', en: 'Most popular', nl: 'Meest populair' },
+  perMonth: { fr: '/mois', en: '/mo', nl: '/maand' },
+  monthFreeGuarantee: { fr: '1 mois gratuit \u00b7 Garantie satisfait ou rembours\u00e9', en: '1 month free \u00b7 Money-back guarantee', nl: '1 maand gratis \u00b7 Niet-goed-geld-terug garantie' },
+  auditFeatures: { fr: ['Audit de r\u00e9ponse marketplace','Score de pr\u00e9paration leads','Mystery shop mensuel','Suivi du score dans le temps'], en: ['Marketplace response audit','Lead Readiness Score','Monthly mystery shop','Score tracking over time'], nl: ['Marketplace reactie audit','Lead Readiness Score','Maandelijkse mystery shop','Score tracking in de tijd'] },
+  includedInAudit: { fr: 'Inclus dans votre audit', en: 'Included in your audit', nl: 'Inbegrepen in uw audit' },
+  proFeatures: { fr: ['Tout dans Audit',"Jusqu'\u00e0 3 marketplaces",'Templates de r\u00e9ponse intelligents','WhatsApp, email et demandes web','Scoring et d\u00e9duplication','Suivi mensuel des r\u00e9ponses'], en: ['Everything in Audit','Up to 3 marketplaces','Smart response templates','WhatsApp, email & website inquiries','Lead scoring & deduplication','Monthly response monitoring'], nl: ['Alles in Audit','Tot 3 marketplaces','Slimme antwoordtemplates','WhatsApp, email & website aanvragen','Lead scoring & deduplicatie','Maandelijkse reactie monitoring'] },
+  startFreeTrial: { fr: "D\u00e9marrer l'essai gratuit", en: 'Start free trial', nl: 'Start gratis proefperiode' },
+  businessFeatures: { fr: ['Tout dans Pro',"Attribution automatique d'\u00e9quipe",'Analytique avanc\u00e9e','Int\u00e9grations API et DMS','Gestionnaire de compte d\u00e9di\u00e9'], en: ['Everything in Pro','Auto team assignment','Advanced analytics','API & DMS integrations','Dedicated account manager'], nl: ['Alles in Pro','Automatische teamtoewijzing','Geavanceerde analytics','API & DMS integraties','Toegewijd accountmanager'] },
+  contactSales: { fr: 'Contacter les ventes', en: 'Contact sales', nl: 'Contact verkoop' },
+  enterprise: { fr: 'Entreprise', en: 'Enterprise', nl: 'Enterprise' },
+  letsChat: { fr: 'Parlons-en', en: "Let\u2019s talk", nl: 'Laten we praten' },
+  customPricing: { fr: 'Prix sur mesure', en: 'Custom pricing', nl: 'Prijs op maat' },
+  enterpriseFeatures: { fr: ['Tout dans Business','5+ marketplaces','Support multi-sites','Int\u00e9grations personnalis\u00e9es','Support prioritaire et SLA'], en: ['Everything in Business','5+ marketplaces','Multi-location support','Custom integrations','Priority support & SLA'], nl: ['Alles in Business','5+ marketplaces','Multi-locatie ondersteuning','Aangepaste integraties','Prioritaire ondersteuning & SLA'] },
+  contactUs: { fr: 'Nous contacter', en: 'Get in touch', nl: 'Neem contact op' },
+  onboardingH2: { fr: "Quatre \u00e9tapes. C'est tout.", en: "Four steps. That\u2019s it.", nl: 'Vier stappen. Dat is alles.' },
+  onboardingSub: { fr: 'La plupart des concessionnaires sont op\u00e9rationnels en moins de 30 minutes.', en: 'Most dealers are live in under 30 minutes.', nl: 'De meeste dealers zijn live binnen 30 minuten.' },
+  step1Title: { fr: 'Identifiez les failles', en: "See what\u2019s broken", nl: 'Ontdek de zwakke punten' },
+  step1Desc: { fr: 'Votre audit gratuit r\u00e9v\u00e8le chaque faille \u2014 rapidit\u00e9, qualit\u00e9, suivi \u2014 sur toutes les plateformes.', en: 'Your free audit reveals every gap \u2014 speed, quality, follow-up \u2014 across every platform.', nl: 'Uw gratis audit onthult elke zwakte \u2014 snelheid, kwaliteit, opvolging \u2014 op alle platformen.' },
+  step2Title: { fr: 'Connectez vos marketplaces', en: 'Connect your marketplaces', nl: 'Verbind uw marketplaces' },
+  step2Desc: { fr: 'Reliez Europe-Camions, LeBonCoin, Autoline \u2014 tous vos leads arrivent dans une seule inbox.', en: 'Link Europe-Camions, LeBonCoin, Autoline \u2014 all your leads flow into one inbox.', nl: 'Koppel Europe-Camions, LeBonCoin, Autoline \u2014 al uw leads komen in \u00e9\u00e9n inbox.' },
+  step3Title: { fr: 'R\u00e9pondez en quelques secondes', en: 'Start responding in seconds', nl: 'Begin in seconden te reageren' },
+  step3Desc: { fr: 'Les templates intelligents remplissent automatiquement le nom, le v\u00e9hicule et le prix. Deux taps \u2014 r\u00e9ponse envoy\u00e9e.', en: 'Smart templates auto-fill buyer name, vehicle, and price. Two taps \u2014 personalized response sent.', nl: 'Slimme templates vullen automatisch naam, voertuig en prijs in. Twee taps \u2014 gepersonaliseerd antwoord verzonden.' },
+  guaranteeTitle: { fr: 'Garantie satisfait ou rembours\u00e9', en: 'Money-back guarantee', nl: 'Niet-goed-geld-terug garantie' },
+  guaranteeDesc: { fr: "Si votre score de r\u00e9ponse marketplace ne s'am\u00e9liore pas en 90 jours, nous vous remboursons int\u00e9gralement. <strong>Sans condition.</strong>", en: "If your marketplace response score doesn\u2019t improve in 90 days, we refund every penny. <strong>No questions asked.</strong>", nl: 'Als uw marketplace reactiescore niet verbetert in 90 dagen, krijgt u uw geld volledig terug. <strong>Zonder voorwaarden.</strong>' },
+  demoH2: { fr: 'R\u00e9server une d\u00e9mo', en: 'Book a demo', nl: 'Demo reserveren' },
+  demoSub: { fr: 'Choisissez un cr\u00e9neau avec Alexandre pour une pr\u00e9sentation personnalis\u00e9e.', en: 'Choose a time with Alexandre for a personalized presentation.', nl: 'Kies een tijdslot met Alexandre voor een persoonlijke presentatie.' },
+  dashDealer: { fr: 'Tableau de bord \u2014 1FOTEAM', en: 'Dashboard \u2014 1FOTEAM', nl: 'Dashboard \u2014 1FOTEAM' },
+  dashH2: { fr: "Chaque semaine d'attente, des leads vous \u00e9chappent.", en: 'Every week you wait, leads slip away.', nl: 'Elke week dat u wacht, glippen leads weg.' },
+  dashSub: { fr: "Vous payez d\u00e9j\u00e0 pour vos annonces marketplace. Une r\u00e9ponse lente et g\u00e9n\u00e9rique, c'est de l'argent gaspill\u00e9. Les leads n'attendent pas \u2014 ils vont au concessionnaire qui r\u00e9pond en premier.", en: "You\u2019re already paying for marketplace listings. A slow, generic response means that money is wasted. The leads don\u2019t wait \u2014 they go to the dealer who replies first.", nl: 'U betaalt al voor marketplace-advertenties. Een trage, generieke reactie betekent weggegooid geld. De leads wachten niet \u2014 ze gaan naar de dealer die het eerst reageert.' },
+  dashStat0: { fr: 'Revenus perdus / mois', en: 'Monthly revenue leak', nl: 'Maandelijks omzetverlies' },
+  dashStat1: { fr: 'Votre temps de r\u00e9ponse', en: 'Your response time', nl: 'Uw reactietijd' },
+  dashStat2: { fr: 'Leads perdus sans prix', en: 'Leads lost without price', nl: 'Leads verloren zonder prijs' },
+  dashStat3: { fr: 'Avec Copilot', en: 'With Copilot', nl: 'Met Copilot' },
+  dashChartH2: { fr: 'De 27 \u00e0 90+ en 90 jours', en: 'From 27 to 90+ in 90 days', nl: 'Van 27 naar 90+ in 90 dagen' },
+  dashChartSub: { fr: 'Investissez un peu plus dans vos r\u00e9ponses \u2014 et transformez les leads que vous payez d\u00e9j\u00e0 en ventes conclues.', en: "Invest a little more in how you respond \u2014 and turn the leads you\u2019re already paying for into closed deals.", nl: 'Investeer iets meer in hoe u reageert \u2014 en zet de leads waar u al voor betaalt om in gesloten deals.' },
+  dashChartTitle: { fr: 'Score de r\u00e9ponse marketplace projet\u00e9', en: 'Projected Marketplace Response Score', nl: 'Verwachte Marketplace Reactiescore' },
+  dashCtaH2: { fr: 'Arr\u00eatez de perdre du revenu. Concluez plus de ventes.', en: 'Stop leaking revenue. Start closing more deals.', nl: 'Stop met omzetverlies. Sluit meer deals.' },
+  dashCtaSub: { fr: "Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am\u00e9liorent pas, vous ne payez rien.", en: "Try Copilot free for 30 days. If your scores don\u2019t improve, you pay nothing.", nl: 'Probeer Copilot 30 dagen gratis. Als uw scores niet verbeteren, betaalt u niets.' },
+  dedupBadge: { fr: '\ud83d\udd17 Max Schreiber \u2014 M\u00eame acheteur, canal diff\u00e9rent', en: '\ud83d\udd17 Max Schreiber \u2014 Same buyer, different channel', nl: '\ud83d\udd17 Max Schreiber \u2014 Zelfde koper, ander kanaal' },
+  dedupMerged: { fr: '\u2714 Fusionn\u00e9 \u2014 2 demandes, 1 prospect', en: '\u2714 Merged \u2014 2 inquiries, 1 prospect', nl: '\u2714 Samengevoegd \u2014 2 aanvragen, 1 prospect' },
+  tooltipBack: { fr: 'Retour', en: 'Back', nl: 'Terug' },
+  tooltipNext: { fr: 'Suivant', en: 'Next', nl: 'Volgende' },
+  tooltipStepOf: { fr: 'sur', en: 'of', nl: 'van' },
+};
+
+function t(key) { return T[key]?.[currentLang] || T[key]?.fr || key; }
+
+// ===== TRANSLATED DATA ARRAYS =====
+const dimensionsT = {
+  fr: [
+    { key: "response_time", name: "Temps de r\u00e9ponse", score: 2, desc: "18h 48min pour r\u00e9pondre. Les meilleurs concessionnaires r\u00e9pondent en moins de 30 minutes.", fix: "Notifications push en temps r\u00e9el" },
+    { key: "personalization", name: "Personnalisation", score: 1, desc: "R\u00e9ponse g\u00e9n\u00e9rique. Aucun nom d'acheteur, aucune r\u00e9f\u00e9rence v\u00e9hicule, aucun besoin reconnu.", fix: "Templates intelligents avec remplissage auto" },
+    { key: "pricing", name: "Transparence tarifaire", score: 1, desc: "Aucun prix communiqu\u00e9. Les acheteurs qui demandent un prix veulent un prix \u2014 esquiver fait perdre 60%+ des leads.", fix: "Injection automatique des prix depuis l'inventaire" },
+    { key: "cta_clarity", name: "Clart\u00e9 de l'appel \u00e0 l'action", score: 1, desc: "Aucune prochaine \u00e9tape claire. \u00ab Contactez-nous \u00bb est une impasse, pas un appel \u00e0 l'action.", fix: "Blocs CTA int\u00e9gr\u00e9s dans les templates" },
+    { key: "qualifying", name: "Questions de qualification", score: 1, desc: "Aucune question pos\u00e9e. Une r\u00e9ponse sans question est une conversation morte.", fix: "Suggestions de questions intelligentes" },
+    { key: "follow_up", name: "Suivi", score: 2, desc: "Aucun suivi apr\u00e8s 7 jours de silence. Le lead est perdu pour toujours.", fix: "S\u00e9quences de relance automatis\u00e9es" },
+  ],
+  en: [
+    { key: "response_time", name: "Response Time", score: 2, desc: "18h 48min to respond. Top dealers reply in under 30 minutes.", fix: "Real-time push notifications" },
+    { key: "personalization", name: "Personalization", score: 1, desc: "Generic response. No buyer name, no vehicle reference, no stated need acknowledged.", fix: "Smart templates with auto-fill" },
+    { key: "pricing", name: "Pricing Transparency", score: 1, desc: "No price given. Buyers who ask for a price want a price \u2014 deflecting loses 60%+ of leads.", fix: "Price auto-injection from inventory" },
+    { key: "cta_clarity", name: "CTA Clarity", score: 1, desc: "No clear next step. 'Contact us' is a dead end, not a call to action.", fix: "Built-in CTA blocks in templates" },
+    { key: "qualifying", name: "Qualifying Questions", score: 1, desc: "No questions asked. A response without a question is a dead conversation.", fix: "Smart question prompts" },
+    { key: "follow_up", name: "Follow-Up", score: 2, desc: "No follow-up after 7 days of silence. The lead is gone forever.", fix: "Automated follow-up sequences" },
+  ],
+  nl: [
+    { key: "response_time", name: "Reactietijd", score: 2, desc: "18u 48min om te reageren. Topdealers reageren binnen 30 minuten.", fix: "Realtime pushmeldingen" },
+    { key: "personalization", name: "Personalisatie", score: 1, desc: "Generiek antwoord. Geen kopersnaam, geen voertuigreferentie, geen behoefteherkenning.", fix: "Slimme templates met automatisch invullen" },
+    { key: "pricing", name: "Prijstransparantie", score: 1, desc: "Geen prijs gegeven. Kopers die om een prijs vragen willen een prijs \u2014 ontwijken verliest 60%+ van de leads.", fix: "Automatische prijsinjectie uit inventaris" },
+    { key: "cta_clarity", name: "CTA Duidelijkheid", score: 1, desc: "Geen duidelijke volgende stap. 'Neem contact op' is een doodlopende weg.", fix: "Ingebouwde CTA-blokken in templates" },
+    { key: "qualifying", name: "Kwalificatievragen", score: 1, desc: "Geen vragen gesteld. Een antwoord zonder vraag is een dood gesprek.", fix: "Slimme vraagprompts" },
+    { key: "follow_up", name: "Opvolging", score: 2, desc: "Geen opvolging na 7 dagen stilte. De lead is voorgoed verloren.", fix: "Geautomatiseerde opvolgingssequenties" },
+  ],
+};
+function getDimensions() { return dimensionsT[currentLang] || dimensionsT.fr; }
+
+const badAnnotationsT = {
+  fr: ["Aucun nom d'acheteur","Aucun v\u00e9hicule mentionn\u00e9","Aucun prix indiqu\u00e9","Aucune prochaine \u00e9tape","Aucune question de qualification","Aucun contact direct"],
+  en: ["No buyer name used","No vehicle referenced","No price given","No next step or CTA","No qualifying questions","No direct contact info"],
+  nl: ["Geen kopersnaam","Geen voertuig vermeld","Geen prijs opgegeven","Geen volgende stap","Geen kwalificatievragen","Geen direct contact"],
+};
+function getBadAnnotations() { return badAnnotationsT[currentLang] || badAnnotationsT.fr; }
+
+const annotDataT = {
+  fr: [
+    { icon: "\u2714", title: "Utilise le nom de l'acheteur", desc: "Une salutation personnalis\u00e9e cr\u00e9e imm\u00e9diatement un lien." },
+    { icon: "\u2714", title: "Prix exact + caract\u00e9ristiques", desc: "68 500 \u20ac HT avec km, ann\u00e9e et historique d'entretien." },
+    { icon: "\u2714", title: "Questions de qualification", desc: "Renouvellement de flotte ? Financement ? La conversation reste vivante." },
+    { icon: "\u2714", title: "WhatsApp propos\u00e9", desc: "Contacte l'acheteur sur son canal pr\u00e9f\u00e9r\u00e9." },
+    { icon: "\u2714", title: "Signature compl\u00e8te", desc: "T\u00e9l\u00e9phone, email, site web \u2014 facile de vous recontacter." },
+    { icon: "\u2714", title: "Prochaine \u00e9tape claire", desc: "Propose d'envoyer les photos HD + dossier. Aucune impasse." },
+  ],
+  en: [
+    { icon: "\u2714", title: "Uses buyer\u2019s name", desc: "Personalized greeting builds rapport instantly." },
+    { icon: "\u2714", title: "Exact price + specs", desc: "\u20ac68,500 excl. VAT with km, year, and service history." },
+    { icon: "\u2714", title: "Qualifying questions", desc: "Fleet renewal? Financing? Keeps the conversation alive." },
+    { icon: "\u2714", title: "WhatsApp offered", desc: "Meets the buyer on their preferred channel." },
+    { icon: "\u2714", title: "Full signature", desc: "Phone, email, website \u2014 easy to reach back." },
+    { icon: "\u2714", title: "Clear next step", desc: "Offers to send HD photos + dossier. No dead ends." },
+  ],
+  nl: [
+    { icon: "\u2714", title: "Gebruikt naam koper", desc: "Persoonlijke begroeting bouwt direct vertrouwen op." },
+    { icon: "\u2714", title: "Exacte prijs + specs", desc: "\u20ac68.500 excl. BTW met km, jaar en servicehistorie." },
+    { icon: "\u2714", title: "Kwalificatievragen", desc: "Vlootvernieuwing? Financiering? Houdt het gesprek levend." },
+    { icon: "\u2714", title: "WhatsApp aangeboden", desc: "Ontmoet de koper op het voorkeurskanaal." },
+    { icon: "\u2714", title: "Volledige handtekening", desc: "Telefoon, email, website \u2014 makkelijk terug te bereiken." },
+    { icon: "\u2714", title: "Duidelijke volgende stap", desc: "Biedt aan HD-foto\u2019s + dossier te sturen. Geen doodlopende wegen." },
+  ],
+};
+function getAnnotData() { return annotDataT[currentLang] || annotDataT.fr; }
+
+const improvementDataT = {
+  fr: [
+    { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
+  ],
+  en: [
+    { month: "Now", score: 27, color: "var(--danger)", label: "Your current score \u2014 slow response time, no structured follow-up" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connected \u2014 auto-responses activated on all platforms" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Faster than 70% of dealers \u2014 personalized templates in place" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Fully automated pipeline \u2014 scoring, dedup, active follow-ups" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 you respond in under 2 minutes, every lead is tracked" },
+  ],
+  nl: [
+    { month: "Now", score: 27, color: "var(--danger)", label: "Uw huidige score \u2014 trage reactietijd, geen gestructureerde opvolging" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot verbonden \u2014 automatische reacties geactiveerd op alle platformen" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Sneller dan 70% van de dealers \u2014 gepersonaliseerde templates actief" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Volledig geautomatiseerde pipeline \u2014 scoring, dedup, actieve opvolging" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Beste in klasse \u2014 u reageert binnen 2 minuten, elke lead wordt gevolgd" },
+  ],
+};
+function getImprovementData() { return improvementDataT[currentLang] || improvementDataT.fr; }
+
+const timelineStepsT = {
+  fr: [
+    { time: "Jour 1", icon: "\ud83d\udd14", title: "Connexion et mise en route", desc: "Reliez vos marketplaces, activez les templates. Commencez \u00e0 r\u00e9pondre en quelques minutes.", score: 45 },
+    { time: "Semaine 1", icon: "\u26a1", title: "Plus rapide que vos concurrents", desc: "Vous r\u00e9pondez maintenant en moins de 30 min \u2014 avant 4 concurrents sur 5.", score: 60 },
+    { time: "Mois 1", icon: "\ud83d\udce8", title: "Enti\u00e8rement automatis\u00e9", desc: "Relances, d\u00e9duplication, scoring \u2014 tout fonctionne en pilote automatique.", score: 78 },
+    { time: "Mois 3", icon: "\ud83c\udfc6", title: "Meilleur du march\u00e9", desc: "Score 90+. Vous \u00eates dans le top 5% des concessionnaires. Garanti.", score: 93 },
+  ],
+  en: [
+    { time: "Day 1", icon: "\ud83d\udd14", title: "Connect & go live", desc: "Link your marketplaces, activate templates. Start responding in minutes.", score: 45 },
+    { time: "Week 1", icon: "\u26a1", title: "Faster than your competitors", desc: "You\u2019re now replying in under 30 min \u2014 before 4 out of 5 competitors.", score: 60 },
+    { time: "Month 1", icon: "\ud83d\udce8", title: "Fully automated", desc: "Follow-ups, dedup, lead scoring \u2014 all running on autopilot.", score: 78 },
+    { time: "Month 3", icon: "\ud83c\udfc6", title: "Best in class", desc: "Score 90+. You\u2019re in the top 5% of dealers. Guaranteed.", score: 93 },
+  ],
+  nl: [
+    { time: "Dag 1", icon: "\ud83d\udd14", title: "Verbinden & live gaan", desc: "Koppel uw marketplaces, activeer templates. Begin binnen minuten te reageren.", score: 45 },
+    { time: "Week 1", icon: "\u26a1", title: "Sneller dan uw concurrenten", desc: "U reageert nu binnen 30 min \u2014 v\u00f3\u00f3r 4 van de 5 concurrenten.", score: 60 },
+    { time: "Maand 1", icon: "\ud83d\udce8", title: "Volledig geautomatiseerd", desc: "Opvolging, dedup, lead scoring \u2014 alles draait op de automatische piloot.", score: 78 },
+    { time: "Maand 3", icon: "\ud83c\udfc6", title: "Beste in klasse", desc: "Score 90+. U bent in de top 5% van dealers. Gegarandeerd.", score: 93 },
+  ],
+};
+function getTimelineSteps() { return timelineStepsT[currentLang] || timelineStepsT.fr; }
+
+const walkthroughStepsT = {
+  fr: [
+    { target: ".inbox__nav-items", title: "Tous vos canaux au m\u00eame endroit", text: "Vos leads marketplace, emails, messages WhatsApp et demandes web \u2014 tout arrive ici automatiquement. Plus besoin de jongler entre les onglets.", pos: "right" },
+    { target: ".inbox__list", title: "Votre liste de prospects", text: "5 leads de 4 marketplaces diff\u00e9rentes. Chaque entr\u00e9e affiche le v\u00e9hicule, le statut et la source \u2014 pour savoir quoi faire en un coup d'\u0153il.", pos: "right" },
+    { target: "[data-lead='1']", title: "Ouvrir un prospect", text: "C'est le lead de votre mystery shop. Cliquez pour voir la conversation compl\u00e8te et les d\u00e9tails du v\u00e9hicule.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "R\u00e9pondre avec un template", text: "S\u00e9lectionnez un template pr\u00e9-r\u00e9dig\u00e9, choisissez la langue, et appuyez sur Envoyer. Le nom de l'acheteur, le v\u00e9hicule et le prix sont remplis automatiquement.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "D\u00e9duplication automatique", text: "Regardez \u2014 Max Schreiber a envoy\u00e9 la m\u00eame demande pour le DAF XF 480 via Europe-Camions et TruckScout24. Aello d\u00e9tecte le doublon automatiquement et fusionne les conversations. Plus de doublons, plus de temps perdu.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Changez de canal instantan\u00e9ment", text: "Cet acheteur pr\u00e9f\u00e8re WhatsApp. Changez de canal sans quitter votre inbox \u2014 la r\u00e9ponse arrive directement sur son t\u00e9l\u00e9phone.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Relances automatis\u00e9es", text: "Pas de r\u00e9ponse apr\u00e8s 2 jours ? Copilot envoie une relance automatique. Les grands groupes ont ces outils depuis des ann\u00e9es \u2014 maintenant vous aussi.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Routez les leads vers la bonne personne", text: "Attribuez les leads \u00e0 des commerciaux sp\u00e9cifiques. Plus aucun lead ne passe entre les mailles du filet.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+  en: [
+    { target: ".inbox__nav-items", title: "All channels in one place", text: "Your marketplace leads, emails, WhatsApp messages and website inquiries \u2014 all arrive here automatically. No more switching between tabs.", pos: "right" },
+    { target: ".inbox__list", title: "Your prospect list", text: "5 leads from 4 different marketplaces. Each shows the vehicle, status, and source \u2014 so you know what to do at a glance.", pos: "right" },
+    { target: "[data-lead='1']", title: "Open a lead", text: "This is the lead from your mystery shop. Click to see the full conversation and vehicle details.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "Reply with a template", text: "Select a pre-written template, pick the language, and hit Send. The buyer\u2019s name, vehicle, and price are auto-filled.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "Automatic deduplication", text: "Watch \u2014 Max Schreiber sent the same inquiry about the DAF XF 480 via both Europe-Camions and TruckScout24. Aello detects the duplicate and merges them. No double replies, no wasted time.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Switch channels instantly", text: "This buyer prefers WhatsApp. Switch channels without leaving your inbox \u2014 reply goes straight to their phone.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Automated follow-ups", text: "No reply after 2 days? Copilot sends an automated follow-up. Enterprise dealers have had these tools for years \u2014 now you do too.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Route leads to the right person", text: "Assign leads to specific salespeople. Never let one fall through the cracks.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+  nl: [
+    { target: ".inbox__nav-items", title: "Alle kanalen op \u00e9\u00e9n plek", text: "Uw marketplace-leads, emails, WhatsApp-berichten en website-aanvragen \u2014 alles komt hier automatisch binnen. Geen tabbladen meer wisselen.", pos: "right" },
+    { target: ".inbox__list", title: "Uw prospectenlijst", text: "5 leads van 4 verschillende marketplaces. Elk toont het voertuig, status en bron \u2014 zodat u in \u00e9\u00e9n oogopslag weet wat te doen.", pos: "right" },
+    { target: "[data-lead='1']", title: "Open een lead", text: "Dit is de lead van uw mystery shop. Klik om het volledige gesprek en voertuigdetails te zien.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "Reageer met een template", text: "Selecteer een voorgeschreven template, kies de taal en druk op Verzenden. De naam van de koper, het voertuig en de prijs worden automatisch ingevuld.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "Automatische deduplicatie", text: "Kijk \u2014 Max Schreiber heeft dezelfde aanvraag voor de DAF XF 480 verstuurd via zowel Europe-Camions als TruckScout24. Aello detecteert het duplicaat en voegt ze samen. Geen dubbele antwoorden, geen verspilde tijd.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Wissel direct van kanaal", text: "Deze koper geeft de voorkeur aan WhatsApp. Wissel van kanaal zonder uw inbox te verlaten \u2014 het antwoord gaat rechtstreeks naar hun telefoon.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Geautomatiseerde opvolging", text: "Geen antwoord na 2 dagen? Copilot stuurt automatisch een opvolging. Grote dealers hebben deze tools al jaren \u2014 nu u ook.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Routeer leads naar de juiste persoon", text: "Wijs leads toe aan specifieke verkopers. Laat er nooit meer \u00e9\u00e9n door de mazen glippen.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+};
+function getWalkthroughSteps() { return walkthroughStepsT[currentLang] || walkthroughStepsT.fr; }
+
 // ===== DATA =====
 const dealer = { name: "1FOTEAM", city: "Lyon", platform: "Europe-Camions", vehicle: "DAF XF 480 FT", buyer: "Max Schreiber", date: "March 2026" };
 
-// 6 dimensions (removed Channel & Format)
-const dimensions = [
-  { key: "response_time", name: "Temps de r\u00e9ponse", score: 2, desc: "18h 48min pour r\u00e9pondre. Les meilleurs concessionnaires r\u00e9pondent en moins de 30 minutes.", fix: "Notifications push en temps r\u00e9el" },
-  { key: "personalization", name: "Personnalisation", score: 1, desc: "R\u00e9ponse g\u00e9n\u00e9rique. Aucun nom d'acheteur, aucune r\u00e9f\u00e9rence v\u00e9hicule, aucun besoin reconnu.", fix: "Templates intelligents avec remplissage auto" },
-  { key: "pricing", name: "Transparence tarifaire", score: 1, desc: "Aucun prix communiqu\u00e9. Les acheteurs qui demandent un prix veulent un prix \u2014 esquiver fait perdre 60%+ des leads.", fix: "Injection automatique des prix depuis l'inventaire" },
-  { key: "cta_clarity", name: "Clart\u00e9 de l'appel \u00e0 l'action", score: 1, desc: "Aucune prochaine \u00e9tape claire. \u00ab Contactez-nous \u00bb est une impasse, pas un appel \u00e0 l'action.", fix: "Blocs CTA int\u00e9gr\u00e9s dans les templates" },
-  { key: "qualifying", name: "Questions de qualification", score: 1, desc: "Aucune question pos\u00e9e. Une r\u00e9ponse sans question est une conversation morte.", fix: "Suggestions de questions intelligentes" },
-  { key: "follow_up", name: "Suivi", score: 2, desc: "Aucun suivi apr\u00e8s 7 jours de silence. Le lead est perdu pour toujours.", fix: "S\u00e9quences de relance automatis\u00e9es" },
-];
+// Dimensions getter (backward compat)
+const dimensions = dimensionsT.fr;
 
 const totalScoreRaw = dimensions.reduce((s, d) => s + d.score, 0);
 const maxTotalRaw = dimensions.length * 5;
@@ -1037,22 +1153,7 @@ Responsable Commercial \u2014 1FOTEAM
 06 12 34 56 78 | jean-marc@1foteam.fr
 www.1foteam.fr`;
 
-const badAnnotations = [
-  "Aucun nom d'acheteur",
-  "Aucun v\u00e9hicule mentionn\u00e9",
-  "Aucun prix indiqu\u00e9",
-  "Aucune prochaine \u00e9tape",
-  "Aucune question de qualification",
-  "Aucun contact direct",
-];
-const goodAnnotations = [
-  "Utilise le nom de l'acheteur (Max)",
-  "R\u00e9f\u00e9rence le v\u00e9hicule + caract\u00e9ristiques",
-  "Prix exact avec conditions (HT)",
-  "2 questions de qualification pos\u00e9es",
-  "WhatsApp propos\u00e9 comme canal",
-  "Signature compl\u00e8te avec t\u00e9l\u00e9phone + email",
-];
+// badAnnotations and goodAnnotations now in translated T objects above
 
 const sampleLeads = [
   { id: 1, name: "Max Schreiber", platform: "Europe-Camions", platformDomain: "europe-camions.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "18h ago", color: "#3B82F6", channel: "email",
@@ -1072,32 +1173,7 @@ const sampleLeads = [
     inquiry: "Hi, I saw the DAF XF 480 FT on TruckScout24. Is it still available? What is the final price? Best regards, Max Schreiber" },
 ];
 
-const walkthroughSteps = [
-  { target: ".inbox__nav-items", title: "Tous vos canaux au m\u00eame endroit", text: "Vos leads marketplace, emails, messages WhatsApp et demandes web \u2014 tout arrive ici automatiquement. Plus besoin de jongler entre les onglets.", pos: "right" },
-  { target: ".inbox__list", title: "Votre liste de prospects", text: "5 leads de 4 marketplaces diff\u00e9rentes. Chaque entr\u00e9e affiche le v\u00e9hicule, le statut et la source \u2014 pour savoir quoi faire en un coup d'\u0153il.", pos: "right" },
-  { target: "[data-lead='1']", title: "Ouvrir un prospect", text: "C'est le lead de votre mystery shop. Cliquez pour voir la conversation compl\u00e8te et les d\u00e9tails du v\u00e9hicule.", action: "selectLead", leadId: 1, pos: "right" },
-  { target: ".inbox__composer", title: "R\u00e9pondre avec un template", text: "S\u00e9lectionnez un template pr\u00e9-r\u00e9dig\u00e9, choisissez la langue, et appuyez sur Envoyer. Le nom de l'acheteur, le v\u00e9hicule et le prix sont remplis automatiquement.", action: "sendReply", pos: "top" },
-  { target: ".inbox__list", title: "D\u00e9duplication automatique", text: "Regardez \u2014 Max Schreiber a envoy\u00e9 la m\u00eame demande pour le DAF XF 480 via Europe-Camions et TruckScout24. Aello d\u00e9tecte le doublon automatiquement et fusionne les conversations. Plus de doublons, plus de temps perdu.", action: "dedup", pos: "right" },
-  { target: "#chWA", title: "Changez de canal instantan\u00e9ment", text: "Cet acheteur pr\u00e9f\u00e8re WhatsApp. Changez de canal sans quitter votre inbox \u2014 la r\u00e9ponse arrive directement sur son t\u00e9l\u00e9phone.", action: "selectLead", leadId: 4, pos: "top" },
-  { target: "#followupBadge", title: "Relances automatis\u00e9es", text: "Pas de r\u00e9ponse apr\u00e8s 2 jours ? Copilot envoie une relance automatique. Les grands groupes ont ces outils depuis des ann\u00e9es \u2014 maintenant vous aussi.", action: "showFollowup", pos: "top" },
-  { target: "#assignArea", title: "Routez les leads vers la bonne personne", text: "Attribuez les leads \u00e0 des commerciaux sp\u00e9cifiques. Plus aucun lead ne passe entre les mailles du filet.", action: "showAssign", pos: "top" },
-  { target: null, text: null, action: "gotoDashboard" },
-];
-
-const improvementData = [
-  { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
-  { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
-  { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
-  { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
-  { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
-];
-
-const timelineSteps = [
-  { time: "Jour 1", icon: "\uD83D\uDD14", title: "Connexion et mise en route", desc: "Reliez vos marketplaces, activez les templates. Commencez \u00e0 r\u00e9pondre en quelques minutes.", score: 45 },
-  { time: "Semaine 1", icon: "\u26A1", title: "Plus rapide que vos concurrents", desc: "Vous r\u00e9pondez maintenant en moins de 30 min \u2014 avant 4 concurrents sur 5.", score: 60 },
-  { time: "Mois 1", icon: "\uD83D\uDCE8", title: "Enti\u00e8rement automatis\u00e9", desc: "Relances, d\u00e9duplication, scoring \u2014 tout fonctionne en pilote automatique.", score: 78 },
-  { time: "Mois 3", icon: "\uD83C\uDFC6", title: "Meilleur du march\u00e9", desc: "Score 90+. Vous \u00eates dans le top 5% des concessionnaires. Garanti.", score: 93 },
-];
+// walkthroughSteps, improvementData, timelineSteps now in translated T objects above
 
 // Marketplace logos
 const marketplaces = [
@@ -1118,6 +1194,70 @@ const marketplaces = [
 let currentScreen = 'report';
 let walkStep = -1;
 let inboxState = { selectedLead: null, replied: new Set(), deduped: false };
+
+// ===== LANGUAGE SWITCHER =====
+function updateStaticText() {
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.dataset.t;
+    if (T[key] && T[key][currentLang]) {
+      el.innerHTML = T[key][currentLang];
+    }
+  });
+}
+
+function renderPricingGrid(gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  const isReport = gridId === 'reportPricingGrid';
+  grid.innerHTML = `
+    <div class="pricing__card pricing__card--free">
+      <div class="pricing__card-name">Audit</div>
+      <div class="pricing__card-price"><span class="pricing__card-price-amount">${t('free')}</span></div>
+      <div class="pricing__card-trial">${t('alwaysFree')}</div>
+      <ul class="pricing__card-features">${(T.auditFeatures[currentLang]||T.auditFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
+        <span style="font-size:18px;">&#10003;</span>
+        <span style="font-size:13px;font-weight:700;color:var(--success);">${t('includedInAudit')}</span>
+      </div>
+    </div>
+    <div class="pricing__card pricing__card--popular">
+      <div class="pricing__popular-badge">${t('mostPopular')}</div>
+      <div class="pricing__card-name">Pro</div>
+      <div class="pricing__card-price">
+        <span class="pricing__card-price-amount">&euro;49</span>
+        <span class="pricing__card-price-period">${t('perMonth')}</span>
+      </div>
+      <div class="pricing__card-trial">${t('monthFreeGuarantee')}</div>
+      <ul class="pricing__card-features">${(T.proFeatures[currentLang]||T.proFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <button class="btn btn--primary btn--full" onclick="${isReport ? 'startTrial()' : ''}">${t('startFreeTrial')}</button>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__card-name">Business</div>
+      <div class="pricing__card-price">
+        <span class="pricing__card-price-amount">&euro;99</span>
+        <span class="pricing__card-price-period">${t('perMonth')}</span>
+      </div>
+      <div class="pricing__card-trial">${t('monthFreeGuarantee')}</div>
+      <ul class="pricing__card-features">${(T.businessFeatures[currentLang]||T.businessFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <a href="#bookDemo" class="btn btn--outline btn--full">${t('contactSales')}</a>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__card-name">${t('enterprise')}</div>
+      <div class="pricing__card-price"><span class="pricing__card-price-amount" style="font-size:1.6rem;">${t('letsChat')}</span></div>
+      <div class="pricing__card-trial">${t('customPricing')}</div>
+      <ul class="pricing__card-features">${(T.enterpriseFeatures[currentLang]||T.enterpriseFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full">${t('contactUs')}</a>
+    </div>`;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  updateStaticText();
+  renderReport();
+  // Re-render dashboard pricing if visible
+  renderPricingGrid('dashPricingGrid');
+}
 
 // ===== SCREEN MANAGEMENT =====
 function showScreen(name) {
@@ -1161,7 +1301,8 @@ function renderReport() {
 
   // Dimensions
   const grid = document.getElementById('dimensionGrid');
-  grid.innerHTML = dimensions.map(d => {
+  const curDimensions = getDimensions();
+  grid.innerHTML = curDimensions.map(d => {
     const segs = Array.from({length: 5}, (_, i) => {
       const filled = i < d.score;
       const cls = filled ? (d.score <= 2 ? 'filled' : d.score <= 3 ? 'filled ok' : 'filled good') : '';
@@ -1176,30 +1317,23 @@ function renderReport() {
         </div>
         <div class="dim-card__bar">${segs}</div>
         <div class="dim-card__desc">${d.desc}</div>
-        ${d.score <= 2 ? `<div class="dim-card__fix">\u2192 Copilot corrige \u00e7a : ${d.fix}</div>` : ''}
+        ${d.score <= 2 ? `<div class="dim-card__fix">\u2192 ${t('copilotFix')} ${d.fix}</div>` : ''}
       </div>`;
   }).join('');
 
   // Comparison — populate static parts, then trigger animation on scroll
   document.getElementById('demoOldResponse').textContent = actualResponse;
-  document.getElementById('demoBadTags').innerHTML = badAnnotations.map((a, i) => `<span class="demo-inbox__bad-tag" style="opacity:0;transition:opacity 0.5s ease,transform 0.4s ease;transform:translateY(6px);" data-bad-idx="${i}">\u2718 ${a}</span>`).join('');
+  document.getElementById('demoBadTags').innerHTML = getBadAnnotations().map((a, i) => `<span class="demo-inbox__bad-tag" style="opacity:0;transition:opacity 0.5s ease,transform 0.4s ease;transform:translateY(6px);" data-bad-idx="${i}">\u2718 ${a}</span>`).join('');
 
   // Annotation cards data
-  const annotData = [
-    { icon: "\u2714", title: "Utilise le nom de l'acheteur", desc: "Une salutation personnalis\u00e9e cr\u00e9e imm\u00e9diatement un lien." },
-    { icon: "\u2714", title: "Prix exact + caract\u00e9ristiques", desc: "68 500 \u20AC HT avec km, ann\u00e9e et historique d'entretien." },
-    { icon: "\u2714", title: "Questions de qualification", desc: "Renouvellement de flotte ? Financement ? La conversation reste vivante." },
-    { icon: "\u2714", title: "WhatsApp propos\u00e9", desc: "Contacte l'acheteur sur son canal pr\u00e9f\u00e9r\u00e9." },
-    { icon: "\u2714", title: "Signature compl\u00e8te", desc: "T\u00e9l\u00e9phone, email, site web \u2014 facile de vous recontacter." },
-    { icon: "\u2714", title: "Prochaine \u00e9tape claire", desc: "Propose d'envoyer les photos HD + dossier. Aucune impasse." },
-  ];
+  const annotData = getAnnotData();
   const annotsEl = document.getElementById('demoAnnots');
   const replayBtn = annotsEl.querySelector('#demoReplay');
   annotsEl.innerHTML = '';
   annotData.forEach(a => {
     annotsEl.innerHTML += `<div class="annot-card"><div class="annot-card__icon">${a.icon}</div><div class="annot-card__title">${a.title}</div><div class="annot-card__desc">${a.desc}</div></div>`;
   });
-  annotsEl.innerHTML += `<div style="text-align:center;margin-top:4px;"><button class="demo-inbox__replay" id="demoReplay" onclick="runDemoAnimation()" style="display:none;">&#8634; Revoir</button></div>`;
+  annotsEl.innerHTML += `<div style="text-align:center;margin-top:4px;"><button class="demo-inbox__replay" id="demoReplay" onclick="runDemoAnimation()" style="display:none;">${t('replayBtn')}</button></div>`;
 
   // Trigger animation when comparison scrolls into view
   const demoObs = new IntersectionObserver((entries) => {
@@ -1219,6 +1353,8 @@ function renderReport() {
   const ctaScoreEl = document.getElementById('ctaScore');
   if (ctaScoreEl) ctaScoreEl.textContent = totalScore;
 
+  // Pricing grids
+  renderPricingGrid('reportPricingGrid');
 }
 
 // ===== DEMO ANIMATION =====
@@ -1257,12 +1393,12 @@ function runDemoAnimation() {
   theirMsg.classList.remove('collapsed');
   composer.style.opacity = '0';
   templateBtn.classList.remove('selected');
-  templateBtn.innerHTML = '&#9662; S\u00E9lectionner un mod\u00E8le...';
-  body.textContent = 'R\u00E9digez votre r\u00E9ponse...';
+  templateBtn.innerHTML = t('selectTemplate');
+  body.textContent = t('writeResponse');
   body.classList.add('empty');
   body.style.maxHeight = '300px';
   sendBtn.classList.remove('sent');
-  sendBtn.textContent = 'Envoyer';
+  sendBtn.textContent = t('sendBtn');
   sentOverlay.classList.remove('visible');
   cursor.classList.remove('visible');
   annots.forEach(a => { a.classList.remove('visible'); a.classList.remove('emphasize'); });
@@ -1370,7 +1506,7 @@ function runDemoAnimation() {
   // Phase 10: Click send
   demoTimeout(() => {
     sendBtn.classList.add('sent');
-    sendBtn.textContent = '\u2714 Envoy\u00E9 !';
+    sendBtn.textContent = '\u2714 ' + t('sentLabel');
     cursor.classList.remove('visible');
   }, annotEndTime + 600);
 
@@ -1522,7 +1658,7 @@ function sendReply() {
   overlay.innerHTML = `
     <div class="inbox__sent-overlay">
       <div class="inbox__sent-check">\u2714</div>
-      <div class="inbox__sent-text">R\u00E9ponse envoy\u00E9e !</div>
+      <div class="inbox__sent-text">${t('sentLabel')}</div>
     </div>`;
   setTimeout(() => { overlay.innerHTML = ''; selectLead(inboxState.selectedLead); }, 1500);
 }
@@ -1542,7 +1678,7 @@ function runDedupAnimation() {
     // Add matching vehicle badge to lead 1
     const badge1 = document.createElement('div');
     badge1.className = 'dedup-merge-badge';
-    badge1.textContent = '\uD83D\uDD17 Max Schreiber \u2014 M\u00eame acheteur, canal diff\u00e9rent';
+    badge1.textContent = t('dedupBadge');
     badge1.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--danger);color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(213,64,43,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
     lead1El.style.position = 'relative';
     lead1El.appendChild(badge1);
@@ -1582,7 +1718,7 @@ function runDedupAnimation() {
     // Add success merged badge
     const mergedBadge = document.createElement('div');
     mergedBadge.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--success);color:white;font-size:10px;font-weight:800;padding:4px 14px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(46,133,64,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
-    mergedBadge.textContent = '\u2714 Fusionn\u00e9 \u2014 2 demandes, 1 prospect';
+    mergedBadge.textContent = t('dedupMerged');
     lead1El.appendChild(mergedBadge);
 
     inboxState.deduped = true;
@@ -1613,6 +1749,7 @@ function advanceWalkthrough() {
   document.querySelectorAll('.tooltip-highlight').forEach(el => el.classList.remove('tooltip-highlight'));
   const tooltip = document.getElementById('tooltip');
   const overlay = document.getElementById('tooltipOverlay');
+  const walkthroughSteps = getWalkthroughSteps();
 
   walkStep++;
   if (walkStep >= walkthroughSteps.length) {
@@ -1670,7 +1807,7 @@ function advanceWalkthrough() {
 
     document.getElementById('tooltipTitle').textContent = step.title || '';
     document.getElementById('tooltipContent').textContent = step.text;
-    document.getElementById('tooltipStep').textContent = `${walkStep + 1} of ${walkthroughSteps.length - 1}`;
+    document.getElementById('tooltipStep').textContent = `${walkStep + 1} ${t('tooltipStepOf')} ${walkthroughSteps.length - 1}`;
 
     const tooltipW = 340, tooltipH = 200;
     let top, left;
@@ -1706,6 +1843,8 @@ function advanceWalkthrough() {
 let chartAnimTimeouts = [];
 
 function renderChart(chartId, milestonesId) {
+  const improvementData = getImprovementData();
+  const timelineSteps = getTimelineSteps();
   const W = 700, H = 340, padL = 50, padR = 30, padT = 55, padB = 70;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const maxScore = 100;
@@ -1805,6 +1944,7 @@ function animateChart(chartId) {
   const line = document.getElementById(`${id}_line`);
   if (!line) return;
 
+  const improvementData = getImprovementData();
   const n = improvementData.length; // 5 points
   const STEP_DELAY = 2000; // 2s per milestone
   const FADE_DUR = 600;
@@ -1917,6 +2057,7 @@ function resetChart(chartId, n) {
 // ===== SCREEN 4: DASHBOARD =====
 function renderDashboard() {
   renderChart('dashChart', 'milestones');
+  renderPricingGrid('dashPricingGrid');
 }
 
 // ===== INTERSECTION OBSERVER (fade-up) =====
