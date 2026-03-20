@@ -329,7 +329,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
           <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
         </div>
-        <a href="aello-dealer-report.html" class="btn btn--primary" style="padding: 8px 18px; font-size: 13px;" id="headerAuditBtn">Audit gratuit</a>
+        <a href="report.html" class="btn btn--primary" style="padding: 8px 18px; font-size: 13px;" id="headerAuditBtn">Audit gratuit</a>
       </div>
     </div>
   </div>
@@ -386,7 +386,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
     <h2 class="fade-up" data-t="guaranteeTitle">Votre score de r&eacute;ponse marketplace va s'am&eacute;liorer. Garanti.</h2>
     <p class="guarantee-section__body fade-up" data-t="guaranteeBody">Utilisez Copilot pendant 90 jours. Si votre score ne s'am&eacute;liore pas, on vous rembourse int&eacute;gralement.</p>
     <div class="guarantee-section__ctas fade-up">
-      <a href="aello-dealer-report.html" class="btn btn--white btn--lg" data-t="guaranteeCta1">Obtenir votre audit gratuit</a>
+      <a href="report.html" class="btn btn--white btn--lg" data-t="guaranteeCta1">Obtenir votre audit gratuit</a>
       <a href="aello-dealer-tour.html" target="_blank" class="btn btn--outline-white btn--lg" data-t="guaranteeCta2">Voir la d&eacute;mo produit</a>
     </div>
   </div>
@@ -467,7 +467,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <li data-t="auditF3">Mystery shop mensuel</li>
           <li data-t="auditF4">Suivi du score dans le temps</li>
         </ul>
-        <a href="aello-dealer-report.html" class="btn btn--outline btn--full" data-t="auditCtaBtn">Voir mon audit gratuit</a>
+        <a href="report.html" class="btn btn--outline btn--full" data-t="auditCtaBtn">Voir mon audit gratuit</a>
       </div>
       <!-- Pro -->
       <div class="pricing__card pricing__card--popular fade-up">
@@ -486,7 +486,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <li data-t="proF5">Scoring et d&eacute;duplication</li>
           <li data-t="proF6">Suivi mensuel des r&eacute;ponses</li>
         </ul>
-        <a href="aello-dealer-report.html" class="btn btn--primary btn--full" data-t="proCtaBtn">D&eacute;marrer l'essai gratuit</a>
+        <a href="report.html" class="btn btn--primary btn--full" data-t="proCtaBtn">D&eacute;marrer l'essai gratuit</a>
       </div>
       <!-- Business -->
       <div class="pricing__card fade-up">
@@ -871,28 +871,25 @@ const T = {
 };
 
 const dealerData = {
-  dealer_name: "1FOTEAM",
-  dealer_city: "Le Havre",
-  dealer_website: "1foteam.com",
-  total_listings: 47,
+  dealer_name: "VAN DE WERT TRADING B.V.",
+  dealer_city: "\'s-Hertogenbosch",
+  dealer_website: "vandewert.nl",
+  total_listings: 327,
   total_platforms: 3,
-  estimated_leads_per_month: 62,
+  estimated_leads_per_month: 262,
   marketplace_list: [
-    { name: "Europe-Camions", abbr: "EC", listings: 23, active: true },
-    { name: "LeBonCoin Pro", abbr: "LBC", listings: 15, active: true },
-    { name: "Autoline", abbr: "AL", listings: 9, active: true },
-    { name: "Mascus", abbr: "MA", listings: 0, active: false },
-    { name: "Truck1", abbr: "T1", listings: 0, active: false },
-    { name: "TrucksNL", abbr: "NL", listings: 0, active: false },
-    { name: "MachineryTrader", abbr: "MT", listings: 0, active: false },
-    { name: "BasWorld", abbr: "BW", listings: 0, active: false },
+    { name: "Autoline", abbr: "AL", listings: 109, active: true },
+    { name: "Truck1", abbr: "T1", listings: 109, active: true },
+    { name: "TrucksNL", abbr: "NL", listings: 109, active: true },
   ],
-  mystery_shop_response_time: "18h 48min",
-  mystery_shop_response_minutes: 1128,
-  mystery_shop_platform: "Europe-Camions",
-  revenue_leak_monthly: 4750,
+  mystery_shop_response_time: "En attente d\'audit",
+  mystery_shop_response_minutes: -1,
+  mystery_shop_platform: "Autoline",
+  mystery_shop_pending: true,
+  mystery_shop_no_response: false,
+  revenue_leak_monthly: 15000,
   cost_per_lead: 18,
-  deals_lost_per_month: 3,
+  deals_lost_per_month: 8,
   margin_per_sale: 1800,
   generated_date: "March 2026",
 };
@@ -914,7 +911,7 @@ function populatePage(d) {
 
   document.getElementById('heroStats').innerHTML = `
     <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);">${d.mystery_shop_response_time}</div><div class="stat-card__label">${t.statResponseTime}</div></div>
-    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">27/100</div><div class="stat-card__label">${t.statResponseScore}</div><a href="aello-dealer-report.html" style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;display:block;text-decoration:none;">${t.statUnlock}</a></div>
+    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">27/100</div><div class="stat-card__label">${t.statResponseScore}</div><a href="report.html" style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;display:block;text-decoration:none;">${t.statUnlock}</a></div>
   `;
 
   // Hero chart — marketplace advertising budget growth
@@ -1071,7 +1068,7 @@ function populatePage(d) {
   }).join('');
   document.getElementById('scorecardCta').innerHTML = `
     <p class="scorecard__cta-text"><strong>${t.scorecardCtaText}</strong></p>
-    <a href="aello-dealer-report.html" class="btn btn--primary btn--lg">${t.scorecardCtaBtn}</a>
+    <a href="report.html" class="btn btn--primary btn--lg">${t.scorecardCtaBtn}</a>
   `;
 
   // (Revenue leak section removed)
@@ -1116,7 +1113,7 @@ function initScrollAnimations() {
 
 function handleSubmit(e) {
   e.preventDefault();
-  window.location.href = 'aello-dealer-report.html';
+  window.location.href = 'report.html';
 }
 
 function updateDataTElements() {
