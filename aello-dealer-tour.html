@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visite Produit &mdash; A&euml;llo Copilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #007C89;
+  --primary-dark: #006570;
+  --primary-darker: #004F56;
+  --primary-light: #E8F5F6;
+  --primary-lighter: #C5E8EB;
+  --danger: #D5402B;
+  --danger-light: #FDF0EE;
+  --success: #2E8540;
+  --success-light: #EDF7EF;
+  --warning: #C77700;
+  --warning-light: #FFF7EB;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFB;
+  --gray-100: #F1F3F5;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 1px 2px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04), 0 12px 24px rgba(0,0,0,0.03);
+  --shadow-xl: 0 1px 3px rgba(0,0,0,0.06), 0 8px 16px rgba(0,0,0,0.04), 0 24px 48px rgba(0,0,0,0.03);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--primary); text-decoration: none; }
+h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 64px 0; }
+.section-alt { background: var(--gray-50); }
+.text-danger { color: var(--danger); }
+.text-primary { color: var(--primary); }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; }
+.badge--primary { background: var(--primary-light); color: var(--primary-dark); }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: none; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.btn:active { transform: scale(0.98); }
+.btn--primary { background: var(--primary); color: var(--white); }
+.btn--primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn--white { background: var(--white); color: var(--primary-dark); }
+.btn--white:hover { background: var(--gray-50); transform: translateY(-1px); }
+.btn--outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn--outline:hover { background: var(--primary); color: var(--white); }
+.btn--lg { padding: 14px 28px; font-size: 15px; }
+.btn--ghost { background: transparent; color: var(--gray-500); font-weight: 500; }
+.btn--ghost:hover { color: var(--gray-700); }
+
+/* Screens */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* Header */
+.header { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 14px 0; position: sticky; top: 0; z-index: 200; backdrop-filter: blur(12px); background: rgba(255,255,255,0.95); }
+.header__inner { display: flex; align-items: center; justify-content: space-between; }
+.header__logo img { height: 44px; width: auto; }
+.header__right { display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; }
+.header__right a { color: var(--text-muted); transition: color 0.2s; }
+.header__right a:hover { color: var(--primary); }
+
+/* Hero intro */
+.tour-hero { padding: 64px 0 48px; text-align: center; background: var(--gray-50); }
+.tour-hero h1 { margin-bottom: 12px; }
+.tour-hero p { color: var(--text-muted); font-size: 15px; max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+
+/* Screen nav tabs */
+.screen-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.screen-tab { padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-600); transition: all 0.2s; }
+.screen-tab:hover { border-color: var(--gray-300); }
+.screen-tab.active { background: #4F46E5; color: var(--white); border-color: #4F46E5; }
+
+/* ===== INBOX (Aello Copilot style) ===== */
+.aello-blue { --ab: #4F46E5; --ab-dark: #4338CA; --ab-light: #EEF2FF; --ab-lighter: #E0E7FF; }
+.inbox { display: flex; height: 100vh; background: var(--white); }
+.inbox__nav { width: 200px; background: var(--white); border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; flex-shrink: 0; }
+.inbox__nav-logo { padding: 16px 18px 20px; font-family: Georgia, serif; font-size: 20px; font-weight: 800; color: #4F46E5; line-height: 1; }
+.inbox__nav-logo small { display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; color: var(--gray-400); margin-top: 2px; letter-spacing: 0.03em; }
+.inbox__nav-items { display: flex; flex-direction: column; gap: 2px; padding: 0 8px; }
+.inbox__nav-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13px; font-weight: 500; color: var(--gray-600); cursor: pointer; transition: all 0.15s; }
+.inbox__nav-item:hover { background: var(--gray-50); color: var(--gray-900); }
+.inbox__nav-item.active { background: #EEF2FF; color: #4F46E5; font-weight: 600; }
+.inbox__nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+.inbox__nav-dealer { margin-top: auto; padding: 14px 18px; border-top: 1px solid var(--gray-100); }
+.inbox__nav-dealer-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 6px; }
+.inbox__nav-dealer-name { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+.inbox__nav-user { padding: 12px 18px; border-top: 1px solid var(--gray-100); display: flex; align-items: center; gap: 8px; }
+.inbox__nav-user-avatar { width: 28px; height: 28px; border-radius: 50%; background: #4F46E5; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 11px; font-weight: 700; }
+.inbox__nav-user-name { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+
+.inbox__main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.inbox__topbar { height: 48px; background: var(--white); border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-shrink: 0; }
+.inbox__topbar-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--gray-900); display: flex; align-items: center; gap: 8px; }
+.inbox__topbar-title .count { font-size: 12px; font-weight: 600; color: var(--gray-400); }
+.inbox__topbar-actions { display: flex; gap: 8px; }
+.inbox__topbar-btn { padding: 5px 12px; border-radius: 6px; border: 1px solid var(--gray-200); background: var(--white); font-size: 12px; font-weight: 600; color: var(--gray-600); cursor: pointer; }
+.inbox__topbar-btn:hover { background: var(--gray-50); }
+
+.inbox__content { display: flex; flex: 1; overflow: hidden; }
+.inbox__list { width: 340px; border-right: 1px solid var(--gray-200); overflow-y: auto; flex-shrink: 0; background: var(--white); }
+.inbox__lead { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--gray-100); cursor: pointer; transition: background 0.15s; position: relative; }
+.inbox__lead:hover { background: var(--gray-50); }
+.inbox__lead.active { background: #EEF2FF; }
+.inbox__lead.dedup-fade { opacity: 0; max-height: 0; padding: 0 16px; margin: 0; overflow: hidden; transition: all 0.5s ease; border: none; }
+
+/* Dedup merge animation */
+.inbox__lead.dedup-highlight { border: 2px solid var(--danger); background: var(--danger-light); animation: dedupPulse 0.8s ease infinite; position: relative; z-index: 5; }
+@keyframes dedupPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(213,64,43,0.3); } 50% { box-shadow: 0 0 0 8px rgba(213,64,43,0); } }
+.inbox__lead.dedup-slide-up { transition: transform 1.2s cubic-bezier(0.4,0,0.2,1), opacity 0.8s ease; }
+.inbox__lead.dedup-merge-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--success); color: white; font-size: 11px; font-weight: 800; padding: 6px 16px; border-radius: 100px; z-index: 20; white-space: nowrap; box-shadow: 0 4px 16px rgba(46,133,64,0.3); animation: dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+@keyframes dedupBadgePop { from { transform: translate(-50%, -50%) scale(0); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+.dedup-connector { position: absolute; left: 50%; width: 2px; background: var(--danger); z-index: 4; transition: height 0.8s ease; }
+.inbox__lead.dedup-merged { border: 2px solid var(--success); background: var(--success-light); animation: none; box-shadow: 0 0 0 4px rgba(46,133,64,0.15); }
+.inbox__lead-thumb { width: 44px; height: 44px; border-radius: 6px; overflow: hidden; flex-shrink: 0; background: var(--gray-100); display: flex; align-items: center; justify-content: center; }
+.inbox__lead-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.inbox__lead-thumb-initials { font-size: 14px; font-weight: 800; color: var(--white); }
+.inbox__lead-info { flex: 1; min-width: 0; }
+.inbox__lead-name { font-weight: 700; font-size: 13px; color: var(--gray-900); display: flex; align-items: center; gap: 6px; }
+.inbox__lead-vehicle { font-size: 11px; color: var(--gray-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.inbox__lead-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+.inbox__lead-status { font-size: 10px; font-weight: 700; padding: 1px 8px; border-radius: 100px; }
+.inbox__lead-status--new { background: #DBEAFE; color: #2563EB; }
+.inbox__lead-status--contacted { background: #FEF3C7; color: #D97706; }
+.inbox__lead-status--sold { background: #D1FAE5; color: #059669; }
+.inbox__lead-platform { font-size: 10px; font-weight: 600; color: var(--gray-400); }
+.inbox__lead-price { font-size: 11px; font-weight: 800; color: var(--gray-700); margin-top: 2px; }
+.inbox__lead-dup { font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 100px; background: var(--danger); color: var(--white); }
+.inbox__lead-time { font-size: 10px; color: var(--gray-400); position: absolute; top: 14px; right: 16px; }
+
+.inbox__detail { flex: 1; display: flex; overflow: hidden; }
+.inbox__detail-empty { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 14px; }
+
+/* Detail left: vehicle info */
+.inbox__detail-left { width: 280px; border-right: 1px solid var(--gray-200); overflow-y: auto; background: var(--white); flex-shrink: 0; padding: 20px; }
+.inbox__detail-left-badge { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+.inbox__detail-left-badge img { width: 18px; height: 18px; border-radius: 4px; }
+.inbox__detail-left-badge span { font-size: 11px; font-weight: 600; color: #4F46E5; }
+.inbox__detail-left-meta { font-size: 11px; color: var(--gray-400); margin-bottom: 6px; }
+.inbox__detail-left-assign { font-size: 12px; color: var(--gray-600); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.inbox__detail-left-status { display: inline-flex; padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; margin-bottom: 12px; }
+.inbox__vehicle-img { width: 100%; border-radius: 8px; margin-bottom: 12px; background: var(--gray-100); min-height: 140px; overflow: hidden; }
+.inbox__vehicle-img img { width: 100%; display: block; }
+.inbox__vehicle-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 14px; color: var(--gray-900); margin-bottom: 4px; line-height: 1.3; }
+.inbox__vehicle-price { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 18px; color: var(--gray-900); margin-bottom: 2px; }
+.inbox__vehicle-price small { font-size: 12px; font-weight: 500; color: var(--gray-400); }
+.inbox__vehicle-ref { font-size: 11px; color: var(--gray-400); margin-bottom: 16px; }
+.inbox__vehicle-link { display: inline-flex; padding: 6px 14px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--gray-600); }
+
+/* Detail right: contact + conversation */
+.inbox__detail-right { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.inbox__contact { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); background: var(--white); }
+.inbox__contact-tabs { display: flex; gap: 20px; margin-bottom: 12px; border-bottom: 1px solid var(--gray-100); padding-bottom: 8px; }
+.inbox__contact-tab { font-size: 13px; font-weight: 600; color: var(--gray-400); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+.inbox__contact-tab.active { color: #4F46E5; border-color: #4F46E5; }
+.inbox__contact-name { font-weight: 700; font-size: 14px; color: var(--gray-900); }
+.inbox__contact-detail { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+.inbox__contact-detail a { color: #4F46E5; }
+
+.inbox__convo { flex: 1; overflow-y: auto; padding: 20px; background: var(--gray-50); }
+.inbox__convo-tabs { display: flex; gap: 16px; margin-bottom: 16px; }
+.inbox__convo-tab { font-size: 12px; font-weight: 600; color: var(--gray-400); cursor: pointer; }
+.inbox__convo-tab.active { color: #4F46E5; }
+.inbox__message { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px; max-width: 520px; margin-bottom: 12px; position: relative; }
+.inbox__message-icon { width: 28px; height: 28px; border-radius: 50%; background: #4F46E5; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 12px; position: absolute; left: -40px; top: 16px; }
+.inbox__message-sender { font-weight: 700; font-size: 12px; margin-bottom: 2px; color: var(--gray-800); }
+.inbox__message-time { font-size: 10px; color: var(--gray-400); margin-bottom: 8px; }
+.inbox__message-text { font-size: 13px; line-height: 1.7; color: var(--gray-700); white-space: pre-line; }
+.inbox__message--sent { margin-left: auto; background: #EEF2FF; border-color: #C7D2FE; }
+.inbox__message-translate { font-size: 11px; color: #4F46E5; font-weight: 600; margin-top: 6px; cursor: pointer; }
+
+/* Reply composer */
+.inbox__composer { border-top: 1px solid var(--gray-200); background: var(--white); padding: 16px 20px; }
+.inbox__composer-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 12px; font-weight: 600; color: var(--gray-600); }
+.inbox__composer-channels { display: flex; gap: 0; }
+.inbox__composer-ch { padding: 5px 14px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-500); transition: all 0.15s; }
+.inbox__composer-ch:first-child { border-radius: 6px 0 0 6px; }
+.inbox__composer-ch:last-child { border-radius: 0 6px 6px 0; }
+.inbox__composer-ch:not(:first-child) { border-left: none; }
+.inbox__composer-ch.active { background: #4F46E5; color: var(--white); border-color: #4F46E5; }
+.inbox__composer-ch.whatsapp.active { background: #25D366; border-color: #25D366; }
+.inbox__composer-template { display: flex; gap: 8px; margin-bottom: 10px; }
+.inbox__composer-template select { flex: 1; padding: 6px 10px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: 12px; font-family: 'Inter', sans-serif; color: var(--gray-600); background: var(--white); }
+.inbox__composer-body { min-height: 60px; padding: 10px 12px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 13px; line-height: 1.6; color: var(--gray-700); margin-bottom: 10px; background: var(--gray-50); white-space: pre-line; }
+.inbox__composer-actions { display: flex; align-items: center; justify-content: space-between; }
+.inbox__composer-ai { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 6px; background: linear-gradient(135deg, #8B5CF6, #6366F1); color: var(--white); font-size: 12px; font-weight: 700; border: none; cursor: pointer; }
+.inbox__composer-send { padding: 8px 20px; border-radius: 6px; background: #4F46E5; color: var(--white); font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+.inbox__composer-send:hover { background: #4338CA; }
+
+.inbox__sent-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; }
+.inbox__sent-check { width: 64px; height: 64px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 28px; animation: sentPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes sentPop { from { transform: scale(0); } to { transform: scale(1); } }
+.inbox__sent-text { margin-top: 12px; font-weight: 700; font-size: 15px; color: var(--success); }
+.followup-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 100px; background: var(--warning-light); color: var(--warning); font-size: 11px; font-weight: 700; }
+.assign-dropdown { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius-sm); border: 2px solid #4F46E5; background: #EEF2FF; font-size: 12px; font-weight: 700; color: #4338CA; }
+
+/* Tooltip -- product tour style */
+.tooltip-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 1900; }
+.tooltip-overlay.visible { display: block; }
+.tooltip { display: none; position: fixed; z-index: 2000; background: var(--white); color: var(--text); border-radius: var(--radius); padding: 24px; max-width: 360px; box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08); }
+.tooltip.visible { display: block; }
+.tooltip__title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 15px; color: var(--gray-900); margin-bottom: 8px; }
+.tooltip__content { font-size: 13px; line-height: 1.6; color: var(--gray-600); margin-bottom: 16px; }
+.tooltip__footer { display: flex; align-items: center; justify-content: space-between; }
+.tooltip__step { font-size: 12px; color: var(--gray-400); font-weight: 600; }
+.tooltip__buttons { display: flex; gap: 8px; }
+.tooltip__back { padding: 7px 16px; background: var(--white); color: var(--gray-600); border: 1px solid var(--gray-200); border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
+.tooltip__back:hover { background: var(--gray-50); }
+.tooltip__next { padding: 7px 16px; background: #4F46E5; color: var(--white); border: none; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
+.tooltip__next:hover { background: #4338CA; }
+.tooltip-highlight { box-shadow: 0 0 0 4px rgba(79,70,229,0.3); border-radius: var(--radius-sm); z-index: 1950; position: relative; background: var(--white); }
+
+/* Dashboard */
+.dashboard { padding: 56px 0; }
+.dashboard__header { text-align: center; margin-bottom: 40px; }
+.dashboard__chart-wrap { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: var(--shadow-lg); max-width: 800px; margin: 0 auto 40px; }
+.dashboard__chart-title { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-800); margin-bottom: 20px; }
+.dashboard__chart svg { width: 100%; height: auto; display: block; }
+@keyframes drawLine { from { stroke-dashoffset: 2000; } to { stroke-dashoffset: 0; } }
+.dash-line { stroke-dasharray: 2000; animation: drawLine 2s ease-out forwards; }
+.dash-dot { opacity: 0; animation: dotIn 0.3s ease forwards; }
+@keyframes dotIn { to { opacity: 1; } }
+.dashboard__milestones { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; max-width: 800px; margin: 0 auto 48px; }
+.timeline { display: flex; flex-direction: column; gap: 0; max-width: 640px; margin: 0 auto; }
+.timeline__step { display: flex; align-items: flex-start; gap: 16px; position: relative; }
+.timeline__marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.timeline__dot { width: 40px; height: 40px; border-radius: 50%; background: var(--white); border: 2px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 1; }
+.timeline__line { width: 2px; height: 100%; min-height: 48px; background: var(--gray-200); }
+.timeline__content { flex: 1; padding-bottom: 28px; }
+.timeline__time { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 2px; }
+.timeline__title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.timeline__desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.timeline__score { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 900; flex-shrink: 0; min-width: 40px; text-align: right; padding-top: 4px; }
+.dashboard__cta { padding: 56px 0; background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary) 50%, var(--primary-dark) 100%); color: var(--white); text-align: center; border-radius: var(--radius-lg); max-width: 800px; margin: 0 auto; }
+.dashboard__cta h2 { color: var(--white); margin-bottom: 12px; }
+.dashboard__cta p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 800px; margin: 0 auto 48px; }
+.stat-card { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
+.stat-card--danger { border-color: var(--danger); background: var(--danger-light); }
+.stat-card--warning { border-color: var(--warning); background: var(--warning-light); }
+.stat-card__number { font-family: 'Inter', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+.stat-card__label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+/* Footer */
+.tour-footer { padding: 32px 0; border-top: 1px solid var(--gray-200); text-align: center; }
+.tour-footer__logo { font-family: Georgia, serif; font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+.tour-footer__email { font-size: 13px; color: var(--text-muted); }
+.tour-footer__email a { color: var(--primary); }
+
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .inbox__nav { width: 56px; overflow: hidden; }
+  .inbox__nav-logo, .inbox__nav-dealer, .inbox__nav-user-name { display: none; }
+  .inbox__nav-item { justify-content: center; padding: 10px; }
+  .inbox__list { width: 280px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .inbox__list { width: 100%; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .section { padding: 44px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="A&euml;llo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
+      <div class="header__right">
+        <a href="aello-dealer-report.html">&larr; Retour au rapport</a>
+        <a href="#bookDemo" class="btn btn--primary" style="padding:8px 18px;font-size:13px;">R&eacute;server une d&eacute;mo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO INTRO -->
+<section class="tour-hero" id="tourHero">
+  <div class="container">
+    <span class="badge badge--primary" style="margin-bottom:16px;">Visite interactive</span>
+    <h1>D&eacute;couvrez Copilot en action</h1>
+    <p>Explorez les fonctionnalit&eacute;s qui vont transformer votre gestion de leads marketplace.</p>
+    <div class="screen-tabs" id="screenTabs">
+      <div class="screen-tab active" onclick="switchScreen('inbox')">Inbox</div>
+      <div class="screen-tab" onclick="switchScreen('dashboard')">Tableau de bord</div>
+    </div>
+    <button class="btn btn--primary btn--lg" id="startTourBtn" onclick="beginTour()">Commencer la visite &rarr;</button>
+  </div>
+</section>
+
+<!-- ===== SCREEN: INBOX ===== -->
+<div id="screen-inbox" class="screen active aello-blue">
+  <div class="inbox">
+    <!-- Left nav sidebar -->
+    <div class="inbox__nav">
+      <div class="inbox__nav-logo">copilot<small>by a&euml;llo</small></div>
+      <div class="inbox__nav-items">
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Accueil
+        </div>
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Activit&eacute;s
+        </div>
+        <div class="inbox__nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          Prospects
+        </div>
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+          Concessions
+        </div>
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Contacts
+        </div>
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Rapports
+        </div>
+        <div class="inbox__nav-item" onclick="return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Param&egrave;tres
+        </div>
+      </div>
+      <div class="inbox__nav-dealer">
+        <div class="inbox__nav-dealer-label">Concession</div>
+        <div class="inbox__nav-dealer-name">1FOTEAM</div>
+      </div>
+      <div class="inbox__nav-user">
+        <div class="inbox__nav-user-avatar">JM</div>
+        <div class="inbox__nav-user-name">Jean-Marc Dupont</div>
+      </div>
+    </div>
+    <!-- Main content area -->
+    <div class="inbox__main">
+      <div class="inbox__topbar">
+        <div class="inbox__topbar-title">Prospects <span class="count" id="notifCount">(5)</span></div>
+        <div class="inbox__topbar-actions">
+          <button class="inbox__topbar-btn">Tableau</button>
+          <button class="inbox__topbar-btn" style="background:#EEF2FF;color:#4F46E5;border-color:#C7D2FE;">Liste</button>
+          <button class="inbox__topbar-btn">Nouveau prospect</button>
+        </div>
+      </div>
+      <div class="inbox__content">
+        <div class="inbox__list" id="leadList"></div>
+        <div class="inbox__detail" id="detailPane">
+          <div class="inbox__detail-empty">S&eacute;lectionnez un prospect</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN: DASHBOARD ===== -->
+<div id="screen-dashboard" class="screen">
+  <!-- ROI wake-up -->
+  <section style="padding:56px 0 0;text-align:center;">
+    <div class="container">
+      <h2>Chaque semaine d'attente, des leads vous &eacute;chappent.</h2>
+      <p style="color:var(--text-muted);font-size:16px;max-width:580px;margin:12px auto 36px;line-height:1.7;">Vous payez d&eacute;j&agrave; pour vos annonces marketplace. Une r&eacute;ponse lente et g&eacute;n&eacute;rique, c'est de l'argent gaspill&eacute;. Les leads n'attendent pas &mdash; ils vont au concessionnaire qui r&eacute;pond en premier.</p>
+      <div class="stats-row" style="max-width:600px;">
+        <div class="stat-card stat-card--danger">
+          <div class="stat-card__number" style="color:var(--danger);">&euro;709</div>
+          <div class="stat-card__label">Revenus perdus / mois</div>
+        </div>
+        <div class="stat-card stat-card--danger">
+          <div class="stat-card__number" style="color:var(--danger);">18h</div>
+          <div class="stat-card__label">Votre temps de r&eacute;ponse</div>
+        </div>
+        <div class="stat-card stat-card--warning">
+          <div class="stat-card__number" style="color:var(--warning);">60%</div>
+          <div class="stat-card__label">Leads perdus sans prix</div>
+        </div>
+        <div class="stat-card" style="border-color:var(--success);background:var(--success-light);">
+          <div class="stat-card__number" style="color:var(--success);">&lt;2min</div>
+          <div class="stat-card__label">Avec Copilot</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Score improvement chart -->
+  <section class="dashboard">
+    <div class="container">
+      <div class="dashboard__header">
+        <h2>De 27 &agrave; 90+ en 90 jours</h2>
+        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
+      </div>
+      <div class="dashboard__chart-wrap">
+        <div class="dashboard__chart-title">Score de r&eacute;ponse marketplace projet&eacute;</div>
+        <div id="dashChart"></div>
+      </div>
+      <div class="dashboard__milestones" id="milestones"></div>
+
+      <!-- CTA -->
+      <div class="dashboard__cta">
+        <div style="padding: 48px 24px;">
+          <h2>Arr&ecirc;tez de perdre du revenu. Concluez plus de ventes.</h2>
+          <p>Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am&eacute;liorent pas, vous ne payez rien.</p>
+          <a href="#bookDemo" class="btn btn--white btn--lg">R&eacute;server une d&eacute;mo &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BOOK A DEMO -->
+<section class="demo-section" id="bookDemo" style="padding:64px 0;background:#F8FAFB;text-align:center;">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <h2 style="font-family:Georgia,serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:12px;">R&eacute;server une d&eacute;mo</h2>
+    <p style="color:#6b7280;font-size:15px;margin-bottom:32px;">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
+    <div style="max-width:800px;margin:0 auto;background:white;border-radius:16px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,0.06),0 4px 8px rgba(0,0,0,0.04),0 12px 24px rgba(0,0,0,0.03);">
+      <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="tour-footer">
+  <div class="container">
+    <div class="tour-footer__logo">copilot <span style="font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;">by a&euml;llo</span></div>
+    <div class="tour-footer__email"><a href="mailto:charles@aello-group.co">charles@aello-group.co</a></div>
+  </div>
+</footer>
+
+<!-- TOOLTIP -->
+<div id="tooltipOverlay" class="tooltip-overlay"></div>
+<div id="tooltip" class="tooltip">
+  <div class="tooltip__title" id="tooltipTitle"></div>
+  <div class="tooltip__content" id="tooltipContent"></div>
+  <div class="tooltip__footer">
+    <span class="tooltip__step" id="tooltipStep"></span>
+    <div class="tooltip__buttons">
+      <button class="tooltip__back" id="tooltipBack" onclick="goBackWalkthrough()" style="display:none;">Retour</button>
+      <button class="tooltip__next" id="tooltipNext" onclick="advanceWalkthrough()">Suivant</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const dealer = { name: "1FOTEAM", city: "Lyon", platform: "Europe-Camions", vehicle: "DAF XF 480 FT", buyer: "Max Schreiber", date: "March 2026" };
+
+const aGradeResponse = `Bonjour Max,
+
+Merci pour votre int\u00E9r\u00EAt pour le DAF XF 480 FT sur Europe-Camions.
+
+Ce v\u00E9hicule est disponible au prix de 68 500 \u20AC HT (TVA r\u00E9cup\u00E9rable). Il totalise 320 000 km, mise en circulation 06/2021, dernier entretien DAF il y a 15 000 km.
+
+Quelques questions pour mieux vous aider :
+\u2022 Est-ce pour un renouvellement ou un ajout \u00E0 votre flotte ?
+\u2022 Avez-vous besoin d'un financement ? Nous proposons du leasing \u00E0 partir de 1 150 \u20AC/mois.
+
+Je peux vous envoyer le dossier complet (photos HD + historique) par WhatsApp \u2014 quel est votre num\u00E9ro ?
+
+Jean-Marc Dupont
+Responsable Commercial \u2014 1FOTEAM
+06 12 34 56 78 | jean-marc@1foteam.fr
+www.1foteam.fr`;
+
+const sampleLeads = [
+  { id: 1, name: "Max Schreiber", platform: "Europe-Camions", platformDomain: "europe-camions.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "18h ago", color: "#3B82F6", channel: "email",
+    img: "https://images.unsplash.com/photo-1616432043562-3671ea2e5242?w=400&h=300&fit=crop",
+    inquiry: "Bonjour, je suis int\u00E9ress\u00E9 par le DAF XF 480 FT que vous avez sur Europe-Camions. Quel est le prix et est-il disponible pour un transport international ? Merci, Max Schreiber" },
+  { id: 2, name: "Pierre Dubois", platform: "LeBonCoin", platformDomain: "leboncoin.fr", vehicle: "Renault T 460", price: "42 900 \u20AC", phone: "+33 6XX XXX XXX", time: "4h ago", color: "#F59E0B", channel: "whatsapp",
+    img: "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=400&h=300&fit=crop",
+    inquiry: "Bonjour, le Renault T 460 r\u00E9f\u00E9rence #4821 est-il toujours disponible ? Je cherche un tracteur pour livraisons r\u00E9gionales. Pierre Dubois, Transports Dubois SARL." },
+  { id: 3, name: "Hans M\u00FCller", platform: "Autoline", platformDomain: "autoline.info", vehicle: "Schmitz Cargobull Reefer", price: "23 500 \u20AC", phone: "+49 171 XXX XXXX", time: "2h ago", color: "#8B5CF6", channel: "email",
+    img: "https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=400&h=300&fit=crop",
+    inquiry: "Hello, I'm interested in the Schmitz Cargobull reefer trailer. Can you provide specs and delivery cost to Hamburg, Germany? Best regards, Hans M\u00FCller" },
+  { id: 4, name: "Ahmed Benali", platform: "TrucksNL", platformDomain: "trucksnl.com", vehicle: "Volvo FH 500", price: "89 000 \u20AC", phone: "+212 6XX XXX XXX", time: "1h ago", color: "#10B981", channel: "whatsapp",
+    img: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=400&h=300&fit=crop",
+    inquiry: "Hi, I saw the Volvo FH 500 on TrucksNL. Do you offer financing or leasing? I need it for Morocco delivery. WhatsApp preferred: +212 6XX XXX XXX. Ahmed" },
+  { id: 5, name: "Max Schreiber", platform: "TruckScout24", platformDomain: "truckscout24.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "45min ago", color: "#3B82F6", channel: "whatsapp", duplicate: true, duplicateOf: 1,
+    img: "https://images.unsplash.com/photo-1616432043562-3671ea2e5242?w=400&h=300&fit=crop",
+    inquiry: "Hi, I saw the DAF XF 480 FT on TruckScout24. Is it still available? What is the final price? Best regards, Max Schreiber" },
+];
+
+const walkthroughSteps = [
+  { target: ".inbox__nav-items", title: "Tous vos canaux au m\u00eame endroit", text: "Vos leads marketplace, emails, messages WhatsApp et demandes web \u2014 tout arrive ici automatiquement. Plus besoin de jongler entre les onglets.", pos: "right" },
+  { target: ".inbox__list", title: "Votre liste de prospects", text: "5 leads de 4 marketplaces diff\u00e9rentes. Chaque entr\u00e9e affiche le v\u00e9hicule, le statut et la source \u2014 pour savoir quoi faire en un coup d'\u0153il.", pos: "right" },
+  { target: "[data-lead='1']", title: "Ouvrir un prospect", text: "C'est le lead de votre mystery shop. Cliquez pour voir la conversation compl\u00e8te et les d\u00e9tails du v\u00e9hicule.", action: "selectLead", leadId: 1, pos: "right" },
+  { target: ".inbox__composer", title: "R\u00e9pondre avec un template", text: "S\u00e9lectionnez un template pr\u00e9-r\u00e9dig\u00e9, choisissez la langue, et appuyez sur Envoyer. Le nom de l'acheteur, le v\u00e9hicule et le prix sont remplis automatiquement.", action: "sendReply", pos: "top" },
+  { target: ".inbox__list", title: "D\u00e9duplication automatique", text: "Regardez \u2014 Max Schreiber a envoy\u00e9 la m\u00eame demande pour le DAF XF 480 via Europe-Camions et TruckScout24. Aello d\u00e9tecte le doublon automatiquement et fusionne les conversations. Plus de doublons, plus de temps perdu.", action: "dedup", pos: "right" },
+  { target: "#chWA", title: "Changez de canal instantan\u00e9ment", text: "Cet acheteur pr\u00e9f\u00e8re WhatsApp. Changez de canal sans quitter votre inbox \u2014 la r\u00e9ponse arrive directement sur son t\u00e9l\u00e9phone.", action: "selectLead", leadId: 4, pos: "top" },
+  { target: "#followupBadge", title: "Relances automatis\u00e9es", text: "Pas de r\u00e9ponse apr\u00e8s 2 jours ? Copilot envoie une relance automatique. Les grands groupes ont ces outils depuis des ann\u00e9es \u2014 maintenant vous aussi.", action: "showFollowup", pos: "top" },
+  { target: "#assignArea", title: "Routez les leads vers la bonne personne", text: "Attribuez les leads \u00e0 des commerciaux sp\u00e9cifiques. Plus aucun lead ne passe entre les mailles du filet.", action: "showAssign", pos: "top" },
+  { target: null, text: null, action: "gotoDashboard" },
+];
+
+const improvementData = [
+  { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
+  { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
+  { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
+  { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
+  { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
+];
+
+const timelineSteps = [
+  { time: "Jour 1", icon: "\uD83D\uDD14", title: "Connexion et mise en route", desc: "Reliez vos marketplaces, activez les templates. Commencez \u00e0 r\u00e9pondre en quelques minutes.", score: 45 },
+  { time: "Semaine 1", icon: "\u26A1", title: "Plus rapide que vos concurrents", desc: "Vous r\u00e9pondez maintenant en moins de 30 min \u2014 avant 4 concurrents sur 5.", score: 60 },
+  { time: "Mois 1", icon: "\uD83D\uDCE8", title: "Enti\u00e8rement automatis\u00e9", desc: "Relances, d\u00e9duplication, scoring \u2014 tout fonctionne en pilote automatique.", score: 78 },
+  { time: "Mois 3", icon: "\uD83C\uDFC6", title: "Meilleur du march\u00e9", desc: "Score 90+. Vous \u00eates dans le top 5% des concessionnaires. Garanti.", score: 93 },
+];
+
+// ===== STATE =====
+let currentScreen = 'inbox';
+let walkStep = -1;
+let inboxState = { selectedLead: null, replied: new Set(), deduped: false };
+let tourStarted = false;
+
+// ===== SCREEN SWITCHING =====
+function switchScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  currentScreen = name;
+
+  document.querySelectorAll('.screen-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.screen-tab').forEach(t => {
+    if ((name === 'inbox' && t.textContent === 'Inbox') || (name === 'dashboard' && t.textContent.includes('Tableau'))) {
+      t.classList.add('active');
+    }
+  });
+
+  if (name === 'inbox') renderInbox();
+  if (name === 'dashboard') renderDashboard();
+}
+
+function showScreen(name) {
+  switchScreen(name);
+  // Scroll to the screen area
+  const el = document.getElementById('screen-' + name);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function beginTour() {
+  tourStarted = true;
+  switchScreen('inbox');
+  document.getElementById('screen-inbox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(() => startWalkthrough(), 800);
+}
+
+// ===== INBOX =====
+function renderInbox() {
+  const list = document.getElementById('leadList');
+  const whatsappIcon = '<svg style="display:inline-block;vertical-align:middle;width:14px;height:14px;margin-left:4px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+  list.innerHTML = sampleLeads.map(l => {
+    const statusClass = l.duplicate ? '' : (l.id === 1 ? 'inbox__lead-status--new' : l.id <= 3 ? 'inbox__lead-status--contacted' : 'inbox__lead-status--new');
+    const statusText = l.duplicate ? '' : (l.id === 1 ? 'Nouveau' : l.id <= 3 ? 'Contact\u00E9' : 'Nouveau');
+    const channelIcon = l.channel === 'whatsapp' ? whatsappIcon : '';
+    return `
+    <div class="inbox__lead" data-lead="${l.id}" onclick="selectLead(${l.id})">
+      <div class="inbox__lead-thumb" style="background:${l.color};">
+        <span class="inbox__lead-thumb-initials">${l.name.split(' ').map(n=>n[0]).join('')}</span>
+      </div>
+      <div class="inbox__lead-info">
+        <div class="inbox__lead-name">${l.name} ${l.duplicate ? '<span class="inbox__lead-dup">DUPLICATE</span>' : ''}${channelIcon}</div>
+        <div class="inbox__lead-vehicle">${l.vehicle}</div>
+        <div class="inbox__lead-meta">
+          ${statusText ? `<span class="inbox__lead-status ${statusClass}">${statusText}</span>` : ''}
+          <span class="inbox__lead-platform">${l.platform}</span>
+          ${l.channel === 'whatsapp' ? '<span style="font-size:10px;font-weight:700;padding:1px 6px;border-radius:100px;background:#dcfce7;color:#25D366;">WhatsApp</span>' : ''}
+        </div>
+        <div class="inbox__lead-price">${l.price || ''}</div>
+      </div>
+      <div class="inbox__lead-time">${l.time}</div>
+    </div>`;
+  }).join('');
+}
+
+function selectLead(id) {
+  const lead = sampleLeads.find(l => l.id === id);
+  if (!lead) return;
+  inboxState.selectedLead = id;
+
+  document.querySelectorAll('.inbox__lead').forEach(el => el.classList.remove('active'));
+  const el = document.querySelector(`[data-lead="${id}"]`);
+  if (el) el.classList.add('active');
+
+  const detail = document.getElementById('detailPane');
+  const isWhatsApp = lead.channel === 'whatsapp';
+  const wasReplied = inboxState.replied.has(id);
+  const activeEmail = isWhatsApp ? '' : 'active';
+  const activeWA = isWhatsApp ? 'active' : '';
+
+  detail.innerHTML = `
+    <div class="inbox__detail-left">
+      <div class="inbox__detail-left-badge">
+        <img src="https://www.google.com/s2/favicons?domain=${lead.platformDomain || 'europe-camions.com'}&sz=64" alt="">
+        <span>${lead.platform}</span>
+      </div>
+      <div class="inbox__detail-left-meta">Prospect cr\u00E9\u00E9 il y a ${lead.time.replace(' ago','')}</div>
+      <div class="inbox__detail-left-assign" id="assignArea" style="display:flex;">Assign\u00E9 \u00E0: <strong>Non assign\u00E9</strong> \u270E</div>
+      <div class="inbox__detail-left-status inbox__lead-status--new" style="display:inline-flex;">Nouveau</div>
+      <div class="inbox__vehicle-img" style="min-height:140px;border-radius:8px;overflow:hidden;">
+        <img src="${lead.img}" alt="${lead.vehicle}" style="width:100%;height:140px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'background:var(--gray-100);display:flex;align-items:center;justify-content:center;height:140px;font-size:36px;color:var(--gray-300);\\'>&#x1F69A;</div>'">
+      </div>
+      <div class="inbox__vehicle-title">${lead.vehicle}</div>
+      <div class="inbox__vehicle-price">${lead.price || '68 500 \u20AC'} <small>/30 score</small></div>
+      <div class="inbox__vehicle-ref">R\u00E9f\u00E9rence: TS${Math.floor(Math.random()*900000+100000)}</div>
+      <div class="inbox__vehicle-link">Voir sur la marketplace</div>
+    </div>
+    <div class="inbox__detail-right">
+      <div class="inbox__contact">
+        <div class="inbox__contact-tabs">
+          <div class="inbox__contact-tab active">Contact</div>
+          <div class="inbox__contact-tab">Documents</div>
+        </div>
+        <div class="inbox__contact-name">${lead.name}</div>
+        <div class="inbox__contact-detail">
+          \u2709 ${lead.name.toLowerCase().replace(' ','.')}@email.com<br>
+          \uD83D\uDCDE ${lead.phone || '+33 6XX XXX XXX'}
+          ${isWhatsApp ? '<br><span style="color:#25D366;font-weight:600;">\uD83D\uDCAC WhatsApp pr\u00E9f\u00E9r\u00E9</span>' : ''}
+        </div>
+      </div>
+      <div class="inbox__convo" style="position:relative;">
+        <div class="inbox__convo-tabs">
+          <div class="inbox__convo-tab active">Conversations</div>
+          <div class="inbox__convo-tab">Logs</div>
+          <div class="inbox__convo-tab">Activit\u00E9s</div>
+        </div>
+        <div style="padding-left:44px;">
+          <div class="inbox__message">
+            <div class="inbox__message-icon">\u2709</div>
+            <div class="inbox__message-sender">${lead.name}</div>
+            <div class="inbox__message-time">${lead.time}</div>
+            <div class="inbox__message-text">${lead.inquiry}</div>
+            <div class="inbox__message-translate">\uD83C\uDF10 Translate</div>
+          </div>
+          ${wasReplied ? `
+          <div class="inbox__message inbox__message--sent">
+            <div class="inbox__message-sender">Jean-Marc Dupont (vous)</div>
+            <div class="inbox__message-time">\u00C0 l'instant</div>
+            <div class="inbox__message-text" style="font-size:12px;">${aGradeResponse.substring(0, 180)}...</div>
+          </div>` : ''}
+        </div>
+        <div id="sentOverlay"></div>
+        <span id="followupBadge" style="display:none;position:absolute;top:8px;right:12px;"><span class="followup-badge">\u23F0 Relance dans 2 jours</span></span>
+      </div>
+      <div class="inbox__composer" id="composerArea">
+        <div class="inbox__composer-header">
+          <span>Envoyer un message</span>
+          <span style="color:#4F46E5;font-size:11px;cursor:pointer;">Valider votre e-mail</span>
+        </div>
+        <div class="inbox__composer-channels">
+          <div class="inbox__composer-ch" style="border-radius:6px 0 0 6px;">Note</div>
+          <div class="inbox__composer-ch ${activeEmail}" id="chEmail">E-mail</div>
+          <div class="inbox__composer-ch">SMS</div>
+          <div class="inbox__composer-ch whatsapp ${activeWA}" id="chWA" style="border-radius:0 6px 6px 0;">WhatsApp</div>
+        </div>
+        <div class="inbox__composer-template">
+          <select id="templateSelect"><option>S\u00E9lectionner un mod\u00E8le...</option><option>availability_truck - FR</option><option>availability_truck - EN</option><option>stillInterested_truck - EN</option></select>
+          <select><option>French</option><option>English</option><option>German</option><option>Dutch</option></select>
+        </div>
+        <div class="inbox__composer-body" id="composerBody">${wasReplied ? aGradeResponse.substring(0, 200) + '...' : ''}</div>
+        <div class="inbox__composer-actions">
+          <button class="inbox__composer-ai">\u2728 Actions IA</button>
+          <button class="inbox__composer-send" id="replyBtn" onclick="sendReply()" ${wasReplied ? 'disabled style="opacity:0.5;"' : ''}>Envoyer</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function sendReply() {
+  if (!inboxState.selectedLead) return;
+  inboxState.replied.add(inboxState.selectedLead);
+  const overlay = document.getElementById('sentOverlay');
+  overlay.innerHTML = `
+    <div class="inbox__sent-overlay">
+      <div class="inbox__sent-check">\u2714</div>
+      <div class="inbox__sent-text">R\u00E9ponse envoy\u00E9e !</div>
+    </div>`;
+  setTimeout(() => { overlay.innerHTML = ''; selectLead(inboxState.selectedLead); }, 1500);
+}
+
+// ===== DEDUP ANIMATION =====
+function runDedupAnimation() {
+  const lead1El = document.querySelector("[data-lead='1']");
+  const lead5El = document.querySelector("[data-lead='5']");
+  if (!lead1El || !lead5El) return;
+
+  lead1El.classList.add('dedup-highlight');
+  lead5El.classList.add('dedup-highlight');
+
+  setTimeout(() => {
+    const badge1 = document.createElement('div');
+    badge1.className = 'dedup-merge-badge';
+    badge1.textContent = '\uD83D\uDD17 Max Schreiber \u2014 M\u00eame acheteur, canal diff\u00e9rent';
+    badge1.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--danger);color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(213,64,43,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
+    lead1El.style.position = 'relative';
+    lead1El.appendChild(badge1);
+    const badge5 = badge1.cloneNode(true);
+    lead5El.style.position = 'relative';
+    lead5El.appendChild(badge5);
+  }, 1500);
+
+  setTimeout(() => {
+    lead5El.classList.add('dedup-slide-up');
+    const rect1 = lead1El.getBoundingClientRect();
+    const rect5 = lead5El.getBoundingClientRect();
+    const dist = rect5.top - rect1.top;
+    lead5El.style.transform = `translateY(-${dist}px) scale(0.95)`;
+    lead5El.style.opacity = '0.6';
+  }, 3500);
+
+  setTimeout(() => {
+    lead5El.style.transition = 'all 0.6s ease';
+    lead5El.style.opacity = '0';
+    lead5El.style.maxHeight = '0';
+    lead5El.style.padding = '0 16px';
+    lead5El.style.margin = '0';
+    lead5El.style.overflow = 'hidden';
+    lead5El.style.borderBottom = 'none';
+
+    lead1El.classList.remove('dedup-highlight');
+    lead1El.classList.add('dedup-merged');
+    lead1El.querySelectorAll('.dedup-merge-badge').forEach(b => b.remove());
+
+    const mergedBadge = document.createElement('div');
+    mergedBadge.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--success);color:white;font-size:10px;font-weight:800;padding:4px 14px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(46,133,64,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
+    mergedBadge.textContent = '\u2714 Fusionn\u00e9 \u2014 2 demandes, 1 prospect';
+    lead1El.appendChild(mergedBadge);
+
+    inboxState.deduped = true;
+    document.getElementById('notifCount').textContent = '(4)';
+  }, 5000);
+
+  setTimeout(() => {
+    lead1El.classList.remove('dedup-merged');
+    const badge = lead1El.querySelector('[style*="position:absolute"]');
+    if (badge) { badge.style.transition = 'opacity 0.5s'; badge.style.opacity = '0'; setTimeout(() => badge.remove(), 500); }
+  }, 7500);
+}
+
+// ===== WALKTHROUGH =====
+function startWalkthrough() {
+  walkStep = -1;
+  advanceWalkthrough();
+}
+
+function goBackWalkthrough() {
+  if (walkStep <= 1) return;
+  walkStep -= 2;
+  advanceWalkthrough();
+}
+
+function advanceWalkthrough() {
+  document.querySelectorAll('.tooltip-highlight').forEach(el => el.classList.remove('tooltip-highlight'));
+  const tooltip = document.getElementById('tooltip');
+  const overlay = document.getElementById('tooltipOverlay');
+
+  walkStep++;
+  if (walkStep >= walkthroughSteps.length) {
+    tooltip.classList.remove('visible');
+    overlay.classList.remove('visible');
+    return;
+  }
+
+  const step = walkthroughSteps[walkStep];
+
+  const backBtn = document.getElementById('tooltipBack');
+  backBtn.style.display = walkStep > 0 ? 'inline-flex' : 'none';
+
+  // Update next button text for last visible step
+  const nextBtn = document.getElementById('tooltipNext');
+  if (walkStep === walkthroughSteps.length - 2) {
+    nextBtn.textContent = 'Voir le tableau de bord';
+  } else {
+    nextBtn.textContent = 'Suivant';
+  }
+
+  if (step.action === 'selectLead') selectLead(step.leadId);
+  if (step.action === 'sendReply') { sendReply(); }
+  if (step.action === 'dedup') { runDedupAnimation(); }
+  if (step.action === 'showFollowup') {
+    selectLead(1);
+    setTimeout(() => { const fb = document.getElementById('followupBadge'); if (fb) fb.style.display = 'inline'; }, 100);
+  }
+  if (step.action === 'showAssign') {
+    selectLead(2);
+    setTimeout(() => {
+      const aa = document.getElementById('assignArea');
+      if (aa) aa.innerHTML = '<span class="assign-dropdown">Assign\u00E9 \u00E0: Jean-Marc (Ventes)</span>';
+    }, 100);
+  }
+  if (step.action === 'gotoDashboard') {
+    tooltip.classList.remove('visible');
+    overlay.classList.remove('visible');
+    setTimeout(() => {
+      switchScreen('dashboard');
+      document.getElementById('screen-dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+    return;
+  }
+
+  if (!step.target || !step.text) { advanceWalkthrough(); return; }
+
+  setTimeout(() => {
+    const target = document.querySelector(step.target);
+    if (!target) { advanceWalkthrough(); return; }
+
+    target.classList.add('tooltip-highlight');
+    overlay.classList.add('visible');
+    const rect = target.getBoundingClientRect();
+
+    document.getElementById('tooltipTitle').textContent = step.title || '';
+    document.getElementById('tooltipContent').textContent = step.text;
+    document.getElementById('tooltipStep').textContent = `${walkStep + 1} sur ${walkthroughSteps.length - 1}`;
+
+    const tooltipW = 360, tooltipH = 200;
+    let top, left;
+    const gap = 32;
+    if (step.pos === 'right') {
+      top = Math.max(8, rect.top);
+      left = rect.right + gap;
+      if (left + tooltipW > window.innerWidth) { left = rect.left - tooltipW - gap; }
+    } else {
+      top = rect.top - tooltipH - gap;
+      left = Math.max(8, rect.left);
+      if (top < 8) { top = rect.bottom + gap; }
+    }
+    tooltip.style.top = top + 'px';
+    tooltip.style.left = left + 'px';
+    tooltip.classList.add('visible');
+  }, 250);
+}
+
+// ===== CHART RENDERER =====
+let chartAnimTimeouts = [];
+
+function renderChart(chartId, milestonesId) {
+  const W = 700, H = 340, padL = 50, padR = 30, padT = 55, padB = 70;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const maxScore = 100;
+
+  const bands = [
+    { label: '0-20', min: 0, max: 20, color: 'rgba(213,64,43,0.08)' },
+    { label: '20-40', min: 20, max: 40, color: 'rgba(233,123,26,0.08)' },
+    { label: '40-60', min: 40, max: 60, color: 'rgba(199,119,0,0.08)' },
+    { label: '60-80', min: 60, max: 80, color: 'rgba(59,130,246,0.08)' },
+    { label: '80+', min: 80, max: 100, color: 'rgba(46,133,64,0.08)' },
+  ];
+
+  const bandRects = bands.map(b => {
+    const y1 = padT + (1 - b.max / maxScore) * plotH;
+    const y2 = padT + (1 - b.min / maxScore) * plotH;
+    return `<rect x="${padL}" y="${y1}" width="${plotW}" height="${y2-y1}" fill="${b.color}"/>
+            <text x="${padL-8}" y="${(y1+y2)/2+4}" text-anchor="end" font-size="10" font-weight="700" fill="#9CA3AF" font-family="Inter,sans-serif">${b.label}</text>`;
+  }).join('');
+
+  const xFractions = [0, 0.08, 0.15, 0.35, 1.0];
+  const points = improvementData.map((d, i) => ({
+    x: padL + xFractions[i] * plotW,
+    y: padT + (1 - d.score / maxScore) * plotH,
+    ...d
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
+  const last = points[points.length - 1];
+
+  const dots = points.map((p, i) => {
+    const isLast = i === points.length - 1;
+    return `<circle id="${chartId}_dot${i}" cx="${p.x}" cy="${p.y}" r="${isLast ? 8 : 5}" fill="${p.color}" stroke="white" stroke-width="2" opacity="0"/>`;
+  }).join('');
+
+  const scoreLabels = points.map((p, i) => {
+    const isLast = i === points.length - 1;
+    return `<text id="${chartId}_score${i}" x="${p.x}" y="${p.y - (isLast ? 24 : 14)}" text-anchor="middle" font-size="${isLast ? 16 : 13}" font-weight="900" fill="${p.color}" font-family="Inter,sans-serif" opacity="0">${p.score}</text>`;
+  }).join('');
+
+  const trophy = `<text id="${chartId}_trophy" x="${last.x}" y="${last.y - 42}" text-anchor="middle" font-size="24" opacity="0">\uD83C\uDFC6</text>`;
+
+  const xLabels = points.map((p, i) => {
+    return `<text id="${chartId}_xlabel${i}" x="${p.x}" y="${padT + plotH + 20}" text-anchor="middle" font-size="10" font-weight="600" fill="#9CA3AF" font-family="Inter,sans-serif" opacity="0">${p.month}</text>`;
+  }).join('');
+
+  const milestoneTexts = points.map((p, i) => {
+    const label = improvementData[i].label;
+    if (!label) return '';
+    const textW = 200;
+    return `<foreignObject id="${chartId}_ms${i}" x="${Math.max(padL, Math.min(p.x - textW/2, W - padR - textW))}" y="${padT + plotH + 30}" width="${textW}" height="60" opacity="0">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-family:Inter,sans-serif;font-size:10px;font-weight:600;color:${p.color};line-height:1.4;padding:5px 8px;background:white;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);word-wrap:break-word;overflow-wrap:break-word;">${label}</div>
+    </foreignObject>`;
+  }).join('');
+
+  const chartEl = document.getElementById(chartId);
+  if (chartEl) {
+    chartEl.innerHTML = `
+      <svg id="${chartId}_svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+        ${bandRects}
+        <line x1="${padL}" y1="${padT+plotH}" x2="${padL+plotW}" y2="${padT+plotH}" stroke="var(--gray-200)" stroke-width="1"/>
+        <path id="${chartId}_line" d="${linePath}" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+        ${dots}${scoreLabels}${trophy}${xLabels}${milestoneTexts}
+      </svg>`;
+  }
+
+  const msEl = milestonesId ? document.getElementById(milestonesId) : null;
+  if (msEl) {
+    msEl.innerHTML = `<div class="timeline">${timelineSteps.map((s, i) => `
+      <div class="timeline__step">
+        <div class="timeline__marker">
+          <div class="timeline__dot">${s.icon}</div>
+          ${i < timelineSteps.length - 1 ? '<div class="timeline__line"></div>' : ''}
+        </div>
+        <div class="timeline__content">
+          <div class="timeline__time">${s.time}</div>
+          <div class="timeline__title">${s.title}</div>
+          <div class="timeline__desc">${s.desc}</div>
+        </div>
+        <div class="timeline__score" style="color:${improvementData[i+1]?.color || 'var(--success)'};">${s.score}</div>
+      </div>
+    `).join('')}</div>`;
+  }
+}
+
+function animateChart(chartId) {
+  chartAnimTimeouts.forEach(id => clearTimeout(id));
+  chartAnimTimeouts = [];
+
+  const id = chartId;
+  const line = document.getElementById(`${id}_line`);
+  if (!line) return;
+
+  const n = improvementData.length;
+  const STEP_DELAY = 2000;
+  const FADE_DUR = 600;
+
+  function fadeIn(elId, dur) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.style.transition = `opacity ${dur}ms ease`;
+    el.setAttribute('opacity', '1');
+  }
+  function fadeOut(elId, dur) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.style.transition = `opacity ${dur}ms ease`;
+    el.setAttribute('opacity', '0');
+  }
+
+  const pathLen = line.getTotalLength ? line.getTotalLength() : 2000;
+  line.setAttribute('stroke-dasharray', pathLen);
+  line.setAttribute('stroke-dashoffset', pathLen);
+  line.setAttribute('opacity', '1');
+
+  const animXFractions = [0, 0.08, 0.15, 0.35, 1.0];
+  let currentTime = 300;
+
+  for (let i = 0; i < n; i++) {
+    const fraction = (function() {
+      if (i === 0) return 0;
+      let totalDist = 0, distToI = 0;
+      for (let j = 1; j < n; j++) {
+        const dx = animXFractions[j] - animXFractions[j-1];
+        const dy = (improvementData[j].score - improvementData[j-1].score) / 100;
+        const seg = Math.sqrt(dx*dx + dy*dy);
+        totalDist += seg;
+        if (j <= i) distToI += seg;
+      }
+      return distToI / totalDist;
+    })();
+    const targetOffset = pathLen * (1 - fraction);
+
+    chartAnimTimeouts.push(setTimeout(() => {
+      line.style.transition = `stroke-dashoffset ${FADE_DUR}ms ease-out`;
+      line.setAttribute('stroke-dashoffset', targetOffset);
+      fadeIn(`${id}_dot${i}`, FADE_DUR);
+      fadeIn(`${id}_score${i}`, FADE_DUR);
+      fadeIn(`${id}_xlabel${i}`, FADE_DUR);
+      fadeIn(`${id}_ms${i}`, FADE_DUR);
+      if (i > 0) fadeOut(`${id}_ms${i-1}`, 400);
+
+      if (i === n - 1) {
+        chartAnimTimeouts.push(setTimeout(() => {
+          fadeIn(`${id}_trophy`, 600);
+          chartAnimTimeouts.push(setTimeout(() => { fadeOut(`${id}_ms${i}`, 800); }, 2000));
+          chartAnimTimeouts.push(setTimeout(() => {
+            resetChart(id, n);
+            chartAnimTimeouts.push(setTimeout(() => { animateChart(id); }, 300));
+          }, 3000));
+        }, 400));
+      }
+    }, currentTime));
+
+    currentTime += STEP_DELAY;
+  }
+}
+
+function resetChart(chartId, n) {
+  const id = chartId;
+  const line = document.getElementById(`${id}_line`);
+  if (!line) return;
+  line.style.transition = 'none';
+  const pathLen = line.getTotalLength ? line.getTotalLength() : 2000;
+  line.setAttribute('stroke-dashoffset', pathLen);
+  line.setAttribute('opacity', '0');
+  for (let i = 0; i < n; i++) {
+    [`${id}_dot${i}`, `${id}_score${i}`, `${id}_xlabel${i}`, `${id}_ms${i}`, `${id}_trophy`].forEach(elId => {
+      const el = document.getElementById(elId);
+      if (el) { el.style.transition = 'none'; el.setAttribute('opacity', '0'); }
+    });
+  }
+  const trophy = document.getElementById(`${id}_trophy`);
+  if (trophy) { trophy.style.transition = 'none'; trophy.setAttribute('opacity', '0'); }
+}
+
+// ===== DASHBOARD =====
+function renderDashboard() {
+  renderChart('dashChart', 'milestones');
+  setTimeout(() => animateChart('dashChart'), 500);
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  renderInbox();
+  // Auto-start walkthrough after 1 second
+  setTimeout(() => {
+    if (!tourStarted) {
+      tourStarted = true;
+      startWalkthrough();
+    }
+  }, 1000);
+});
+</script>
+</body>
+</html>
