@@ -1262,7 +1262,6 @@ function runDemoAnimation() {
   sentOverlay.classList.remove('visible');
   cursor.classList.remove('visible');
   annots.forEach(a => { a.classList.remove('visible'); a.classList.remove('emphasize'); });
-  document.querySelectorAll('.demo-arrow').forEach(el => el.remove());
   const aelloLabel = document.getElementById('demoAelloLabel');
   if (aelloLabel) aelloLabel.style.opacity = '0';
 
@@ -1332,44 +1331,16 @@ function runDemoAnimation() {
     demoTimeout(() => {
       // Remove previous highlights
       body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
-      // Remove previous arrow
-      document.querySelectorAll('.demo-arrow').forEach(el => el.remove());
-      // Activate current highlights
+      // Activate current highlights (underline only)
       const hlEls = body.querySelectorAll('[data-annot="' + i + '"]');
       hlEls.forEach(el => {
         el.classList.add('active');
-        // Scroll within the composer only, not the page
         const composerBody = document.getElementById('demoComposerBody');
         if (composerBody && composerBody.contains(el)) {
           const offset = el.offsetTop - composerBody.offsetTop;
           composerBody.scrollTo({top: Math.max(0, offset - 40), behavior: 'smooth'});
         }
       });
-      // Draw arrow from annotation card to highlighted text
-      if (hlEls.length > 0 && a) {
-        const inbox = document.getElementById('demoInbox');
-        const inboxRect = inbox.getBoundingClientRect();
-        const hlRect = hlEls[0].getBoundingClientRect();
-        const aRect = a.getBoundingClientRect();
-        const arrow = document.createElement('div');
-        arrow.className = 'demo-arrow';
-        arrow.style.cssText = 'position:absolute;z-index:15;pointer-events:none;';
-        const startX = aRect.left - inboxRect.left;
-        const startY = aRect.top - inboxRect.top + aRect.height / 2;
-        const endX = hlRect.right - inboxRect.left + 4;
-        const endY = hlRect.top - inboxRect.top + hlRect.height / 2;
-        const svgW = Math.abs(endX - startX) + 40;
-        const svgH = Math.abs(endY - startY) + 40;
-        const minX = Math.min(startX, endX) - 20;
-        const minY = Math.min(startY, endY) - 20;
-        arrow.style.left = minX + 'px';
-        arrow.style.top = minY + 'px';
-        arrow.innerHTML = '<svg width="' + svgW + '" height="' + svgH + '" style="overflow:visible;"><line x1="' + (startX - minX) + '" y1="' + (startY - minY) + '" x2="' + (endX - minX) + '" y2="' + (endY - minY) + '" stroke="var(--danger)" stroke-width="2" stroke-dasharray="6 3" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--danger)"/></marker></defs></svg>';
-        arrow.style.opacity = '0';
-        arrow.style.transition = 'opacity 0.5s ease';
-        inbox.appendChild(arrow);
-        requestAnimationFrame(() => { arrow.style.opacity = '1'; });
-      }
       // Show annotation card
       a.classList.add('visible');
       a.classList.add('emphasize');
@@ -1384,8 +1355,7 @@ function runDemoAnimation() {
   // Clear last highlights and arrows before send phase
   demoTimeout(() => {
     body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.demo-arrow').forEach(el => el.remove());
-  }, annotEndTime - 500);
+    }, annotEndTime - 500);
 
   // Phase 9: Cursor moves to Envoyer
   demoTimeout(() => {
