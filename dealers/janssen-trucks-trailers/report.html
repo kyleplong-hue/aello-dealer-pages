@@ -529,7 +529,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
           <svg viewBox="0 0 120 120" width="160" height="160">
             <circle cx="60" cy="60" r="54" fill="none" stroke="var(--gray-200)" stroke-width="8"/>
             <circle cx="60" cy="60" r="54" fill="none" stroke="var(--danger)" stroke-width="8"
-              stroke-dasharray="339.29" stroke-dashoffset="339.29"
+              stroke-dasharray="339.29" stroke-dashoffset="40.71"
               stroke-linecap="round" transform="rotate(-90 60 60)"
               style="transition: stroke-dashoffset 1.5s ease;"/>
           </svg>
@@ -822,11 +822,11 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       <p style="color:var(--text-muted);font-size:16px;max-width:580px;margin:12px auto 36px;line-height:1.7;" data-t="dashSub">Vous payez d&eacute;j&agrave; pour vos annonces marketplace. Une r&eacute;ponse lente et g&eacute;n&eacute;rique, c'est de l'argent gaspill&eacute;. Les leads n'attendent pas &mdash; ils vont au concessionnaire qui r&eacute;pond en premier.</p>
       <div class="stats-row" style="max-width:600px;" id="dashStatsRow">
         <div class="stat-card stat-card--danger">
-          <div class="stat-card__number" style="color:var(--danger);">&euro;2.940</div>
+          <div class="stat-card__number" style="color:var(--danger);">&euro;2.925</div>
           <div class="stat-card__label" data-t="dashStat0">Revenus perdus / mois</div>
         </div>
         <div class="stat-card stat-card--danger">
-          <div class="stat-card__number" style="color:var(--danger);">—</div>
+          <div class="stat-card__number" style="color:var(--danger);">2h</div>
           <div class="stat-card__label" data-t="dashStat1">Votre temps de r&eacute;ponse</div>
         </div>
         <div class="stat-card stat-card--warning">
@@ -845,7 +845,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="dashboard">
     <div class="container">
       <div class="dashboard__header">
-        <h2 data-t="dashChartH2">De ? &agrave; 90+ en 90 jours</h2>
+        <h2 data-t="dashChartH2">De 88 &agrave; 90+ en 90 jours</h2>
         <p style="color:var(--text-muted);font-size:15px;margin-top:8px;" data-t="dashChartSub">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
       </div>
       <div class="dashboard__chart-wrap">
@@ -1000,7 +1000,7 @@ function t(key) { return T[key]?.[currentLang] || T[key]?.fr || key; }
 // ===== TRANSLATED DATA ARRAYS =====
 const dimensionsT = {
   fr: [
-    { key: "response_time", name: "Temps de r\u00e9ponse", score: 0, desc: "18h 48min pour r\u00e9pondre. Les meilleurs concessionnaires r\u00e9pondent en moins de 30 minutes.", fix: "Notifications push en temps r\u00e9el" },
+    { key: "response_time", name: "Temps de r\u00e9ponse", score: 2, desc: "18h 48min pour r\u00e9pondre. Les meilleurs concessionnaires r\u00e9pondent en moins de 30 minutes.", fix: "Notifications push en temps r\u00e9el" },
     { key: "personalization", name: "Personnalisation", score: 1, desc: "R\u00e9ponse g\u00e9n\u00e9rique. Aucun nom d'acheteur, aucune r\u00e9f\u00e9rence v\u00e9hicule, aucun besoin reconnu.", fix: "Templates intelligents avec remplissage auto" },
     { key: "pricing", name: "Transparence tarifaire", score: 1, desc: "Aucun prix communiqu\u00e9. Les acheteurs qui demandent un prix veulent un prix \u2014 esquiver fait perdre 60%+ des leads.", fix: "Injection automatique des prix depuis l'inventaire" },
     { key: "cta_clarity", name: "Clart\u00e9 de l'appel \u00e0 l'action", score: 1, desc: "Aucune prochaine \u00e9tape claire. \u00ab Contactez-nous \u00bb est une impasse, pas un appel \u00e0 l'action.", fix: "Blocs CTA int\u00e9gr\u00e9s dans les templates" },
@@ -1008,7 +1008,7 @@ const dimensionsT = {
     { key: "follow_up", name: "Suivi", score: 2, desc: "Aucun suivi apr\u00e8s 7 jours de silence. Le lead est perdu pour toujours.", fix: "S\u00e9quences de relance automatis\u00e9es" },
   ],
   en: [
-    { key: "response_time", name: "Response Time", score: 0, desc: "18h 48min to respond. Top dealers reply in under 30 minutes.", fix: "Real-time push notifications" },
+    { key: "response_time", name: "Response Time", score: 2, desc: "18h 48min to respond. Top dealers reply in under 30 minutes.", fix: "Real-time push notifications" },
     { key: "personalization", name: "Personalization", score: 1, desc: "Generic response. No buyer name, no vehicle reference, no stated need acknowledged.", fix: "Smart templates with auto-fill" },
     { key: "pricing", name: "Pricing Transparency", score: 1, desc: "No price given. Buyers who ask for a price want a price \u2014 deflecting loses 60%+ of leads.", fix: "Price auto-injection from inventory" },
     { key: "cta_clarity", name: "CTA Clarity", score: 1, desc: "No clear next step. 'Contact us' is a dead end, not a call to action.", fix: "Built-in CTA blocks in templates" },
@@ -1016,7 +1016,7 @@ const dimensionsT = {
     { key: "follow_up", name: "Follow-Up", score: 2, desc: "No follow-up after 7 days of silence. The lead is gone forever.", fix: "Automated follow-up sequences" },
   ],
   nl: [
-    { key: "response_time", name: "Reactietijd", score: 0, desc: "18u 48min om te reageren. Topdealers reageren binnen 30 minuten.", fix: "Realtime pushmeldingen" },
+    { key: "response_time", name: "Reactietijd", score: 2, desc: "18u 48min om te reageren. Topdealers reageren binnen 30 minuten.", fix: "Realtime pushmeldingen" },
     { key: "personalization", name: "Personalisatie", score: 1, desc: "Generiek antwoord. Geen kopersnaam, geen voertuigreferentie, geen behoefteherkenning.", fix: "Slimme templates met automatisch invullen" },
     { key: "pricing", name: "Prijstransparantie", score: 1, desc: "Geen prijs gegeven. Kopers die om een prijs vragen willen een prijs \u2014 ontwijken verliest 60%+ van de leads.", fix: "Automatische prijsinjectie uit inventaris" },
     { key: "cta_clarity", name: "CTA Duidelijkheid", score: 1, desc: "Geen duidelijke volgende stap. 'Neem contact op' is een doodlopende weg.", fix: "Ingebouwde CTA-blokken in templates" },
@@ -1157,10 +1157,10 @@ const dealer = {
   vehicle: "DAF XF 480 FT",
   buyer: "Max Schreiber",
   date: "March 2026",
-  overall_score: -1,
-  mystery_shop_response_time: "En attente d\'audit",
-  mystery_shop_response_minutes: -1,
-  mystery_shop_pending: true,
+  overall_score: 88,
+  mystery_shop_response_time: "2h 24min",
+  mystery_shop_response_minutes: 144,
+  mystery_shop_pending: false,
   mystery_shop_no_response: false,
 };
 
@@ -1995,7 +1995,7 @@ function renderChart(chartId, milestonesId) {
       <svg id="${chartId}_svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
         ${bandRects}
         <line x1="${padL}" y1="${padT+plotH}" x2="${padL+plotW}" y2="${padT+plotH}" stroke="var(--gray-200)" stroke-width="1"/>
-        <path id="${chartId}_line" d="${linePath}" fill="none" stroke="var(--gray-400)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+        <path id="${chartId}_line" d="${linePath}" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
         ${dots}${scoreLabels}${trophy}${xLabels}${milestoneTexts}
       </svg>`;
   }

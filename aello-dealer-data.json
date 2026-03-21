@@ -11,8 +11,8 @@
     "response_hrs": "11.7h (email)",
     "listings_count": 200,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 160,
-    "lost_revenue_mo": "€12.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Van den Hurk Bedrijfswagens",
@@ -26,8 +26,8 @@
     "response_hrs": "15.6h (truck1)",
     "listings_count": 729,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 583,
-    "lost_revenue_mo": "€15.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Jochems Machinery",
@@ -38,11 +38,11 @@
     "email": "info@jochems-machinery.com",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://autoline.com/jochemsmachinery/",
-    "response_hrs": "no response",
+    "response_hrs": "20.8h (email)",
     "listings_count": 60,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Machineryzone, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 48,
-    "lost_revenue_mo": "€3.600,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Leeijen Trading",
@@ -56,8 +56,8 @@
     "response_hrs": "no response",
     "listings_count": 222,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Machineryzone, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 178,
-    "lost_revenue_mo": "€13.350,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Haverhoek Trucks B.V.",
@@ -71,8 +71,8 @@
     "response_hrs": "0.5h (email)",
     "listings_count": 87,
     "marketplaces_spoken": ", Autoline, Mascus, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 70,
-    "lost_revenue_mo": "€5.250,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Used Cranes and Materials Holland B.V.",
@@ -83,11 +83,11 @@
     "email": "info@ucmholland.com",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://machineryline.info/-/sale/truck-cranes/Tadano-Faun/ATF-45-3--22031618001805726200",
-    "response_hrs": "no response",
+    "response_hrs": "replied (email)",
     "listings_count": 4847,
     "marketplaces_spoken": "Autoline, Mascus, Truck1, TrucksNL",
-    "est_leads_mo": 3878,
-    "lost_revenue_mo": "€15.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "De Jong Trucks en Trailers B.V.",
@@ -101,8 +101,8 @@
     "response_hrs": "2.1h (email)",
     "listings_count": 228,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 182,
-    "lost_revenue_mo": "€13.650,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Nexxt Equipment B.V.",
@@ -113,11 +113,11 @@
     "email": "info@nexxtequipment.nl",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://www.trucksnl.com/company/nexxt-equipment-bv",
-    "response_hrs": "no response",
+    "response_hrs": "5.0h (email)",
     "listings_count": 123,
     "marketplaces_spoken": "Autoline, Mascus, TrucksNL",
-    "est_leads_mo": 98,
-    "lost_revenue_mo": "€7.350,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Hobutra B.V.",
@@ -128,11 +128,11 @@
     "email": "info@hobutra.nl",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://autoline.com/hobutra/",
-    "response_hrs": "no response",
+    "response_hrs": "2.7h (email)",
     "listings_count": 98,
     "marketplaces_spoken": "Autoline, Forklift, Mascus",
-    "est_leads_mo": 78,
-    "lost_revenue_mo": "€5.850,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "P. Mostert Import-Export B.V",
@@ -146,8 +146,8 @@
     "response_hrs": "15.2h (truck1)",
     "listings_count": 807,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 646,
-    "lost_revenue_mo": "€15.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "GS Meppel",
@@ -161,8 +161,8 @@
     "response_hrs": "no response",
     "listings_count": 36,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL",
-    "est_leads_mo": 29,
-    "lost_revenue_mo": "€2.175,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "A&F Fire Trucks Holland B.V.",
@@ -176,8 +176,8 @@
     "response_hrs": "no response",
     "listings_count": 356,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, TruckScout24, TrucksNL",
-    "est_leads_mo": 285,
-    "lost_revenue_mo": "€15.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Wiltrade Holland BV",
@@ -191,8 +191,8 @@
     "response_hrs": "no response",
     "listings_count": 13,
     "marketplaces_spoken": "Autoline, Mascus, Truck1, TrucksNL",
-    "est_leads_mo": 10,
-    "lost_revenue_mo": "€750,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Almat Laren",
@@ -203,11 +203,11 @@
     "email": "j.jacobs@almatlaren.nl",
     "shop_platform": "Forklift",
     "shop_listing_url": "https://autoline.com/almatlaren/",
-    "response_hrs": "no response",
+    "response_hrs": "3.0h (email)",
     "listings_count": 10,
     "marketplaces_spoken": "Forklift, Mascus",
-    "est_leads_mo": 8,
-    "lost_revenue_mo": "€600,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Wezenberg Groep",
@@ -221,23 +221,23 @@
     "response_hrs": "no response",
     "listings_count": 27,
     "marketplaces_spoken": "Mobile.de, TrucksNL",
-    "est_leads_mo": 22,
-    "lost_revenue_mo": "€1.650,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "ABC Tractors",
     "domain": "abctractors.com",
     "city": "Helmond",
-    "contact_name": "André Boudewijns",
+    "contact_name": "Andr\u00e9 Boudewijns",
     "first_name": "Andre",
     "email": "info@abctractors.com",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://autoline.com/abctractors/",
-    "response_hrs": "no response",
+    "response_hrs": "1.8h (email)",
     "listings_count": 28,
     "marketplaces_spoken": "Autoline, Machineryzone",
-    "est_leads_mo": 22,
-    "lost_revenue_mo": "€1.650,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Abid Trading B.V.",
@@ -266,8 +266,8 @@
     "response_hrs": "no response",
     "listings_count": 14,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1",
-    "est_leads_mo": 11,
-    "lost_revenue_mo": "€825,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Op 't Root Landbouwmechanisatie",
@@ -281,8 +281,8 @@
     "response_hrs": "no response",
     "listings_count": 89,
     "marketplaces_spoken": "Machineryzone, Mascus",
-    "est_leads_mo": 71,
-    "lost_revenue_mo": "€5.325,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "JORD Equipment B.V.",
@@ -293,26 +293,26 @@
     "email": "info@jordequipment.com",
     "shop_platform": "Autoline",
     "shop_listing_url": "",
-    "response_hrs": "no response",
+    "response_hrs": "5.7h (email)",
     "listings_count": 36,
     "marketplaces_spoken": "Autoline, Mascus, Truck1",
-    "est_leads_mo": 7,
-    "lost_revenue_mo": "€525,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Augustijn Trading",
     "domain": "augustijntrading.com",
     "city": "Klundert",
-    "contact_name": "Corné Augustijn",
-    "first_name": "Corné",
+    "contact_name": "Corn\u00e9 Augustijn",
+    "first_name": "Corn\u00e9",
     "email": "info@augustijntrading.com",
     "shop_platform": "Truck1",
     "shop_listing_url": "https://www.tractors-and-machinery.com/item/807936/Two-wheel-tractor/Bucher/M-330-KL-Bucher-messenbalk-Tweewielige-tuintrekker-met-messenbalk",
-    "response_hrs": "no response",
+    "response_hrs": "0.1h (email)",
     "listings_count": 39,
     "marketplaces_spoken": "Truck1",
-    "est_leads_mo": 31,
-    "lost_revenue_mo": "€2.325,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Minhas Cars & Trucks",
@@ -326,8 +326,8 @@
     "response_hrs": "no response",
     "listings_count": 17,
     "marketplaces_spoken": "TrucksNL",
-    "est_leads_mo": 14,
-    "lost_revenue_mo": "€1.050,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Pollicita Truck Occasions",
@@ -338,11 +338,11 @@
     "email": "info@pollicitatrucks.nl",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://autoline.com/-/sale/workshop-trucks/IVECO/Eurocargo-90E18-68-DKM-Mobile-werkplaats--23031413363015377800",
-    "response_hrs": "no response",
+    "response_hrs": "2.8h (email)",
     "listings_count": 575,
     "marketplaces_spoken": "Autoline",
-    "est_leads_mo": 460,
-    "lost_revenue_mo": "€15.000,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VERVAET",
@@ -355,9 +355,9 @@
     "shop_listing_url": "https://autoline.com/vervaet/",
     "response_hrs": "no response",
     "listings_count": 24,
-    "marketplaces_spoken": "AgriAffaires, Mascus,",
-    "est_leads_mo": 2,
-    "lost_revenue_mo": "€150,00"
+    "marketplaces_spoken": "AgriAffaires, Mascus, ",
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "ELM Bleiswijk B.V.",
@@ -371,8 +371,8 @@
     "response_hrs": "no response",
     "listings_count": 24,
     "marketplaces_spoken": "Truck1, TrucksNL",
-    "est_leads_mo": 19,
-    "lost_revenue_mo": "€1.425,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Holland Automotive Company BV",
@@ -386,8 +386,8 @@
     "response_hrs": "no response",
     "listings_count": 31,
     "marketplaces_spoken": "TrucksNL",
-    "est_leads_mo": 25,
-    "lost_revenue_mo": "€1.875,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Offringa B.V. Creil",
@@ -401,8 +401,8 @@
     "response_hrs": "no response",
     "listings_count": 98,
     "marketplaces_spoken": "Mascus, Truck1",
-    "est_leads_mo": 78,
-    "lost_revenue_mo": "€5.850,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Multi Machinery",
@@ -416,8 +416,8 @@
     "response_hrs": "5.1h (email)",
     "listings_count": 13,
     "marketplaces_spoken": "Mascus, TrucksNL",
-    "est_leads_mo": 10,
-    "lost_revenue_mo": "€750,00"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "S Trucks B.V.",
@@ -431,8 +431,8 @@
     "response_hrs": "",
     "listings_count": 689,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Machineryzone, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 551,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Tuytel Machinery",
@@ -446,8 +446,8 @@
     "response_hrs": "",
     "listings_count": 144,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Mascus, TrucksNL, Via Mobilis",
-    "est_leads_mo": 115,
-    "lost_revenue_mo": "8640"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "A&A Trdg Holland BV",
@@ -461,8 +461,8 @@
     "response_hrs": "",
     "listings_count": 327,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 262,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "World Truck Auctions | Online used Truck Auctions",
@@ -476,8 +476,8 @@
     "response_hrs": "",
     "listings_count": 31,
     "marketplaces_spoken": "Autoline, TrucksNL",
-    "est_leads_mo": 25,
-    "lost_revenue_mo": "1860"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VAN DE WERT TRADING B.V.",
@@ -491,8 +491,8 @@
     "response_hrs": "",
     "listings_count": 327,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL",
-    "est_leads_mo": 262,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Spijkstaal",
@@ -506,8 +506,8 @@
     "response_hrs": "",
     "listings_count": 87,
     "marketplaces_spoken": "Forklift, Mascus",
-    "est_leads_mo": 70,
-    "lost_revenue_mo": "5220"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Artech machinery",
@@ -521,8 +521,8 @@
     "response_hrs": "",
     "listings_count": 160,
     "marketplaces_spoken": "Autoline, Mascus, Truck1",
-    "est_leads_mo": 128,
-    "lost_revenue_mo": "9600"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Deko BV",
@@ -536,8 +536,8 @@
     "response_hrs": "",
     "listings_count": 282,
     "marketplaces_spoken": "Europa-Vrachtwagens, Mascus, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 226,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Boss Machinery B.V.",
@@ -551,8 +551,8 @@
     "response_hrs": "",
     "listings_count": 1147,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Europa-Vrachtwagens, Machinerypark, Machineryzone, Mascus, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 918,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Vredo Dodewaard BV",
@@ -566,8 +566,8 @@
     "response_hrs": "",
     "listings_count": 12,
     "marketplaces_spoken": "Machineryzone, Mascus",
-    "est_leads_mo": 10,
-    "lost_revenue_mo": "720"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "TS Trucks",
@@ -578,11 +578,11 @@
     "email": "info@tstrucks.nl",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://www.truck1.eu/semi-trailers/container-transporters-swap-body-semi-trailers/van-hool-3b0052-40ft-container-bpw-drum-belgium-trailer-top-a11033167.html",
-    "response_hrs": "",
+    "response_hrs": "replied (email)",
     "listings_count": 1096,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 877,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Krommenhoek BV",
@@ -596,8 +596,8 @@
     "response_hrs": "",
     "listings_count": 387,
     "marketplaces_spoken": ", Autoline, Europa-Bouwmachines, Forklift, Machineryzone, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 310,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Euro Trucks International Trading Company",
@@ -611,8 +611,8 @@
     "response_hrs": "",
     "listings_count": 79,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 63,
-    "lost_revenue_mo": "4740"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Truck Rebuilt Parts B.V.",
@@ -626,8 +626,8 @@
     "response_hrs": "",
     "listings_count": 8010,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Machinerypark, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 6408,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "JR Trading B.V.",
@@ -641,8 +641,8 @@
     "response_hrs": "",
     "listings_count": 100,
     "marketplaces_spoken": "Autoline, Machineryzone, Mascus, Truck1, TrucksNL",
-    "est_leads_mo": 80,
-    "lost_revenue_mo": "6000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "MVI Trucks B.V.",
@@ -656,8 +656,8 @@
     "response_hrs": "",
     "listings_count": 202,
     "marketplaces_spoken": ", Autoline, Mascus, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 162,
-    "lost_revenue_mo": "12120"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "BIG Machinery B.V.",
@@ -671,8 +671,8 @@
     "response_hrs": "",
     "listings_count": 821,
     "marketplaces_spoken": ", Autoline, Forklift, Machinerypark, Machineryzone, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 657,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Middeldorp Bouwmachines",
@@ -686,8 +686,8 @@
     "response_hrs": "",
     "listings_count": 45,
     "marketplaces_spoken": "Autoline, Machineryzone, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 36,
-    "lost_revenue_mo": "2700"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Truckcenter Veendam",
@@ -701,8 +701,8 @@
     "response_hrs": "",
     "listings_count": 327,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 262,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Vriesoord Trucks B.V.",
@@ -716,8 +716,8 @@
     "response_hrs": "",
     "listings_count": 451,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 361,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "STEDEFRA",
@@ -731,8 +731,8 @@
     "response_hrs": "",
     "listings_count": 147,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Machineryzone, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 118,
-    "lost_revenue_mo": "8820"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "West Equipment",
@@ -746,8 +746,8 @@
     "response_hrs": "",
     "listings_count": 55,
     "marketplaces_spoken": "Autoline, Forklift, Machineryzone, Mascus, Truck1, TrucksNL",
-    "est_leads_mo": 44,
-    "lost_revenue_mo": "3300"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "B & V TRADING",
@@ -761,8 +761,8 @@
     "response_hrs": "",
     "listings_count": 724,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 579,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Gema Trading",
@@ -776,8 +776,8 @@
     "response_hrs": "",
     "listings_count": 318,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 254,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Stienen Trading BV",
@@ -791,8 +791,8 @@
     "response_hrs": "",
     "listings_count": 34,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 27,
-    "lost_revenue_mo": "2040"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Pfeifer Rentals B.V.",
@@ -806,8 +806,8 @@
     "response_hrs": "",
     "listings_count": 884,
     "marketplaces_spoken": "Autoline, Forklift, Machineryzone, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 707,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Trailned B.V.",
@@ -821,23 +821,23 @@
     "response_hrs": "",
     "listings_count": 100,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 80,
-    "lost_revenue_mo": "6000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Van Gurp b.v.",
     "domain": "van-gurp.nl",
     "city": "Wijhe",
-    "contact_name": "René Van Gurp",
-    "first_name": "René",
+    "contact_name": "Ren\u00e9 Van Gurp",
+    "first_name": "Ren\u00e9",
     "email": "info@van-gurp.nl",
     "shop_platform": "Autoline",
     "shop_listing_url": "https://www.truck1.eu/attachments/clamps/pomi-balletang-a10605064.html",
     "response_hrs": "",
     "listings_count": 193,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Forklift, Machineryzone, Mascus, Truck1, TruckScout24",
-    "est_leads_mo": 154,
-    "lost_revenue_mo": "11580"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Smitma",
@@ -851,8 +851,8 @@
     "response_hrs": "",
     "listings_count": 1362,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Forklift, Machineryzone, Mascus, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 1090,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Thomas Trucks",
@@ -866,8 +866,8 @@
     "response_hrs": "",
     "listings_count": 61,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 49,
-    "lost_revenue_mo": "3660"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Kuijpers Trading Bv",
@@ -881,8 +881,8 @@
     "response_hrs": "",
     "listings_count": 233,
     "marketplaces_spoken": "Autoline, Truck1, TruckNL, TruckScout24, TrucksNL",
-    "est_leads_mo": 186,
-    "lost_revenue_mo": "13980"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Garage Verspui",
@@ -896,8 +896,8 @@
     "response_hrs": "",
     "listings_count": 137,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 110,
-    "lost_revenue_mo": "8220"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Forkliftcenter",
@@ -911,8 +911,8 @@
     "response_hrs": "",
     "listings_count": 330,
     "marketplaces_spoken": "Autoline, Forklift, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 264,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Kleyn Trucks & Trailers",
@@ -926,8 +926,8 @@
     "response_hrs": "",
     "listings_count": 2361,
     "marketplaces_spoken": ", Autoline, Europa-Vrachtwagens, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 1889,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Grovema BV",
@@ -939,10 +939,10 @@
     "shop_platform": "Truck1",
     "shop_listing_url": "https://www.truck1.eu/spare-parts/hydraulic-pumps/liebherr-lpvd140-a11038848.html",
     "response_hrs": "",
-    "listings_count": 14,
+    "listings_count": 14061,
     "marketplaces_spoken": "Truck1, Machineryline",
-    "est_leads_mo": 11249,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Jeurissen Handel en Verhuur B.V.",
@@ -956,8 +956,8 @@
     "response_hrs": "",
     "listings_count": 27,
     "marketplaces_spoken": "Autoline, Truck1, TruckNL, TrucksNL, Via Mobilis",
-    "est_leads_mo": 22,
-    "lost_revenue_mo": "1620"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "MTC Forklifts B.V.",
@@ -971,8 +971,8 @@
     "response_hrs": "",
     "listings_count": 213,
     "marketplaces_spoken": "Autoline, Forklift, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 170,
-    "lost_revenue_mo": "12780"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "JN Machines",
@@ -986,8 +986,8 @@
     "response_hrs": "",
     "listings_count": 31,
     "marketplaces_spoken": "Autoline, Machineryzone, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 25,
-    "lost_revenue_mo": "1860"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Van Hezik Machines",
@@ -1001,8 +1001,8 @@
     "response_hrs": "",
     "listings_count": 25,
     "marketplaces_spoken": "Autoline, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 20,
-    "lost_revenue_mo": "1500"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Delta Machinery",
@@ -1016,8 +1016,8 @@
     "response_hrs": "",
     "listings_count": 1170,
     "marketplaces_spoken": "Autoline, Europa-Bouwmachines, Europa-Vrachtwagens, Forklift, Machineryzone, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 936,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "DAF Trucks NV",
@@ -1031,8 +1031,8 @@
     "response_hrs": "",
     "listings_count": 406,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mascus, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 325,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "KULK TRUCKS",
@@ -1046,8 +1046,8 @@
     "response_hrs": "",
     "listings_count": 23,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 18,
-    "lost_revenue_mo": "1380"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Hesselink Trucks",
@@ -1061,8 +1061,8 @@
     "response_hrs": "",
     "listings_count": 266,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Truck1, TruckNL, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 213,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Wolfs Trucks B.V.",
@@ -1076,8 +1076,8 @@
     "response_hrs": "",
     "listings_count": 24,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 19,
-    "lost_revenue_mo": "1440"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Slecoma Boekel B.V.",
@@ -1091,8 +1091,8 @@
     "response_hrs": "",
     "listings_count": 160,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Machinerypark, Machineryzone, Mascus, Truck1, TruckScout24",
-    "est_leads_mo": 128,
-    "lost_revenue_mo": "9600"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Prima Equipment / Van der Spek Hardenberg B.V.",
@@ -1103,11 +1103,11 @@
     "email": "jethran@primaused.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/construction-machinery/wheel-loaders/jcb-427-zx-a10877144.html",
-    "response_hrs": "",
+    "response_hrs": "0.5h (email)",
     "listings_count": 124,
     "marketplaces_spoken": "Autoline, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 99,
-    "lost_revenue_mo": "7440"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Boon Trucks & Trailers",
@@ -1118,11 +1118,11 @@
     "email": "sales@boontrucks.nl",
     "shop_platform": "Email + Truck1",
     "shop_listing_url": "https://www.truck1.eu/semi-trailers/refrigerator-semi-trailers/schmitz-cargobull-scb-s3b-thermo-king-slx-300-tail-lift-2500-kg-250x265-nl-trailer-a11088806.html",
-    "response_hrs": "",
+    "response_hrs": "replied (email)",
     "listings_count": 128,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 102,
-    "lost_revenue_mo": "7680"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Louwman Bedrijfswagens",
@@ -1136,8 +1136,8 @@
     "response_hrs": "",
     "listings_count": 49,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 39,
-    "lost_revenue_mo": "2940"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "TonyTrucks",
@@ -1151,8 +1151,8 @@
     "response_hrs": "",
     "listings_count": 177,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 142,
-    "lost_revenue_mo": "10620"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Nedtrax B.V",
@@ -1166,8 +1166,8 @@
     "response_hrs": "",
     "listings_count": 104,
     "marketplaces_spoken": "Autoline, Machineryline, Machinerypark, Machineryzone, Mascus, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 83,
-    "lost_revenue_mo": "6240"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "TMH (Trucks Machinery Holland)",
@@ -1178,11 +1178,11 @@
     "email": "sales@tmh.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/trucks/cab-chassis-trucks/mercedes-benz-arocs-4045-6x4-chassis-cabin-a11028750.html",
-    "response_hrs": "",
+    "response_hrs": "0.3h (email)",
     "listings_count": 52,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 42,
-    "lost_revenue_mo": "3120"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Used Truck Point",
@@ -1193,11 +1193,11 @@
     "email": "info@usedtruckpoint.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/vans/box-vans/mercedes-benz-sprinter-514-automaat-laadklep-apk-3-2027-nl-van-a11088907.html",
-    "response_hrs": "",
+    "response_hrs": "5.3h (email)",
     "listings_count": 45,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 36,
-    "lost_revenue_mo": "2700"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Versteijnen Trucks B.V.",
@@ -1208,11 +1208,11 @@
     "email": "dirk@versteijnentrucks.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/municipal-special-vehicles/tow-trucks/scania-r142-v8-6x2-abschlepp-tow-truck-a11094437.html",
-    "response_hrs": "",
+    "response_hrs": "3.2h (email)",
     "listings_count": 452,
     "marketplaces_spoken": "Autoline, Machineryline, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 362,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Euro Sun Import-Export B.V.",
@@ -1223,11 +1223,11 @@
     "email": "sales@eurosun.eu",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/construction-machinery/concrete-mixer-trucks/daf-mixer-truck-8x4-10m3-mulder-a11063450.html",
-    "response_hrs": "",
+    "response_hrs": "0.2h (email)",
     "listings_count": 30,
     "marketplaces_spoken": "Autoline, Machineryzone, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 24,
-    "lost_revenue_mo": "1800"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "TOP TRUCKS BV",
@@ -1241,8 +1241,8 @@
     "response_hrs": "",
     "listings_count": 114,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 91,
-    "lost_revenue_mo": "6840"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "H.W. van der Peet & Zn",
@@ -1256,8 +1256,8 @@
     "response_hrs": "",
     "listings_count": 54,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 43,
-    "lost_revenue_mo": "3240"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "H. E. Trading",
@@ -1268,11 +1268,11 @@
     "email": "info@hetrading.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/semi-trailers/refrigerator-semi-trailers/krone-koelvries-met-thermo-king-slx-300-a10669706.html",
-    "response_hrs": "",
+    "response_hrs": "1.0h (email)",
     "listings_count": 20,
     "marketplaces_spoken": "Autoline, Mascus, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 16,
-    "lost_revenue_mo": "1200"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "SemTrade Trucks & Trailers",
@@ -1283,11 +1283,11 @@
     "email": "info@semtrade.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/tractor-units/volvo-fh-13-420-full-air-2x-tanks-pto-hydraulics-only-503-000-km-top-condition-a11082340.html",
-    "response_hrs": "",
+    "response_hrs": "0.1h (email)",
     "listings_count": 188,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 150,
-    "lost_revenue_mo": "11280"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "van der Eijk Trading",
@@ -1301,8 +1301,8 @@
     "response_hrs": "",
     "listings_count": 54,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 43,
-    "lost_revenue_mo": "3240"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Hulleman Trucks BV",
@@ -1316,8 +1316,8 @@
     "response_hrs": "",
     "listings_count": 342,
     "marketplaces_spoken": "Autoline, Forklift, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 274,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Vlastuin Truckopbouw",
@@ -1331,8 +1331,8 @@
     "response_hrs": "",
     "listings_count": 30,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 24,
-    "lost_revenue_mo": "1800"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Janssen Trucks & Trailers",
@@ -1343,11 +1343,11 @@
     "email": "info@janssentrucks.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/tractor-units/daf-xf-460super-space-hydrauliek-top-a10873151.html",
-    "response_hrs": "",
+    "response_hrs": "2.4h (email)",
     "listings_count": 49,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 39,
-    "lost_revenue_mo": "2940"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VEMA Crane",
@@ -1358,11 +1358,11 @@
     "email": "adrie@vemacrane.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/construction-machinery/crawler-cranes/hitachi-kh-150-3-a10956453.html",
-    "response_hrs": "",
+    "response_hrs": "1.1h (email)",
     "listings_count": 26,
     "marketplaces_spoken": "Autoline, Machineryzone, Mascus, Truck1, TrucksNL",
-    "est_leads_mo": 21,
-    "lost_revenue_mo": "1560"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Engel Trucks",
@@ -1373,11 +1373,11 @@
     "email": "erik@engel-trucks.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/vans/box-vans/mercedes-benz-sprinter-412-5-cilinder-with-playwood-box-manual-gearbox-6-tires-a11078981.html",
-    "response_hrs": "",
+    "response_hrs": "1.3h (email)",
     "listings_count": 171,
     "marketplaces_spoken": "Autoline, Machineryline, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 137,
-    "lost_revenue_mo": "10260"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Van Dijk Trucks",
@@ -1391,8 +1391,8 @@
     "response_hrs": "",
     "listings_count": 148,
     "marketplaces_spoken": "Autoline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 118,
-    "lost_revenue_mo": "8880"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Nebim Used Trucks B.V.",
@@ -1406,8 +1406,8 @@
     "response_hrs": "",
     "listings_count": 142,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 114,
-    "lost_revenue_mo": "8520"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Sprengelmeijer Trucks",
@@ -1421,8 +1421,8 @@
     "response_hrs": "",
     "listings_count": 68,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 54,
-    "lost_revenue_mo": "4080"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Target Cars",
@@ -1436,8 +1436,8 @@
     "response_hrs": "",
     "listings_count": 465,
     "marketplaces_spoken": "Autoline, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 372,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Twente Trucks",
@@ -1451,8 +1451,8 @@
     "response_hrs": "",
     "listings_count": 93,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 74,
-    "lost_revenue_mo": "5580"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Brabant AG Industrie B.V.",
@@ -1466,8 +1466,8 @@
     "response_hrs": "",
     "listings_count": 394,
     "marketplaces_spoken": "Autoline, Forklift, Machineryline, Machineryzone, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 315,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "RG Groep",
@@ -1478,11 +1478,11 @@
     "email": "jos.vangorp@rggroep.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/construction-machinery/truck-mounted-aerial-platforms/iveco-daily-70c14-unused-cte-lift-23-meter-elektrische-lift-17-werkuren-2-persoonslift-250-kg-a11060693.html",
-    "response_hrs": "",
+    "response_hrs": "0.3h (email)",
     "listings_count": 24,
     "marketplaces_spoken": "Autoline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 19,
-    "lost_revenue_mo": "1440"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Gomez Trading",
@@ -1496,8 +1496,8 @@
     "response_hrs": "",
     "listings_count": 112,
     "marketplaces_spoken": "Autoline, Europa-Vrachtwagens, Forklift, TruckScout24, TrucksNL",
-    "est_leads_mo": 90,
-    "lost_revenue_mo": "6720"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Geurts Trucks B.V.",
@@ -1508,11 +1508,11 @@
     "email": "info@geurtstrucks.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/semi-trailers/dropside-flatbed-semi-trailers/faymonville-spnz-5-ballast-trailer-a11075637.html",
-    "response_hrs": "",
+    "response_hrs": "4.9h (email)",
     "listings_count": 651,
     "marketplaces_spoken": "Autoline, Forklift, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 521,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "MHE International Trading B.V.",
@@ -1523,11 +1523,11 @@
     "email": "joeri@mhe-trading.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/material-handling-equipment/pallet-trucks/linde-t20-a11056240.html",
-    "response_hrs": "",
+    "response_hrs": "4.0h (email)",
     "listings_count": 24,
     "marketplaces_spoken": "Forklift, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 19,
-    "lost_revenue_mo": "1440"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Nidro auto's B.V.",
@@ -1538,11 +1538,11 @@
     "email": "info@nidroautos.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/municipal-special-vehicles/tow-trucks/iveco-eurocargo-120e25-i-abschleppwagen-towtruck-i-full-air-i-31-000km-i-winch-i-euro-5-i-leather-i-bed-a10941906.html",
-    "response_hrs": "",
+    "response_hrs": "23.6h (email)",
     "listings_count": 65,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 52,
-    "lost_revenue_mo": "3900"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Trucks Roosendaal BV",
@@ -1553,11 +1553,11 @@
     "email": "info@trucksroosendaal.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/trucks/crane-trucks/scania-r500-v8-hiab-800-6x-jib-5x-euro-5-remote-8x4-a11076598.html",
-    "response_hrs": "",
+    "response_hrs": "3.0h (email)",
     "listings_count": 698,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 558,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Vink Machinery",
@@ -1571,8 +1571,8 @@
     "response_hrs": "",
     "listings_count": 278,
     "marketplaces_spoken": "Autoline, Machineryline, Machineryzone, Truck1, Via Mobilis",
-    "est_leads_mo": 222,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "A.M. Hommeles bv",
@@ -1586,8 +1586,8 @@
     "response_hrs": "",
     "listings_count": 108,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 86,
-    "lost_revenue_mo": "6480"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "BAS World",
@@ -1601,8 +1601,8 @@
     "response_hrs": "",
     "listings_count": 3003,
     "marketplaces_spoken": "Autoline, Forklift, Machineryline, Machineryzone, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 2402,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "TeKa Trading B.V.",
@@ -1613,11 +1613,11 @@
     "email": "info@tekatrading.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/tractor-units/scania-r500-v8-showtruck-open-uitlaat-standairco-retarder-a10275676.html",
-    "response_hrs": "",
+    "response_hrs": "7.9h (email)",
     "listings_count": 90,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 72,
-    "lost_revenue_mo": "5400"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Vos Trucks",
@@ -1631,8 +1631,8 @@
     "response_hrs": "",
     "listings_count": 333,
     "marketplaces_spoken": "Autoline, Machineryline, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 266,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Equipped4U",
@@ -1646,8 +1646,8 @@
     "response_hrs": "",
     "listings_count": 476,
     "marketplaces_spoken": "Autoline, MMT, Machineryline, Mascus, Mobile.de, Truck1, TruckScout24, TrucksNL, Via Mobilis",
-    "est_leads_mo": 381,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "RH Trucks B.V.",
@@ -1658,11 +1658,11 @@
     "email": "info@rhtrucks.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/semi-trailers/curtainsider-semi-trailers/krone-2-as-met-stuuras-a11098744.html",
-    "response_hrs": "",
+    "response_hrs": "0.1h (email)",
     "listings_count": 1948,
     "marketplaces_spoken": "Autoline, Machineryline, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 1558,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Verma Tractors",
@@ -1673,11 +1673,11 @@
     "email": "info@vermatrac.com",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/agricultural-machinery/farm-tractors/john-deere-5100m-2022-543m-frontloader-887-hours-a11087293.html",
-    "response_hrs": "",
+    "response_hrs": "23.7h (email)",
     "listings_count": 125,
     "marketplaces_spoken": "Autoline, Machineryline, Machineryzone, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 100,
-    "lost_revenue_mo": "7500"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Kaus Trucks",
@@ -1688,11 +1688,11 @@
     "email": "info@kaustrucks.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/trucks/box-trucks/scania-g360-6x2-euro-6-a11056131.html",
-    "response_hrs": "",
+    "response_hrs": "2.0h (email)",
     "listings_count": 69,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 55,
-    "lost_revenue_mo": "4140"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "bwcr bedrijfswagencentrum roosendaal",
@@ -1703,11 +1703,11 @@
     "email": "info@bwcr.nl",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "https://www.truck1.eu/vans/box-vans/iveco-daily-35c16-2-3-375-meubelbak-laadklep-automaat-airco-cr-a11086471.html",
-    "response_hrs": "",
+    "response_hrs": "0.3h (email)",
     "listings_count": 343,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL",
-    "est_leads_mo": 274,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VDL Systems",
@@ -1721,8 +1721,8 @@
     "response_hrs": "",
     "listings_count": 22,
     "marketplaces_spoken": "Autoline",
-    "est_leads_mo": 18,
-    "lost_revenue_mo": "1320"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Tatev Auto",
@@ -1736,8 +1736,8 @@
     "response_hrs": "",
     "listings_count": 398,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 318,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Truck Centrum Bergh BV",
@@ -1751,8 +1751,8 @@
     "response_hrs": "",
     "listings_count": 19,
     "marketplaces_spoken": "Mobile.de, TrucksNL",
-    "est_leads_mo": 15,
-    "lost_revenue_mo": "1140"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Verachtert Nederland B.V.",
@@ -1766,8 +1766,8 @@
     "response_hrs": "",
     "listings_count": 324,
     "marketplaces_spoken": "Autoline, Forklift, Machinerypark, Mascus, Truck1",
-    "est_leads_mo": 259,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Handelsonderneming Het Hof",
@@ -1781,8 +1781,8 @@
     "response_hrs": "",
     "listings_count": 22,
     "marketplaces_spoken": "Truck1, TrucksNL",
-    "est_leads_mo": 18,
-    "lost_revenue_mo": "1320"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Konijn Bouwmachines BV",
@@ -1796,8 +1796,8 @@
     "response_hrs": "",
     "listings_count": 27,
     "marketplaces_spoken": "Autoline",
-    "est_leads_mo": 22,
-    "lost_revenue_mo": "1620"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "cars2africa",
@@ -1811,8 +1811,8 @@
     "response_hrs": "",
     "listings_count": 344,
     "marketplaces_spoken": "Autoline, Machineryline",
-    "est_leads_mo": 275,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Teunis miedema tractoren en machines",
@@ -1826,8 +1826,8 @@
     "response_hrs": "",
     "listings_count": 14,
     "marketplaces_spoken": "Autoline, Machineryline, Mascus, TrucksNL",
-    "est_leads_mo": 11,
-    "lost_revenue_mo": "840"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "De Bruin Trading BV",
@@ -1841,8 +1841,8 @@
     "response_hrs": "",
     "listings_count": 40,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL",
-    "est_leads_mo": 32,
-    "lost_revenue_mo": "2400"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Mestebeld Trucks BV",
@@ -1856,8 +1856,8 @@
     "response_hrs": "",
     "listings_count": 99,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL",
-    "est_leads_mo": 79,
-    "lost_revenue_mo": "5940"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Eddie Ducker Trucks & Parts V.O.F",
@@ -1871,8 +1871,8 @@
     "response_hrs": "",
     "listings_count": 4730,
     "marketplaces_spoken": "Autoline, Machineryline, Mobile.de, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 3784,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "MASE TRADING - Machinery Attachments B.V.",
@@ -1886,8 +1886,8 @@
     "response_hrs": "",
     "listings_count": 181,
     "marketplaces_spoken": "Autoline, Machineryline, Machinerypark, Mascus, TrucksNL, Via Mobilis",
-    "est_leads_mo": 145,
-    "lost_revenue_mo": "10860"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Heesakkers Motoren",
@@ -1901,8 +1901,8 @@
     "response_hrs": "",
     "listings_count": 48,
     "marketplaces_spoken": "Mascus, TrucksNL",
-    "est_leads_mo": 38,
-    "lost_revenue_mo": "2880"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VEMO tractoren",
@@ -1916,8 +1916,8 @@
     "response_hrs": "",
     "listings_count": 81,
     "marketplaces_spoken": "Autoline, Machineryline, Machineryzone, Truck1",
-    "est_leads_mo": 65,
-    "lost_revenue_mo": "4860"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Jur Soetendaal V.O.F.",
@@ -1931,8 +1931,8 @@
     "response_hrs": "",
     "listings_count": 228,
     "marketplaces_spoken": "Autoline, Forklift, Machineryline, Machineryzone, Truck1, TrucksNL, Via Mobilis",
-    "est_leads_mo": 182,
-    "lost_revenue_mo": "13680"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Kareltrans Bedrijfswagens B.V.",
@@ -1946,8 +1946,8 @@
     "response_hrs": "",
     "listings_count": 42,
     "marketplaces_spoken": "AutoScout24, TruckScout24, TrucksNL",
-    "est_leads_mo": 34,
-    "lost_revenue_mo": "2520"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Bredi B.V.",
@@ -1961,8 +1961,8 @@
     "response_hrs": "",
     "listings_count": 1706,
     "marketplaces_spoken": "Autoline, Machineryline, Mascus, TrucksNL, Via Mobilis",
-    "est_leads_mo": 1365,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "ALTCON",
@@ -1976,8 +1976,8 @@
     "response_hrs": "",
     "listings_count": 1246,
     "marketplaces_spoken": "Autoline, Machineryline, Machineryzone, Mascus, Truck1",
-    "est_leads_mo": 997,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Euro Machines",
@@ -1991,8 +1991,8 @@
     "response_hrs": "",
     "listings_count": 20,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL",
-    "est_leads_mo": 16,
-    "lost_revenue_mo": "1200"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Hakkers",
@@ -2006,8 +2006,8 @@
     "response_hrs": "",
     "listings_count": 19,
     "marketplaces_spoken": "Mascus, TrucksNL",
-    "est_leads_mo": 15,
-    "lost_revenue_mo": "1140"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "Autobedrijf Rif B.V.",
@@ -2021,8 +2021,8 @@
     "response_hrs": "",
     "listings_count": 267,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TruckScout24, TrucksNL",
-    "est_leads_mo": 214,
-    "lost_revenue_mo": "15000"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "VD Machinery",
@@ -2033,11 +2033,11 @@
     "email": "",
     "shop_platform": "Truck1 + Email",
     "shop_listing_url": "",
-    "response_hrs": "",
+    "response_hrs": "19.6h (email)",
     "listings_count": 40,
     "marketplaces_spoken": "Autoline, Machineryline, Machineryzone, Truck1, TrucksNL",
-    "est_leads_mo": 32,
-    "lost_revenue_mo": "2400"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   },
   {
     "dealer_name": "CABSTORE",
@@ -2051,7 +2051,7 @@
     "response_hrs": "",
     "listings_count": 144,
     "marketplaces_spoken": "Autoline, Machineryline, Truck1, TrucksNL",
-    "est_leads_mo": 115,
-    "lost_revenue_mo": "8640"
+    "est_leads_mo": null,
+    "lost_revenue_mo": ""
   }
 ]
