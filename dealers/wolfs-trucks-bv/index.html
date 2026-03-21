@@ -893,6 +893,7 @@ const dealerData = {
   deals_lost_per_month: 1,
   margin_per_sale: 1800,
   generated_date: "March 2026",
+  overall_score: -1,
 };
 
 function populatePage(d) {
@@ -912,7 +913,7 @@ function populatePage(d) {
 
   document.getElementById('heroStats').innerHTML = `
     <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);">${d.mystery_shop_response_time}</div><div class="stat-card__label">${t.statResponseTime}</div></div>
-    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">27/100</div><div class="stat-card__label">${t.statResponseScore}</div><a href="report.html" style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;display:block;text-decoration:none;">${t.statUnlock}</a></div>
+    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">${d.overall_score > 0 ? d.overall_score + '/100' : '—/100'}</div><div class="stat-card__label">${t.statResponseScore}</div><a href="report.html" style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;display:block;text-decoration:none;">${t.statUnlock}</a></div>
   `;
 
   // Hero chart — marketplace advertising budget growth

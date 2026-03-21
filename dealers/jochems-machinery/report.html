@@ -508,7 +508,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
         <div class="header__right">
           <span data-t="headerDealer">Audit de R&eacute;ponse Marketplace &mdash; Jochems Machinery</span>
-          <span class="badge badge--danger" id="headerGrade">Score: 27 / 100</span>
+          <span class="badge badge--danger" id="headerGrade">Score: — / 100</span>
           <div class="lang-switch">
             <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
             <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
@@ -534,7 +534,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
               style="transition: stroke-dashoffset 1.5s ease;"/>
           </svg>
           <div class="score-circle__value">
-            <span class="score-circle__number" style="color:var(--danger);">5</span>
+            <span class="score-circle__number" style="color:var(--gray-400);">—</span>
             <span class="score-circle__total">/100</span>
           </div>
         </div>
@@ -545,11 +545,11 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
         <p class="grade-section__label" data-t="thermoLabel">Votre Score Actuel de R&eacute;ponse Marketplace</p>
         <div class="thermo" style="margin-bottom:28px;">
           <div class="thermo__bar">
-            <!-- You: 27/100 = 27% -->
-            <div class="thermo__marker" style="left:27%;">
+            <!-- You marker — position set dynamically by applyDynamicScore() -->
+            <div class="thermo__marker" style="left:0%;">
               <div class="thermo__pin thermo__pin--you"></div>
               <div class="thermo__label">
-                <span class="thermo__score" style="color:var(--danger);">27</span>
+                <span class="thermo__score" style="color:var(--gray-400);">—</span>
                 <span class="thermo__tag" data-t="thermoYou">Vous</span>
               </div>
             </div>
@@ -845,7 +845,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <section class="dashboard">
     <div class="container">
       <div class="dashboard__header">
-        <h2 data-t="dashChartH2">De 27 &agrave; 90+ en 90 jours</h2>
+        <h2 data-t="dashChartH2">De 5 &agrave; 90+ en 90 jours</h2>
         <p style="color:var(--text-muted);font-size:15px;margin-top:8px;" data-t="dashChartSub">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
       </div>
       <div class="dashboard__chart-wrap">
@@ -983,7 +983,7 @@ const T = {
   dashStat1: { fr: 'Votre temps de r\u00e9ponse', en: 'Your response time', nl: 'Uw reactietijd' },
   dashStat2: { fr: 'Leads perdus sans prix', en: 'Leads lost without price', nl: 'Leads verloren zonder prijs' },
   dashStat3: { fr: 'Avec Copilot', en: 'With Copilot', nl: 'Met Copilot' },
-  dashChartH2: { fr: 'De 27 \u00e0 90+ en 90 jours', en: 'From 27 to 90+ in 90 days', nl: 'Van 27 naar 90+ in 90 dagen' },
+  dashChartH2: { fr: 'De {score} \u00e0 90+ en 90 jours', en: 'From {score} to 90+ in 90 days', nl: 'Van {score} naar 90+ in 90 dagen' },
   dashChartSub: { fr: 'Investissez un peu plus dans vos r\u00e9ponses \u2014 et transformez les leads que vous payez d\u00e9j\u00e0 en ventes conclues.', en: "Invest a little more in how you respond \u2014 and turn the leads you\u2019re already paying for into closed deals.", nl: 'Investeer iets meer in hoe u reageert \u2014 en zet de leads waar u al voor betaalt om in gesloten deals.' },
   dashChartTitle: { fr: 'Score de r\u00e9ponse marketplace projet\u00e9', en: 'Projected Marketplace Response Score', nl: 'Verwachte Marketplace Reactiescore' },
   dashCtaH2: { fr: 'Arr\u00eatez de perdre du revenu. Concluez plus de ventes.', en: 'Stop leaking revenue. Start closing more deals.', nl: 'Stop met omzetverlies. Sluit meer deals.' },
@@ -1063,28 +1063,32 @@ function getAnnotData() { return annotDataT[currentLang] || annotDataT.fr; }
 
 const improvementDataT = {
   fr: [
-    { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
+    { month: "Now", score: null, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
     { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
     { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
     { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
     { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
   ],
   en: [
-    { month: "Now", score: 27, color: "var(--danger)", label: "Your current score \u2014 slow response time, no structured follow-up" },
+    { month: "Now", score: null, color: "var(--danger)", label: "Your current score \u2014 slow response time, no structured follow-up" },
     { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connected \u2014 auto-responses activated on all platforms" },
     { month: "Week 1", score: 60, color: "var(--warning)", label: "Faster than 70% of dealers \u2014 personalized templates in place" },
     { month: "Month 1", score: 78, color: "#3B82F6", label: "Fully automated pipeline \u2014 scoring, dedup, active follow-ups" },
     { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 you respond in under 2 minutes, every lead is tracked" },
   ],
   nl: [
-    { month: "Now", score: 27, color: "var(--danger)", label: "Uw huidige score \u2014 trage reactietijd, geen gestructureerde opvolging" },
+    { month: "Now", score: null, color: "var(--danger)", label: "Uw huidige score \u2014 trage reactietijd, geen gestructureerde opvolging" },
     { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot verbonden \u2014 automatische reacties geactiveerd op alle platformen" },
     { month: "Week 1", score: 60, color: "var(--warning)", label: "Sneller dan 70% van de dealers \u2014 gepersonaliseerde templates actief" },
     { month: "Month 1", score: 78, color: "#3B82F6", label: "Volledig geautomatiseerde pipeline \u2014 scoring, dedup, actieve opvolging" },
     { month: "Month 3", score: 93, color: "var(--success)", label: "Beste in klasse \u2014 u reageert binnen 2 minuten, elke lead wordt gevolgd" },
   ],
 };
-function getImprovementData() { return improvementDataT[currentLang] || improvementDataT.fr; }
+function getImprovementData() {
+  const data = JSON.parse(JSON.stringify(improvementDataT[currentLang] || improvementDataT.fr));
+  data[0].score = dealer.overall_score;
+  return data;
+}
 
 const timelineStepsT = {
   fr: [
@@ -1326,7 +1330,50 @@ function scrollToProPlan() {
 }
 
 // ===== SCREEN 1: REPORT =====
+function applyDynamicScore() {
+  const s = dealer.overall_score;
+  const sColor = s <= 20 ? 'var(--danger)' : s <= 50 ? 'var(--warning)' : 'var(--success)';
+  const sDisplay = s < 0 ? '?' : String(s);
+  const sColorIfPending = s < 0 ? 'var(--gray-400)' : sColor;
+
+  // Header badge
+  const badge = document.getElementById('headerGrade');
+  if (badge) badge.textContent = `Score: ${sDisplay} / 100`;
+
+  // Score circle number
+  const circleNum = document.querySelector('.score-circle__number');
+  if (circleNum) { circleNum.textContent = sDisplay; circleNum.style.color = sColorIfPending; }
+
+  // Score circle SVG arc
+  const circleArc = document.querySelector('.score-circle svg circle:nth-child(2)');
+  if (circleArc) {
+    const circ = 339.29;
+    const offset = s < 0 ? circ : circ * (1 - s / 100);
+    circleArc.setAttribute('stroke-dashoffset', offset.toFixed(2));
+    circleArc.setAttribute('stroke', sColorIfPending);
+  }
+
+  // Thermometer — "You" marker position and score
+  const thermoMarkerYou = document.querySelector('.thermo__marker');
+  if (thermoMarkerYou) {
+    const pos = s < 0 ? 0 : s;
+    thermoMarkerYou.style.left = pos + '%';
+    const thermoScore = thermoMarkerYou.querySelector('.thermo__score');
+    if (thermoScore) { thermoScore.textContent = sDisplay; thermoScore.style.color = sColorIfPending; }
+  }
+
+  // Chart section title "De {score} à 90+"
+  const chartH2 = document.querySelector('[data-t="dashChartH2"]');
+  if (chartH2) {
+    const tObj = T[currentLang] || T.fr;
+    if (tObj && tObj.dashChartH2) {
+      chartH2.innerHTML = tObj.dashChartH2.replace('{score}', sDisplay);
+    }
+  }
+}
+
 function renderReport() {
+  applyDynamicScore();
   // Render the chart (in milestone section)
   renderChart('heroChart', null);
 

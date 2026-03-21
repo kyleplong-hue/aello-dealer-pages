@@ -210,6 +210,7 @@ def build_dealer_data_landing(dealer):
         "deals_lost_per_month": deals_lost,
         "margin_per_sale": margin_per_sale,
         "generated_date": "March 2026",
+        "overall_score": calculate_score(minutes),
     }
     return data
 
@@ -639,6 +640,12 @@ def main():
 
             # Update dimension scores based on response time
             report = replace_report_dimension_scores(report, score, minutes)
+
+            # Replace hardcoded score "27" in chart title and translations
+            score_str = str(score) if score >= 0 else "?"
+            report = report.replace("De 27 ", f"De {score_str} ")
+            report = report.replace("From 27 ", f"From {score_str} ")
+            report = report.replace("Van 27 ", f"Van {score_str} ")
 
             # Update links
             report = update_report_links(report)
