@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visite Produit &mdash; A&euml;llo Copilot</title>
+<title>Audit de R&eacute;ponse Marketplace &mdash; 1FOTEAM | A&euml;llo Copilot</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -57,6 +57,8 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .text-primary { color: var(--primary); }
 .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; }
 .badge--primary { background: var(--primary-light); color: var(--primary-dark); }
+.badge--danger { background: var(--danger-light); color: var(--danger); }
+.badge--success { background: var(--success-light); color: var(--success); }
 .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: none; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-decoration: none; }
 .btn:active { transform: scale(0.98); }
 .btn--primary { background: var(--primary); color: var(--white); }
@@ -65,9 +67,18 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .btn--white:hover { background: var(--gray-50); transform: translateY(-1px); }
 .btn--outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
 .btn--outline:hover { background: var(--primary); color: var(--white); }
+.btn--full { width: 100%; }
 .btn--lg { padding: 14px 28px; font-size: 15px; }
 .btn--ghost { background: transparent; color: var(--gray-500); font-weight: 500; }
 .btn--ghost:hover { color: var(--gray-700); }
+
+/* Language switcher */
+.lang-switch { display: flex; gap: 0; }
+.lang-btn { padding: 4px 10px; font-size: 11px; font-weight: 700; font-family: 'Inter', sans-serif; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-500); cursor: pointer; transition: all 0.15s; }
+.lang-btn:first-child { border-radius: 6px 0 0 6px; }
+.lang-btn:last-child { border-radius: 0 6px 6px 0; }
+.lang-btn:not(:first-child) { border-left: none; }
+.lang-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
 
 /* Screens */
 .screen { display: none; }
@@ -77,20 +88,221 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .header { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 14px 0; position: sticky; top: 0; z-index: 200; backdrop-filter: blur(12px); background: rgba(255,255,255,0.95); }
 .header__inner { display: flex; align-items: center; justify-content: space-between; }
 .header__logo img { height: 44px; width: auto; }
-.header__right { display: flex; align-items: center; gap: 16px; font-size: 13px; font-weight: 500; }
-.header__right a { color: var(--text-muted); transition: color 0.2s; }
-.header__right a:hover { color: var(--primary); }
+.header__right { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
 
-/* Hero intro */
-.tour-hero { padding: 64px 0 48px; text-align: center; background: var(--gray-50); }
-.tour-hero h1 { margin-bottom: 12px; }
-.tour-hero p { color: var(--text-muted); font-size: 15px; max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+/* Report Hero */
+.report-hero { padding: 56px 0 40px; text-align: center; background: var(--gray-50); }
+.report-hero__badge { margin-bottom: 20px; }
+.report-hero__title { margin-bottom: 12px; }
+.report-hero__title .highlight { color: var(--danger); font-style: italic; }
+.report-hero__subtitle { font-size: 15px; color: var(--text-muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
 
-/* Screen nav tabs */
-.screen-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
-.screen-tab { padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-600); transition: all 0.2s; }
-.screen-tab:hover { border-color: var(--gray-300); }
-.screen-tab.active { background: #4F46E5; color: var(--white); border-color: #4F46E5; }
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 800px; margin: 0 auto 48px; }
+.stat-card { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
+.stat-card:hover { border-color: var(--gray-300); }
+.stat-card--warning { border-color: var(--warning); background: var(--warning-light); }
+.stat-card--danger { border-color: var(--danger); background: var(--danger-light); }
+.stat-card__number { font-family: 'Inter', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+.stat-card__label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+
+/* Score circle */
+.score-circle-wrap { text-align: center; margin: 32px auto 40px; }
+.score-circle { position: relative; display: inline-block; }
+.score-circle__value { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.score-circle__number { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+.score-circle__total { font-size: 1.2rem; font-weight: 600; color: var(--gray-400); }
+.score-circle__label { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 12px; }
+
+/* Grade section */
+.grade-section { text-align: center; margin-bottom: 8px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 36px 32px 32px; max-width: 480px; margin-left: auto; margin-right: auto; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.grade-section__label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 20px; }
+
+/* Thermometer scale */
+.thermo { position: relative; max-width: 600px; margin: 0 auto; padding: 0 8px; }
+.thermo__bar { height: 16px; border-radius: 10px; background: linear-gradient(90deg, #D5402B 0%, #E97B1A 25%, #C77700 45%, #3B82F6 65%, #2E8540 85%, #1a6b2e 100%); position: relative; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+.thermo__marker { position: absolute; top: -6px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 2; }
+.thermo__pin { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--white); box-shadow: 0 2px 8px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; }
+.thermo__pin--you { background: var(--danger); }
+.thermo__pin--avg { background: var(--warning); }
+.thermo__pin--best { background: var(--success); }
+.thermo__label { margin-top: 8px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.thermo__score { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 900; line-height: 1; }
+.thermo__tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-500); white-space: nowrap; }
+
+/* Milestone chart animation */
+.milestone-section { padding: 64px 0; background: var(--white); }
+.milestone-section__header { text-align: center; margin-bottom: 32px; }
+.chart-milestone-text { position: absolute; left: 50%; transform: translateX(-50%); bottom: -48px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700; color: var(--gray-800); white-space: nowrap; box-shadow: var(--shadow-md); opacity: 0; transition: opacity 0.6s ease; pointer-events: none; }
+.chart-milestone-text.visible { opacity: 1; }
+.chart-milestone-text::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid var(--gray-200); }
+.chart-milestone-text::after { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid var(--white); }
+
+/* Dimension Grid */
+.dimensions { padding: 48px 0; }
+.dimensions__header { text-align: center; margin-bottom: 32px; }
+.dimensions__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; max-width: 960px; margin: 0 auto; }
+.dim-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; transition: box-shadow 0.2s; }
+.dim-card:hover { box-shadow: var(--shadow-md); }
+.dim-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.dim-card__name { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 15px; color: var(--gray-900); }
+.dim-card__score-num { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 14px; font-variant-numeric: tabular-nums; }
+.dim-card__bar { display: flex; gap: 4px; margin-bottom: 8px; }
+.dim-card__bar-seg { width: 100%; height: 6px; border-radius: 3px; background: var(--gray-100); }
+.dim-card__bar-seg.filled { background: var(--danger); }
+.dim-card__bar-seg.filled.ok { background: var(--warning); }
+.dim-card__bar-seg.filled.good { background: var(--success); }
+.dim-card__desc { font-size: 12px; color: var(--gray-500); line-height: 1.4; margin-bottom: 8px; }
+.dim-card__fix { font-size: 11px; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+/* Comparison — animated inbox demo */
+.comparison { padding: 36px 0 56px; background: var(--gray-50); }
+.comparison__header { text-align: center; margin-bottom: 36px; }
+.comparison__layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; max-width: 1040px; margin: 0 auto; align-items: start; }
+@media (max-width: 900px) { .comparison__layout { grid-template-columns: 1fr; } }
+
+/* Mini inbox mock */
+.demo-inbox { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); overflow: hidden; }
+.demo-inbox__bar { background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+.demo-inbox__bar-avatar { width: 32px; height: 32px; border-radius: 50%; background: #3B82F6; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 11px; font-weight: 800; flex-shrink: 0; }
+.demo-inbox__bar-info { flex: 1; }
+.demo-inbox__bar-name { font-weight: 700; font-size: 13px; color: var(--gray-900); }
+.demo-inbox__bar-vehicle { font-size: 11px; color: var(--gray-400); }
+.demo-inbox__bar-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; background: #DBEAFE; color: #2563EB; }
+
+/* Their bad response — flyout */
+.demo-inbox__their-msg { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.5s ease; max-height: 400px; opacity: 1; }
+.demo-inbox__their-msg.collapsed { max-height: 0; opacity: 0; padding: 0 20px; border-bottom: none; }
+.demo-inbox__msg-bubble { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius) var(--radius) var(--radius) 4px; padding: 12px 16px; max-width: 85%; position: relative; }
+.demo-inbox__msg-label { font-size: 10px; font-weight: 700; color: var(--gray-400); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.demo-inbox__msg-text { font-size: 13px; line-height: 1.7; color: var(--gray-700); white-space: pre-line; }
+.demo-inbox__bad-overlay { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+.demo-inbox__bad-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; background: var(--danger-light); color: var(--danger); }
+
+/* Composer area */
+.demo-inbox__composer { padding: 14px 16px; border-top: 1px solid var(--gray-200); background: var(--white); }
+.demo-inbox__composer-row { display: flex; gap: 6px; margin-bottom: 10px; align-items: center; }
+.demo-inbox__template-btn { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--gray-200); background: var(--white); font-size: 11px; font-weight: 600; color: var(--gray-500); cursor: default; transition: all 0.3s; }
+.demo-inbox__template-btn.selected { border-color: #4F46E5; background: #EEF2FF; color: #4F46E5; }
+.demo-inbox__lang-btn { padding: 5px 10px; border-radius: 6px; border: 1px solid var(--gray-200); background: var(--white); font-size: 11px; font-weight: 600; color: var(--gray-500); }
+.demo-inbox__body { min-height: 60px; padding: 12px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); font-size: 12px; line-height: 1.7; color: var(--gray-700); margin-bottom: 10px; background: var(--gray-50); white-space: pre-line; transition: all 0.4s; overflow-y: auto; max-height: 300px; }
+.demo-inbox__body.empty { color: var(--gray-400); min-height: 40px; }
+.demo-inbox__actions { display: flex; align-items: center; justify-content: space-between; }
+.demo-inbox__ai-btn { display: inline-flex; align-items: center; gap: 4px; padding: 5px 12px; border-radius: 6px; background: linear-gradient(135deg, #8B5CF6, #6366F1); color: var(--white); font-size: 11px; font-weight: 700; border: none; }
+.demo-inbox__send-btn { padding: 7px 18px; border-radius: 6px; background: #4F46E5; color: var(--white); font-size: 12px; font-weight: 700; border: none; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.demo-inbox__send-btn.sent { background: var(--success); }
+
+/* Sent overlay */
+.demo-inbox__sent { position: absolute; inset: 0; background: rgba(255,255,255,0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 5; }
+.demo-inbox__sent.visible { opacity: 1; }
+.demo-inbox__sent-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 22px; animation: sentPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.demo-inbox__sent-label { margin-top: 8px; font-weight: 700; font-size: 14px; color: var(--success); }
+
+/* Annotation sidebar */
+.comparison__annots { display: flex; flex-direction: column; gap: 10px; }
+.annot-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 14px 16px; opacity: 0; transform: translateX(12px); transition: all 0.35s ease; }
+.annot-card.visible { opacity: 1; transform: translateX(0); }
+.annot-card__icon { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--success-light); color: var(--success); font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+.annot-card__title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 12px; color: var(--gray-900); margin-bottom: 2px; }
+.annot-card__desc { font-size: 11px; color: var(--gray-500); line-height: 1.5; }
+
+/* Fake cursor */
+.demo-cursor { position: absolute; width: 20px; height: 20px; pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s, top 0.5s cubic-bezier(0.4,0,0.2,1), left 0.5s cubic-bezier(0.4,0,0.2,1); }
+.demo-cursor.visible { opacity: 1; }
+.demo-cursor svg { width: 20px; height: 20px; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2)); }
+
+/* Annotation emphasis */
+.annot-card.emphasize { border-color: var(--success); box-shadow: 0 0 0 3px rgba(46,133,64,0.12); transform: scale(1.03); }
+.demo-hl { transition: all 0.4s ease; border-radius: 2px; padding: 1px 3px; margin: 0 -3px; }
+.demo-hl.active { background: rgba(213, 64, 43, 0.12); border-bottom: 2px solid var(--danger); }
+
+/* Book a demo section */
+.demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
+.demo-section h2 { margin-bottom: 12px; }
+.demo-section__embed { max-width: 800px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; box-shadow: var(--shadow-lg); }
+
+/* Replay button */
+.demo-inbox__replay { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--gray-200); background: var(--white); font-size: 11px; font-weight: 600; color: var(--gray-500); cursor: pointer; font-family: 'Inter', sans-serif; }
+.demo-inbox__replay:hover { background: var(--gray-50); color: var(--gray-700); }
+
+/* Projected score */
+.projected-score { margin-top: 32px; text-align: center; }
+.projected-score__reasons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.projected-score__tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 100px; background: var(--primary-light); color: var(--primary-dark); font-size: 13px; font-weight: 600; font-family: 'Inter', sans-serif; }
+
+/* Template CTA */
+.template-cta { padding: 48px 0; text-align: center; }
+.template-cta h2 { margin-bottom: 12px; }
+.template-cta p { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+
+/* Onboarding steps — Amper style */
+.onboarding-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+.onboarding-card { background: var(--white); border: 1.5px dashed var(--gray-300); border-radius: var(--radius-lg); padding: 40px 28px 36px; text-align: center; transition: border-color 0.2s, box-shadow 0.2s; }
+.onboarding-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); }
+.onboarding-card__num { width: 44px; height: 44px; border-radius: 50%; background: var(--primary-dark); color: var(--white); font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.onboarding-card__title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.15rem; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
+.onboarding-card__desc { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+@media (max-width: 900px) { .onboarding-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .onboarding-grid { grid-template-columns: 1fr; max-width: 400px; } }
+
+/* ===== HOMEPAGE SECTIONS (from landing page) ===== */
+
+/* Pivot / The Shift */
+.pivot { padding: 72px 0; text-align: center; background: linear-gradient(175deg, var(--white) 0%, var(--primary-light) 100%); }
+.pivot h2 { margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.pivot__scenario { max-width: 560px; margin: 0 auto; font-size: 17px; color: var(--gray-700); line-height: 1.8; }
+.pivot__scenario strong { color: var(--primary-dark); font-weight: 700; }
+
+/* Steps */
+.steps { padding: 64px 0; }
+.steps__header { text-align: center; margin-bottom: 48px; }
+.step { margin-bottom: 48px; }
+.step:last-child { margin-bottom: 0; }
+.step__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.step__inner--reversed { direction: rtl; }
+.step__inner--reversed > * { direction: ltr; }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 900; font-size: 16px; margin-bottom: 12px; }
+.step__content h3 { margin-bottom: 10px; }
+.step__content p { color: var(--gray-600); font-size: 15px; line-height: 1.7; }
+.step__image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); transition: transform 0.3s ease; }
+.step__image:hover { transform: translateY(-4px); }
+.step__image img { width: 100%; display: block; }
+
+/* Guarantee */
+.guarantee { padding: 56px 0; background: var(--gray-900); color: var(--white); text-align: center; }
+.guarantee h2 { color: var(--white); margin-bottom: 16px; }
+.guarantee__body { font-size: 16px; color: var(--gray-400); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
+
+/* Logo bar */
+.logo-bar { padding: 48px 0; background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+.logo-bar__label { text-align: center; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 28px; }
+.logo-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px 28px; max-width: 800px; margin: 0 auto; }
+.logo-bar__item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.65; transition: opacity 0.2s; }
+.logo-bar__item:hover { opacity: 1; }
+.logo-bar__icon { width: 72px; height: 72px; border-radius: 16px; background: var(--white); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); overflow: hidden; }
+.logo-bar__icon img { width: 50px; height: 50px; object-fit: contain; }
+.logo-bar__name { font-size: 12px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+
+/* Pricing */
+.pricing { padding: 56px 0; }
+.pricing h2 { text-align: center; margin-bottom: 6px; }
+.pricing__subtitle { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 36px; }
+.pricing__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
+.pricing__card { border: 2px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px 24px; display: flex; flex-direction: column; background: var(--white); transition: all 0.2s; }
+.pricing__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pricing__card--free { border-color: var(--gray-300); background: var(--gray-50); }
+.pricing__card--popular { border-color: var(--primary); border-width: 3px; box-shadow: 0 4px 24px rgba(0,124,137,0.18), var(--shadow-lg); position: relative; transform: scale(1.05); background: linear-gradient(180deg, var(--primary-light) 0%, var(--white) 40%); }
+.pricing__card--popular:hover { transform: scale(1.05) translateY(-3px); }
+.pricing__popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--white); padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.pricing__card-name { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+.pricing__card-price { display: flex; align-items: baseline; gap: 3px; margin-bottom: 3px; }
+.pricing__card-price-amount { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
+.pricing__card-price-period { font-size: 14px; color: var(--text-muted); }
+.pricing__card-trial { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 20px; }
+.pricing__card-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex-grow: 1; }
+.pricing__card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.4; }
+.pricing__card-features li::before { content: '\2713'; font-weight: 800; color: var(--primary); flex-shrink: 0; }
+.pricing__card .btn { margin-top: auto; align-self: stretch; }
 
 /* ===== INBOX (Aello Copilot style) ===== */
 .aello-blue { --ab: #4F46E5; --ab-dark: #4338CA; --ab-light: #EEF2FF; --ab-lighter: #E0E7FF; }
@@ -215,7 +427,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .followup-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 100px; background: var(--warning-light); color: var(--warning); font-size: 11px; font-weight: 700; }
 .assign-dropdown { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius-sm); border: 2px solid #4F46E5; background: #EEF2FF; font-size: 12px; font-weight: 700; color: #4338CA; }
 
-/* Tooltip -- product tour style */
+/* Tooltip — Zendesk/product tour style */
 .tooltip-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 1900; }
 .tooltip-overlay.visible { display: block; }
 .tooltip { display: none; position: fixed; z-index: 2000; background: var(--white); color: var(--text); border-radius: var(--radius); padding: 24px; max-width: 360px; box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08); }
@@ -256,70 +468,41 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .dashboard__cta h2 { color: var(--white); margin-bottom: 12px; }
 .dashboard__cta p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
 
-/* Stats row */
-.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 800px; margin: 0 auto 48px; }
-.stat-card { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
-.stat-card--danger { border-color: var(--danger); background: var(--danger-light); }
-.stat-card--warning { border-color: var(--warning); background: var(--warning-light); }
-.stat-card__number { font-family: 'Inter', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
-.stat-card__label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-/* Footer */
-.tour-footer { padding: 32px 0; border-top: 1px solid var(--gray-200); text-align: center; }
-.tour-footer__logo { font-family: Georgia, serif; font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
-.tour-footer__email { font-size: 13px; color: var(--text-muted); }
-.tour-footer__email a { color: var(--primary); }
-
 /* Animations */
 .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .fade-up.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Responsive */
 @media (max-width: 900px) {
+  .comparison__grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
   .inbox__nav { width: 56px; overflow: hidden; }
   .inbox__nav-logo, .inbox__nav-dealer, .inbox__nav-user-name { display: none; }
   .inbox__nav-item { justify-content: center; padding: 10px; }
   .inbox__list { width: 280px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .step__inner, .step__inner--reversed { grid-template-columns: 1fr; gap: 28px; direction: ltr; }
+  .pricing__grid { grid-template-columns: 1fr 1fr; max-width: 500px; }
+  .pricing__card--popular { transform: scale(1); }
 }
 @media (max-width: 640px) {
-  .inbox__list { width: 100%; }
+  .dimensions__grid { grid-template-columns: 1fr; }
   .stats-row { grid-template-columns: 1fr 1fr; }
+  .inbox__sidebar { width: 100%; position: absolute; z-index: 10; height: calc(100vh - 56px); }
+  .report-hero { padding: 40px 0 28px; }
+  .grade-circle { width: 100px; height: 100px; }
+  .grade-circle__letter { font-size: 36px; }
+  .grade-section { padding: 28px 20px 24px; }
+  .grade-section__context { gap: 16px; }
+  .pricing__grid { grid-template-columns: 1fr; }
   .section { padding: 44px 0; }
 }
 </style>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
-<header class="header">
-  <div class="container">
-    <div class="header__inner">
-      <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="A&euml;llo Copilot" onerror="this.outerHTML='<span style=&quot;font-family:Georgia,serif;font-size:22px;font-weight:800;color:#007C89;&quot;>copilot <span style=&quot;font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;&quot;>by a&euml;llo</span></span>'"></div>
-      <div class="header__right">
-        <a href="aello-dealer-report.html">&larr; Retour au rapport</a>
-        <a href="#bookDemo" class="btn btn--primary" style="padding:8px 18px;font-size:13px;">R&eacute;server une d&eacute;mo</a>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- HERO INTRO -->
-<section class="tour-hero" id="tourHero">
-  <div class="container">
-    <span class="badge badge--primary" style="margin-bottom:16px;">Visite interactive</span>
-    <h1>D&eacute;couvrez Copilot en action</h1>
-    <p>Explorez les fonctionnalit&eacute;s qui vont transformer votre gestion de leads marketplace.</p>
-    <div class="screen-tabs" id="screenTabs">
-      <div class="screen-tab active" onclick="switchScreen('inbox')">Inbox</div>
-      <div class="screen-tab" onclick="switchScreen('dashboard')">Tableau de bord</div>
-    </div>
-    <button class="btn btn--primary btn--lg" id="startTourBtn" onclick="beginTour()">Commencer la visite &rarr;</button>
-  </div>
-</section>
-
-<!-- ===== SCREEN: INBOX ===== -->
+<!-- Screen: Inbox Product Tour -->
 <div id="screen-inbox" class="screen active aello-blue">
+  <button onclick="window.close();" style="position:fixed;top:16px;left:16px;z-index:2100;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.6);color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:all 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.6)'">&times;</button>
   <div class="inbox">
     <!-- Left nav sidebar -->
     <div class="inbox__nav">
@@ -356,7 +539,7 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
       </div>
       <div class="inbox__nav-dealer">
         <div class="inbox__nav-dealer-label">Concession</div>
-        <div class="inbox__nav-dealer-name">1FOTEAM</div>
+        <div class="inbox__nav-dealer-name" id="inboxDealerNav">1FOTEAM</div>
       </div>
       <div class="inbox__nav-user">
         <div class="inbox__nav-user-avatar">JM</div>
@@ -382,80 +565,13 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
     </div>
   </div>
 </div>
-
-<!-- ===== SCREEN: DASHBOARD ===== -->
-<div id="screen-dashboard" class="screen">
-  <!-- ROI wake-up -->
-  <section style="padding:56px 0 0;text-align:center;">
-    <div class="container">
-      <h2>Chaque semaine d'attente, des leads vous &eacute;chappent.</h2>
-      <p style="color:var(--text-muted);font-size:16px;max-width:580px;margin:12px auto 36px;line-height:1.7;">Vous payez d&eacute;j&agrave; pour vos annonces marketplace. Une r&eacute;ponse lente et g&eacute;n&eacute;rique, c'est de l'argent gaspill&eacute;. Les leads n'attendent pas &mdash; ils vont au concessionnaire qui r&eacute;pond en premier.</p>
-      <div class="stats-row" style="max-width:600px;">
-        <div class="stat-card stat-card--danger">
-          <div class="stat-card__number" style="color:var(--danger);">&euro;709</div>
-          <div class="stat-card__label">Revenus perdus / mois</div>
-        </div>
-        <div class="stat-card stat-card--danger">
-          <div class="stat-card__number" style="color:var(--danger);">18h</div>
-          <div class="stat-card__label">Votre temps de r&eacute;ponse</div>
-        </div>
-        <div class="stat-card stat-card--warning">
-          <div class="stat-card__number" style="color:var(--warning);">60%</div>
-          <div class="stat-card__label">Leads perdus sans prix</div>
-        </div>
-        <div class="stat-card" style="border-color:var(--success);background:var(--success-light);">
-          <div class="stat-card__number" style="color:var(--success);">&lt;2min</div>
-          <div class="stat-card__label">Avec Copilot</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Score improvement chart -->
-  <section class="dashboard">
-    <div class="container">
-      <div class="dashboard__header">
-        <h2>De 27 &agrave; 90+ en 90 jours</h2>
-        <p style="color:var(--text-muted);font-size:15px;margin-top:8px;">Investissez un peu plus dans vos r&eacute;ponses &mdash; et transformez les leads que vous payez d&eacute;j&agrave; en ventes conclues.</p>
-      </div>
-      <div class="dashboard__chart-wrap">
-        <div class="dashboard__chart-title">Score de r&eacute;ponse marketplace projet&eacute;</div>
-        <div id="dashChart"></div>
-      </div>
-      <div class="dashboard__milestones" id="milestones"></div>
-
-      <!-- CTA -->
-      <div class="dashboard__cta">
-        <div style="padding: 48px 24px;">
-          <h2>Arr&ecirc;tez de perdre du revenu. Concluez plus de ventes.</h2>
-          <p>Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am&eacute;liorent pas, vous ne payez rien.</p>
-          <a href="#bookDemo" class="btn btn--white btn--lg">R&eacute;server une d&eacute;mo &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
-<!-- BOOK A DEMO -->
-<section class="demo-section" id="bookDemo" style="padding:64px 0;background:#F8FAFB;text-align:center;">
-  <div style="max-width:800px;margin:0 auto;padding:0 24px;">
-    <h2 style="font-family:Georgia,serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:12px;">R&eacute;server une d&eacute;mo</h2>
-    <p style="color:#6b7280;font-size:15px;margin-bottom:32px;">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
-    <div style="max-width:800px;margin:0 auto;background:white;border-radius:16px;border:1px solid #e5e7eb;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,0.06),0 4px 8px rgba(0,0,0,0.04),0 12px 24px rgba(0,0,0,0.03);">
-      <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
-    </div>
-  </div>
-</section>
+<!-- Empty placeholder screens so showScreen doesn't break -->
+<div id="screen-report" class="screen" style="display:none"></div>
+<div id="screen-dashboard" class="screen" style="display:none"></div>
 
-<!-- FOOTER -->
-<footer class="tour-footer">
-  <div class="container">
-    <div class="tour-footer__logo">copilot <span style="font-weight:400;font-size:12px;color:#9CA3AF;margin-left:4px;">by a&euml;llo</span></div>
-    <div class="tour-footer__email"><a href="mailto:charles@aello-group.co">charles@aello-group.co</a></div>
-  </div>
-</footer>
-
-<!-- TOOLTIP -->
+<!-- ==================== TOOLTIP ==================== -->
 <div id="tooltipOverlay" class="tooltip-overlay"></div>
 <div id="tooltip" class="tooltip">
   <div class="tooltip__title" id="tooltipTitle"></div>
@@ -463,15 +579,287 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
   <div class="tooltip__footer">
     <span class="tooltip__step" id="tooltipStep"></span>
     <div class="tooltip__buttons">
-      <button class="tooltip__back" id="tooltipBack" onclick="goBackWalkthrough()" style="display:none;">Retour</button>
-      <button class="tooltip__next" id="tooltipNext" onclick="advanceWalkthrough()">Suivant</button>
+      <button class="tooltip__back" id="tooltipBack" onclick="goBackWalkthrough()" style="display:none;" data-t="tooltipBack">Retour</button>
+      <button class="tooltip__next" id="tooltipNext" onclick="advanceWalkthrough()" data-t="tooltipNext">Suivant</button>
     </div>
   </div>
-</div>
 
 <script>
+// ===== LANGUAGE =====
+let currentLang = 'fr';
+
+// Auto-detect language from domain TLD or browser preference
+(function detectLang() {
+  const host = window.location.hostname;
+  const tld = host.split('.').pop();
+  // Domain-based detection
+  if (tld === 'nl' || host.includes('.nl')) { currentLang = 'nl'; return; }
+  if (tld === 'fr' || host.includes('.fr')) { currentLang = 'fr'; return; }
+  if (tld === 'be') {
+    // Belgium: check browser lang for nl vs fr
+    const bl = (navigator.language || '').toLowerCase();
+    currentLang = bl.startsWith('nl') ? 'nl' : 'fr';
+    return;
+  }
+  // Browser preference fallback
+  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  if (browserLang.startsWith('nl')) { currentLang = 'nl'; return; }
+  if (browserLang.startsWith('fr')) { currentLang = 'fr'; return; }
+  if (browserLang.startsWith('en')) { currentLang = 'en'; return; }
+  // Also check dealerData if available — if dealer domain ends in .nl, use Dutch
+  if (typeof dealerData !== 'undefined' && dealerData.dealer_website) {
+    const dtld = dealerData.dealer_website.split('.').pop();
+    if (dtld === 'nl') { currentLang = 'nl'; return; }
+    if (dtld === 'fr') { currentLang = 'fr'; return; }
+  }
+})();
+
+const T = {
+  headerDealer: { fr: 'Audit de R\u00e9ponse Marketplace \u2014 1FOTEAM', en: '1FOTEAM Marketplace Inquiry Response Audit', nl: 'Marketplace Reactie Audit \u2014 1FOTEAM' },
+  heroTitle: { fr: 'Audit de R\u00e9ponse Marketplace \u2014 <span id="heroDealer">1FOTEAM</span>', en: 'Marketplace Inquiry Response Audit \u2014 <span id="heroDealer">1FOTEAM</span>', nl: 'Marketplace Reactie Audit \u2014 <span id="heroDealer">1FOTEAM</span>' },
+  heroSubtitle: { fr: 'Nous avons test\u00e9 votre concession en mystery shopping, \u00e9valu\u00e9 votre r\u00e9ponse aux demandes marketplace, et compar\u00e9 vos performances aux meilleurs. Voici les r\u00e9sultats.', en: "We mystery-shopped your dealership, scored your marketplace inquiry response, and benchmarked you against top performers. Here\u2019s what we found.", nl: 'We hebben uw dealership mystery-geshopt, uw marketplace-reactie beoordeeld en vergeleken met de beste presteerders. Dit hebben we gevonden.' },
+  yourCurrentScore: { fr: 'Votre Score Actuel', en: 'Your Current Score', nl: 'Uw Huidige Score' },
+  thermoLabel: { fr: 'Votre Score Actuel de R\u00e9ponse Marketplace', en: 'Your Current Marketplace Response Score', nl: 'Uw Huidige Marketplace Reactiescore' },
+  thermoYou: { fr: 'Vous', en: 'You', nl: 'U' },
+  thermoAvg: { fr: 'Moy. concessionnaire', en: 'Avg dealer', nl: 'Gem. dealer' },
+  thermoBest: { fr: 'Meilleur du march\u00e9', en: 'Best in class', nl: 'Beste in klasse' },
+  thermoMessageFull: { fr: 'Avec Aello, nous avons un plan pour vous amener au <span style="color:var(--success);">meilleur niveau en 90 jours</span>.', en: 'With Aello, we have a plan to get you to <span style="color:var(--success);">best in class in 90 days</span>.', nl: 'Met Aello hebben we een plan om u naar het <span style="color:var(--success);">beste niveau in 90 dagen te brengen</span>.' },
+  comparisonH2: { fr: 'Un clic. R\u00e9ponse personnalis\u00e9e avec Aello.', en: 'One click. Personalized response with Aello.', nl: 'E\u00e9n klik. Gepersonaliseerd antwoord met Aello.' },
+  comparisonSub: { fr: 'Regardez comment Copilot transforme votre r\u00e9ponse en une r\u00e9ponse gagnante \u2014 automatiquement.', en: 'Watch how Copilot turns your reply into a deal-winning response \u2014 automatically.', nl: 'Bekijk hoe Copilot uw antwoord omzet in een winnend antwoord \u2014 automatisch.' },
+  badResponseLabel: { fr: 'VOTRE R\u00c9PONSE ACTUELLE (MYSTERY SHOP)', en: 'YOUR CURRENT MYSTERY-SHOPPED RESPONSE', nl: 'UW HUIDIGE REACTIE (MYSTERY SHOP)' },
+  aelloLabel: { fr: 'VOTRE R\u00c9PONSE AVEC A\u00cbLLO', en: 'YOUR RESPONSE WITH A\u00cbLLO', nl: 'UW REACTIE MET A\u00cbLLO' },
+  selectTemplate: { fr: '\u25be S\u00e9lectionner un mod\u00e8le...', en: '\u25be Select a template...', nl: '\u25be Selecteer een template...' },
+  writeResponse: { fr: 'R\u00e9digez votre r\u00e9ponse...', en: 'Write your response...', nl: 'Schrijf uw antwoord...' },
+  sendBtn: { fr: 'Envoyer', en: 'Send', nl: 'Verzenden' },
+  sentLabel: { fr: 'R\u00e9ponse envoy\u00e9e !', en: 'Response sent!', nl: 'Antwoord verzonden!' },
+  replayBtn: { fr: '\u21ba Revoir', en: '\u21ba Replay', nl: '\u21ba Opnieuw' },
+  tourCta: { fr: 'Voir la visite compl\u00e8te Aello \u2192', en: 'See full Aello tour \u2192', nl: 'Bekijk de volledige Aello tour \u2192' },
+  bookDemo: { fr: 'R\u00e9server une d\u00e9mo', en: 'Book a demo', nl: 'Demo reserveren' },
+  dimensionsH2: { fr: 'Vos scores sur 6 dimensions', en: 'Your scores across 6 dimensions', nl: 'Uw scores op 6 dimensies' },
+  copilotFix: { fr: 'Copilot corrige \u00e7a :', en: 'Copilot fixes this:', nl: 'Copilot lost dit op:' },
+  milestoneH2: { fr: "Votre parcours vers l'excellence \u2014 90 jours", en: 'Your path to best in class \u2014 90 days', nl: 'Uw pad naar de top \u2014 90 dagen' },
+  milestoneSub: { fr: 'Voici exactement ce qui se passe quand vous passez \u00e0 Aello.', en: "Here\u2019s exactly what happens when you switch to Aello.", nl: 'Dit is precies wat er gebeurt als u overstapt naar Aello.' },
+  startTrial: { fr: "D\u00e9marrer l'essai gratuit \u2192", en: 'Start free trial \u2192', nl: 'Start gratis proefperiode \u2192' },
+  logoBarLabel: { fr: 'Marketplaces support\u00e9es en France et en Europe', en: 'Supported marketplaces across France & Europe', nl: 'Ondersteunde marketplaces in Frankrijk en Europa' },
+  pricingH2: { fr: 'Commencez gratuitement. Passez \u00e0 la vitesse sup\u00e9rieure quand vous \u00eates pr\u00eat.', en: "Start free. Upgrade when you\u2019re ready.", nl: 'Begin gratis. Upgrade wanneer u klaar bent.' },
+  pricingSub: { fr: "L'audit est gratuit \u2014 pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.", en: "The audit is free \u2014 forever. Copilot is for dealers who want to fix what\u2019s broken.", nl: 'De audit is gratis \u2014 voor altijd. Copilot is voor dealers die willen verbeteren.' },
+  free: { fr: 'Gratuit', en: 'Free', nl: 'Gratis' },
+  alwaysFree: { fr: 'Toujours gratuit', en: 'Always free', nl: 'Altijd gratis' },
+  mostPopular: { fr: 'Le plus populaire', en: 'Most popular', nl: 'Meest populair' },
+  perMonth: { fr: '/mois', en: '/mo', nl: '/maand' },
+  monthFreeGuarantee: { fr: '1 mois gratuit \u00b7 Garantie satisfait ou rembours\u00e9', en: '1 month free \u00b7 Money-back guarantee', nl: '1 maand gratis \u00b7 Niet-goed-geld-terug garantie' },
+  auditFeatures: { fr: ['Audit de r\u00e9ponse marketplace','Score de pr\u00e9paration leads','Mystery shop mensuel','Suivi du score dans le temps'], en: ['Marketplace response audit','Lead Readiness Score','Monthly mystery shop','Score tracking over time'], nl: ['Marketplace reactie audit','Lead Readiness Score','Maandelijkse mystery shop','Score tracking in de tijd'] },
+  includedInAudit: { fr: 'Inclus dans votre audit', en: 'Included in your audit', nl: 'Inbegrepen in uw audit' },
+  proFeatures: { fr: ['Tout dans Audit',"Jusqu'\u00e0 3 marketplaces",'Templates de r\u00e9ponse intelligents','WhatsApp, email et demandes web','Scoring et d\u00e9duplication','Suivi mensuel des r\u00e9ponses'], en: ['Everything in Audit','Up to 3 marketplaces','Smart response templates','WhatsApp, email & website inquiries','Lead scoring & deduplication','Monthly response monitoring'], nl: ['Alles in Audit','Tot 3 marketplaces','Slimme antwoordtemplates','WhatsApp, email & website aanvragen','Lead scoring & deduplicatie','Maandelijkse reactie monitoring'] },
+  startFreeTrial: { fr: "D\u00e9marrer l'essai gratuit", en: 'Start free trial', nl: 'Start gratis proefperiode' },
+  businessFeatures: { fr: ['Tout dans Pro',"Attribution automatique d'\u00e9quipe",'Analytique avanc\u00e9e','Int\u00e9grations API et DMS','Gestionnaire de compte d\u00e9di\u00e9'], en: ['Everything in Pro','Auto team assignment','Advanced analytics','API & DMS integrations','Dedicated account manager'], nl: ['Alles in Pro','Automatische teamtoewijzing','Geavanceerde analytics','API & DMS integraties','Toegewijd accountmanager'] },
+  contactSales: { fr: 'Contacter les ventes', en: 'Contact sales', nl: 'Contact verkoop' },
+  enterprise: { fr: 'Entreprise', en: 'Enterprise', nl: 'Enterprise' },
+  letsChat: { fr: 'Parlons-en', en: "Let\u2019s talk", nl: 'Laten we praten' },
+  customPricing: { fr: 'Prix sur mesure', en: 'Custom pricing', nl: 'Prijs op maat' },
+  enterpriseFeatures: { fr: ['Tout dans Business','5+ marketplaces','Support multi-sites','Int\u00e9grations personnalis\u00e9es','Support prioritaire et SLA'], en: ['Everything in Business','5+ marketplaces','Multi-location support','Custom integrations','Priority support & SLA'], nl: ['Alles in Business','5+ marketplaces','Multi-locatie ondersteuning','Aangepaste integraties','Prioritaire ondersteuning & SLA'] },
+  contactUs: { fr: 'Nous contacter', en: 'Get in touch', nl: 'Neem contact op' },
+  onboardingH2: { fr: "Quatre \u00e9tapes. C'est tout.", en: "Four steps. That\u2019s it.", nl: 'Vier stappen. Dat is alles.' },
+  onboardingSub: { fr: 'La plupart des concessionnaires sont op\u00e9rationnels en moins de 30 minutes.', en: 'Most dealers are live in under 30 minutes.', nl: 'De meeste dealers zijn live binnen 30 minuten.' },
+  step1Title: { fr: 'Identifiez les failles', en: "See what\u2019s broken", nl: 'Ontdek de zwakke punten' },
+  step1Desc: { fr: 'Votre audit gratuit r\u00e9v\u00e8le chaque faille \u2014 rapidit\u00e9, qualit\u00e9, suivi \u2014 sur toutes les plateformes.', en: 'Your free audit reveals every gap \u2014 speed, quality, follow-up \u2014 across every platform.', nl: 'Uw gratis audit onthult elke zwakte \u2014 snelheid, kwaliteit, opvolging \u2014 op alle platformen.' },
+  step2Title: { fr: 'Connectez vos marketplaces', en: 'Connect your marketplaces', nl: 'Verbind uw marketplaces' },
+  step2Desc: { fr: 'Reliez Europe-Camions, LeBonCoin, Autoline \u2014 tous vos leads arrivent dans une seule inbox.', en: 'Link Europe-Camions, LeBonCoin, Autoline \u2014 all your leads flow into one inbox.', nl: 'Koppel Europe-Camions, LeBonCoin, Autoline \u2014 al uw leads komen in \u00e9\u00e9n inbox.' },
+  step3Title: { fr: 'R\u00e9pondez en quelques secondes', en: 'Start responding in seconds', nl: 'Begin in seconden te reageren' },
+  step3Desc: { fr: 'Les templates intelligents remplissent automatiquement le nom, le v\u00e9hicule et le prix. Deux taps \u2014 r\u00e9ponse envoy\u00e9e.', en: 'Smart templates auto-fill buyer name, vehicle, and price. Two taps \u2014 personalized response sent.', nl: 'Slimme templates vullen automatisch naam, voertuig en prijs in. Twee taps \u2014 gepersonaliseerd antwoord verzonden.' },
+  guaranteeTitle: { fr: 'Garantie satisfait ou rembours\u00e9', en: 'Money-back guarantee', nl: 'Niet-goed-geld-terug garantie' },
+  guaranteeDesc: { fr: "Si votre score de r\u00e9ponse marketplace ne s'am\u00e9liore pas en 90 jours, nous vous remboursons int\u00e9gralement. <strong>Sans condition.</strong>", en: "If your marketplace response score doesn\u2019t improve in 90 days, we refund every penny. <strong>No questions asked.</strong>", nl: 'Als uw marketplace reactiescore niet verbetert in 90 dagen, krijgt u uw geld volledig terug. <strong>Zonder voorwaarden.</strong>' },
+  demoH2: { fr: 'R\u00e9server une d\u00e9mo', en: 'Book a demo', nl: 'Demo reserveren' },
+  demoSub: { fr: 'Choisissez un cr\u00e9neau avec Alexandre pour une pr\u00e9sentation personnalis\u00e9e.', en: 'Choose a time with Alexandre for a personalized presentation.', nl: 'Kies een tijdslot met Alexandre voor een persoonlijke presentatie.' },
+  dashDealer: { fr: 'Tableau de bord \u2014 1FOTEAM', en: 'Dashboard \u2014 1FOTEAM', nl: 'Dashboard \u2014 1FOTEAM' },
+  dashH2: { fr: "Chaque semaine d'attente, des leads vous \u00e9chappent.", en: 'Every week you wait, leads slip away.', nl: 'Elke week dat u wacht, glippen leads weg.' },
+  dashSub: { fr: "Vous payez d\u00e9j\u00e0 pour vos annonces marketplace. Une r\u00e9ponse lente et g\u00e9n\u00e9rique, c'est de l'argent gaspill\u00e9. Les leads n'attendent pas \u2014 ils vont au concessionnaire qui r\u00e9pond en premier.", en: "You\u2019re already paying for marketplace listings. A slow, generic response means that money is wasted. The leads don\u2019t wait \u2014 they go to the dealer who replies first.", nl: 'U betaalt al voor marketplace-advertenties. Een trage, generieke reactie betekent weggegooid geld. De leads wachten niet \u2014 ze gaan naar de dealer die het eerst reageert.' },
+  dashStat0: { fr: 'Revenus perdus / mois', en: 'Monthly revenue leak', nl: 'Maandelijks omzetverlies' },
+  dashStat1: { fr: 'Votre temps de r\u00e9ponse', en: 'Your response time', nl: 'Uw reactietijd' },
+  dashStat2: { fr: 'Leads perdus sans prix', en: 'Leads lost without price', nl: 'Leads verloren zonder prijs' },
+  dashStat3: { fr: 'Avec Copilot', en: 'With Copilot', nl: 'Met Copilot' },
+  dashChartH2: { fr: 'De {score} \u00e0 90+ en 90 jours', en: 'From {score} to 90+ in 90 days', nl: 'Van {score} naar 90+ in 90 dagen' },
+  dashChartSub: { fr: 'Investissez un peu plus dans vos r\u00e9ponses \u2014 et transformez les leads que vous payez d\u00e9j\u00e0 en ventes conclues.', en: "Invest a little more in how you respond \u2014 and turn the leads you\u2019re already paying for into closed deals.", nl: 'Investeer iets meer in hoe u reageert \u2014 en zet de leads waar u al voor betaalt om in gesloten deals.' },
+  dashChartTitle: { fr: 'Score de r\u00e9ponse marketplace projet\u00e9', en: 'Projected Marketplace Response Score', nl: 'Verwachte Marketplace Reactiescore' },
+  dashCtaH2: { fr: 'Arr\u00eatez de perdre du revenu. Concluez plus de ventes.', en: 'Stop leaking revenue. Start closing more deals.', nl: 'Stop met omzetverlies. Sluit meer deals.' },
+  dashCtaSub: { fr: "Essayez Copilot gratuitement pendant 30 jours. Si vos scores ne s'am\u00e9liorent pas, vous ne payez rien.", en: "Try Copilot free for 30 days. If your scores don\u2019t improve, you pay nothing.", nl: 'Probeer Copilot 30 dagen gratis. Als uw scores niet verbeteren, betaalt u niets.' },
+  dedupBadge: { fr: '\ud83d\udd17 Max Schreiber \u2014 M\u00eame acheteur, canal diff\u00e9rent', en: '\ud83d\udd17 Max Schreiber \u2014 Same buyer, different channel', nl: '\ud83d\udd17 Max Schreiber \u2014 Zelfde koper, ander kanaal' },
+  dedupMerged: { fr: '\u2714 Fusionn\u00e9 \u2014 2 demandes, 1 prospect', en: '\u2714 Merged \u2014 2 inquiries, 1 prospect', nl: '\u2714 Samengevoegd \u2014 2 aanvragen, 1 prospect' },
+  tooltipBack: { fr: 'Retour', en: 'Back', nl: 'Terug' },
+  tooltipNext: { fr: 'Suivant', en: 'Next', nl: 'Volgende' },
+  tooltipStepOf: { fr: 'sur', en: 'of', nl: 'van' },
+};
+
+function t(key) { return T[key]?.[currentLang] || T[key]?.fr || key; }
+
+// ===== TRANSLATED DATA ARRAYS =====
+const dimensionsT = {
+  fr: [
+    { key: "response_time", name: "Temps de r\u00e9ponse", score: 2, desc: "18h 48min pour r\u00e9pondre. Les meilleurs concessionnaires r\u00e9pondent en moins de 30 minutes.", fix: "Notifications push en temps r\u00e9el" },
+    { key: "personalization", name: "Personnalisation", score: 1, desc: "R\u00e9ponse g\u00e9n\u00e9rique. Aucun nom d'acheteur, aucune r\u00e9f\u00e9rence v\u00e9hicule, aucun besoin reconnu.", fix: "Templates intelligents avec remplissage auto" },
+    { key: "pricing", name: "Transparence tarifaire", score: 1, desc: "Aucun prix communiqu\u00e9. Les acheteurs qui demandent un prix veulent un prix \u2014 esquiver fait perdre 60%+ des leads.", fix: "Injection automatique des prix depuis l'inventaire" },
+    { key: "cta_clarity", name: "Clart\u00e9 de l'appel \u00e0 l'action", score: 1, desc: "Aucune prochaine \u00e9tape claire. \u00ab Contactez-nous \u00bb est une impasse, pas un appel \u00e0 l'action.", fix: "Blocs CTA int\u00e9gr\u00e9s dans les templates" },
+    { key: "qualifying", name: "Questions de qualification", score: 1, desc: "Aucune question pos\u00e9e. Une r\u00e9ponse sans question est une conversation morte.", fix: "Suggestions de questions intelligentes" },
+    { key: "follow_up", name: "Suivi", score: 2, desc: "Aucun suivi apr\u00e8s 7 jours de silence. Le lead est perdu pour toujours.", fix: "S\u00e9quences de relance automatis\u00e9es" },
+  ],
+  en: [
+    { key: "response_time", name: "Response Time", score: 2, desc: "18h 48min to respond. Top dealers reply in under 30 minutes.", fix: "Real-time push notifications" },
+    { key: "personalization", name: "Personalization", score: 1, desc: "Generic response. No buyer name, no vehicle reference, no stated need acknowledged.", fix: "Smart templates with auto-fill" },
+    { key: "pricing", name: "Pricing Transparency", score: 1, desc: "No price given. Buyers who ask for a price want a price \u2014 deflecting loses 60%+ of leads.", fix: "Price auto-injection from inventory" },
+    { key: "cta_clarity", name: "CTA Clarity", score: 1, desc: "No clear next step. 'Contact us' is a dead end, not a call to action.", fix: "Built-in CTA blocks in templates" },
+    { key: "qualifying", name: "Qualifying Questions", score: 1, desc: "No questions asked. A response without a question is a dead conversation.", fix: "Smart question prompts" },
+    { key: "follow_up", name: "Follow-Up", score: 2, desc: "No follow-up after 7 days of silence. The lead is gone forever.", fix: "Automated follow-up sequences" },
+  ],
+  nl: [
+    { key: "response_time", name: "Reactietijd", score: 2, desc: "18u 48min om te reageren. Topdealers reageren binnen 30 minuten.", fix: "Realtime pushmeldingen" },
+    { key: "personalization", name: "Personalisatie", score: 1, desc: "Generiek antwoord. Geen kopersnaam, geen voertuigreferentie, geen behoefteherkenning.", fix: "Slimme templates met automatisch invullen" },
+    { key: "pricing", name: "Prijstransparantie", score: 1, desc: "Geen prijs gegeven. Kopers die om een prijs vragen willen een prijs \u2014 ontwijken verliest 60%+ van de leads.", fix: "Automatische prijsinjectie uit inventaris" },
+    { key: "cta_clarity", name: "CTA Duidelijkheid", score: 1, desc: "Geen duidelijke volgende stap. 'Neem contact op' is een doodlopende weg.", fix: "Ingebouwde CTA-blokken in templates" },
+    { key: "qualifying", name: "Kwalificatievragen", score: 1, desc: "Geen vragen gesteld. Een antwoord zonder vraag is een dood gesprek.", fix: "Slimme vraagprompts" },
+    { key: "follow_up", name: "Opvolging", score: 2, desc: "Geen opvolging na 7 dagen stilte. De lead is voorgoed verloren.", fix: "Geautomatiseerde opvolgingssequenties" },
+  ],
+};
+function getDimensions() { return dimensionsT[currentLang] || dimensionsT.fr; }
+
+const badAnnotationsT = {
+  fr: ["Aucun nom d'acheteur","Aucun v\u00e9hicule mentionn\u00e9","Aucun prix indiqu\u00e9","Aucune prochaine \u00e9tape","Aucune question de qualification","Aucun contact direct"],
+  en: ["No buyer name used","No vehicle referenced","No price given","No next step or CTA","No qualifying questions","No direct contact info"],
+  nl: ["Geen kopersnaam","Geen voertuig vermeld","Geen prijs opgegeven","Geen volgende stap","Geen kwalificatievragen","Geen direct contact"],
+};
+function getBadAnnotations() { return badAnnotationsT[currentLang] || badAnnotationsT.fr; }
+
+const annotDataT = {
+  fr: [
+    { icon: "\u2714", title: "Utilise le nom de l'acheteur", desc: "Une salutation personnalis\u00e9e cr\u00e9e imm\u00e9diatement un lien." },
+    { icon: "\u2714", title: "Prix exact + caract\u00e9ristiques", desc: "68 500 \u20ac HT avec km, ann\u00e9e et historique d'entretien." },
+    { icon: "\u2714", title: "Questions de qualification", desc: "Renouvellement de flotte ? Financement ? La conversation reste vivante." },
+    { icon: "\u2714", title: "WhatsApp propos\u00e9", desc: "Contacte l'acheteur sur son canal pr\u00e9f\u00e9r\u00e9." },
+    { icon: "\u2714", title: "Signature compl\u00e8te", desc: "T\u00e9l\u00e9phone, email, site web \u2014 facile de vous recontacter." },
+    { icon: "\u2714", title: "Prochaine \u00e9tape claire", desc: "Propose d'envoyer les photos HD + dossier. Aucune impasse." },
+  ],
+  en: [
+    { icon: "\u2714", title: "Uses buyer\u2019s name", desc: "Personalized greeting builds rapport instantly." },
+    { icon: "\u2714", title: "Exact price + specs", desc: "\u20ac68,500 excl. VAT with km, year, and service history." },
+    { icon: "\u2714", title: "Qualifying questions", desc: "Fleet renewal? Financing? Keeps the conversation alive." },
+    { icon: "\u2714", title: "WhatsApp offered", desc: "Meets the buyer on their preferred channel." },
+    { icon: "\u2714", title: "Full signature", desc: "Phone, email, website \u2014 easy to reach back." },
+    { icon: "\u2714", title: "Clear next step", desc: "Offers to send HD photos + dossier. No dead ends." },
+  ],
+  nl: [
+    { icon: "\u2714", title: "Gebruikt naam koper", desc: "Persoonlijke begroeting bouwt direct vertrouwen op." },
+    { icon: "\u2714", title: "Exacte prijs + specs", desc: "\u20ac68.500 excl. BTW met km, jaar en servicehistorie." },
+    { icon: "\u2714", title: "Kwalificatievragen", desc: "Vlootvernieuwing? Financiering? Houdt het gesprek levend." },
+    { icon: "\u2714", title: "WhatsApp aangeboden", desc: "Ontmoet de koper op het voorkeurskanaal." },
+    { icon: "\u2714", title: "Volledige handtekening", desc: "Telefoon, email, website \u2014 makkelijk terug te bereiken." },
+    { icon: "\u2714", title: "Duidelijke volgende stap", desc: "Biedt aan HD-foto\u2019s + dossier te sturen. Geen doodlopende wegen." },
+  ],
+};
+function getAnnotData() { return annotDataT[currentLang] || annotDataT.fr; }
+
+const improvementDataT = {
+  fr: [
+    { month: "Now", score: null, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
+  ],
+  en: [
+    { month: "Now", score: null, color: "var(--danger)", label: "Your current score \u2014 slow response time, no structured follow-up" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connected \u2014 auto-responses activated on all platforms" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Faster than 70% of dealers \u2014 personalized templates in place" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Fully automated pipeline \u2014 scoring, dedup, active follow-ups" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 you respond in under 2 minutes, every lead is tracked" },
+  ],
+  nl: [
+    { month: "Now", score: null, color: "var(--danger)", label: "Uw huidige score \u2014 trage reactietijd, geen gestructureerde opvolging" },
+    { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot verbonden \u2014 automatische reacties geactiveerd op alle platformen" },
+    { month: "Week 1", score: 60, color: "var(--warning)", label: "Sneller dan 70% van de dealers \u2014 gepersonaliseerde templates actief" },
+    { month: "Month 1", score: 78, color: "#3B82F6", label: "Volledig geautomatiseerde pipeline \u2014 scoring, dedup, actieve opvolging" },
+    { month: "Month 3", score: 93, color: "var(--success)", label: "Beste in klasse \u2014 u reageert binnen 2 minuten, elke lead wordt gevolgd" },
+  ],
+};
+function getImprovementData() {
+  const data = JSON.parse(JSON.stringify(improvementDataT[currentLang] || improvementDataT.fr));
+  data[0].score = dealer.overall_score;
+  return data;
+}
+
+const timelineStepsT = {
+  fr: [
+    { time: "Jour 1", icon: "\ud83d\udd14", title: "Connexion et mise en route", desc: "Reliez vos marketplaces, activez les templates. Commencez \u00e0 r\u00e9pondre en quelques minutes.", score: 45 },
+    { time: "Semaine 1", icon: "\u26a1", title: "Plus rapide que vos concurrents", desc: "Vous r\u00e9pondez maintenant en moins de 30 min \u2014 avant 4 concurrents sur 5.", score: 60 },
+    { time: "Mois 1", icon: "\ud83d\udce8", title: "Enti\u00e8rement automatis\u00e9", desc: "Relances, d\u00e9duplication, scoring \u2014 tout fonctionne en pilote automatique.", score: 78 },
+    { time: "Mois 3", icon: "\ud83c\udfc6", title: "Meilleur du march\u00e9", desc: "Score 90+. Vous \u00eates dans le top 5% des concessionnaires. Garanti.", score: 93 },
+  ],
+  en: [
+    { time: "Day 1", icon: "\ud83d\udd14", title: "Connect & go live", desc: "Link your marketplaces, activate templates. Start responding in minutes.", score: 45 },
+    { time: "Week 1", icon: "\u26a1", title: "Faster than your competitors", desc: "You\u2019re now replying in under 30 min \u2014 before 4 out of 5 competitors.", score: 60 },
+    { time: "Month 1", icon: "\ud83d\udce8", title: "Fully automated", desc: "Follow-ups, dedup, lead scoring \u2014 all running on autopilot.", score: 78 },
+    { time: "Month 3", icon: "\ud83c\udfc6", title: "Best in class", desc: "Score 90+. You\u2019re in the top 5% of dealers. Guaranteed.", score: 93 },
+  ],
+  nl: [
+    { time: "Dag 1", icon: "\ud83d\udd14", title: "Verbinden & live gaan", desc: "Koppel uw marketplaces, activeer templates. Begin binnen minuten te reageren.", score: 45 },
+    { time: "Week 1", icon: "\u26a1", title: "Sneller dan uw concurrenten", desc: "U reageert nu binnen 30 min \u2014 v\u00f3\u00f3r 4 van de 5 concurrenten.", score: 60 },
+    { time: "Maand 1", icon: "\ud83d\udce8", title: "Volledig geautomatiseerd", desc: "Opvolging, dedup, lead scoring \u2014 alles draait op de automatische piloot.", score: 78 },
+    { time: "Maand 3", icon: "\ud83c\udfc6", title: "Beste in klasse", desc: "Score 90+. U bent in de top 5% van dealers. Gegarandeerd.", score: 93 },
+  ],
+};
+function getTimelineSteps() { return timelineStepsT[currentLang] || timelineStepsT.fr; }
+
+const walkthroughStepsT = {
+  fr: [
+    { target: ".inbox__nav-items", title: "Tous vos canaux au m\u00eame endroit", text: "Vos leads marketplace, emails, messages WhatsApp et demandes web \u2014 tout arrive ici automatiquement. Plus besoin de jongler entre les onglets.", pos: "right" },
+    { target: ".inbox__list", title: "Votre liste de prospects", text: "5 leads de 4 marketplaces diff\u00e9rentes. Chaque entr\u00e9e affiche le v\u00e9hicule, le statut et la source \u2014 pour savoir quoi faire en un coup d'\u0153il.", pos: "right" },
+    { target: "[data-lead='1']", title: "Ouvrir un prospect", text: "C'est le lead de votre mystery shop. Cliquez pour voir la conversation compl\u00e8te et les d\u00e9tails du v\u00e9hicule.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "R\u00e9pondre avec un template", text: "S\u00e9lectionnez un template pr\u00e9-r\u00e9dig\u00e9, choisissez la langue, et appuyez sur Envoyer. Le nom de l'acheteur, le v\u00e9hicule et le prix sont remplis automatiquement.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "D\u00e9duplication automatique", text: "Regardez \u2014 Max Schreiber a envoy\u00e9 la m\u00eame demande pour le DAF XF 480 via Europe-Camions et TruckScout24. Aello d\u00e9tecte le doublon automatiquement et fusionne les conversations. Plus de doublons, plus de temps perdu.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Changez de canal instantan\u00e9ment", text: "Cet acheteur pr\u00e9f\u00e8re WhatsApp. Changez de canal sans quitter votre inbox \u2014 la r\u00e9ponse arrive directement sur son t\u00e9l\u00e9phone.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Relances automatis\u00e9es", text: "Pas de r\u00e9ponse apr\u00e8s 2 jours ? Copilot envoie une relance automatique. Les grands groupes ont ces outils depuis des ann\u00e9es \u2014 maintenant vous aussi.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Routez les leads vers la bonne personne", text: "Attribuez les leads \u00e0 des commerciaux sp\u00e9cifiques. Plus aucun lead ne passe entre les mailles du filet.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+  en: [
+    { target: ".inbox__nav-items", title: "All channels in one place", text: "Your marketplace leads, emails, WhatsApp messages and website inquiries \u2014 all arrive here automatically. No more switching between tabs.", pos: "right" },
+    { target: ".inbox__list", title: "Your prospect list", text: "5 leads from 4 different marketplaces. Each shows the vehicle, status, and source \u2014 so you know what to do at a glance.", pos: "right" },
+    { target: "[data-lead='1']", title: "Open a lead", text: "This is the lead from your mystery shop. Click to see the full conversation and vehicle details.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "Reply with a template", text: "Select a pre-written template, pick the language, and hit Send. The buyer\u2019s name, vehicle, and price are auto-filled.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "Automatic deduplication", text: "Watch \u2014 Max Schreiber sent the same inquiry about the DAF XF 480 via both Europe-Camions and TruckScout24. Aello detects the duplicate and merges them. No double replies, no wasted time.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Switch channels instantly", text: "This buyer prefers WhatsApp. Switch channels without leaving your inbox \u2014 reply goes straight to their phone.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Automated follow-ups", text: "No reply after 2 days? Copilot sends an automated follow-up. Enterprise dealers have had these tools for years \u2014 now you do too.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Route leads to the right person", text: "Assign leads to specific salespeople. Never let one fall through the cracks.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+  nl: [
+    { target: ".inbox__nav-items", title: "Alle kanalen op \u00e9\u00e9n plek", text: "Uw marketplace-leads, emails, WhatsApp-berichten en website-aanvragen \u2014 alles komt hier automatisch binnen. Geen tabbladen meer wisselen.", pos: "right" },
+    { target: ".inbox__list", title: "Uw prospectenlijst", text: "5 leads van 4 verschillende marketplaces. Elk toont het voertuig, status en bron \u2014 zodat u in \u00e9\u00e9n oogopslag weet wat te doen.", pos: "right" },
+    { target: "[data-lead='1']", title: "Open een lead", text: "Dit is de lead van uw mystery shop. Klik om het volledige gesprek en voertuigdetails te zien.", action: "selectLead", leadId: 1, pos: "right" },
+    { target: ".inbox__composer", title: "Reageer met een template", text: "Selecteer een voorgeschreven template, kies de taal en druk op Verzenden. De naam van de koper, het voertuig en de prijs worden automatisch ingevuld.", action: "sendReply", pos: "top" },
+    { target: ".inbox__list", title: "Automatische deduplicatie", text: "Kijk \u2014 Max Schreiber heeft dezelfde aanvraag voor de DAF XF 480 verstuurd via zowel Europe-Camions als TruckScout24. Aello detecteert het duplicaat en voegt ze samen. Geen dubbele antwoorden, geen verspilde tijd.", action: "dedup", pos: "right" },
+    { target: "#chWA", title: "Wissel direct van kanaal", text: "Deze koper geeft de voorkeur aan WhatsApp. Wissel van kanaal zonder uw inbox te verlaten \u2014 het antwoord gaat rechtstreeks naar hun telefoon.", action: "selectLead", leadId: 4, pos: "top" },
+    { target: "#followupBadge", title: "Geautomatiseerde opvolging", text: "Geen antwoord na 2 dagen? Copilot stuurt automatisch een opvolging. Grote dealers hebben deze tools al jaren \u2014 nu u ook.", action: "showFollowup", pos: "top" },
+    { target: "#assignArea", title: "Routeer leads naar de juiste persoon", text: "Wijs leads toe aan specifieke verkopers. Laat er nooit meer \u00e9\u00e9n door de mazen glippen.", action: "showAssign", pos: "top" },
+    { target: null, text: null, action: "gotoDashboard" },
+  ],
+};
+function getWalkthroughSteps() { return walkthroughStepsT[currentLang] || walkthroughStepsT.fr; }
+
 // ===== DATA =====
-const dealer = { name: "1FOTEAM", city: "Lyon", platform: "Europe-Camions", vehicle: "DAF XF 480 FT", buyer: "Max Schreiber", date: "March 2026" };
+const dealer = { name: "1FOTEAM", city: "Lyon", platform: "Europe-Camions", vehicle: "DAF XF 480 FT", buyer: "Max Schreiber", date: "March 2026", overall_score: 27 };
+
+// Dimensions getter (backward compat)
+const dimensions = dimensionsT.fr;
+
+const totalScoreRaw = dimensions.reduce((s, d) => s + d.score, 0);
+const maxTotalRaw = dimensions.length * 5;
+const totalScore = Math.round((totalScoreRaw / maxTotalRaw) * 100);
+const maxTotal = 100;
+
+const actualResponse = `Bonjour,
+
+Le v\u00E9hicule est disponible. Contactez-nous pour plus d'informations.
+
+Cordialement.`;
 
 const aGradeResponse = `Bonjour Max,
 
@@ -489,6 +877,8 @@ Jean-Marc Dupont
 Responsable Commercial \u2014 1FOTEAM
 06 12 34 56 78 | jean-marc@1foteam.fr
 www.1foteam.fr`;
+
+// badAnnotations and goodAnnotations now in translated T objects above
 
 const sampleLeads = [
   { id: 1, name: "Max Schreiber", platform: "Europe-Camions", platformDomain: "europe-camions.com", vehicle: "DAF XF 480 FT", price: "68 500 \u20AC", phone: "+49 170 XXX XXXX", time: "18h ago", color: "#3B82F6", channel: "email",
@@ -508,71 +898,407 @@ const sampleLeads = [
     inquiry: "Hi, I saw the DAF XF 480 FT on TruckScout24. Is it still available? What is the final price? Best regards, Max Schreiber" },
 ];
 
-const walkthroughSteps = [
-  { target: ".inbox__nav-items", title: "Tous vos canaux au m\u00eame endroit", text: "Vos leads marketplace, emails, messages WhatsApp et demandes web \u2014 tout arrive ici automatiquement. Plus besoin de jongler entre les onglets.", pos: "right" },
-  { target: ".inbox__list", title: "Votre liste de prospects", text: "5 leads de 4 marketplaces diff\u00e9rentes. Chaque entr\u00e9e affiche le v\u00e9hicule, le statut et la source \u2014 pour savoir quoi faire en un coup d'\u0153il.", pos: "right" },
-  { target: "[data-lead='1']", title: "Ouvrir un prospect", text: "C'est le lead de votre mystery shop. Cliquez pour voir la conversation compl\u00e8te et les d\u00e9tails du v\u00e9hicule.", action: "selectLead", leadId: 1, pos: "right" },
-  { target: ".inbox__composer", title: "R\u00e9pondre avec un template", text: "S\u00e9lectionnez un template pr\u00e9-r\u00e9dig\u00e9, choisissez la langue, et appuyez sur Envoyer. Le nom de l'acheteur, le v\u00e9hicule et le prix sont remplis automatiquement.", action: "sendReply", pos: "top" },
-  { target: ".inbox__list", title: "D\u00e9duplication automatique", text: "Regardez \u2014 Max Schreiber a envoy\u00e9 la m\u00eame demande pour le DAF XF 480 via Europe-Camions et TruckScout24. Aello d\u00e9tecte le doublon automatiquement et fusionne les conversations. Plus de doublons, plus de temps perdu.", action: "dedup", pos: "right" },
-  { target: "#chWA", title: "Changez de canal instantan\u00e9ment", text: "Cet acheteur pr\u00e9f\u00e8re WhatsApp. Changez de canal sans quitter votre inbox \u2014 la r\u00e9ponse arrive directement sur son t\u00e9l\u00e9phone.", action: "selectLead", leadId: 4, pos: "top" },
-  { target: "#followupBadge", title: "Relances automatis\u00e9es", text: "Pas de r\u00e9ponse apr\u00e8s 2 jours ? Copilot envoie une relance automatique. Les grands groupes ont ces outils depuis des ann\u00e9es \u2014 maintenant vous aussi.", action: "showFollowup", pos: "top" },
-  { target: "#assignArea", title: "Routez les leads vers la bonne personne", text: "Attribuez les leads \u00e0 des commerciaux sp\u00e9cifiques. Plus aucun lead ne passe entre les mailles du filet.", action: "showAssign", pos: "top" },
-  { target: null, text: null, action: "gotoDashboard" },
-];
+// walkthroughSteps, improvementData, timelineSteps now in translated T objects above
 
-const improvementData = [
-  { month: "Now", score: 27, color: "var(--danger)", label: "Votre score actuel \u2014 temps de r\u00e9ponse lent, pas de suivi structur\u00e9" },
-  { month: "Day 1", score: 45, color: "#E97B1A", label: "Copilot connect\u00e9 \u2014 r\u00e9ponses automatiques activ\u00e9es sur toutes les plateformes" },
-  { month: "Week 1", score: 60, color: "var(--warning)", label: "Plus rapide que 70% des concessionnaires \u2014 templates personnalis\u00e9s en place" },
-  { month: "Month 1", score: 78, color: "#3B82F6", label: "Pipeline enti\u00e8rement automatis\u00e9 \u2014 scoring, dedup, relances actives" },
-  { month: "Month 3", score: 93, color: "var(--success)", label: "Best in class \u2014 vous r\u00e9pondez en moins de 2 minutes, chaque lead est suivi" },
-];
-
-const timelineSteps = [
-  { time: "Jour 1", icon: "\uD83D\uDD14", title: "Connexion et mise en route", desc: "Reliez vos marketplaces, activez les templates. Commencez \u00e0 r\u00e9pondre en quelques minutes.", score: 45 },
-  { time: "Semaine 1", icon: "\u26A1", title: "Plus rapide que vos concurrents", desc: "Vous r\u00e9pondez maintenant en moins de 30 min \u2014 avant 4 concurrents sur 5.", score: 60 },
-  { time: "Mois 1", icon: "\uD83D\uDCE8", title: "Enti\u00e8rement automatis\u00e9", desc: "Relances, d\u00e9duplication, scoring \u2014 tout fonctionne en pilote automatique.", score: 78 },
-  { time: "Mois 3", icon: "\uD83C\uDFC6", title: "Meilleur du march\u00e9", desc: "Score 90+. Vous \u00eates dans le top 5% des concessionnaires. Garanti.", score: 93 },
+// Marketplace logos
+const marketplaces = [
+  { name: "Europe-Camions", domain: "europe-camions.com" },
+  { name: "LeBonCoin", domain: "leboncoin.fr" },
+  { name: "Autoline", domain: "autoline.info" },
+  { name: "TrucksNL", domain: "trucksnl.com" },
+  { name: "Mascus", domain: "mascus.com" },
+  { name: "TruckScout24", domain: "truckscout24.com" },
+  { name: "Truck1", domain: "truck1.eu" },
+  { name: "MachineryZone", domain: "machineryzone.eu" },
+  { name: "Mobile.de", domain: "mobile.de" },
+  { name: "TradeUS", domain: "tradus.com" },
+  { name: "BAS Trucks", domain: "bastrucks.com" },
 ];
 
 // ===== STATE =====
-let currentScreen = 'inbox';
+let currentScreen = 'report';
 let walkStep = -1;
 let inboxState = { selectedLead: null, replied: new Set(), deduped: false };
-let tourStarted = false;
 
-// ===== SCREEN SWITCHING =====
-function switchScreen(name) {
+// ===== LANGUAGE SWITCHER =====
+function updateStaticText() {
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.dataset.t;
+    if (T[key] && T[key][currentLang]) {
+      el.innerHTML = T[key][currentLang];
+    }
+  });
+}
+
+function renderPricingGrid(gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  const isReport = gridId === 'reportPricingGrid';
+  grid.innerHTML = `
+    <div class="pricing__card pricing__card--free">
+      <div class="pricing__card-name">Audit</div>
+      <div class="pricing__card-price"><span class="pricing__card-price-amount">${t('free')}</span></div>
+      <div class="pricing__card-trial">${t('alwaysFree')}</div>
+      <ul class="pricing__card-features">${(T.auditFeatures[currentLang]||T.auditFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;background:var(--success-light);border-radius:var(--radius-sm);border:1px solid var(--success);">
+        <span style="font-size:18px;">&#10003;</span>
+        <span style="font-size:13px;font-weight:700;color:var(--success);">${t('includedInAudit')}</span>
+      </div>
+    </div>
+    <div class="pricing__card pricing__card--popular">
+      <div class="pricing__popular-badge">${t('mostPopular')}</div>
+      <div class="pricing__card-name">Pro</div>
+      <div class="pricing__card-price">
+        <span class="pricing__card-price-amount">&euro;49</span>
+        <span class="pricing__card-price-period">${t('perMonth')}</span>
+      </div>
+      <div class="pricing__card-trial">${t('monthFreeGuarantee')}</div>
+      <ul class="pricing__card-features">${(T.proFeatures[currentLang]||T.proFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <button class="btn btn--primary btn--full" onclick="${isReport ? 'startTrial()' : ''}">${t('startFreeTrial')}</button>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__card-name">Business</div>
+      <div class="pricing__card-price">
+        <span class="pricing__card-price-amount">&euro;99</span>
+        <span class="pricing__card-price-period">${t('perMonth')}</span>
+      </div>
+      <div class="pricing__card-trial">${t('monthFreeGuarantee')}</div>
+      <ul class="pricing__card-features">${(T.businessFeatures[currentLang]||T.businessFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <a href="#bookDemo" class="btn btn--outline btn--full">${t('contactSales')}</a>
+    </div>
+    <div class="pricing__card">
+      <div class="pricing__card-name">${t('enterprise')}</div>
+      <div class="pricing__card-price"><span class="pricing__card-price-amount" style="font-size:1.6rem;">${t('letsChat')}</span></div>
+      <div class="pricing__card-trial">${t('customPricing')}</div>
+      <ul class="pricing__card-features">${(T.enterpriseFeatures[currentLang]||T.enterpriseFeatures.fr).map(f=>'<li>'+f+'</li>').join('')}</ul>
+      <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full">${t('contactUs')}</a>
+    </div>`;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  updateStaticText();
+  renderReport();
+  // Re-render dashboard pricing if visible
+  renderPricingGrid('dashPricingGrid');
+}
+
+// ===== SCREEN MANAGEMENT =====
+function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + name).classList.add('active');
   currentScreen = name;
-
-  document.querySelectorAll('.screen-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.screen-tab').forEach(t => {
-    if ((name === 'inbox' && t.textContent === 'Inbox') || (name === 'dashboard' && t.textContent.includes('Tableau'))) {
-      t.classList.add('active');
-    }
-  });
-
-  if (name === 'inbox') renderInbox();
+  window.scrollTo(0, 0);
+  if (name === 'inbox') { renderInbox(); setTimeout(() => startWalkthrough(), 500); }
   if (name === 'dashboard') renderDashboard();
 }
 
-function showScreen(name) {
-  switchScreen(name);
-  // Scroll to the screen area
-  const el = document.getElementById('screen-' + name);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function scrollToPricing() {
+  window.open('https://aello-copilot.com/schedule-demo', '_blank');
 }
 
-function beginTour() {
-  tourStarted = true;
-  switchScreen('inbox');
-  document.getElementById('screen-inbox').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  setTimeout(() => startWalkthrough(), 800);
+function startTrial() {
+  showScreen('inbox');
 }
 
-// ===== INBOX =====
+function scrollToProPlan() {
+  const proCard = document.querySelector('#screen-report .pricing__card--popular');
+  if (proCard) {
+    proCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    proCard.style.transition = 'box-shadow 0.3s';
+    proCard.style.boxShadow = '0 0 0 4px rgba(0,124,137,0.4), 0 4px 24px rgba(0,124,137,0.18)';
+    setTimeout(() => { proCard.style.boxShadow = ''; }, 2000);
+  }
+}
+
+// ===== SCREEN 1: REPORT =====
+function applyDynamicScore() {
+  const s = dealer.overall_score;
+  const sColor = s <= 20 ? 'var(--danger)' : s <= 50 ? 'var(--warning)' : 'var(--success)';
+  const sDisplay = s < 0 ? '?' : String(s);
+  const sColorIfPending = s < 0 ? 'var(--gray-400)' : sColor;
+
+  // Header badge
+  const badge = document.getElementById('headerGrade');
+  if (badge) badge.textContent = `Score: ${sDisplay} / 100`;
+
+  // Score circle number
+  const circleNum = document.querySelector('.score-circle__number');
+  if (circleNum) { circleNum.textContent = sDisplay; circleNum.style.color = sColorIfPending; }
+
+  // Score circle SVG arc
+  const circleArc = document.querySelector('.score-circle svg circle:nth-child(2)');
+  if (circleArc) {
+    const circ = 339.29;
+    const offset = s < 0 ? circ : circ * (1 - s / 100);
+    circleArc.setAttribute('stroke-dashoffset', offset.toFixed(2));
+    circleArc.setAttribute('stroke', sColorIfPending);
+  }
+
+  // Thermometer — "You" marker position and score
+  const thermoMarkerYou = document.querySelector('.thermo__marker');
+  if (thermoMarkerYou) {
+    const pos = s < 0 ? 0 : s;
+    thermoMarkerYou.style.left = pos + '%';
+    const thermoScore = thermoMarkerYou.querySelector('.thermo__score');
+    if (thermoScore) { thermoScore.textContent = sDisplay; thermoScore.style.color = sColorIfPending; }
+  }
+
+  // Chart section title "De {score} à 90+"
+  const chartH2 = document.querySelector('[data-t="dashChartH2"]');
+  if (chartH2) {
+    const tObj = T[currentLang] || T.fr;
+    if (tObj && tObj.dashChartH2) {
+      chartH2.innerHTML = tObj.dashChartH2.replace('{score}', sDisplay);
+    }
+  }
+}
+
+function renderReport() {
+  applyDynamicScore();
+  // Render the chart (in milestone section)
+  renderChart('heroChart', null);
+
+  // Trigger slow animation when chart scrolls into view
+  const chartObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateChart('heroChart'); chartObs.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  const chartSection = document.getElementById('milestoneSection');
+  if (chartSection) chartObs.observe(chartSection);
+
+  // Dimensions
+  const grid = document.getElementById('dimensionGrid');
+  const curDimensions = getDimensions();
+  grid.innerHTML = curDimensions.map(d => {
+    const segs = Array.from({length: 5}, (_, i) => {
+      const filled = i < d.score;
+      const cls = filled ? (d.score <= 2 ? 'filled' : d.score <= 3 ? 'filled ok' : 'filled good') : '';
+      return `<div class="dim-card__bar-seg ${cls}"></div>`;
+    }).join('');
+    const scoreColor = d.score <= 2 ? 'var(--danger)' : d.score <= 3 ? 'var(--warning)' : 'var(--success)';
+    return `
+      <div class="dim-card">
+        <div class="dim-card__top">
+          <div class="dim-card__name">${d.name}</div>
+          <div class="dim-card__score-num" style="color:${scoreColor};">${d.score}/5</div>
+        </div>
+        <div class="dim-card__bar">${segs}</div>
+        <div class="dim-card__desc">${d.desc}</div>
+        ${d.score <= 2 ? `<div class="dim-card__fix">\u2192 ${t('copilotFix')} ${d.fix}</div>` : ''}
+      </div>`;
+  }).join('');
+
+  // Comparison — populate static parts, then trigger animation on scroll
+  document.getElementById('demoOldResponse').textContent = actualResponse;
+  document.getElementById('demoBadTags').innerHTML = getBadAnnotations().map((a, i) => `<span class="demo-inbox__bad-tag" style="opacity:0;transition:opacity 0.5s ease,transform 0.4s ease;transform:translateY(6px);" data-bad-idx="${i}">\u2718 ${a}</span>`).join('');
+
+  // Annotation cards data
+  const annotData = getAnnotData();
+  const annotsEl = document.getElementById('demoAnnots');
+  const replayBtn = annotsEl.querySelector('#demoReplay');
+  annotsEl.innerHTML = '';
+  annotData.forEach(a => {
+    annotsEl.innerHTML += `<div class="annot-card"><div class="annot-card__icon">${a.icon}</div><div class="annot-card__title">${a.title}</div><div class="annot-card__desc">${a.desc}</div></div>`;
+  });
+  annotsEl.innerHTML += `<div style="text-align:center;margin-top:4px;"><button class="demo-inbox__replay" id="demoReplay" onclick="runDemoAnimation()" style="display:none;">${t('replayBtn')}</button></div>`;
+
+  // Trigger animation when comparison scrolls into view
+  const demoObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { runDemoAnimation(); demoObs.unobserve(e.target); } });
+  }, { threshold: 0.3 });
+  demoObs.observe(document.getElementById('demoInbox'));
+
+  // Logo bar
+  document.getElementById('logoBarGrid').innerHTML = marketplaces.map(m =>
+    `<div class="logo-bar__item">
+      <div class="logo-bar__icon"><img src="https://www.google.com/s2/favicons?domain=${m.domain}&sz=64" alt="${m.name}"></div>
+      <div class="logo-bar__name">${m.name}</div>
+    </div>`
+  ).join('');
+
+  // CTA score
+  const ctaScoreEl = document.getElementById('ctaScore');
+  if (ctaScoreEl) ctaScoreEl.textContent = totalScore;
+
+  // Pricing grids
+  renderPricingGrid('reportPricingGrid');
+}
+
+// ===== DEMO ANIMATION =====
+let demoTimer = null;
+let demoTimeouts = [];
+
+function moveCursor(el, targetEl, offsetX, offsetY) {
+  const inbox = document.getElementById('demoInbox');
+  const inboxRect = inbox.getBoundingClientRect();
+  const targetRect = targetEl.getBoundingClientRect();
+  el.style.top = (targetRect.top - inboxRect.top + (offsetY || 10)) + 'px';
+  el.style.left = (targetRect.left - inboxRect.left + (offsetX || 10)) + 'px';
+}
+
+function demoTimeout(fn, ms) {
+  const id = setTimeout(fn, ms);
+  demoTimeouts.push(id);
+  return id;
+}
+
+function runDemoAnimation() {
+  // Clear any previous loop
+  demoTimeouts.forEach(id => clearTimeout(id));
+  demoTimeouts = [];
+
+  const theirMsg = document.getElementById('demoTheirMsg');
+  const composer = document.getElementById('demoComposer');
+  const templateBtn = document.getElementById('demoTemplateBtn');
+  const body = document.getElementById('demoComposerBody');
+  const sendBtn = document.getElementById('demoSendBtn');
+  const sentOverlay = document.getElementById('demoSentOverlay');
+  const cursor = document.getElementById('demoCursor');
+  const annots = document.querySelectorAll('.annot-card');
+
+  // Reset everything
+  theirMsg.classList.remove('collapsed');
+  composer.style.opacity = '0';
+  templateBtn.classList.remove('selected');
+  templateBtn.innerHTML = t('selectTemplate');
+  body.textContent = t('writeResponse');
+  body.classList.add('empty');
+  body.style.maxHeight = '300px';
+  sendBtn.classList.remove('sent');
+  sendBtn.textContent = t('sendBtn');
+  sentOverlay.classList.remove('visible');
+  cursor.classList.remove('visible');
+  annots.forEach(a => { a.classList.remove('visible'); a.classList.remove('emphasize'); });
+  const aelloLabel = document.getElementById('demoAelloLabel');
+  if (aelloLabel) aelloLabel.style.opacity = '0';
+
+  // Phase 0.5: Animate bad X tags one by one (800ms apart)
+  const badTags = document.querySelectorAll('[data-bad-idx]');
+  badTags.forEach((tag, i) => {
+    tag.style.opacity = '0';
+    tag.style.transform = 'translateY(6px)';
+    demoTimeout(() => {
+      tag.style.opacity = '1';
+      tag.style.transform = 'translateY(0)';
+    }, 1500 + i * 800);
+  });
+
+  const badTagsEndTime = 1500 + badTags.length * 800 + 2000; // 2s to absorb after last tag
+
+  // Phase 2: Collapse the bad response
+  demoTimeout(() => {
+    theirMsg.classList.add('collapsed');
+  }, badTagsEndTime);
+
+  const t0 = badTagsEndTime; // base offset for remaining phases
+
+  // Phase 3: Show Aello label + fade in composer
+  demoTimeout(() => {
+    const aelloLabel = document.getElementById('demoAelloLabel');
+    if (aelloLabel) aelloLabel.style.opacity = '1';
+    composer.style.opacity = '1';
+  }, t0 + 2000);
+
+  // Phase 4: Cursor appears, moves to template dropdown
+  demoTimeout(() => {
+    cursor.classList.add('visible');
+    moveCursor(cursor, templateBtn, 40, 8);
+  }, t0 + 4000);
+
+  // Phase 5: Click template
+  demoTimeout(() => {
+    templateBtn.classList.add('selected');
+    templateBtn.innerHTML = '&#10003; availability_truck - FR';
+  }, t0 + 5500);
+
+  // Phase 6: Response fills in with highlight spans
+  demoTimeout(() => {
+    body.classList.remove('empty');
+    body.innerHTML = aGradeResponse
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>')
+      .replace('Bonjour Max', '<span class="demo-hl" data-annot="0">Bonjour Max</span>')
+      .replace('68\u00A0500', '<span class="demo-hl" data-annot="1">68\u00A0500</span>')
+      .replace('68 500', '<span class="demo-hl" data-annot="1">68 500</span>')
+      .replace('320 000 km', '<span class="demo-hl" data-annot="1">320 000 km</span>')
+      .replace('Quelques questions', '<span class="demo-hl" data-annot="2">Quelques questions</span>')
+      .replace('WhatsApp', '<span class="demo-hl" data-annot="3">WhatsApp</span>')
+      .replace('Jean-Marc Dupont', '<span class="demo-hl" data-annot="4">Jean-Marc Dupont</span>')
+      .replace('dossier complet', '<span class="demo-hl" data-annot="5">dossier complet</span>');
+  }, t0 + 7000);
+
+  // Phase 7: Hide cursor
+  demoTimeout(() => { cursor.classList.remove('visible'); }, t0 + 8000);
+
+  const annotStart = t0 + 9500;
+  // Phase 8: Annotations appear one-by-one every 3500ms with email highlights + arrows
+  annots.forEach((a, i) => {
+    demoTimeout(() => {
+      // Remove previous highlights
+      body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
+      // Activate current highlights (underline only)
+      const hlEls = body.querySelectorAll('[data-annot="' + i + '"]');
+      hlEls.forEach(el => {
+        el.classList.add('active');
+        const composerBody = document.getElementById('demoComposerBody');
+        if (composerBody && composerBody.contains(el)) {
+          const offset = el.offsetTop - composerBody.offsetTop;
+          composerBody.scrollTo({top: Math.max(0, offset - 40), behavior: 'smooth'});
+        }
+      });
+      // Show annotation card
+      a.classList.add('visible');
+      a.classList.add('emphasize');
+    }, annotStart + i * 3500);
+    demoTimeout(() => {
+      a.classList.remove('emphasize');
+    }, annotStart + i * 3500 + 3000);
+  });
+
+  const annotEndTime = annotStart + annots.length * 3500 + 4000; // 4s extra to read
+
+  // Clear last highlights and arrows before send phase
+  demoTimeout(() => {
+    body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
+    }, annotEndTime - 500);
+
+  // Phase 9: Cursor moves to Envoyer
+  demoTimeout(() => {
+    cursor.classList.add('visible');
+    moveCursor(cursor, sendBtn, 30, 6);
+  }, annotEndTime);
+
+  // Phase 10: Click send
+  demoTimeout(() => {
+    sendBtn.classList.add('sent');
+    sendBtn.textContent = '\u2714 ' + t('sentLabel');
+    cursor.classList.remove('visible');
+  }, annotEndTime + 600);
+
+  // Phase 11: Sent overlay
+  demoTimeout(() => { sentOverlay.classList.add('visible'); }, annotEndTime + 900);
+  demoTimeout(() => { sentOverlay.classList.remove('visible'); }, annotEndTime + 2400);
+
+  // Loop — only if the demo is still visible in viewport
+  demoTimeout(() => {
+    const demoEl = document.getElementById('demoInbox');
+    if (demoEl) {
+      const rect = demoEl.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) runDemoAnimation();
+      else {
+        // Show replay button instead
+        const replayBtn = document.getElementById('demoReplay');
+        if (replayBtn) replayBtn.style.display = 'inline-flex';
+      }
+    }
+  }, annotEndTime + 4500);
+}
+
+// ===== SCREEN 3: INBOX =====
 function renderInbox() {
   const list = document.getElementById('leadList');
   const whatsappIcon = '<svg style="display:inline-block;vertical-align:middle;width:14px;height:14px;margin-left:4px;" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
@@ -586,7 +1312,7 @@ function renderInbox() {
         <span class="inbox__lead-thumb-initials">${l.name.split(' ').map(n=>n[0]).join('')}</span>
       </div>
       <div class="inbox__lead-info">
-        <div class="inbox__lead-name">${l.name} ${l.duplicate ? '<span class="inbox__lead-dup">DUPLICATE</span>' : ''}${channelIcon}</div>
+        <div class="inbox__lead-name">${l.name} ${l.duplicate ? '<span class="inbox__lead-dup">DOUBLON</span>' : ''}${channelIcon}</div>
         <div class="inbox__lead-vehicle">${l.vehicle}</div>
         <div class="inbox__lead-meta">
           ${statusText ? `<span class="inbox__lead-status ${statusClass}">${statusText}</span>` : ''}
@@ -625,7 +1351,7 @@ function selectLead(id) {
       <div class="inbox__detail-left-assign" id="assignArea" style="display:flex;">Assign\u00E9 \u00E0: <strong>Non assign\u00E9</strong> \u270E</div>
       <div class="inbox__detail-left-status inbox__lead-status--new" style="display:inline-flex;">Nouveau</div>
       <div class="inbox__vehicle-img" style="min-height:140px;border-radius:8px;overflow:hidden;">
-        <img src="${lead.img}" alt="${lead.vehicle}" style="width:100%;height:140px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'background:var(--gray-100);display:flex;align-items:center;justify-content:center;height:140px;font-size:36px;color:var(--gray-300);\\'>&#x1F69A;</div>'">
+        <img src="${lead.img}" alt="${lead.vehicle}" style="width:100%;height:140px;object-fit:cover;display:block;" onerror="this.outerHTML='<div style=\\'background:var(--gray-100);display:flex;align-items:center;justify-content:center;height:140px;font-size:36px;color:var(--gray-300);\\'>🚚</div>'">
       </div>
       <div class="inbox__vehicle-title">${lead.vehicle}</div>
       <div class="inbox__vehicle-price">${lead.price || '68 500 \u20AC'} <small>/30 score</small></div>
@@ -657,7 +1383,7 @@ function selectLead(id) {
             <div class="inbox__message-sender">${lead.name}</div>
             <div class="inbox__message-time">${lead.time}</div>
             <div class="inbox__message-text">${lead.inquiry}</div>
-            <div class="inbox__message-translate">\uD83C\uDF10 Translate</div>
+            <div class="inbox__message-translate">\uD83C\uDF10 Traduire</div>
           </div>
           ${wasReplied ? `
           <div class="inbox__message inbox__message--sent">
@@ -700,7 +1426,7 @@ function sendReply() {
   overlay.innerHTML = `
     <div class="inbox__sent-overlay">
       <div class="inbox__sent-check">\u2714</div>
-      <div class="inbox__sent-text">R\u00E9ponse envoy\u00E9e !</div>
+      <div class="inbox__sent-text">${t('sentLabel')}</div>
     </div>`;
   setTimeout(() => { overlay.innerHTML = ''; selectLead(inboxState.selectedLead); }, 1500);
 }
@@ -711,21 +1437,26 @@ function runDedupAnimation() {
   const lead5El = document.querySelector("[data-lead='5']");
   if (!lead1El || !lead5El) return;
 
+  // Step 1: Highlight both entries with red pulsing border (they're the same lead!)
   lead1El.classList.add('dedup-highlight');
   lead5El.classList.add('dedup-highlight');
 
+  // Step 2 (1.5s): Add "SAME VEHICLE" labels
   setTimeout(() => {
+    // Add matching vehicle badge to lead 1
     const badge1 = document.createElement('div');
     badge1.className = 'dedup-merge-badge';
-    badge1.textContent = '\uD83D\uDD17 Max Schreiber \u2014 M\u00eame acheteur, canal diff\u00e9rent';
+    badge1.textContent = t('dedupBadge');
     badge1.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--danger);color:white;font-size:10px;font-weight:800;padding:4px 12px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(213,64,43,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
     lead1El.style.position = 'relative';
     lead1El.appendChild(badge1);
+
     const badge5 = badge1.cloneNode(true);
     lead5El.style.position = 'relative';
     lead5El.appendChild(badge5);
   }, 1500);
 
+  // Step 3 (3.5s): Slide lead 5 up toward lead 1
   setTimeout(() => {
     lead5El.classList.add('dedup-slide-up');
     const rect1 = lead1El.getBoundingClientRect();
@@ -735,6 +1466,7 @@ function runDedupAnimation() {
     lead5El.style.opacity = '0.6';
   }, 3500);
 
+  // Step 4 (5s): Merge - fade out lead 5, show success on lead 1
   setTimeout(() => {
     lead5El.style.transition = 'all 0.6s ease';
     lead5El.style.opacity = '0';
@@ -744,19 +1476,24 @@ function runDedupAnimation() {
     lead5El.style.overflow = 'hidden';
     lead5El.style.borderBottom = 'none';
 
+    // Transform lead 1 to "merged" state
     lead1El.classList.remove('dedup-highlight');
     lead1El.classList.add('dedup-merged');
+
+    // Remove old badges
     lead1El.querySelectorAll('.dedup-merge-badge').forEach(b => b.remove());
 
+    // Add success merged badge
     const mergedBadge = document.createElement('div');
     mergedBadge.style.cssText = 'position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--success);color:white;font-size:10px;font-weight:800;padding:4px 14px;border-radius:100px;z-index:20;white-space:nowrap;box-shadow:0 4px 12px rgba(46,133,64,0.3);animation:dedupBadgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;';
-    mergedBadge.textContent = '\u2714 Fusionn\u00e9 \u2014 2 demandes, 1 prospect';
+    mergedBadge.textContent = t('dedupMerged');
     lead1El.appendChild(mergedBadge);
 
     inboxState.deduped = true;
     document.getElementById('notifCount').textContent = '(4)';
   }, 5000);
 
+  // Step 5 (7s): Clean up success state
   setTimeout(() => {
     lead1El.classList.remove('dedup-merged');
     const badge = lead1El.querySelector('[style*="position:absolute"]');
@@ -780,6 +1517,7 @@ function advanceWalkthrough() {
   document.querySelectorAll('.tooltip-highlight').forEach(el => el.classList.remove('tooltip-highlight'));
   const tooltip = document.getElementById('tooltip');
   const overlay = document.getElementById('tooltipOverlay');
+  const walkthroughSteps = getWalkthroughSteps();
 
   walkStep++;
   if (walkStep >= walkthroughSteps.length) {
@@ -790,20 +1528,16 @@ function advanceWalkthrough() {
 
   const step = walkthroughSteps[walkStep];
 
+  // Show/hide back button
   const backBtn = document.getElementById('tooltipBack');
   backBtn.style.display = walkStep > 0 ? 'inline-flex' : 'none';
 
-  // Update next button text for last visible step
-  const nextBtn = document.getElementById('tooltipNext');
-  if (walkStep === walkthroughSteps.length - 2) {
-    nextBtn.textContent = 'Voir le tableau de bord';
-  } else {
-    nextBtn.textContent = 'Suivant';
-  }
-
+  // Execute action
   if (step.action === 'selectLead') selectLead(step.leadId);
   if (step.action === 'sendReply') { sendReply(); }
-  if (step.action === 'dedup') { runDedupAnimation(); }
+  if (step.action === 'dedup') {
+    runDedupAnimation();
+  }
   if (step.action === 'showFollowup') {
     selectLead(1);
     setTimeout(() => { const fb = document.getElementById('followupBadge'); if (fb) fb.style.display = 'inline'; }, 100);
@@ -818,9 +1552,13 @@ function advanceWalkthrough() {
   if (step.action === 'gotoDashboard') {
     tooltip.classList.remove('visible');
     overlay.classList.remove('visible');
+    // Go back to report page and scroll to pricing
     setTimeout(() => {
-      switchScreen('dashboard');
-      document.getElementById('screen-dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showScreen('report');
+      setTimeout(() => {
+        const pricing = document.getElementById('pricing');
+        if (pricing) pricing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
     }, 300);
     return;
   }
@@ -837,59 +1575,77 @@ function advanceWalkthrough() {
 
     document.getElementById('tooltipTitle').textContent = step.title || '';
     document.getElementById('tooltipContent').textContent = step.text;
-    document.getElementById('tooltipStep').textContent = `${walkStep + 1} sur ${walkthroughSteps.length - 1}`;
+    document.getElementById('tooltipStep').textContent = `${walkStep + 1} ${t('tooltipStepOf')} ${walkthroughSteps.length - 1}`;
 
-    const tooltipW = 360, tooltipH = 200;
+    const tooltipW = 340, tooltipH = 200;
     let top, left;
-    const gap = 32;
+    const gap = 24;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
     if (step.pos === 'right') {
-      top = Math.max(8, rect.top);
+      top = Math.max(8, Math.min(rect.top, vh - tooltipH - 16));
       left = rect.right + gap;
-      if (left + tooltipW > window.innerWidth) { left = rect.left - tooltipW - gap; }
+      if (left + tooltipW > vw - 16) { left = Math.max(16, rect.left - tooltipW - gap); }
+      // If still off-screen, center it
+      if (left < 16 || left + tooltipW > vw - 16) {
+        left = Math.max(16, (vw - tooltipW) / 2);
+        top = rect.bottom + gap;
+      }
     } else {
       top = rect.top - tooltipH - gap;
-      left = Math.max(8, rect.left);
+      left = Math.max(16, Math.min(rect.left, vw - tooltipW - 16));
       if (top < 8) { top = rect.bottom + gap; }
+      if (top + tooltipH > vh - 16) { top = Math.max(8, vh - tooltipH - 16); }
     }
+    // Final clamp
+    left = Math.max(16, Math.min(left, vw - tooltipW - 16));
+    top = Math.max(8, Math.min(top, vh - tooltipH - 16));
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
+    tooltip.style.maxWidth = tooltipW + 'px';
     tooltip.classList.add('visible');
   }, 250);
 }
 
-// ===== CHART RENDERER =====
+// ===== SHARED CHART RENDERER =====
 let chartAnimTimeouts = [];
 
 function renderChart(chartId, milestonesId) {
+  const improvementData = getImprovementData();
+  const timelineSteps = getTimelineSteps();
   const W = 700, H = 340, padL = 50, padR = 30, padT = 55, padB = 70;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const maxScore = 100;
+  const minScore = Math.max(0, improvementData[0].score - 5); // Start Y near dealer's score for dramatic climb
 
   const bands = [
-    { label: '0-20', min: 0, max: 20, color: 'rgba(213,64,43,0.08)' },
-    { label: '20-40', min: 20, max: 40, color: 'rgba(233,123,26,0.08)' },
-    { label: '40-60', min: 40, max: 60, color: 'rgba(199,119,0,0.08)' },
-    { label: '60-80', min: 60, max: 80, color: 'rgba(59,130,246,0.08)' },
-    { label: '80+', min: 80, max: 100, color: 'rgba(46,133,64,0.08)' },
+    { label: String(minScore), min: minScore, max: Math.round(minScore + (100 - minScore) * 0.2), color: 'rgba(213,64,43,0.08)' },
+    { label: '', min: Math.round(minScore + (100 - minScore) * 0.2), max: Math.round(minScore + (100 - minScore) * 0.4), color: 'rgba(233,123,26,0.08)' },
+    { label: '50', min: Math.round(minScore + (100 - minScore) * 0.4), max: Math.round(minScore + (100 - minScore) * 0.6), color: 'rgba(199,119,0,0.08)' },
+    { label: '', min: Math.round(minScore + (100 - minScore) * 0.6), max: Math.round(minScore + (100 - minScore) * 0.8), color: 'rgba(59,130,246,0.08)' },
+    { label: '90+', min: Math.round(minScore + (100 - minScore) * 0.8), max: maxScore, color: 'rgba(46,133,64,0.08)' },
   ];
 
   const bandRects = bands.map(b => {
-    const y1 = padT + (1 - b.max / maxScore) * plotH;
-    const y2 = padT + (1 - b.min / maxScore) * plotH;
-    return `<rect x="${padL}" y="${y1}" width="${plotW}" height="${y2-y1}" fill="${b.color}"/>
-            <text x="${padL-8}" y="${(y1+y2)/2+4}" text-anchor="end" font-size="10" font-weight="700" fill="#9CA3AF" font-family="Inter,sans-serif">${b.label}</text>`;
+    const y1 = padT + (1 - (b.max - minScore) / (maxScore - minScore)) * plotH;
+    const y2 = padT + (1 - (b.min - minScore) / (maxScore - minScore)) * plotH;
+    return `<rect x="${padL}" y="${y1}" width="${plotW}" height="${Math.max(0, y2-y1)}" fill="${b.color}"/>
+            ${b.label ? `<text x="${padL-8}" y="${(y1+y2)/2+4}" text-anchor="end" font-size="10" font-weight="700" fill="#9CA3AF" font-family="Inter,sans-serif">${b.label}</text>` : ''}`;
   }).join('');
 
   const xFractions = [0, 0.08, 0.15, 0.35, 1.0];
   const points = improvementData.map((d, i) => ({
     x: padL + xFractions[i] * plotW,
-    y: padT + (1 - d.score / maxScore) * plotH,
+    y: padT + (1 - (d.score - minScore) / (maxScore - minScore)) * plotH,
     ...d
   }));
 
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
   const last = points[points.length - 1];
 
+  // Milestone descriptions — all points get labels now
+
+  // Build static SVG elements (hidden initially, animated via JS)
   const dots = points.map((p, i) => {
     const isLast = i === points.length - 1;
     return `<circle id="${chartId}_dot${i}" cx="${p.x}" cy="${p.y}" r="${isLast ? 8 : 5}" fill="${p.color}" stroke="white" stroke-width="2" opacity="0"/>`;
@@ -906,6 +1662,7 @@ function renderChart(chartId, milestonesId) {
     return `<text id="${chartId}_xlabel${i}" x="${p.x}" y="${padT + plotH + 20}" text-anchor="middle" font-size="10" font-weight="600" fill="#9CA3AF" font-family="Inter,sans-serif" opacity="0">${p.month}</text>`;
   }).join('');
 
+  // Milestone text boxes (foreignObject for rich text below dots)
   const milestoneTexts = points.map((p, i) => {
     const label = improvementData[i].label;
     if (!label) return '';
@@ -926,6 +1683,7 @@ function renderChart(chartId, milestonesId) {
       </svg>`;
   }
 
+  // Milestone timeline below (only if container provided)
   const msEl = milestonesId ? document.getElementById(milestonesId) : null;
   if (msEl) {
     msEl.innerHTML = `<div class="timeline">${timelineSteps.map((s, i) => `
@@ -945,6 +1703,7 @@ function renderChart(chartId, milestonesId) {
   }
 }
 
+// Slow stepped animation
 function animateChart(chartId) {
   chartAnimTimeouts.forEach(id => clearTimeout(id));
   chartAnimTimeouts = [];
@@ -953,10 +1712,12 @@ function animateChart(chartId) {
   const line = document.getElementById(`${id}_line`);
   if (!line) return;
 
-  const n = improvementData.length;
-  const STEP_DELAY = 2000;
+  const improvementData = getImprovementData();
+  const n = improvementData.length; // 5 points
+  const STEP_DELAY = 2000; // 2s per milestone
   const FADE_DUR = 600;
 
+  // Helper: fade element in/out
   function fadeIn(elId, dur) {
     const el = document.getElementById(elId);
     if (!el) return;
@@ -970,17 +1731,23 @@ function animateChart(chartId) {
     el.setAttribute('opacity', '0');
   }
 
+  // Phase 0: Show the line drawing progressively
+  // We'll use stroke-dasharray/dashoffset animation
   const pathLen = line.getTotalLength ? line.getTotalLength() : 2000;
   line.setAttribute('stroke-dasharray', pathLen);
   line.setAttribute('stroke-dashoffset', pathLen);
   line.setAttribute('opacity', '1');
 
+  // For each point, calculate what fraction of the line to reveal
+  // Points use xFractions for non-equal spacing
   const animXFractions = [0, 0.08, 0.15, 0.35, 1.0];
-  let currentTime = 300;
+  let currentTime = 300; // initial delay
 
   for (let i = 0; i < n; i++) {
+    // Compute cumulative path length fraction based on segment distances
     const fraction = (function() {
       if (i === 0) return 0;
+      // Calculate cumulative Euclidean distance along the polyline up to point i
       let totalDist = 0, distToI = 0;
       for (let j = 1; j < n; j++) {
         const dx = animXFractions[j] - animXFractions[j-1];
@@ -994,21 +1761,37 @@ function animateChart(chartId) {
     const targetOffset = pathLen * (1 - fraction);
 
     chartAnimTimeouts.push(setTimeout(() => {
+      // Animate line to this point
       line.style.transition = `stroke-dashoffset ${FADE_DUR}ms ease-out`;
       line.setAttribute('stroke-dashoffset', targetOffset);
+
+      // Fade in this dot, score, and x-label
       fadeIn(`${id}_dot${i}`, FADE_DUR);
       fadeIn(`${id}_score${i}`, FADE_DUR);
       fadeIn(`${id}_xlabel${i}`, FADE_DUR);
-      fadeIn(`${id}_ms${i}`, FADE_DUR);
-      if (i > 0) fadeOut(`${id}_ms${i-1}`, 400);
 
+      // Fade in milestone text (if exists)
+      fadeIn(`${id}_ms${i}`, FADE_DUR);
+
+      // Fade OUT previous milestone text
+      if (i > 0) {
+        fadeOut(`${id}_ms${i-1}`, 400);
+      }
+
+      // Trophy on last point
       if (i === n - 1) {
         chartAnimTimeouts.push(setTimeout(() => {
           fadeIn(`${id}_trophy`, 600);
-          chartAnimTimeouts.push(setTimeout(() => { fadeOut(`${id}_ms${i}`, 800); }, 2000));
+          // Fade out last milestone text after trophy appears
+          chartAnimTimeouts.push(setTimeout(() => {
+            fadeOut(`${id}_ms${i}`, 800);
+          }, 2000));
+          // After 3s pause, reset and replay the animation
           chartAnimTimeouts.push(setTimeout(() => {
             resetChart(id, n);
-            chartAnimTimeouts.push(setTimeout(() => { animateChart(id); }, 300));
+            chartAnimTimeouts.push(setTimeout(() => {
+              animateChart(id);
+            }, 300));
           }, 3000));
         }, 400));
       }
@@ -1018,10 +1801,12 @@ function animateChart(chartId) {
   }
 }
 
+// Reset all chart elements to hidden state for replay
 function resetChart(chartId, n) {
   const id = chartId;
   const line = document.getElementById(`${id}_line`);
   if (!line) return;
+  // Disable transitions for instant reset
   line.style.transition = 'none';
   const pathLen = line.getTotalLength ? line.getTotalLength() : 2000;
   line.setAttribute('stroke-dashoffset', pathLen);
@@ -1032,26 +1817,29 @@ function resetChart(chartId, n) {
       if (el) { el.style.transition = 'none'; el.setAttribute('opacity', '0'); }
     });
   }
+  // Also reset trophy separately (in case n changed)
   const trophy = document.getElementById(`${id}_trophy`);
   if (trophy) { trophy.style.transition = 'none'; trophy.setAttribute('opacity', '0'); }
 }
 
-// ===== DASHBOARD =====
+// ===== SCREEN 4: DASHBOARD =====
 function renderDashboard() {
   renderChart('dashChart', 'milestones');
-  setTimeout(() => animateChart('dashChart'), 500);
+  renderPricingGrid('dashPricingGrid');
 }
+
+// ===== INTERSECTION OBSERVER (fade-up) =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.15 });
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
-  renderInbox();
-  // Auto-start walkthrough after 1 second
-  setTimeout(() => {
-    if (!tourStarted) {
-      tourStarted = true;
-      startWalkthrough();
-    }
-  }, 1000);
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
+  });
+  // Auto-show inbox tour immediately
+  showScreen('inbox');
 });
 </script>
 </body>
