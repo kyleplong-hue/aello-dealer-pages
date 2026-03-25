@@ -34,7 +34,7 @@
   --gray-900: #111827;
   --text: #1a1a1a;
   --text-muted: #6b7280;
-  --max-width: 1140px;
+  --max-width: 1100px;
   --radius: 12px;
   --radius-sm: 8px;
   --radius-lg: 16px;
@@ -48,226 +48,206 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--primary); text-decoration: none; }
-h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
 h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
 h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
 h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-.section { padding: 64px 0; }
+section { padding: 80px 0; }
 .section-alt { background: var(--gray-50); }
 .text-danger { color: var(--danger); }
 .text-primary { color: var(--primary); }
 
-.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif; }
-.badge--primary { background: var(--primary-light); color: var(--primary-dark); }
-.badge--danger { background: var(--danger-light); color: var(--danger); }
-.badge--success { background: var(--success-light); color: var(--success); }
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 44px; width: auto; }
+.nav-right { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.lang-switch { display:flex; gap:4px; margin-right:4px; }
+.lang-btn { padding:4px 10px; border-radius:100px; border:1px solid var(--gray-200); background:var(--white); font-family:'Inter',sans-serif; font-size:11px; font-weight:700; color:var(--gray-500); cursor:pointer; transition:all .15s; }
+.lang-btn:hover { border-color:var(--primary); color:var(--primary); }
+.lang-btn.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
 
+/* ── Buttons ── */
 .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: none; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-decoration: none; }
 .btn:active { transform: scale(0.98); }
-.btn--primary { background: var(--primary); color: var(--white); }
-.btn--primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-.btn--white { background: var(--white); color: var(--primary-dark); }
-.btn--white:hover { background: var(--gray-50); transform: translateY(-1px); }
-.btn--outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
-.btn--outline:hover { background: var(--primary); color: var(--white); }
-.btn--full { width: 100%; }
-.btn--lg { padding: 14px 28px; font-size: 15px; }
+.btn-primary { background: var(--primary); color: var(--white); }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary); color: var(--white); }
+.btn-lg { padding: 14px 32px; font-size: 15px; }
+.btn-full { width: 100%; text-align: center; }
+.btn-ghost-white { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+.btn-ghost-white:hover { background: rgba(255,255,255,0.2); }
 
-/* Audit form — stacked */
-.audit-form { display: flex; flex-direction: column; gap: 10px; max-width: 420px; }
-.audit-form input {
-  width: 100%; padding: 13px 16px; border: 2px solid var(--gray-200);
-  border-radius: var(--radius-sm); font-family: 'Inter', sans-serif;
-  font-size: 14px; outline: none; transition: border-color 0.2s;
-}
-.audit-form input:focus { border-color: var(--primary); }
-.audit-form input::placeholder { color: var(--gray-400); }
+/* ── Hero ── */
+.hero { padding: 56px 0 0; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding-bottom: 56px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); border: 1px solid var(--primary-lighter); border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 700; color: var(--primary-dark); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
+.eyebrow-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+.hero h1 { font-size: clamp(32px, 4vw, 48px); color: var(--gray-900); margin-bottom: 20px; }
+.hero h1 em { font-style: italic; color: var(--danger); }
+.hero-sub { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); max-width: 48ch; line-height: 1.7; margin-bottom: 32px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.guarantee-note { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.guarantee-note svg { color: var(--success); flex-shrink: 0; }
 
-/* Header */
-.header { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); padding: 12px 0; }
-.header__inner { display: flex; align-items: center; justify-content: space-between; }
-.header__logo img { height: 44px; width: auto; }
-.header__meta { display: flex; align-items: center; gap: 14px; }
-.header__dealer { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+/* ── Score Card (hero) ── */
+.score-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-lg); }
+.score-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 24px; }
+.score-bars { display: flex; flex-direction: column; gap: 16px; }
+.score-row { display: flex; flex-direction: column; gap: 7px; }
+.score-row-header { display: flex; justify-content: space-between; align-items: center; }
+.score-row-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); }
+.score-row-val { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.bar-track { height: 8px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+.bar-fill.animated { transform: scaleX(1); }
+.score-avg .score-row-val { color: var(--gray-400); }
+.score-avg .bar-fill { background: var(--gray-300); }
+.score-best .score-row-val { color: var(--success); font-weight: 900; }
+.score-best .bar-fill { background: var(--success); }
+.score-divider { border: none; border-top: 1px solid var(--gray-100); margin: 20px 0; }
 
-/* Hero */
-.hero { padding: 56px 0 48px; background: linear-gradient(175deg, var(--gray-50) 0%, var(--white) 65%); }
-.hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-.hero h1 { margin-bottom: 16px; }
-.hero__subtitle { font-size: 16px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.7; }
-.hero__form { margin-bottom: 10px; }
-.hero__form-note { font-size: 12px; color: var(--text-muted); margin-bottom: 32px; }
-.hero__stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.stat-card { text-align: center; padding: 18px 12px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); transition: border-color 0.2s; }
-.stat-card:hover { border-color: var(--gray-300); }
-.stat-card__number { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
-.stat-card__label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+/* Mystery shop preview in score card */
+.mystery-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--warning); background: var(--warning-light); border: 1px solid rgba(199,119,0,0.2); border-radius: 6px; padding: 4px 10px; margin-bottom: 12px; }
+.mystery-response { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.65; color: var(--gray-700); background: var(--warning-light); border-left: 3px solid var(--warning); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 10px; }
+.mystery-best { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.65; color: var(--gray-700); background: var(--success-light); border-left: 3px solid var(--success); padding: 10px 12px; border-radius: 0 8px 8px 0; }
+.mystery-inner-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 5px; }
 
-/* Hero chart */
-.hero__chart { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 24px 20px 20px; box-shadow: var(--shadow-lg); }
-.hero__chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.hero__chart-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-800); }
-.hero__chart-legend { display: flex; gap: 12px; }
-.hero__chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-muted); font-weight: 500; }
-.hero__chart-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
-.hero__chart svg { width: 100%; height: auto; display: block; }
-.hero__chart-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--gray-100); }
-.hero__chart-metric-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
-.hero__chart-metric-value { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--gray-900); line-height: 1.2; }
-.hero__chart-metric-change { font-size: 11px; font-weight: 700; margin-top: 2px; }
-@keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
-.chart-line { stroke-dasharray: 1000; animation: drawLine 1.5s ease-out forwards; }
-.chart-dot { opacity: 0; animation: dotAppear 0.3s ease forwards; }
-@keyframes dotAppear { to { opacity: 1; } }
+/* ── Stats Strip ── */
+.stats-section { padding: 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid var(--gray-200); border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+.stat-item { padding: 28px 24px; background: var(--white); border-right: 1px solid var(--gray-200); transition: background 0.2s; }
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: var(--gray-50); }
+.stat-item--danger { background: var(--danger-light); }
+.stat-item--warning { background: var(--warning-light); }
+.stat-num { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+.stat-item--danger .stat-num { color: var(--danger); }
+.stat-item--warning .stat-num { color: var(--warning); }
+.stat-item--blue .stat-num { color: var(--primary); }
+.stat-item--green .stat-num { color: var(--success); }
+.stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; line-height: 1.4; }
+.stat-note { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
+.stats-source { font-size: 11px; color: var(--gray-400); padding: 10px 24px; border: 1px solid var(--gray-200); border-top: none; display: flex; align-items: center; gap: 6px; }
 
-/* Marketplace Cost */
-.marketplace-cost { padding: 56px 0; background: var(--gray-50); }
-.marketplace-cost__inner { max-width: 720px; margin: 0 auto; text-align: center; }
-.marketplace-cost h2 { margin-bottom: 12px; }
-.marketplace-cost__subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6; }
-.marketplace-cost__platforms { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-.marketplace-cost__platform { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 24px; text-align: center; min-width: 160px; }
-.marketplace-cost__platform-name { font-size: 13px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; }
-.marketplace-cost__platform-cost { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--gray-900); }
-.marketplace-cost__platform-period { font-size: 12px; color: var(--text-muted); }
-.marketplace-cost__plus { font-size: 1.5rem; font-weight: 300; color: var(--gray-400); }
-.marketplace-cost__equals { font-size: 1.5rem; font-weight: 300; color: var(--gray-400); }
-.marketplace-cost__total { background: var(--danger-light); border: 2px solid var(--danger); border-radius: var(--radius); padding: 20px 28px; text-align: center; min-width: 180px; }
-.marketplace-cost__total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--danger); margin-bottom: 4px; }
-.marketplace-cost__total-amount { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 900; color: var(--danger); }
-.marketplace-cost__total-period { font-size: 12px; color: var(--danger); opacity: 0.7; }
-.marketplace-cost__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 480px; margin: 0 auto 28px; }
-.marketplace-cost__stat { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; text-align: center; }
-.marketplace-cost__stat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 8px; }
-.marketplace-cost__stat-value { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; }
-.marketplace-cost__stat--danger .marketplace-cost__stat-value { color: var(--danger); }
-.marketplace-cost__stat--blurred .marketplace-cost__stat-value { filter: blur(8px); color: var(--gray-700); }
-.marketplace-cost__stat-hint { font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 8px; }
+/* ── Section headers ── */
+.section-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 10px; display: block; }
+.section-title { font-size: clamp(26px, 3.5vw, 40px); color: var(--gray-900); margin-bottom: 16px; }
+.section-title em { font-style: italic; color: var(--primary); }
+.section-sub { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); max-width: 52ch; line-height: 1.7; }
 
-/* Leaderboard */
-.leaderboard { padding: 56px 0; }
-.leaderboard__inner { max-width: 640px; margin: 0 auto; text-align: center; }
-.leaderboard h2 { margin-bottom: 8px; }
-.leaderboard__subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; }
-.leaderboard__list { display: flex; flex-direction: column; gap: 8px; text-align: left; }
-.leaderboard__row { display: grid; grid-template-columns: 32px 1fr 100px 80px; align-items: center; gap: 12px; padding: 12px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); transition: all 0.2s; }
-.leaderboard__row--you { border: 2px solid var(--danger); background: var(--danger-light); }
-.leaderboard__row--best { border: 2px solid var(--success); background: var(--success-light); }
-.leaderboard__rank { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; color: var(--gray-400); text-align: center; }
-.leaderboard__row--you .leaderboard__rank { color: var(--danger); }
-.leaderboard__row--best .leaderboard__rank { color: var(--success); }
-.leaderboard__name { font-size: 14px; font-weight: 600; color: var(--gray-700); }
-.leaderboard__row--you .leaderboard__name { color: var(--danger); font-weight: 800; }
-.leaderboard__time { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-600); text-align: right; }
-.leaderboard__row--you .leaderboard__time { color: var(--danger); }
-.leaderboard__row--best .leaderboard__time { color: var(--success); }
-.leaderboard__bar-wrap { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
-.leaderboard__bar { height: 100%; border-radius: 3px; }
+/* ── Mystery Shopper ── */
+.mystery-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.chat-bubble-wrap { display: flex; flex-direction: column; gap: 20px; }
+.chat-group { display: flex; flex-direction: column; gap: 8px; }
+.chat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+.chat-label.yours { color: var(--warning); }
+.chat-label.best  { color: var(--success); }
+.bubble { padding: 14px 18px; border-radius: 16px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; max-width: 92%; }
+.bubble.neutral { background: var(--gray-100); color: var(--gray-700); border-radius: 16px 16px 16px 4px; }
+.bubble.yours { background: var(--warning-light); border: 1px solid rgba(199,119,0,0.2); color: var(--gray-800); border-radius: 16px 16px 16px 4px; }
+.bubble.best  { background: var(--success-light); border: 1px solid rgba(46,133,64,0.2); color: var(--gray-800); border-radius: 16px 16px 16px 4px; }
+.bubble-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.bubble-meta-dot { width: 5px; height: 5px; border-radius: 50%; }
 
-/* Guarantee Section (new) */
-.guarantee-section { padding: 64px 0; background: linear-gradient(135deg, var(--gray-900) 0%, #1a2332 100%); color: var(--white); text-align: center; }
-.guarantee-section h2 { color: var(--white); margin-bottom: 16px; }
-.guarantee-section__body { font-size: 16px; color: var(--gray-400); max-width: 540px; margin: 0 auto 32px; line-height: 1.7; }
-.guarantee-section__ctas { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
-.guarantee-section__ctas .btn--white { background: var(--white); color: var(--primary-dark); }
-.guarantee-section__ctas .btn--outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
-.guarantee-section__ctas .btn--outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+/* Diff card (red X / green check) */
+.diff-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 24px; margin-top: 32px; }
+.diff-card h4 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; color: var(--gray-900); margin-bottom: 16px; }
+.diff-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+.diff-item:last-child { border-bottom: none; }
+.diff-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 11px; font-weight: 800; }
+.diff-icon.bad  { background: var(--danger); color: var(--white); }
+.diff-icon.good { background: var(--success); color: var(--white); }
+.diff-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-900); }
+.diff-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
-/* Scorecard */
-.scorecard { padding: 64px 0; }
-.scorecard__header { text-align: center; margin-bottom: 40px; }
-.scorecard__header h2 { margin-bottom: 8px; }
-.scorecard__header p { color: var(--text-muted); font-size: 15px; }
-.scorecard__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 740px; margin: 0 auto; }
-.scorecard__item { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; position: relative; transition: all 0.2s; }
-.scorecard__item:hover { box-shadow: var(--shadow-md); }
-.scorecard__item--revealed { border-color: var(--gray-300); }
-.scorecard__item--locked { }
-.scorecard__item-locked-score { position: relative; }
-.scorecard__item--locked .scorecard__item-score,
-.scorecard__item--locked .scorecard__item-bar { filter: blur(3px); opacity: 0.4; }
-.scorecard__item-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 8px; }
-.scorecard__item-name { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px; color: var(--gray-900); margin-bottom: 4px; }
-.scorecard__item-desc { font-size: 12px; color: var(--gray-500); line-height: 1.5; margin-bottom: 16px; }
-.scorecard__item-score { font-family: 'Inter', sans-serif; font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 8px; }
-.scorecard__item-bar { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
-.scorecard__item-bar-fill { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
-.scorecard__item-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.scorecard__item-lock-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-.scorecard__item-lock-text { font-size: 13px; font-weight: 700; color: var(--primary); }
-.scorecard__cta { text-align: center; margin-top: 28px; max-width: 740px; margin-left: auto; margin-right: auto; }
-.scorecard__cta-text { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
-.scorecard__cta-text strong { color: var(--gray-800); }
-@media (max-width: 640px) {
-  .scorecard__grid { grid-template-columns: 1fr; }
-}
+/* ── Evening ── */
+.evening-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+.clock-visual { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-lg); }
+.clock-title { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: 20px; }
+.time-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+.time-row:last-of-type { border-bottom: none; }
+.time-label { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--gray-600); min-width: 96px; font-size: 12px; }
+.bar-wrap { flex: 1; height: 14px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+.vol-bar { height: 100%; border-radius: 99px; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+.vol-bar--primary { background: linear-gradient(90deg, #4DB8C2, var(--primary)); }
+.vol-bar--warning { background: linear-gradient(90deg, #E8A020, var(--warning)); }
+.time-pct { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; min-width: 32px; text-align: right; color: var(--text-muted); }
+.time-row--hl { background: var(--warning-light); border-radius: 8px; padding: 10px 8px; margin: 0 -8px; }
+.time-row--hl .time-label { color: var(--warning); }
+.time-row--hl .time-pct  { color: var(--warning); }
+.clock-note { margin-top: 16px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
 
-/* (Revenue Leak section removed) */
+/* ── Steps ── */
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 56px; }
+.step { background: var(--white); border: 1px solid var(--gray-200); padding: 28px 22px; border-radius: 3px; transition: box-shadow 0.2s; }
+.step:first-child { border-radius: 16px 3px 3px 16px; }
+.step:last-child  { border-radius: 3px 16px 16px 3px; }
+.step:hover { box-shadow: var(--shadow-md); }
+.step-icon { width: 40px; height: 40px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--primary); }
+.step h4 { font-family: Georgia, serif; font-size: 16px; color: var(--gray-900); margin-bottom: 8px; }
+.step p { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
-/* Pivot */
-.pivot { padding: 72px 0; text-align: center; background: linear-gradient(175deg, var(--white) 0%, var(--primary-light) 100%); }
-.pivot h2 { margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
-.pivot__scenario { max-width: 560px; margin: 0 auto; font-size: 17px; color: var(--gray-700); line-height: 1.8; }
-.pivot__scenario strong { color: var(--primary-dark); font-weight: 700; }
+/* Guarantee banner */
+.guarantee-banner { display: flex; align-items: center; gap: 14px; background: var(--success-light); border: 1px solid rgba(46,133,64,0.25); border-radius: var(--radius-lg); padding: 18px 22px; margin-top: 32px; max-width: 640px; margin-left: auto; margin-right: auto; }
+.guarantee-banner svg { color: var(--success); flex-shrink: 0; }
+.guarantee-banner p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--primary-darker); line-height: 1.5; }
+.guarantee-banner strong { color: var(--success); }
 
-/* Steps */
-.steps { padding: 64px 0; }
-.steps__header { text-align: center; margin-bottom: 48px; }
-.step { margin-bottom: 48px; }
-.step:last-child { margin-bottom: 0; }
-.step__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.step__inner--reversed { direction: rtl; }
-.step__inner--reversed > * { direction: ltr; }
-.step-number { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 900; font-size: 16px; margin-bottom: 12px; }
-.step__content h3 { margin-bottom: 10px; }
-.step__content p { color: var(--gray-600); font-size: 15px; line-height: 1.7; }
-.step__image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); transition: transform 0.3s ease; }
-.step__image:hover { transform: translateY(-4px); }
-.step__image img { width: 100%; display: block; }
+/* ── Pricing — 3-column ── */
+.pricing-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+.pricing-card-3 { border: 2px solid var(--gray-200); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; background: var(--white); transition: all 0.2s; }
+.pricing-card-3:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pricing-card-3.popular { border-color: var(--primary); border-width: 3px; box-shadow: 0 4px 24px rgba(0,124,137,0.18), var(--shadow-lg); position: relative; transform: scale(1.04); background: linear-gradient(180deg, var(--primary-light) 0%, var(--white) 40%); }
+.pricing-card-3.popular:hover { transform: scale(1.04) translateY(-3px); }
+.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--white); padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.pc3-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 10px; }
+.pc3-name { font-family: Georgia, serif; font-size: 32px; font-weight: 900; color: var(--gray-900); margin-bottom: 4px; line-height: 1; }
+.pc3-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+.pc3-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 2px; }
+.pc3-curr { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-muted); padding-top: 6px; }
+.pc3-amt { font-family: 'Inter', sans-serif; font-size: 52px; font-weight: 900; line-height: 1; color: var(--gray-900); letter-spacing: -2px; }
+.pc3-per { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); padding-top: 30px; }
+.pc3-trial { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 20px; }
+.pc3-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex-grow: 1; }
+.pc3-features li { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--gray-700); line-height: 1.4; }
+.pc3-check { width: 18px; height: 18px; background: var(--success-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--success); font-size: 10px; font-weight: 800; }
+.pc3-note { text-align: center; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 8px; }
 
-/* Guarantee */
-.guarantee { padding: 56px 0; background: var(--gray-900); color: var(--white); text-align: center; }
-.guarantee h2 { color: var(--white); margin-bottom: 16px; }
-.guarantee__body { font-size: 16px; color: var(--gray-400); max-width: 520px; margin: 0 auto 28px; line-height: 1.7; }
-.guarantee__contrast { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.guarantee__contrast-item { text-align: center; }
-.guarantee__contrast-number { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
-.guarantee__contrast-label { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
-.guarantee__contrast-op { font-size: 1.5rem; color: var(--gray-600); font-weight: 300; }
+/* ── ROI comparison ── */
+.roi-compare { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.roi-row { display: flex; flex-direction: column; gap: 6px; }
+.roi-row-header { display: flex; justify-content: space-between; font-family: 'Inter', sans-serif; font-size: 13px; }
+.roi-label { color: var(--text-muted); }
+.roi-val { font-weight: 800; font-variant-numeric: tabular-nums; }
+.roi-mp .roi-val { color: var(--danger); }
+.roi-co .roi-val { color: var(--success); }
+.roi-bar-track { height: 10px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+.roi-bar-fill { height: 100%; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 1.4s cubic-bezier(0.16,1,0.3,1); }
+.roi-bar-fill.animated { transform: scaleX(1); }
+.roi-mp .roi-bar-fill { background: var(--danger); }
+.roi-co .roi-bar-fill { background: var(--success); }
+.roi-verdict { margin-top: 16px; padding: 16px 18px; background: var(--primary-light); border: 1px solid var(--primary-lighter); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--primary-darker); line-height: 1.6; }
+.roi-verdict strong { color: var(--primary); }
 
-/* Logo bar — "Supported marketplaces" */
-.logo-bar { padding: 48px 0; background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
-.logo-bar__label { text-align: center; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 28px; }
-.logo-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px 28px; max-width: 800px; margin: 0 auto; }
-.logo-bar__item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.65; transition: opacity 0.2s; }
-.logo-bar__item:hover { opacity: 1; }
-.logo-bar__icon { width: 72px; height: 72px; border-radius: 16px; background: var(--white); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: var(--gray-700); font-family: 'Inter', sans-serif; box-shadow: var(--shadow-sm); overflow: hidden; }
-.logo-bar__icon img { width: 50px; height: 50px; object-fit: contain; }
-.logo-bar__name { font-size: 12px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+/* ── Marketplaces badges ── */
+.mp-label { text-align: center; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px; }
+.mp-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.mp-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 9px 16px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--gray-700); transition: border-color 0.2s, box-shadow 0.15s; }
+.mp-badge:hover { border-color: var(--primary-lighter); box-shadow: var(--shadow-sm); }
+.mp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-/* Pricing */
-.pricing { padding: 56px 0; }
-.pricing h2 { text-align: center; margin-bottom: 6px; }
-.pricing__subtitle { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 36px; }
-.pricing__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
-.pricing__card { border: 2px solid var(--gray-200); border-radius: var(--radius-lg); padding: 28px 24px; display: flex; flex-direction: column; background: var(--white); transition: all 0.2s; }
-.pricing__card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.pricing__card--free { border-color: var(--gray-300); background: var(--gray-50); }
-.pricing__card--popular { border-color: var(--primary); border-width: 3px; box-shadow: 0 4px 24px rgba(0,124,137,0.18), var(--shadow-lg); position: relative; transform: scale(1.05); background: linear-gradient(180deg, var(--primary-light) 0%, var(--white) 40%); }
-.pricing__card--popular:hover { transform: scale(1.05) translateY(-3px); }
-.pricing__popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--white); padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-.pricing__card-name { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; margin-bottom: 6px; }
-.pricing__card-price { display: flex; align-items: baseline; gap: 3px; margin-bottom: 3px; }
-.pricing__card-price-amount { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; }
-.pricing__card-price-period { font-size: 14px; color: var(--text-muted); }
-.pricing__card-trial { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 20px; }
-.pricing__card-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex-grow: 1; }
-.pricing__card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.4; }
-.pricing__card-features li::before { content: '\2713'; font-weight: 800; color: var(--primary); flex-shrink: 0; }
-.pricing__card .btn { margin-top: auto; }
-
-/* (Final CTA section removed) */
+/* Demo calendar */
+.demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
+.demo-section h2 { margin-bottom: 12px; }
+.demo-section__embed { max-width: 800px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; box-shadow: var(--shadow-lg); }
 
 /* Footer */
 .footer { padding: 24px 0; border-top: 1px solid var(--gray-200); }
@@ -276,273 +256,483 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 .footer__meta { font-size: 11px; color: var(--gray-400); }
 .footer__meta a { color: var(--gray-500); }
 
-/* Demo calendar section */
-.demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
-.demo-section h2 { margin-bottom: 12px; }
-.demo-section__embed { max-width: 800px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; box-shadow: var(--shadow-lg); }
+/* ── Product Steps (image + text) ── */
+.product-step { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 64px; }
+.product-step:last-child { margin-bottom: 0; }
+.product-step--reversed { direction: rtl; }
+.product-step--reversed > * { direction: ltr; }
+.step-num-tag { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.product-step__img { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); transition: transform 0.3s ease; }
+.product-step__img:hover { transform: translateY(-4px); }
+.product-step__img img { width: 100%; display: block; }
 
-/* Language switcher */
-.lang-switch { display:flex; gap:4px; margin-right:8px; }
-.lang-btn { padding:4px 10px; border-radius:100px; border:1px solid var(--gray-200); background:var(--white); font-family:'Inter',sans-serif; font-size:11px; font-weight:700; color:var(--gray-500); cursor:pointer; transition:all .15s; }
-.lang-btn:hover { border-color:var(--primary); color:var(--primary); }
-.lang-btn.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
+/* ── Logo bar grid (favicon style) ── */
+.logo-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px 28px; max-width: 800px; margin: 0 auto; }
+.logo-bar__item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.65; transition: opacity 0.2s; }
+.logo-bar__item:hover { opacity: 1; }
+.logo-bar__icon { width: 72px; height: 72px; border-radius: 16px; background: var(--white); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); overflow: hidden; }
+.logo-bar__icon img { width: 50px; height: 50px; object-fit: contain; }
+.logo-bar__name { font-size: 12px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
 
-/* Animations */
-.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.fade-up.is-visible { opacity: 1; transform: translateY(0); }
-.stagger > .fade-up:nth-child(2) { transition-delay: 0.06s; }
-.stagger > .fade-up:nth-child(3) { transition-delay: 0.12s; }
-.stagger > .fade-up:nth-child(4) { transition-delay: 0.18s; }
+/* ── Animations ── */
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { opacity: 0; animation: fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards; }
+.d1 { animation-delay: 0.08s; } .d2 { animation-delay: 0.18s; } .d3 { animation-delay: 0.30s; } .d4 { animation-delay: 0.44s; }
 
+/* ── Responsive ── */
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; gap: 28px; }
-  .hero__chart { max-width: 480px; }
-  .step__inner, .step__inner--reversed { grid-template-columns: 1fr; gap: 28px; direction: ltr; }
-  .pricing__grid { grid-template-columns: 1fr 1fr; max-width: 500px; }
-  .marketplace-cost__platforms { flex-direction: column; }
-  .guarantee-section__ctas { flex-direction: column; }
-  .pricing__card--popular { transform: scale(1); }
-  .scorecard__grid { grid-template-columns: 1fr; }
+  .hero-inner, .mystery-inner, .evening-inner { grid-template-columns: 1fr; }
+  .product-step, .product-step--reversed { grid-template-columns: 1fr; gap: 28px; direction: ltr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-3col { grid-template-columns: 1fr; max-width: 400px; }
+  .pricing-card-3.popular { transform: scale(1); }
+  .score-card { display: none; }
+  .step:first-child { border-radius: 16px 3px 3px 16px; }
+  .step:nth-child(2) { border-radius: 3px 16px 16px 3px; }
+  .step:nth-child(3) { border-radius: 16px 3px 3px 16px; }
+  .step:last-child  { border-radius: 3px 16px 16px 3px; }
 }
-@media (max-width: 640px) {
-  .section { padding: 44px 0; }
-  .hero { padding: 40px 0 32px; }
-  .stat-card { padding: 14px 8px; }
-  .stat-card__number { font-size: 1.2rem; }
-  .guarantee__contrast { flex-direction: column; gap: 12px; }
-  .pricing__grid { grid-template-columns: 1fr; max-width: 360px; }
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .step:first-child, .step:last-child, .step:nth-child(2), .step:nth-child(3) { border-radius: 3px; }
+  section { padding: 56px 0; }
   .footer__inner { flex-direction: column; gap: 6px; }
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
+  <div class="nav-right">
+    <span id="navDealer"></span>
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+    </div>
+    <a href="#bookDemo" class="btn btn-primary" style="padding:9px 18px;font-size:13px" id="navCta">Audit gratuit</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero" style="padding:0">
   <div class="container">
-    <div class="header__inner">
-      <div class="header__logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
-      <div class="header__meta">
-        <span class="header__dealer" id="headerDealer"></span>
-        <div class="lang-switch">
-          <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
-          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
-          <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow fade-up">
+          <span class="eyebrow-dot"></span>
+          <span id="heroEyebrow">Rapport personnalisé</span>
         </div>
-        <a href="aello-dealer-report.html" class="btn btn--primary" style="padding: 8px 18px; font-size: 13px;" id="headerAuditBtn">Audit gratuit</a>
+        <h1 class="fade-up d1" id="heroH1">
+          Vos annonces<br>vous coûtent cher.<br>
+          <em>Voici ce qu'elles<br>vous rapportent.</em>
+        </h1>
+        <p class="hero-sub fade-up d2" id="heroSub">
+          On a analysé votre présence sur les marketplaces, testé votre concession en mystery shopper, et comparé vos performances aux meilleurs du marché. Les résultats sont sur cette page.
+        </p>
+        <div class="hero-actions fade-up d3">
+          <a href="#comment" class="btn btn-outline btn-lg" id="heroBtn">Voir comment ça marche</a>
+        </div>
+        <p class="guarantee-note fade-up d4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span id="heroGuarantee">Audit gratuit — pas de carte bancaire — pas de contrat</span>
+        </p>
       </div>
-    </div>
-  </div>
-</header>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="container">
-    <div class="hero__grid">
-      <div class="hero__content">
-        <h1 id="heroHeadline"></h1>
-        <p class="hero__subtitle" id="heroSub"></p>
-        <div class="hero__form">
-          <form class="audit-form" onsubmit="handleSubmit(event)">
-            <input type="url" placeholder="votresite.com" required id="heroFormInput">
-            <button type="submit" class="btn btn--primary btn--full btn--lg" data-t="heroFormBtn">Voir votre score de r&eacute;ponse &rarr;</button>
-          </form>
+      <!-- Score Card (no "Votre score actuel", only Moyenne + Meilleur) -->
+      <div class="score-card fade-up d2">
+        <div class="score-card-label" id="scoreCardLabel">Score de réponse marketplace</div>
+        <div class="score-bars">
+          <div class="score-row score-avg">
+            <div class="score-row-header">
+              <span class="score-row-name" id="scoreAvgLabel">Moyenne concessionnaire FR</span>
+              <span class="score-row-val">52 / 100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
+          </div>
+          <div class="score-row score-best">
+            <div class="score-row-header">
+              <span class="score-row-name" id="scoreBestLabel">Meilleur du marché</span>
+              <span class="score-row-val">91 / 100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+          </div>
         </div>
-        <p class="hero__form-note" data-t="heroFormNote">&#128274; 100% gratuit. Sans carte bancaire. R&eacute;sultats en 24h.</p>
-        <div class="hero__stats stagger" id="heroStats"></div>
-      </div>
-      <div class="hero__chart fade-up" id="heroChart"></div>
-    </div>
-  </div>
-</section>
 
-<!-- MYSTERY SHOP LEADERBOARD -->
-<section class="leaderboard section-alt" id="leaderboard">
-  <div class="container">
-    <div class="leaderboard__inner">
-      <h2 class="fade-up" data-t="leaderboardTitle">Comment vous vous situez face aux autres concessionnaires</h2>
-      <p class="leaderboard__subtitle fade-up" data-t="leaderboardSubtitle">Temps de réponse moyen aux demandes marketplace</p>
-      <div class="leaderboard__list fade-up" id="leaderboardList"></div>
-    </div>
-  </div>
-</section>
-
-<!-- SCORECARD -->
-<section class="scorecard" id="scorecard">
-  <div class="container">
-    <div class="scorecard__header">
-      <h2 class="fade-up" data-t="scorecardTitle">Votre r&eacute;ponse r&eacute;cente &mdash; &eacute;valu&eacute;e</h2>
-      <p class="fade-up" data-t="scorecardSubtitle">L'audit gratuit inclut une analyse comparative compl&egrave;te.</p>
-    </div>
-    <div class="scorecard__grid stagger" id="scorecardGrid"></div>
-    <div class="scorecard__cta fade-up" id="scorecardCta"></div>
-  </div>
-</section>
-
-
-<!-- GUARANTEE (response score) -->
-<section class="guarantee-section" id="guaranteeSection">
-  <div class="container">
-    <h2 class="fade-up" data-t="guaranteeTitle">Votre score de r&eacute;ponse marketplace va s'am&eacute;liorer. Garanti.</h2>
-    <p class="guarantee-section__body fade-up" data-t="guaranteeBody">Utilisez Copilot pendant 90 jours. Si votre score ne s'am&eacute;liore pas, on vous rembourse int&eacute;gralement.</p>
-    <div class="guarantee-section__ctas fade-up">
-      <a href="aello-dealer-report.html" class="btn btn--white btn--lg" data-t="guaranteeCta1">Obtenir votre audit gratuit</a>
-      <a href="aello-dealer-tour.html" target="_blank" class="btn btn--outline-white btn--lg" data-t="guaranteeCta2">Voir la d&eacute;mo produit</a>
-    </div>
-  </div>
-</section>
-
-<!-- PIVOT -->
-<section class="pivot" id="pivot">
-  <div class="container">
-    <h2 class="fade-up" data-t="pivotTitle">Et si chaque demande recevait une r&eacute;ponse en 2 minutes ?</h2>
-    <p class="pivot__scenario fade-up" id="pivotScenario"></p>
-  </div>
-</section>
-
-<!-- STEPS — How to fix your score -->
-<section class="steps section-alt" id="steps">
-  <div class="container">
-    <div class="steps__header">
-      <h2 class="fade-up" data-t="stepsTitle">Voir. Corriger. Suivre.</h2>
-    </div>
-    <div class="step">
-      <div class="step__inner fade-up">
-        <div class="step__content">
-          <div class="step-number">1</div>
-          <h3 data-t="step1Title">Identifiez les failles.</h3>
-          <p data-t="step1Desc">Votre audit gratuit r&eacute;v&egrave;le chaque faille dans votre processus de r&eacute;ponse &mdash; rapidit&eacute;, qualit&eacute;, suivi, sur toutes les plateformes.</p>
-        </div>
-        <div class="step__image"><img src="https://aello-copilot.com/images/lead_capture.gif" alt="Audit des leads" loading="lazy"></div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step__inner step__inner--reversed fade-up">
-        <div class="step__content">
-          <div class="step-number">2</div>
-          <h3 data-t="step2Title">Corrigez en 30 secondes.</h3>
-          <p data-t="step2Desc">Passez &agrave; Copilot : r&eacute;pondez depuis votre t&eacute;l&eacute;phone avec des templates intelligents. Deux taps &mdash; r&eacute;ponse personnalis&eacute;e envoy&eacute;e.</p>
-        </div>
-        <div class="step__image"><img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Template de r&eacute;ponse" loading="lazy"></div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step__inner fade-up">
-        <div class="step__content">
-          <div class="step-number">3</div>
-          <h3 data-t="step3Title">Ne perdez plus jamais une demande.</h3>
-          <p data-t="step3Desc">Des mystery shops mensuels suivent votre score. Observez vos temps de r&eacute;ponse baisser et vos ventes augmenter.</p>
-        </div>
-        <div class="step__image"><img src="https://aello-copilot.com/images/vehicle_lead_scoring.gif" alt="Am&eacute;lioration du score" loading="lazy"></div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- MARKETPLACE LOGO BAR -->
-<section class="logo-bar" id="platforms">
+<!-- ── Stats Strip ── -->
+<section class="stats-section">
   <div class="container">
-    <div class="logo-bar__label" data-t="logoBarLabel">Marketplaces support&eacute;es en France et en Europe</div>
-    <div class="logo-bar__grid fade-up" id="logoBarGrid"></div>
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-item stat-item--danger">
+        <div class="stat-num" id="statLeak">740 €</div>
+        <div class="stat-label" id="statLeakLabel">Messages d'acheteurs sans réponse ce mois</div>
+        <div class="stat-note" id="statLeakNote">Estimation typique — concessionnaire 50 annonces</div>
+      </div>
+      <div class="stat-item stat-item--warning">
+        <div class="stat-num" id="statTime">5h 20</div>
+        <div class="stat-label" id="statTimeLabel">Temps de réponse moyen — concessionnaire FR</div>
+        <div class="stat-note" id="statTimeNote">Meilleur du marché : moins de 15 min</div>
+      </div>
+      <div class="stat-item stat-item--blue">
+        <div class="stat-num" id="statListings">50</div>
+        <div class="stat-label" id="statListingsLabel">Annonces actives — exemple typique</div>
+        <div class="stat-note" id="statListingsNote">Sur 3 à 5 plateformes en moyenne</div>
+      </div>
+      <div class="stat-item stat-item--green">
+        <div class="stat-num">&lt; 2 min</div>
+        <div class="stat-label" id="statCopilotLabel">Temps de réponse avec Copilot</div>
+        <div class="stat-note" id="statCopilotNote">Réponse automatique, 24h/24 — même le dimanche</div>
+      </div>
+    </div>
+    <div class="stats-source">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+      <span id="statsSourceText">Étude Aéllo — 500+ concessionnaires PL analysés en France, Mars 2026</span>
+    </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing section section-alt" id="pricing">
+<!-- ── Mystery Shopper ── -->
+<section id="mystery" class="section-alt">
   <div class="container">
-    <h2 class="fade-up" data-t="pricingTitle">Commencez gratuitement. Passez &agrave; la vitesse sup&eacute;rieure quand vous &ecirc;tes pr&ecirc;t.</h2>
-    <p class="pricing__subtitle fade-up" data-t="pricingSubtitle">L'audit est gratuit &mdash; pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
-    <div class="pricing__grid stagger">
-      <!-- Gratuit -->
-      <div class="pricing__card pricing__card--free fade-up">
-        <div class="pricing__card-name" data-t="planAudit">Audit</div>
-        <div class="pricing__card-price">
-          <span class="pricing__card-price-amount" data-t="planFree">Gratuit</span>
+    <div class="mystery-inner">
+      <div>
+        <span class="section-eyebrow">Mystery Shopper</span>
+        <h2 class="section-title" id="mysteryTitle">On vous a contacté<br>en <em>acheteur</em>.</h2>
+        <p class="section-sub" id="mysterySub">Sur 500+ concessionnaires testés, voici ce qu'on a observé — la différence entre la réponse typique et ce que font les meilleurs.</p>
+
+        <div class="diff-card">
+          <h4 id="diffCardTitle">Les 4 différences qui comptent</h4>
+          <div class="diff-item">
+            <div class="diff-icon bad">✕</div>
+            <div>
+              <div class="diff-title" id="diff1Title">Délai de réponse : 6h 40</div>
+              <div class="diff-sub" id="diff1Sub">L'acheteur a probablement déjà contacté 3 autres concessions</div>
+            </div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon bad">✕</div>
+            <div>
+              <div class="diff-title" id="diff2Title">Réponse générique sans personnalisation</div>
+              <div class="diff-sub" id="diff2Sub">Le véhicule n'est pas nommé, pas de disponibilité mentionnée</div>
+            </div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon bad">✕</div>
+            <div>
+              <div class="diff-title" id="diff3Title">Aucune question posée à l'acheteur</div>
+              <div class="diff-sub" id="diff3Sub">Sans question, pas de conversation — pas de rendez-vous</div>
+            </div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon good">✓</div>
+            <div>
+              <div class="diff-title" id="diff4Title">Avec Copilot : réponse en 2 min, personnalisée</div>
+              <div class="diff-sub" id="diff4Sub">Véhicule nommé, disponibilité confirmée, rendez-vous proposé</div>
+            </div>
+          </div>
         </div>
-        <div class="pricing__card-trial" data-t="planAlwaysFree">Toujours gratuit</div>
-        <ul class="pricing__card-features">
-          <li data-t="auditF1">Audit de r&eacute;ponse marketplace</li>
-          <li data-t="auditF2">Score de pr&eacute;paration leads</li>
-          <li data-t="auditF3">Mystery shop mensuel</li>
-          <li data-t="auditF4">Suivi du score dans le temps</li>
+      </div>
+
+      <div class="chat-bubble-wrap">
+        <div class="chat-group">
+          <div class="chat-label yours" id="chatYoursLabel">Réponse typique à une demande marketplace</div>
+          <div class="bubble yours" id="chatYoursMsg">Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.</div>
+          <div class="bubble-meta">
+            <span class="bubble-meta-dot" style="background:var(--warning)"></span>
+            <span id="chatYoursTime">Répondu après <strong style="color:var(--warning)">6h 40</strong></span>
+          </div>
+        </div>
+        <div class="chat-group">
+          <div class="chat-label best" id="chatBestLabel">Meilleure réponse observée sur le marché</div>
+          <div class="bubble best" id="chatBestMsg">Bonjour, merci pour votre message concernant le DAF XF 480 FT. Il est disponible immédiatement — révisé et prêt à rouler. Je suis disponible pour une visite ce week-end ou en semaine après 17h. Quel est le meilleur moment pour vous ? — Stéphane, Camions Sud-Ouest</div>
+          <div class="bubble-meta">
+            <span class="bubble-meta-dot" style="background:var(--success)"></span>
+            <span id="chatBestTime">Répondu en <strong style="color:var(--success)">11 minutes</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Evening / 24h ── -->
+<section>
+  <div class="container">
+    <div class="evening-inner">
+      <div>
+        <span class="section-eyebrow" id="eveningEyebrow">Disponibilité 24h/24</span>
+        <h2 class="section-title" id="eveningTitle"><em>62% de vos messages</em><br>arrivent quand vous<br>n'êtes plus là.</h2>
+        <p class="section-sub" style="margin-bottom:24px" id="eveningSub1">Le soir. Le samedi. Le dimanche. C'est là que les acheteurs cherchent, depuis leur portable quand ils ne travaillent pas eux-mêmes.</p>
+        <p class="section-sub" style="margin-bottom:36px" id="eveningSub2">Copilot répond à leur place — immédiatement, avec une réponse adaptée à chaque annonce. Vous retrouvez le résumé le lundi matin avec les acheteurs déjà engagés.</p>
+      </div>
+      <div class="clock-visual">
+        <div class="clock-title" id="clockTitle">Volume de messages d'acheteurs par période</div>
+        <div class="time-row">
+          <span class="time-label">08h – 12h</span>
+          <div class="bar-wrap"><div class="vol-bar vol-bar--primary" style="width:0" data-w="43%"></div></div>
+          <span class="time-pct">18%</span>
+        </div>
+        <div class="time-row">
+          <span class="time-label">12h – 17h</span>
+          <div class="bar-wrap"><div class="vol-bar vol-bar--primary" style="width:0" data-w="48%"></div></div>
+          <span class="time-pct">20%</span>
+        </div>
+        <div class="time-row time-row--hl">
+          <span class="time-label">18h – 23h</span>
+          <div class="bar-wrap"><div class="vol-bar vol-bar--warning" style="width:0" data-w="100%"></div></div>
+          <span class="time-pct">42%</span>
+        </div>
+        <div class="time-row time-row--hl">
+          <span class="time-label">Weekend</span>
+          <div class="bar-wrap"><div class="vol-bar vol-bar--warning" style="width:0" data-w="48%"></div></div>
+          <span class="time-pct">20%</span>
+        </div>
+        <p class="clock-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span id="clockNote">62% arrivent en dehors de vos heures de travail</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Steps ── -->
+<section class="section-alt" id="comment">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-eyebrow" id="stepsEyebrow">Mise en place</span>
+      <h2 class="section-title" style="max-width:560px;margin:0 auto 12px" id="stepsTitle">Opérationnel en <em>moins de 30 minutes</em>.</h2>
+      <p class="section-sub" style="margin:0 auto" id="stepsSub">Pas de formation. Pas de migration. Quatre étapes, c'est tout.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
+        <h4 id="step1Title">Identifiez vos failles</h4>
+        <p id="step1Desc">Votre audit révèle chaque manque — rapidité, qualité, suivi — sur toutes vos plateformes.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></div>
+        <h4 id="step2Title">Connectez vos plateformes</h4>
+        <p id="step2Desc">Europe-Camions, LeBonCoin, Autoline — tous vos messages arrivent dans une seule boîte.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+        <h4 id="step3Title">Répondez en quelques secondes</h4>
+        <p id="step3Desc">Les templates remplissent le véhicule, le prix, la dispo automatiquement. Deux taps — réponse envoyée.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+        <h4 id="step4Title">Pilotez votre ROI plateforme</h4>
+        <p id="step4Desc">Chaque mois, vous savez ce que chaque abonnement vous rapporte. Décidez où investir, où couper.</p>
+      </div>
+    </div>
+    <div class="guarantee-banner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <p id="guaranteeBanner"><strong>Garantie satisfait ou remboursé.</strong> Si votre score ne s'améliore pas en 30 jours, nous vous remboursons intégralement. Sans condition.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing: 3 tiers ── -->
+<section id="essai">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-eyebrow" id="pricingEyebrow">Tarif</span>
+      <h2 class="section-title" id="pricingTitle">Commencez gratuitement.</h2>
+      <p class="section-sub" style="margin:0 auto" id="pricingSub">L'audit est gratuit — pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
+    </div>
+    <div class="pricing-3col">
+      <!-- AUDIT GRATUIT -->
+      <div class="pricing-card-3">
+        <div class="pc3-eyebrow" id="plan1Eyebrow">Audit Gratuit</div>
+        <div class="pc3-name" id="plan1Name">Gratuit</div>
+        <p class="pc3-desc" id="plan1Desc">On mystery-shoppe votre concession et on vous remet votre score personnalisé. Aucun engagement.</p>
+        <ul class="pc3-features">
+          <li><span class="pc3-check">✓</span> <span id="plan1F1">Mystery shop sur votre annonce principale</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan1F2">Score de réponse personnalisé</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan1F3">Comparaison avec les meilleurs du marché</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan1F4">Rapport livré sous 48h</span></li>
         </ul>
-        <a href="aello-dealer-report.html" class="btn btn--outline btn--full" data-t="auditCtaBtn">Voir mon audit gratuit</a>
+        <a href="#bookDemo" class="btn btn-outline btn-full" id="plan1Cta">Demander mon audit →</a>
+        <p class="pc3-note" id="plan1Note">Pas de carte bancaire requise</p>
       </div>
-      <!-- Pro -->
-      <div class="pricing__card pricing__card--popular fade-up">
-        <div class="pricing__popular-badge" data-t="planMostPopular">Le plus populaire</div>
-        <div class="pricing__card-name" data-t="planPro">Pro</div>
-        <div class="pricing__card-price">
-          <span class="pricing__card-price-amount">&euro;49</span>
-          <span class="pricing__card-price-period" data-t="planPerMonth">/mois</span>
+
+      <!-- COPILOT €99 -->
+      <div class="pricing-card-3 popular">
+        <div class="popular-badge" id="plan2Badge">Le plus populaire</div>
+        <div class="pc3-eyebrow" id="plan2Eyebrow">Copilot</div>
+        <div class="pc3-price">
+          <span class="pc3-curr">€</span>
+          <span class="pc3-amt">99</span>
+          <span class="pc3-per" id="plan2Per">/ mois</span>
         </div>
-        <div class="pricing__card-trial" data-t="planFreeTrial">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-        <ul class="pricing__card-features">
-          <li data-t="proF1">Tout dans Audit</li>
-          <li data-t="proF2">Jusqu'&agrave; 3 marketplaces</li>
-          <li data-t="proF3">Templates de r&eacute;ponse intelligents</li>
-          <li data-t="proF4">WhatsApp, email et demandes web</li>
-          <li data-t="proF5">Scoring et d&eacute;duplication</li>
-          <li data-t="proF6">Suivi mensuel des r&eacute;ponses</li>
+        <p class="pc3-desc" id="plan2Desc">Pour les concessionnaires jusqu'à 30 annonces actives sur 2 marketplaces.</p>
+        <div class="pc3-trial" id="plan2Trial">✓ 1 mois gratuit — sans carte bancaire</div>
+        <ul class="pc3-features">
+          <li><span class="pc3-check">✓</span> <span id="plan2F1">Jusqu'à 30 annonces actives</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan2F2">2 marketplaces connectées</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan2F3">Réponses automatiques nuit & weekend</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan2F4">Templates personnalisés par annonce</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan2F5">Rapport ROI mensuel par plateforme</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan2F6">Mise en place en moins de 30 minutes</span></li>
         </ul>
-        <a href="aello-dealer-report.html" class="btn btn--primary btn--full" data-t="proCtaBtn">D&eacute;marrer l'essai gratuit</a>
+        <a href="#bookDemo" class="btn btn-primary btn-full" style="padding:16px;font-size:15px" id="plan2Cta">Démarrer 1 mois gratuit →</a>
+        <p class="pc3-note" id="plan2Note">Satisfait ou remboursé — 30 jours</p>
       </div>
-      <!-- Business -->
-      <div class="pricing__card fade-up">
-        <div class="pricing__card-name" data-t="planBusiness">Business</div>
-        <div class="pricing__card-price">
-          <span class="pricing__card-price-amount">&euro;99</span>
-          <span class="pricing__card-price-period" data-t="planPerMonth2">/mois</span>
-        </div>
-        <div class="pricing__card-trial" data-t="planFreeTrial2">1 mois gratuit &middot; Garantie satisfait ou rembours&eacute;</div>
-        <ul class="pricing__card-features">
-          <li data-t="bizF1">Tout dans Pro</li>
-          <li data-t="bizF2">Attribution automatique d'&eacute;quipe</li>
-          <li data-t="bizF3">Analytique avanc&eacute;e</li>
-          <li data-t="bizF4">Int&eacute;grations API et DMS</li>
-          <li data-t="bizF5">Gestionnaire de compte d&eacute;di&eacute;</li>
+
+      <!-- ENTERPRISE -->
+      <div class="pricing-card-3">
+        <div class="pc3-eyebrow" id="plan3Eyebrow">Enterprise</div>
+        <div class="pc3-name" id="plan3Name">Sur devis</div>
+        <p class="pc3-desc" id="plan3Desc">Pour les groupes, les réseaux multi-sites et les concessions avec plus de 30 annonces ou plus de 2 plateformes.</p>
+        <ul class="pc3-features">
+          <li><span class="pc3-check">✓</span> <span id="plan3F1">Annonces illimitées</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan3F2">Toutes les marketplaces</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan3F3">Intégration DMS sur mesure</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan3F4">Accompagnement dédié</span></li>
+          <li><span class="pc3-check">✓</span> <span id="plan3F5">Reporting multi-sites</span></li>
         </ul>
-        <a href="#bookDemo" class="btn btn--outline btn--full" data-t="bizCtaBtn">Contacter les ventes</a>
-      </div>
-      <!-- Entreprise -->
-      <div class="pricing__card fade-up">
-        <div class="pricing__card-name" data-t="planEnterprise">Entreprise</div>
-        <div class="pricing__card-price">
-          <span class="pricing__card-price-amount" style="font-size:1.6rem;" data-t="planLetsTalk">Parlons-en</span>
-        </div>
-        <div class="pricing__card-trial" data-t="planCustomPricing">Prix sur mesure</div>
-        <ul class="pricing__card-features">
-          <li data-t="entF1">Tout dans Business</li>
-          <li data-t="entF2">5+ marketplaces</li>
-          <li data-t="entF3">Support multi-sites</li>
-          <li data-t="entF4">Int&eacute;grations personnalis&eacute;es</li>
-          <li data-t="entF5">Support prioritaire et SLA</li>
-        </ul>
-        <a href="mailto:charles@aello-group.co" class="btn btn--outline btn--full" data-t="entCtaBtn">Nous contacter</a>
+        <a href="#bookDemo" class="btn btn-outline btn-full" id="plan3Cta">Parler à Charles →</a>
+        <p class="pc3-note" id="plan3Note">Réponse sous 24h</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ── ROI Comparison ── -->
+<section class="section-alt">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+      <div>
+        <span class="section-eyebrow" id="roiEyebrow">Calcul simple</span>
+        <h2 class="section-title" style="margin-bottom:14px" id="roiTitle">Une année entière<br>= moins de la moitié<br>de la marge <em>d'un camion</em>.</h2>
+        <p class="section-sub" style="margin-bottom:0" id="roiSub">Vos abonnements marketplace vous coûtent entre €200 et €2 000 par mois. Copilot : €99/mois pour en tirer le maximum.</p>
+        <div class="roi-compare">
+          <div class="roi-row roi-mp">
+            <div class="roi-row-header">
+              <span class="roi-label" id="roiMpLabel">Abonnements marketplace (estimé)</span>
+              <span class="roi-val" id="roiMpVal">890 € / mois</span>
+            </div>
+            <div class="roi-bar-track"><div class="roi-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="roi-row roi-co">
+            <div class="roi-row-header">
+              <span class="roi-label">Aéllo Copilot</span>
+              <span class="roi-val">99 € / mois</span>
+            </div>
+            <div class="roi-bar-track"><div class="roi-bar-fill" style="width:11%"></div></div>
+          </div>
+          <div class="roi-verdict" id="roiVerdict">
+            Pour la première fois, vous saurez exactement ce que chaque plateforme vous rapporte. Et <strong>plus aucun message d'acheteur ne restera sans réponse</strong>, même le dimanche soir. 100+ concessionnaires PL en Europe l'utilisent déjà.
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Copilot response" style="border-radius:16px;box-shadow:var(--shadow-xl);border:1px solid var(--gray-200);max-width:100%" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- BOOK A DEMO -->
+<!-- ── Marketplaces ── -->
+<section style="padding:48px 0">
+  <div class="container" style="text-align:center">
+    <p class="mp-label" id="mpLabel">Compatible avec toutes vos plateformes</p>
+    <div class="mp-grid" id="mpGrid">
+      <div class="mp-badge"><span class="mp-dot" style="background:#E85D04"></span>Europe-Camions</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#FF6B35"></span>LeBonCoin Pro</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#0077B6"></span>Autoline</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#2196F3"></span>TrucksNL</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#4CAF50"></span>Mascus</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#607D8B"></span>TruckScout24</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#9C27B0"></span>Truck1</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#FF9800"></span>MachineryZone</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#F44336"></span>Mobile.de</div>
+      <div class="mp-badge"><span class="mp-dot" style="background:#00BCD4"></span>BasWorld</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOK A DEMO with Alexandre ── -->
 <section class="demo-section" id="bookDemo">
   <div class="container">
-    <h2 class="fade-up" data-t="demoTitle">R&eacute;server une d&eacute;mo</h2>
-    <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up" data-t="demoSubtitle">Choisissez un cr&eacute;neau avec Alexandre pour une pr&eacute;sentation personnalis&eacute;e.</p>
+    <h2 class="fade-up" id="demoTitle">Réserver une démo</h2>
+    <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up" id="demoSub">Choisissez un créneau avec Alexandre pour une présentation personnalisée.</p>
     <div class="demo-section__embed fade-up">
       <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── Voir. Corriger. Suivre. ── -->
+<section class="section-alt" style="border-top:1px solid var(--gray-200)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px">
+      <h2 class="section-title">Voir. Corriger. Suivre.</h2>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="product-step">
+      <div class="product-step__text">
+        <div class="step-num-tag">1</div>
+        <h3 style="font-size:22px;margin-bottom:10px">Identifiez les failles.</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Votre audit gratuit révèle chaque faille dans votre processus de réponse — rapidité, qualité, suivi, sur toutes les plateformes.</p>
+      </div>
+      <div class="product-step__img">
+        <img src="https://aello-copilot.com/images/lead_capture.gif" alt="Audit des leads" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="product-step product-step--reversed">
+      <div class="product-step__text">
+        <div class="step-num-tag">2</div>
+        <h3 style="font-size:22px;margin-bottom:10px">Corrigez en 30 secondes.</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Passez à Copilot : répondez depuis votre téléphone avec des templates intelligents. Deux taps — réponse personnalisée envoyée.</p>
+      </div>
+      <div class="product-step__img">
+        <img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Template de réponse" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="product-step">
+      <div class="product-step__text">
+        <div class="step-num-tag">3</div>
+        <h3 style="font-size:22px;margin-bottom:10px">Ne perdez plus jamais une demande.</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Des mystery shops mensuels suivent votre score. Observez vos temps de réponse baisser et vos ventes augmenter.</p>
+      </div>
+      <div class="product-step__img">
+        <img src="https://aello-copilot.com/images/vehicle_lead_scoring.gif" alt="Amélioration du score" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Marketplace Logos ── -->
+<section style="padding:48px 0;border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);background:var(--gray-50)">
+  <div class="container" style="text-align:center">
+    <p class="mp-label">Marketplaces supportées en France et en Europe</p>
+    <div class="logo-bar__grid fade-up" id="logoBarGrid"></div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
 <footer class="footer">
   <div class="container">
     <div class="footer__inner">
       <div class="footer__brand"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
-      <div class="footer__meta"><span data-t="footerGenerated">Rapport g&eacute;n&eacute;r&eacute;</span> <span id="footerDate"></span> &middot; <a href="mailto:charles@aello-group.co">charles@aello-group.co</a></div>
+      <div class="footer__meta">© 2026 Aéllo Sàrl · <a href="mailto:kyle@aello-copilot.com">kyle@aello-copilot.com</a></div>
     </div>
   </div>
 </footer>
@@ -550,540 +740,75 @@ h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
 <script>
 let currentLang = 'fr';
 
-// Auto-detect language from domain TLD or browser preference
+// Auto-detect language
 (function detectLang() {
   const host = window.location.hostname;
   const tld = host.split('.').pop();
-  // Domain-based detection
   if (tld === 'nl' || host.includes('.nl')) { currentLang = 'nl'; return; }
   if (tld === 'fr' || host.includes('.fr')) { currentLang = 'fr'; return; }
-  if (tld === 'be') {
-    // Belgium: check browser lang for nl vs fr
-    const bl = (navigator.language || '').toLowerCase();
-    currentLang = bl.startsWith('nl') ? 'nl' : 'fr';
-    return;
-  }
-  // Browser preference fallback
-  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-  if (browserLang.startsWith('nl')) { currentLang = 'nl'; return; }
-  if (browserLang.startsWith('fr')) { currentLang = 'fr'; return; }
-  if (browserLang.startsWith('en')) { currentLang = 'en'; return; }
-  // Also check dealerData if available — if dealer domain ends in .nl, use Dutch
-  if (typeof dealerData !== 'undefined' && dealerData.dealer_website) {
-    const dtld = dealerData.dealer_website.split('.').pop();
-    if (dtld === 'nl') { currentLang = 'nl'; return; }
-    if (dtld === 'fr') { currentLang = 'fr'; return; }
-  }
+  const bl = (navigator.language || '').toLowerCase();
+  if (bl.startsWith('nl')) { currentLang = 'nl'; return; }
+  if (bl.startsWith('en')) { currentLang = 'en'; return; }
 })();
 
-const T = {
-  fr: {
-    headerAuditBtn: "Audit gratuit",
-    headerDealerPrefix: "Rapport pour",
-    heroHeadline: "Vous payez pour \u00eatre visible. Vos r\u00e9ponses vous font perdre des ventes.",
-    heroSub: "{listings} annonces sur {platforms} plateformes. Vos budgets augmentent \u2014 mais vos r\u00e9ponses ne suivent pas.",
-    heroFormBtn: "Voir votre score de r\u00e9ponse \u2192",
-    heroFormNote: "\uD83D\uDD12 100% gratuit. Sans carte bancaire. R\u00e9sultats en 24h.",
-    heroFormPlaceholder: "votresite.com",
-    statResponseTime: "Temps de r\u00e9ponse",
-    statResponseScore: "Score de r\u00e9ponse",
-    statUnlock: "D\u00e9bloquer \u2192",
-    chartTitle: "Budget publicitaire marketplace",
-    chartHistorical: "Historique",
-    chartProjected: "Projet\u00e9",
-    chartCurrentBudget: "Votre budget actuel",
-    chartProjection2030: "Projection 2030",
-    leaderboardTitle: "Comment vous vous situez face aux autres concessionnaires",
-    leaderboardSubtitle: "Temps de r\u00e9ponse moyen aux demandes marketplace",
-    bestDealer: "Meilleur concessionnaire",
-    dealerB: "Concessionnaire B",
-    dealerC: "Concessionnaire C",
-    sectorAvg: "Moyenne du secteur",
-    dealerD: "Concessionnaire D",
-    dealerF: "Concessionnaire F",
-    youPrefix: "Vous",
-    scorecardTitle: "Votre r\u00e9ponse r\u00e9cente \u2014 \u00e9valu\u00e9e",
-    scorecardSubtitle: "L'audit gratuit inclut une analyse comparative compl\u00e8te.",
-    dimRevealed: "R\u00e9v\u00e9l\u00e9",
-    dimScore: "Score",
-    dimSpeed: "Rapidit\u00e9",
-    dimSpeedDesc: "Temps de r\u00e9ponse, comportement heures ouvr\u00e9es, \u00e9carts entre plateformes",
-    dimQuality: "Qualit\u00e9",
-    dimQualityDesc: "Personnalisation, transparence tarifaire, prochaines \u00e9tapes claires",
-    dimFollowUp: "Suivi",
-    dimFollowUpDesc: "Taux de deuxi\u00e8me r\u00e9ponse, taux de ghost, constance du pipeline",
-    dimOverall: "Score global",
-    dimOverallDesc: "Score composite \u2014 un seul chiffre, mis \u00e0 jour chaque mois",
-    unlockWithAudit: "D\u00e9bloquer avec l'audit gratuit",
-    scorecardCtaText: "Obtenez vos 4 scores \u2014 gratuitement.",
-    scorecardCtaBtn: "D\u00e9bloquer mon audit gratuit",
-    guaranteeTitle: "Votre score de r\u00e9ponse marketplace va s'am\u00e9liorer. Garanti.",
-    guaranteeBody: "Utilisez Copilot pendant 90 jours. Si votre score ne s'am\u00e9liore pas, on vous rembourse int\u00e9gralement.",
-    guaranteeCta1: "Obtenir votre audit gratuit",
-    guaranteeCta2: "Voir la d\u00e9mo produit",
-    pivotTitle: "Et si chaque demande recevait une r\u00e9ponse en 2 minutes ?",
-    pivotScenario: "Vous \u00eates sur le parc avec un client. Votre t\u00e9l\u00e9phone vibre \u2014 un acheteur vient de demander des infos sur un <strong>DAF XF 480</strong> sur {platform}. Deux taps : une r\u00e9ponse personnalis\u00e9e avec les d\u00e9tails du v\u00e9hicule, le prix et vos coordonn\u00e9es est envoy\u00e9e. <strong>Vous n'avez jamais quitt\u00e9 votre conversation.</strong>",
-    stepsTitle: "Voir. Corriger. Suivre.",
-    step1Title: "Identifiez les failles.",
-    step1Desc: "Votre audit gratuit r\u00e9v\u00e8le chaque faille dans votre processus de r\u00e9ponse \u2014 rapidit\u00e9, qualit\u00e9, suivi, sur toutes les plateformes.",
-    step2Title: "Corrigez en 30 secondes.",
-    step2Desc: "Passez \u00e0 Copilot : r\u00e9pondez depuis votre t\u00e9l\u00e9phone avec des templates intelligents. Deux taps \u2014 r\u00e9ponse personnalis\u00e9e envoy\u00e9e.",
-    step3Title: "Ne perdez plus jamais une demande.",
-    step3Desc: "Des mystery shops mensuels suivent votre score. Observez vos temps de r\u00e9ponse baisser et vos ventes augmenter.",
-    logoBarLabel: "Marketplaces support\u00e9es en France et en Europe",
-    pricingTitle: "Commencez gratuitement. Passez \u00e0 la vitesse sup\u00e9rieure quand vous \u00eates pr\u00eat.",
-    pricingSubtitle: "L'audit est gratuit \u2014 pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.",
-    planAudit: "Audit",
-    planFree: "Gratuit",
-    planAlwaysFree: "Toujours gratuit",
-    planPro: "Pro",
-    planMostPopular: "Le plus populaire",
-    planPerMonth: "/mois",
-    planPerMonth2: "/mois",
-    planFreeTrial: "1 mois gratuit \u00b7 Garantie satisfait ou rembours\u00e9",
-    planFreeTrial2: "1 mois gratuit \u00b7 Garantie satisfait ou rembours\u00e9",
-    planBusiness: "Business",
-    planEnterprise: "Entreprise",
-    planLetsTalk: "Parlons-en",
-    planCustomPricing: "Prix sur mesure",
-    auditF1: "Audit de r\u00e9ponse marketplace",
-    auditF2: "Score de pr\u00e9paration leads",
-    auditF3: "Mystery shop mensuel",
-    auditF4: "Suivi du score dans le temps",
-    proF1: "Tout dans Audit",
-    proF2: "Jusqu'\u00e0 3 marketplaces",
-    proF3: "Templates de r\u00e9ponse intelligents",
-    proF4: "WhatsApp, email et demandes web",
-    proF5: "Scoring et d\u00e9duplication",
-    proF6: "Suivi mensuel des r\u00e9ponses",
-    bizF1: "Tout dans Pro",
-    bizF2: "Attribution automatique d'\u00e9quipe",
-    bizF3: "Analytique avanc\u00e9e",
-    bizF4: "Int\u00e9grations API et DMS",
-    bizF5: "Gestionnaire de compte d\u00e9di\u00e9",
-    entF1: "Tout dans Business",
-    entF2: "5+ marketplaces",
-    entF3: "Support multi-sites",
-    entF4: "Int\u00e9grations personnalis\u00e9es",
-    entF5: "Support prioritaire et SLA",
-    auditCtaBtn: "Voir mon audit gratuit",
-    proCtaBtn: "D\u00e9marrer l'essai gratuit",
-    bizCtaBtn: "Contacter les ventes",
-    entCtaBtn: "Nous contacter",
-    demoTitle: "R\u00e9server une d\u00e9mo",
-    demoSubtitle: "Choisissez un cr\u00e9neau avec Alexandre pour une pr\u00e9sentation personnalis\u00e9e.",
-    footerGenerated: "Rapport g\u00e9n\u00e9r\u00e9",
-  },
-  en: {
-    headerAuditBtn: "Free audit",
-    headerDealerPrefix: "Report for",
-    heroHeadline: "You pay to be visible. Your responses are losing you sales.",
-    heroSub: "{listings} listings across {platforms} platforms. Your budgets are growing \u2014 but your responses aren't keeping up.",
-    heroFormBtn: "See your response score \u2192",
-    heroFormNote: "\uD83D\uDD12 100% free. No credit card. Results in 24h.",
-    heroFormPlaceholder: "yoursite.com",
-    statResponseTime: "Response time",
-    statResponseScore: "Response score",
-    statUnlock: "Unlock \u2192",
-    chartTitle: "Marketplace advertising budget",
-    chartHistorical: "Historical",
-    chartProjected: "Projected",
-    chartCurrentBudget: "Your current budget",
-    chartProjection2030: "2030 Projection",
-    leaderboardTitle: "How you compare to other dealers",
-    leaderboardSubtitle: "Average response time to marketplace inquiries",
-    bestDealer: "Best dealer",
-    dealerB: "Dealer B",
-    dealerC: "Dealer C",
-    sectorAvg: "Industry average",
-    dealerD: "Dealer D",
-    dealerF: "Dealer F",
-    youPrefix: "You",
-    scorecardTitle: "Your Recent Response \u2014 Scored",
-    scorecardSubtitle: "The free audit includes full benchmark analysis.",
-    dimRevealed: "Revealed",
-    dimScore: "Score",
-    dimSpeed: "Speed",
-    dimSpeedDesc: "Response time, business hours behavior, cross-platform gaps",
-    dimQuality: "Quality",
-    dimQualityDesc: "Personalization, pricing transparency, clear next steps",
-    dimFollowUp: "Follow-up",
-    dimFollowUpDesc: "Second response rate, ghost rate, pipeline consistency",
-    dimOverall: "Overall score",
-    dimOverallDesc: "Composite score \u2014 one number, updated monthly",
-    unlockWithAudit: "Unlock with free audit",
-    scorecardCtaText: "Get all 4 scores \u2014 free.",
-    scorecardCtaBtn: "Unlock my free audit",
-    guaranteeTitle: "Your marketplace response score will improve. Guaranteed.",
-    guaranteeBody: "Use Copilot for 90 days. If your score doesn't improve, we'll refund you in full.",
-    guaranteeCta1: "Get your free audit",
-    guaranteeCta2: "See the product demo",
-    pivotTitle: "What if every inquiry got a response in 2 minutes?",
-    pivotScenario: "You're on the lot with a customer. Your phone buzzes \u2014 a buyer just inquired about a <strong>DAF XF 480</strong> on {platform}. Two taps: a personalized response with vehicle details, pricing, and your contact info is sent. <strong>You never left your conversation.</strong>",
-    stepsTitle: "See. Fix. Track.",
-    step1Title: "Identify the gaps.",
-    step1Desc: "Your free audit reveals every gap in your response process \u2014 speed, quality, follow-up, across all platforms.",
-    step2Title: "Fix it in 30 seconds.",
-    step2Desc: "Switch to Copilot: respond from your phone with smart templates. Two taps \u2014 personalized response sent.",
-    step3Title: "Never lose a lead again.",
-    step3Desc: "Monthly mystery shops track your score. Watch your response times drop and your sales rise.",
-    logoBarLabel: "Supported marketplaces in France and Europe",
-    pricingTitle: "Start free. Scale when you're ready.",
-    pricingSubtitle: "The audit is free \u2014 forever. Copilot is for dealers who want to fix what's broken.",
-    planAudit: "Audit",
-    planFree: "Free",
-    planAlwaysFree: "Always free",
-    planPro: "Pro",
-    planMostPopular: "Most popular",
-    planPerMonth: "/mo",
-    planPerMonth2: "/mo",
-    planFreeTrial: "1 month free \u00b7 Money-back guarantee",
-    planFreeTrial2: "1 month free \u00b7 Money-back guarantee",
-    planBusiness: "Business",
-    planEnterprise: "Enterprise",
-    planLetsTalk: "Let's talk",
-    planCustomPricing: "Custom pricing",
-    auditF1: "Marketplace response audit",
-    auditF2: "Lead readiness score",
-    auditF3: "Monthly mystery shop",
-    auditF4: "Score tracking over time",
-    proF1: "Everything in Audit",
-    proF2: "Up to 3 marketplaces",
-    proF3: "Smart response templates",
-    proF4: "WhatsApp, email & web inquiries",
-    proF5: "Scoring & deduplication",
-    proF6: "Monthly response tracking",
-    bizF1: "Everything in Pro",
-    bizF2: "Automatic team assignment",
-    bizF3: "Advanced analytics",
-    bizF4: "API & DMS integrations",
-    bizF5: "Dedicated account manager",
-    entF1: "Everything in Business",
-    entF2: "5+ marketplaces",
-    entF3: "Multi-location support",
-    entF4: "Custom integrations",
-    entF5: "Priority support & SLA",
-    auditCtaBtn: "See my free audit",
-    proCtaBtn: "Start free trial",
-    bizCtaBtn: "Contact sales",
-    entCtaBtn: "Contact us",
-    demoTitle: "Book a demo",
-    demoSubtitle: "Choose a time with Alexandre for a personalized walkthrough.",
-    footerGenerated: "Report generated",
-  },
-  nl: {
-    headerAuditBtn: "Gratis audit",
-    headerDealerPrefix: "Rapport voor",
-    heroHeadline: "U betaalt om zichtbaar te zijn. Uw antwoorden kosten u verkopen.",
-    heroSub: "{listings} advertenties op {platforms} platforms. Uw budgetten groeien \u2014 maar uw reacties houden geen gelijk tred.",
-    heroFormBtn: "Bekijk uw antwoordscore \u2192",
-    heroFormNote: "\uD83D\uDD12 100% gratis. Geen creditcard. Resultaten in 24u.",
-    heroFormPlaceholder: "uwsite.com",
-    statResponseTime: "Reactietijd",
-    statResponseScore: "Antwoordscore",
-    statUnlock: "Ontgrendelen \u2192",
-    chartTitle: "Marketplace advertentiebudget",
-    chartHistorical: "Historisch",
-    chartProjected: "Geprojecteerd",
-    chartCurrentBudget: "Uw huidig budget",
-    chartProjection2030: "Projectie 2030",
-    leaderboardTitle: "Hoe u zich verhoudt tot andere dealers",
-    leaderboardSubtitle: "Gemiddelde reactietijd op marketplace-aanvragen",
-    bestDealer: "Beste dealer",
-    dealerB: "Dealer B",
-    dealerC: "Dealer C",
-    sectorAvg: "Sectorgemiddelde",
-    dealerD: "Dealer D",
-    dealerF: "Dealer F",
-    youPrefix: "U",
-    scorecardTitle: "Uw recente reactie \u2014 beoordeeld",
-    scorecardSubtitle: "De gratis audit bevat een volledige benchmarkanalyse.",
-    dimRevealed: "Onthuld",
-    dimScore: "Score",
-    dimSpeed: "Snelheid",
-    dimSpeedDesc: "Reactietijd, kantooruren gedrag, platformverschillen",
-    dimQuality: "Kwaliteit",
-    dimQualityDesc: "Personalisatie, prijstransparantie, duidelijke volgende stappen",
-    dimFollowUp: "Opvolging",
-    dimFollowUpDesc: "Tweede reactiepercentage, ghostpercentage, pipeline-consistentie",
-    dimOverall: "Totaalscore",
-    dimOverallDesc: "Samengestelde score \u2014 \u00e9\u00e9n cijfer, maandelijks bijgewerkt",
-    unlockWithAudit: "Ontgrendelen met gratis audit",
-    scorecardCtaText: "Ontvang al uw 4 scores \u2014 gratis.",
-    scorecardCtaBtn: "Mijn gratis audit ontgrendelen",
-    guaranteeTitle: "Uw marketplace-antwoordscore zal verbeteren. Gegarandeerd.",
-    guaranteeBody: "Gebruik Copilot gedurende 90 dagen. Als uw score niet verbetert, krijgt u een volledige terugbetaling.",
-    guaranteeCta1: "Uw gratis audit ontvangen",
-    guaranteeCta2: "Bekijk de productdemo",
-    pivotTitle: "Wat als elke aanvraag binnen 2 minuten een antwoord kreeg?",
-    pivotScenario: "U bent op het terrein met een klant. Uw telefoon trilt \u2014 een koper heeft zojuist informatie gevraagd over een <strong>DAF XF 480</strong> op {platform}. Twee tikken: een gepersonaliseerd antwoord met voertuigdetails, prijs en uw contactgegevens is verzonden. <strong>U heeft uw gesprek nooit verlaten.</strong>",
-    stepsTitle: "Zien. Herstellen. Volgen.",
-    step1Title: "Identificeer de zwakke punten.",
-    step1Desc: "Uw gratis audit onthult elk zwak punt in uw reactieproces \u2014 snelheid, kwaliteit, opvolging, op alle platforms.",
-    step2Title: "Herstel het in 30 seconden.",
-    step2Desc: "Schakel over naar Copilot: reageer vanaf uw telefoon met slimme templates. Twee tikken \u2014 gepersonaliseerd antwoord verzonden.",
-    step3Title: "Verlies nooit meer een aanvraag.",
-    step3Desc: "Maandelijkse mystery shops volgen uw score. Zie uw reactietijden dalen en uw verkopen stijgen.",
-    logoBarLabel: "Ondersteunde marktplaatsen in Frankrijk en Europa",
-    pricingTitle: "Begin gratis. Schaal op wanneer u klaar bent.",
-    pricingSubtitle: "De audit is gratis \u2014 voor altijd. Copilot is voor dealers die willen repareren wat niet werkt.",
-    planAudit: "Audit",
-    planFree: "Gratis",
-    planAlwaysFree: "Altijd gratis",
-    planPro: "Pro",
-    planMostPopular: "Meest populair",
-    planPerMonth: "/maand",
-    planPerMonth2: "/maand",
-    planFreeTrial: "1 maand gratis \u00b7 Niet-goed-geld-terug-garantie",
-    planFreeTrial2: "1 maand gratis \u00b7 Niet-goed-geld-terug-garantie",
-    planBusiness: "Business",
-    planEnterprise: "Enterprise",
-    planLetsTalk: "Laten we praten",
-    planCustomPricing: "Prijs op maat",
-    auditF1: "Marketplace reactie-audit",
-    auditF2: "Lead-gereedheidscore",
-    auditF3: "Maandelijkse mystery shop",
-    auditF4: "Scoreopvolging in de tijd",
-    proF1: "Alles in Audit",
-    proF2: "Tot 3 marktplaatsen",
-    proF3: "Slimme antwoordtemplates",
-    proF4: "WhatsApp, e-mail & webaanvragen",
-    proF5: "Scoring & deduplicatie",
-    proF6: "Maandelijkse reactieopvolging",
-    bizF1: "Alles in Pro",
-    bizF2: "Automatische teamtoewijzing",
-    bizF3: "Geavanceerde analyses",
-    bizF4: "API- & DMS-integraties",
-    bizF5: "Toegewezen accountmanager",
-    entF1: "Alles in Business",
-    entF2: "5+ marktplaatsen",
-    entF3: "Ondersteuning voor meerdere locaties",
-    entF4: "Aangepaste integraties",
-    entF5: "Prioriteitsondersteuning & SLA",
-    auditCtaBtn: "Mijn gratis audit bekijken",
-    proCtaBtn: "Gratis proefperiode starten",
-    bizCtaBtn: "Verkoop contacteren",
-    entCtaBtn: "Neem contact op",
-    demoTitle: "Boek een demo",
-    demoSubtitle: "Kies een tijdstip met Alexandre voor een gepersonaliseerde presentatie.",
-    footerGenerated: "Rapport gegenereerd",
-  },
-};
-
 const dealerData = {
-  dealer_name: "1FOTEAM",
-  dealer_city: "Le Havre",
-  dealer_website: "1foteam.com",
-  total_listings: 47,
+  dealer_name: "Garage Dumont",
+  dealer_city: "Lyon",
+  dealer_website: "garagedumont.fr",
+  total_listings: 50,
   total_platforms: 3,
   estimated_leads_per_month: 62,
-  marketplace_list: [
-    { name: "Europe-Camions", abbr: "EC", listings: 23, active: true },
-    { name: "LeBonCoin Pro", abbr: "LBC", listings: 15, active: true },
-    { name: "Autoline", abbr: "AL", listings: 9, active: true },
-    { name: "Mascus", abbr: "MA", listings: 0, active: false },
-    { name: "Truck1", abbr: "T1", listings: 0, active: false },
-    { name: "TrucksNL", abbr: "NL", listings: 0, active: false },
-    { name: "MachineryTrader", abbr: "MT", listings: 0, active: false },
-    { name: "BasWorld", abbr: "BW", listings: 0, active: false },
-  ],
-  mystery_shop_response_time: "18h 48min",
-  mystery_shop_response_minutes: 1128,
+  mystery_shop_response_time: "6h 40",
+  mystery_shop_response_minutes: 400,
   mystery_shop_platform: "Europe-Camions",
-  revenue_leak_monthly: 4750,
-  cost_per_lead: 18,
-  deals_lost_per_month: 3,
-  margin_per_sale: 1800,
   generated_date: "March 2026",
-  overall_score: 27,
+  overall_score: 38,
 };
 
-function populatePage(d) {
-  const t = T[currentLang];
-  document.title = `${d.dealer_name} — Aéllo Copilot Report`;
-  document.getElementById('headerDealer').textContent = `${t.headerDealerPrefix} ${d.dealer_name}`;
-  document.getElementById('headerAuditBtn').textContent = t.headerAuditBtn;
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang;
+  initAnimations();
+}
 
-  // Hero
-  document.getElementById('heroHeadline').innerHTML = t.heroHeadline;
-
-  document.getElementById('heroSub').innerHTML =
-    t.heroSub.replace('{listings}', d.total_listings).replace('{platforms}', d.total_platforms);
-
-  // Form
-  document.getElementById('heroFormInput').placeholder = t.heroFormPlaceholder;
-
-  document.getElementById('heroStats').innerHTML = `
-    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);">${d.mystery_shop_response_time}</div><div class="stat-card__label">${t.statResponseTime}</div></div>
-    <div class="stat-card fade-up"><div class="stat-card__number" style="color:var(--danger);filter:blur(8px);">${d.overall_score > 0 ? d.overall_score + '/100' : '—/100'}</div><div class="stat-card__label">${t.statResponseScore}</div><a href="report.html" style="font-size:12px;color:var(--primary);margin-top:4px;cursor:pointer;display:block;text-decoration:none;">${t.statUnlock}</a></div>
-  `;
-
-  // Hero chart — marketplace advertising budget growth
-  (function buildHeroChart() {
-    const container = document.getElementById('heroChart');
-    if (!container) return;
-    const listings = d.total_listings;
-    const platforms = d.total_platforms;
-    const costPerListing = 10;
-    const currentMonthly = Math.round(listings * costPerListing * platforms);
-
-    // Historical + projected data points (2010-2030)
-    const years = [];
-    const values = [];
-    for (let y = 2010; y <= 2030; y++) {
-      years.push(y);
-      const tNorm = (y - 2010) / 15; // 0..1 by 2025
-      if (y <= 2025) {
-        // grow from ~200 to current level
-        const base = 200;
-        const v = base + (currentMonthly - base) * Math.pow(tNorm, 1.3);
-        values.push(Math.round(v));
-      } else {
-        // projected: keep growing ~8% per year
-        const prev = values[values.length - 1];
-        values.push(Math.round(prev * 1.08));
+function initAnimations() {
+  // Score card bars
+  const scoreObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill, .roi-bar-fill').forEach(b => b.classList.add('animated'));
+        e.target.querySelectorAll('.vol-bar[data-w]').forEach((b, i) => {
+          setTimeout(() => { b.style.transition = 'width 1.4s cubic-bezier(0.16,1,0.3,1)'; b.style.width = b.dataset.w; }, 150 + i * 200);
+        });
+        scoreObs.unobserve(e.target);
       }
-    }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.score-card, .roi-compare, .clock-visual').forEach(el => scoreObs.observe(el));
 
-    const W = 440, H = 180, padL = 0, padR = 0, padT = 10, padB = 20;
-    const chartW = W - padL - padR, chartH = H - padT - padB;
-    const maxV = Math.max(...values) * 1.1;
-    const minV = 0;
-    const pts = values.map((v, i) => ({
-      x: padL + (i / (values.length - 1)) * chartW,
-      y: padT + chartH - ((v - minV) / (maxV - minV)) * chartH,
-      year: years[i],
-      val: v,
-      projected: years[i] > 2025
-    }));
+  // Stagger fade-in for items
+  const fio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        fio.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.stat-item, .step, .diff-item, .mp-badge, .chat-group').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.55s ease ${i * 0.05}s, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s`;
+    fio.observe(el);
+  });
+}
 
-    const historicalPts = pts.filter(p => !p.projected);
-    const projectedPts = pts.filter(p => p.projected);
-    // include last historical point in projected line for continuity
-    const lastHistorical = historicalPts[historicalPts.length - 1];
-    const projectedLine = [lastHistorical, ...projectedPts];
-
-    const toPath = (arr) => arr.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
-    const toArea = (arr) => {
-      const line = toPath(arr);
-      return line + ` L${arr[arr.length - 1].x.toFixed(1)},${padT + chartH} L${arr[0].x.toFixed(1)},${padT + chartH} Z`;
-    };
-
-    const currentVal = values[years.indexOf(2025)] || currentMonthly;
-    const projected2030 = values[values.length - 1];
-
-    container.innerHTML = `
-      <div class="hero__chart-header">
-        <div class="hero__chart-title">${t.chartTitle}</div>
-        <div class="hero__chart-legend">
-          <div class="hero__chart-legend-item"><div class="hero__chart-legend-dot" style="background:var(--primary);"></div>${t.chartHistorical}</div>
-          <div class="hero__chart-legend-item"><div class="hero__chart-legend-dot" style="background:var(--danger);"></div>${t.chartProjected}</div>
-        </div>
-      </div>
-      <svg viewBox="0 0 ${W} ${H}" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="${toArea(historicalPts)}" fill="var(--primary-lighter)" opacity="0.35"/>
-        <path d="${toArea(projectedLine)}" fill="var(--danger-light)" opacity="0.5"/>
-        <path d="${toPath(historicalPts)}" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="chart-line"/>
-        <path d="${toPath(projectedLine)}" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 4"/>
-        ${historicalPts.filter((_, i) => i % 3 === 0 || i === historicalPts.length - 1).map((p, i) =>
-          `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="var(--primary)" class="chart-dot" style="animation-delay:${(i * 0.1).toFixed(1)}s;"/>`
-        ).join('')}
-        ${projectedPts.filter((_, i) => i % 2 === 0 || i === projectedPts.length - 1).map((p, i) =>
-          `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="var(--danger)" class="chart-dot" style="animation-delay:${(0.8 + i * 0.15).toFixed(2)}s;"/>`
-        ).join('')}
-        ${pts.filter((_, i) => i % 5 === 0 || i === pts.length - 1).map(p =>
-          `<text x="${p.x.toFixed(1)}" y="${padT + chartH + 14}" text-anchor="middle" font-size="9" fill="var(--gray-400)" font-family="Inter, sans-serif">${p.year}</text>`
-        ).join('')}
-      </svg>
-      <div class="hero__chart-footer">
-        <div>
-          <div class="hero__chart-metric-label">${t.chartCurrentBudget}</div>
-          <div class="hero__chart-metric-value">\u20AC${currentVal.toLocaleString('fr-FR')}<span style="font-size:0.5em;color:var(--text-muted);">${t.planPerMonth}</span></div>
-        </div>
-        <div style="text-align:right;">
-          <div class="hero__chart-metric-label">${t.chartProjection2030}</div>
-          <div class="hero__chart-metric-value" style="color:var(--danger);">\u20AC${projected2030.toLocaleString('fr-FR')}<span style="font-size:0.5em;color:var(--text-muted);">${t.planPerMonth}</span></div>
-          <div class="hero__chart-metric-change" style="color:var(--danger);">\u2191 ${Math.round((projected2030 / currentVal - 1) * 100)}%</div>
-        </div>
-      </div>
-    `;
-  })();
-
-  // Leaderboard — competitor response times
-  const competitors = [
-    { nameKey: 'bestDealer', time: '12min', minutes: 12, best: true },
-    { nameKey: 'dealerB', time: '45min', minutes: 45 },
-    { nameKey: 'dealerC', time: '2h 10min', minutes: 130 },
-    { nameKey: 'sectorAvg', time: '4h 30min', minutes: 270 },
-    { nameKey: 'dealerD', time: '8h 15min', minutes: 495 },
-    { nameKey: null, time: d.mystery_shop_response_time, minutes: d.mystery_shop_response_minutes, you: true },
-    { nameKey: 'dealerF', time: '22h 40min', minutes: 1360 },
-  ].sort((a, b) => a.minutes - b.minutes);
-  const maxMins = Math.max(...competitors.map(c => c.minutes));
-
-  document.getElementById('leaderboardList').innerHTML = competitors.map((c, i) => {
-    const cls = c.you ? 'leaderboard__row--you' : (c.best ? 'leaderboard__row--best' : '');
-    const barColor = c.you ? 'var(--danger)' : (c.best ? 'var(--success)' : 'var(--gray-300)');
-    const barW = Math.max(5, (c.minutes / maxMins) * 100);
-    const displayName = c.you ? `${t.youPrefix} (${d.dealer_name})` : t[c.nameKey];
-    return `
-      <div class="leaderboard__row ${cls}">
-        <div class="leaderboard__rank">#${i + 1}</div>
-        <div class="leaderboard__name">${displayName}</div>
-        <div class="leaderboard__bar-wrap"><div class="leaderboard__bar" style="width:${barW}%;background:${barColor};"></div></div>
-        <div class="leaderboard__time">${c.time}</div>
-      </div>`;
-  }).join('');
-
-  // Scorecard — 4 dimensions, only Speed revealed, 3 blurred
-  const speedScore = Math.max(5, Math.round(100 - (d.mystery_shop_response_minutes / 60) * 5));
-  const speedColor = speedScore < 40 ? 'var(--danger)' : speedScore < 70 ? 'var(--warning)' : 'var(--success)';
-  const scorecardItems = [
-    { name: t.dimSpeed, desc: t.dimSpeedDesc, score: speedScore, color: speedColor, revealed: true },
-    { name: t.dimQuality, desc: t.dimQualityDesc, score: 0, color: 'var(--gray-300)', revealed: false },
-    { name: t.dimFollowUp, desc: t.dimFollowUpDesc, score: 0, color: 'var(--gray-300)', revealed: false },
-    { name: t.dimOverall, desc: t.dimOverallDesc, score: 0, color: 'var(--gray-300)', revealed: false },
-  ];
-  document.getElementById('scorecardGrid').innerHTML = scorecardItems.map(item => {
-    if (item.revealed) {
-      return `
-        <div class="scorecard__item scorecard__item--revealed fade-up">
-          <div class="scorecard__item-label">${t.dimRevealed}</div>
-          <div class="scorecard__item-name">${item.name}</div>
-          <div class="scorecard__item-desc">${item.desc}</div>
-          <div class="scorecard__item-score" style="color:${item.color};">${item.score}<span style="font-size:0.5em;color:var(--gray-400);">/100</span></div>
-          <div class="scorecard__item-bar"><div class="scorecard__item-bar-fill" style="width:${item.score}%;background:${item.color};"></div></div>
-        </div>`;
-    }
-    return `
-      <div class="scorecard__item scorecard__item--locked fade-up">
-        <div class="scorecard__item-label">${t.dimScore}</div>
-        <div class="scorecard__item-name">${item.name}</div>
-        <div class="scorecard__item-desc">${item.desc}</div>
-        <div class="scorecard__item-locked-score">
-          <div class="scorecard__item-score" style="color:var(--gray-300);">--<span style="font-size:0.5em;">/100</span></div>
-          <div class="scorecard__item-bar"><div class="scorecard__item-bar-fill" style="width:45%;background:var(--gray-200);"></div></div>
-          <div class="scorecard__item-overlay">
-            <div class="scorecard__item-lock-icon">&#128274;</div>
-            <div class="scorecard__item-lock-text">${t.unlockWithAudit}</div>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-  document.getElementById('scorecardCta').innerHTML = `
-    <p class="scorecard__cta-text"><strong>${t.scorecardCtaText}</strong></p>
-    <a href="aello-dealer-report.html" class="btn btn--primary btn--lg">${t.scorecardCtaBtn}</a>
-  `;
-
-  // (Revenue leak section removed)
-
-  // Pivot
-  document.getElementById('pivotScenario').innerHTML =
-    t.pivotScenario.replace('{platform}', d.mystery_shop_platform);
-
-  // (Old guarantee contrast removed)
-
-  // Logo bar — marketplace logos with real favicons
+document.addEventListener('DOMContentLoaded', () => {
+  // Populate marketplace logo grid
   const allPlatforms = [
     { name: 'Europe-Camions', domain: 'europe-camions.com' },
     { name: 'LeBonCoin', domain: 'leboncoin.fr' },
@@ -1097,58 +822,16 @@ function populatePage(d) {
     { name: 'TruckScout24', domain: 'truckscout24.de' },
     { name: 'MachineryFinder', domain: 'machineryfinder.com' },
   ];
-  document.getElementById('logoBarGrid').innerHTML = allPlatforms.map(p => `
-    <div class="logo-bar__item">
-      <div class="logo-bar__icon"><img src="https://www.google.com/s2/favicons?domain=${p.domain}&sz=64" alt="${p.name}"></div>
-      <div class="logo-bar__name">${p.name}</div>
-    </div>
-  `).join('');
-
-  // Footer
-  document.getElementById('footerDate').textContent = d.generated_date;
-}
-
-function initScrollAnimations() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-}
-
-function handleSubmit(e) {
-  e.preventDefault();
-  window.location.href = 'aello-dealer-report.html';
-}
-
-function updateDataTElements() {
-  const t = T[currentLang];
-  document.querySelectorAll('[data-t]').forEach(el => {
-    const key = el.getAttribute('data-t');
-    if (t[key] !== undefined) {
-      el.textContent = t[key];
-    }
-  });
-}
-
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-  document.documentElement.lang = lang;
-  populatePage(dealerData);
-  updateDataTElements();
-  requestAnimationFrame(() => initScrollAnimations());
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populatePage(dealerData);
-  updateDataTElements();
-  // Sync language button state with auto-detected language
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === currentLang);
-  });
-  requestAnimationFrame(() => initScrollAnimations());
+  const logoGrid = document.getElementById('logoBarGrid');
+  if (logoGrid) {
+    logoGrid.innerHTML = allPlatforms.map(p => `
+      <div class="logo-bar__item">
+        <div class="logo-bar__icon"><img src="https://www.google.com/s2/favicons?domain=${p.domain}&sz=64" alt="${p.name}"></div>
+        <div class="logo-bar__name">${p.name}</div>
+      </div>
+    `).join('');
+  }
+  initAnimations();
 });
 </script>
 </body>
