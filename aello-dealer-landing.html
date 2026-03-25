@@ -7,831 +7,947 @@
 <meta name="description" content="Free lead response audit for {{dealer_name}} — See your score and track improvement monthly.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #007C89;
-  --primary-dark: #006570;
-  --primary-darker: #004F56;
-  --primary-light: #E8F5F6;
-  --primary-lighter: #C5E8EB;
-  --danger: #D5402B;
-  --danger-light: #FDF0EE;
-  --success: #2E8540;
-  --success-light: #EDF7EF;
-  --warning: #C77700;
-  --warning-light: #FFF7EB;
+  --teal: #007C89;
+  --teal-deep: #005A63;
+  --teal-mist: #E4F4F5;
+  --teal-ghost: #F3FAFB;
+  --ember: #C83C2A;
+  --ember-glow: #FDF0EE;
+  --forest: #1B7A3D;
+  --forest-wash: #ECF7EF;
+  --amber: #B06800;
+  --amber-wash: #FFF6E8;
+  --ink: #0F1419;
+  --ink-70: #3A4148;
+  --ink-50: #6B7580;
+  --ink-30: #A0A8B0;
+  --ink-15: #D4D8DC;
+  --ink-08: #ECEEF0;
+  --ink-04: #F5F6F7;
+  --ink-02: #FAFBFB;
   --white: #FFFFFF;
-  --gray-50: #F8FAFB;
-  --gray-100: #F1F3F5;
-  --gray-200: #E5E7EB;
-  --gray-300: #D1D5DB;
-  --gray-400: #9CA3AF;
-  --gray-500: #6B7280;
-  --gray-600: #4B5563;
-  --gray-700: #374151;
-  --gray-800: #1F2937;
-  --gray-900: #111827;
-  --text: #1a1a1a;
-  --text-muted: #6b7280;
-  --max-width: 1100px;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-  --shadow-lg: 0 1px 2px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04), 0 12px 24px rgba(0,0,0,0.03);
-  --shadow-xl: 0 1px 3px rgba(0,0,0,0.06), 0 8px 16px rgba(0,0,0,0.04), 0 24px 48px rgba(0,0,0,0.03);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Instrument Sans', -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Fira Code', monospace;
+  --max-w: 1120px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body { font-family: 'Inter', -apple-system, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans); font-size: 16px; line-height: 1.65;
+  color: var(--ink); background: var(--white);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--primary); text-decoration: none; }
-h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
-h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
-h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
-h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
-section { padding: 80px 0; }
-.section-alt { background: var(--gray-50); }
-.text-danger { color: var(--danger); }
-.text-primary { color: var(--primary); }
+a { color: var(--teal); text-decoration: none; }
+
+/* ── Grain overlay ── */
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.018;
+}
+
+/* ── Typography ── */
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.6rem, 5.5vw, 3.8rem); }
+h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); }
+em { font-family: var(--serif); font-style: italic; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+section { padding: 100px 0; }
 
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gray-200);
-  padding: 14px 24px;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--ink-08);
+  padding: 16px 32px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo img { height: 44px; width: auto; }
-.nav-right { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); font-weight: 500; }
-.lang-switch { display:flex; gap:4px; margin-right:4px; }
-.lang-btn { padding:4px 10px; border-radius:100px; border:1px solid var(--gray-200); background:var(--white); font-family:'Inter',sans-serif; font-size:11px; font-weight:700; color:var(--gray-500); cursor:pointer; transition:all .15s; }
-.lang-btn:hover { border-color:var(--primary); color:var(--primary); }
-.lang-btn.active { background:var(--primary); color:var(--white); border-color:var(--primary); }
+.nav-logo img { height: 36px; width: auto; opacity: 0.85; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-dealer { font-size: 12px; color: var(--ink-30); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+.lang-switch { display:flex; gap:3px; }
+.lang-btn {
+  padding: 5px 11px; border-radius: 6px; border: 1px solid transparent;
+  background: transparent; font-family: var(--sans); font-size: 11px; font-weight: 600;
+  color: var(--ink-30); cursor: pointer; transition: all .2s;
+}
+.lang-btn:hover { color: var(--teal); }
+.lang-btn.active { background: var(--ink); color: var(--white); }
 
 /* ── Buttons ── */
-.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border: none; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; text-decoration: none; }
-.btn:active { transform: scale(0.98); }
-.btn-primary { background: var(--primary); color: var(--white); }
-.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
-.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
-.btn-outline:hover { background: var(--primary); color: var(--white); }
-.btn-lg { padding: 14px 32px; font-size: 15px; }
-.btn-full { width: 100%; text-align: center; }
-.btn-ghost-white { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
-.btn-ghost-white:hover { background: rgba(255,255,255,0.2); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  border: none; border-radius: 10px; font-family: var(--sans); font-size: 14px;
+  font-weight: 600; cursor: pointer; transition: all .25s var(--ease); text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: var(--ink); color: var(--white);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.08);
+}
+.btn-primary:hover { background: var(--teal-deep); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,124,137,0.25); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink-15); }
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+.btn-lg { padding: 16px 36px; font-size: 15px; border-radius: 12px; }
+
+/* ── Section labels ── */
+.eyebrow {
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal);
+  display: inline-block; margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px; color: var(--ink-50); line-height: 1.75; max-width: 50ch;
+}
 
 /* ── Hero ── */
-.hero { padding: 56px 0 0; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
-.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding-bottom: 56px; }
-.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); border: 1px solid var(--primary-lighter); border-radius: 100px; padding: 6px 14px; font-size: 12px; font-weight: 700; color: var(--primary-dark); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
-.eyebrow-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
-.hero h1 { font-size: clamp(32px, 4vw, 48px); color: var(--gray-900); margin-bottom: 20px; }
-.hero h1 em { font-style: italic; color: var(--danger); }
-.hero-sub { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); max-width: 48ch; line-height: 1.7; margin-bottom: 32px; }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
-.guarantee-note { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
-.guarantee-note svg { color: var(--success); flex-shrink: 0; }
+.hero {
+  padding: 72px 0 0;
+  background: linear-gradient(178deg, var(--ink-02) 0%, var(--white) 60%);
+  border-bottom: 1px solid var(--ink-08);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px; align-items: center; padding-bottom: 72px;
+}
+.hero h1 { color: var(--ink); margin-bottom: 24px; }
+.hero h1 em { color: var(--ember); }
+.hero-sub {
+  font-size: 17px; color: var(--ink-50); max-width: 44ch;
+  line-height: 1.8; margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+.hero-trust {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--ink-30); font-weight: 500;
+}
+.hero-trust svg { color: var(--forest); flex-shrink: 0; }
 
-/* ── Score Card (hero) ── */
-.score-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-lg); }
-.score-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 24px; }
-.score-bars { display: flex; flex-direction: column; gap: 16px; }
-.score-row { display: flex; flex-direction: column; gap: 7px; }
-.score-row-header { display: flex; justify-content: space-between; align-items: center; }
-.score-row-name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); }
-.score-row-val { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
-.bar-track { height: 8px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
-.bar-fill { height: 100%; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+/* ── Score Card ── */
+.score-card {
+  background: var(--white); border: 1px solid var(--ink-08);
+  border-radius: 24px; padding: 36px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.03);
+  position: relative;
+}
+.score-card::before {
+  content: ''; position: absolute; inset: -1px; border-radius: 25px;
+  background: linear-gradient(135deg, var(--teal-mist), transparent 50%);
+  z-index: -1;
+}
+.score-card-label {
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-30);
+  margin-bottom: 28px;
+}
+.score-bars { display: flex; flex-direction: column; gap: 20px; }
+.score-row { display: flex; flex-direction: column; gap: 8px; }
+.score-row-header { display: flex; justify-content: space-between; align-items: baseline; }
+.score-row-name { font-size: 13px; font-weight: 500; color: var(--ink-50); }
+.score-row-val { font-family: var(--mono); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.bar-track { height: 6px; background: var(--ink-04); border-radius: 99px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease); }
 .bar-fill.animated { transform: scaleX(1); }
-.score-avg .score-row-val { color: var(--gray-400); }
-.score-avg .bar-fill { background: var(--gray-300); }
-.score-best .score-row-val { color: var(--success); font-weight: 900; }
-.score-best .bar-fill { background: var(--success); }
-.score-divider { border: none; border-top: 1px solid var(--gray-100); margin: 20px 0; }
+.score-avg .score-row-val { color: var(--ink-30); }
+.score-avg .bar-fill { background: linear-gradient(90deg, var(--ink-15), var(--ink-30)); }
+.score-best .score-row-val { color: var(--forest); font-weight: 700; }
+.score-best .bar-fill { background: linear-gradient(90deg, #4CAF7A, var(--forest)); }
 
-/* Mystery shop preview in score card */
-.mystery-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--warning); background: var(--warning-light); border: 1px solid rgba(199,119,0,0.2); border-radius: 6px; padding: 4px 10px; margin-bottom: 12px; }
-.mystery-response { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.65; color: var(--gray-700); background: var(--warning-light); border-left: 3px solid var(--warning); padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 10px; }
-.mystery-best { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.65; color: var(--gray-700); background: var(--success-light); border-left: 3px solid var(--success); padding: 10px 12px; border-radius: 0 8px 8px 0; }
-.mystery-inner-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 5px; }
-
-/* ── Stats Strip ── */
+/* ── Stats ── */
 .stats-section { padding: 0; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid var(--gray-200); border-right: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
-.stat-item { padding: 28px 24px; background: var(--white); border-right: 1px solid var(--gray-200); transition: background 0.2s; }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--ink-08); border-radius: 0 0 16px 16px;
+  overflow: hidden;
+}
+.stat-item {
+  padding: 32px 28px; background: var(--white);
+  border-right: 1px solid var(--ink-08);
+  transition: background 0.3s;
+}
 .stat-item:last-child { border-right: none; }
-.stat-item:hover { background: var(--gray-50); }
-.stat-item--danger { background: var(--danger-light); }
-.stat-item--warning { background: var(--warning-light); }
-.stat-num { font-family: 'Inter', sans-serif; font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
-.stat-item--danger .stat-num { color: var(--danger); }
-.stat-item--warning .stat-num { color: var(--warning); }
-.stat-item--blue .stat-num { color: var(--primary); }
-.stat-item--green .stat-num { color: var(--success); }
-.stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; line-height: 1.4; }
-.stat-note { font-size: 11px; color: var(--gray-400); margin-top: 4px; }
-.stats-source { font-size: 11px; color: var(--gray-400); padding: 10px 24px; border: 1px solid var(--gray-200); border-top: none; display: flex; align-items: center; gap: 6px; }
-
-/* ── Section headers ── */
-.section-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 10px; display: block; }
-.section-title { font-size: clamp(26px, 3.5vw, 40px); color: var(--gray-900); margin-bottom: 16px; }
-.section-title em { font-style: italic; color: var(--primary); }
-.section-sub { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--text-muted); max-width: 52ch; line-height: 1.7; }
+.stat-item:hover { background: var(--ink-02); }
+.stat-num {
+  font-family: var(--serif); font-size: 36px; font-weight: 400;
+  line-height: 1; margin-bottom: 8px;
+}
+.stat-item--danger { background: var(--ember-glow); }
+.stat-item--danger .stat-num { color: var(--ember); }
+.stat-item--warning { background: var(--amber-wash); }
+.stat-item--warning .stat-num { color: var(--amber); }
+.stat-item--blue .stat-num { color: var(--teal); }
+.stat-item--green .stat-num { color: var(--forest); }
+.stat-label { font-size: 13px; color: var(--ink-50); font-weight: 500; line-height: 1.45; }
+.stat-note { font-size: 11px; color: var(--ink-30); margin-top: 6px; font-weight: 400; }
+.stats-source {
+  font-size: 11px; color: var(--ink-30); padding: 12px 28px;
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--ink-08); border-top: none; border-radius: 0 0 16px 16px;
+}
 
 /* ── Mystery Shopper ── */
-.mystery-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.chat-bubble-wrap { display: flex; flex-direction: column; gap: 20px; }
-.chat-group { display: flex; flex-direction: column; gap: 8px; }
-.chat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
-.chat-label.yours { color: var(--warning); }
-.chat-label.best  { color: var(--success); }
-.bubble { padding: 14px 18px; border-radius: 16px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; max-width: 92%; }
-.bubble.neutral { background: var(--gray-100); color: var(--gray-700); border-radius: 16px 16px 16px 4px; }
-.bubble.yours { background: var(--warning-light); border: 1px solid rgba(199,119,0,0.2); color: var(--gray-800); border-radius: 16px 16px 16px 4px; }
-.bubble.best  { background: var(--success-light); border: 1px solid rgba(46,133,64,0.2); color: var(--gray-800); border-radius: 16px 16px 16px 4px; }
-.bubble-meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); margin-top: 6px; font-family: 'Inter', sans-serif; }
-.bubble-meta-dot { width: 5px; height: 5px; border-radius: 50%; }
-
-/* Diff card (red X / green check) */
-.diff-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 24px; margin-top: 32px; }
-.diff-card h4 { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800; color: var(--gray-900); margin-bottom: 16px; }
-.diff-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
+.mystery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.diff-card {
+  background: var(--white); border: 1px solid var(--ink-08);
+  border-radius: 20px; padding: 28px; margin-top: 36px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.02);
+}
+.diff-card h4 { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+.diff-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--ink-04); }
 .diff-item:last-child { border-bottom: none; }
-.diff-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 11px; font-weight: 800; }
-.diff-icon.bad  { background: var(--danger); color: var(--white); }
-.diff-icon.good { background: var(--success); color: var(--white); }
-.diff-title { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-900); }
-.diff-sub { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.diff-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 11px; font-weight: 800;
+}
+.diff-icon.bad { background: var(--ember); color: var(--white); }
+.diff-icon.good { background: var(--forest); color: var(--white); }
+.diff-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+.diff-sub { font-size: 12px; color: var(--ink-50); margin-top: 3px; line-height: 1.5; }
 
-/* ── Evening ── */
-.evening-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
-.clock-visual { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-lg); }
-.clock-title { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); margin-bottom: 20px; }
-.time-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-100); font-size: 13px; }
+/* Chat bubbles */
+.chat-wrap { display: flex; flex-direction: column; gap: 24px; }
+.chat-group { display: flex; flex-direction: column; gap: 10px; }
+.chat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 2px;
+}
+.chat-label.yours { color: var(--amber); }
+.chat-label.best { color: var(--forest); }
+.bubble {
+  padding: 18px 22px; border-radius: 20px 20px 20px 6px;
+  font-size: 15px; line-height: 1.7; max-width: 94%;
+}
+.bubble.yours {
+  background: var(--amber-wash); border: 1px solid rgba(176,104,0,0.12);
+  color: var(--ink-70);
+}
+.bubble.best {
+  background: var(--forest-wash); border: 1px solid rgba(27,122,61,0.12);
+  color: var(--ink-70);
+}
+.bubble-meta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--ink-30); font-weight: 500;
+}
+.bubble-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+/* ── Copilot Demo Animation ── */
+.demo-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; max-width: 1060px; margin: 0 auto; align-items: start; }
+.demo-inbox { background: var(--white); border: 1px solid var(--ink-08); border-radius: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.06); overflow: hidden; }
+.demo-inbox__bar { background: var(--white); border-bottom: 1px solid var(--ink-08); padding: 12px 18px; display: flex; align-items: center; gap: 12px; }
+.demo-inbox__bar-avatar { width: 36px; height: 36px; border-radius: 50%; background: #3B82F6; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 12px; font-weight: 800; flex-shrink: 0; }
+.demo-inbox__bar-info { flex: 1; }
+.demo-inbox__bar-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+.demo-inbox__bar-vehicle { font-size: 12px; color: var(--ink-30); }
+.demo-inbox__bar-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: #DBEAFE; color: #2563EB; }
+.demo-inbox__their-msg { padding: 18px 22px; border-bottom: 1px solid var(--ink-04); overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.5s ease; max-height: 400px; opacity: 1; }
+.demo-inbox__their-msg.collapsed { max-height: 0; opacity: 0; padding: 0 22px; border-bottom: none; }
+.demo-inbox__msg-label { font-size: 11px; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+.demo-inbox__msg-bubble { background: var(--ink-02); border: 1px solid var(--ink-08); border-radius: 16px 16px 16px 4px; padding: 14px 18px; max-width: 88%; }
+.demo-inbox__msg-text { font-size: 14px; line-height: 1.7; color: var(--ink-50); white-space: pre-line; }
+.demo-inbox__bad-overlay { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.demo-inbox__bad-tag { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: rgba(200,60,42,0.08); color: var(--ember); border: 1px solid rgba(200,60,42,0.15); }
+.demo-inbox__composer { padding: 16px 18px; border-top: 1px solid var(--ink-08); background: var(--white); }
+.demo-inbox__composer-row { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
+.demo-inbox__template-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--ink-08); background: var(--white); font-size: 12px; font-weight: 600; color: var(--ink-30); cursor: default; transition: all 0.3s; font-family: var(--sans); }
+.demo-inbox__template-btn.selected { border-color: var(--teal); background: var(--teal-ghost); color: var(--teal); }
+.demo-inbox__lang-btn { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--ink-08); background: var(--white); font-size: 12px; font-weight: 600; color: var(--ink-30); font-family: var(--sans); }
+.demo-inbox__body { min-height: 60px; padding: 14px; border: 1px solid var(--ink-08); border-radius: 12px; font-size: 13px; line-height: 1.7; color: var(--ink-70); margin-bottom: 12px; background: var(--ink-02); white-space: pre-line; transition: all 0.4s; overflow-y: auto; max-height: 300px; font-family: var(--sans); }
+.demo-inbox__body.empty { color: var(--ink-30); min-height: 40px; }
+.demo-inbox__actions { display: flex; align-items: center; justify-content: space-between; }
+.demo-inbox__send-btn { padding: 8px 22px; border-radius: 8px; background: var(--ink); color: var(--white); font-size: 13px; font-weight: 700; border: none; font-family: var(--sans); transition: all 0.2s; }
+.demo-inbox__send-btn.sent { background: var(--forest); }
+.demo-inbox__sent { position: absolute; inset: 0; background: rgba(255,255,255,0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 5; border-radius: 20px; }
+.demo-inbox__sent.visible { opacity: 1; }
+.demo-inbox__sent-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--forest); display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 24px; animation: sentPop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+@keyframes sentPop { from { transform: scale(0); } to { transform: scale(1); } }
+.demo-inbox__sent-label { margin-top: 10px; font-weight: 700; font-size: 15px; color: var(--forest); font-family: var(--sans); }
+.demo-cursor { position: absolute; width: 20px; height: 20px; pointer-events: none; z-index: 10; opacity: 0; transition: opacity 0.2s, top 0.5s var(--ease), left 0.5s var(--ease); }
+.demo-cursor.visible { opacity: 1; }
+.demo-cursor svg { width: 20px; height: 20px; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.2)); }
+.demo-annots { display: flex; flex-direction: column; gap: 10px; }
+.annot-card { background: var(--white); border: 1px solid var(--ink-08); border-radius: 14px; padding: 16px 18px; opacity: 0; transform: translateX(12px); transition: all 0.35s ease; }
+.annot-card.visible { opacity: 1; transform: translateX(0); }
+.annot-card.emphasize { border-color: var(--forest); box-shadow: 0 0 0 3px rgba(27,122,61,0.1); transform: scale(1.02); }
+.annot-card__icon { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--forest-wash); color: var(--forest); font-size: 11px; font-weight: 800; margin-bottom: 6px; }
+.annot-card__title { font-family: var(--sans); font-weight: 700; font-size: 12px; color: var(--ink); margin-bottom: 2px; }
+.annot-card__desc { font-size: 11px; color: var(--ink-50); line-height: 1.5; }
+.demo-hl { transition: all 0.4s ease; border-radius: 2px; padding: 1px 3px; margin: 0 -3px; }
+.demo-hl.active { background: rgba(200,60,42,0.1); border-bottom: 2px solid var(--ember); }
+@media (max-width: 900px) { .demo-layout { grid-template-columns: 1fr; } }
+
+/* ── Evening / 24h ── */
+.evening-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; }
+.clock-card {
+  background: var(--white); border: 1px solid var(--ink-08);
+  border-radius: 24px; padding: 36px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.03);
+}
+.clock-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-30); margin-bottom: 24px;
+}
+.time-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--ink-04);
+}
 .time-row:last-of-type { border-bottom: none; }
-.time-label { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--gray-600); min-width: 96px; font-size: 12px; }
-.bar-wrap { flex: 1; height: 14px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
-.vol-bar { height: 100%; border-radius: 99px; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
-.vol-bar--primary { background: linear-gradient(90deg, #4DB8C2, var(--primary)); }
-.vol-bar--warning { background: linear-gradient(90deg, #E8A020, var(--warning)); }
-.time-pct { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; min-width: 32px; text-align: right; color: var(--text-muted); }
-.time-row--hl { background: var(--warning-light); border-radius: 8px; padding: 10px 8px; margin: 0 -8px; }
-.time-row--hl .time-label { color: var(--warning); }
-.time-row--hl .time-pct  { color: var(--warning); }
-.clock-note { margin-top: 16px; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+.time-name { font-size: 13px; font-weight: 600; color: var(--ink-50); min-width: 100px; }
+.bar-wrap { flex: 1; height: 12px; background: var(--ink-04); border-radius: 99px; overflow: hidden; }
+.vol-bar { height: 100%; border-radius: 99px; transition: width 1.6s var(--ease); }
+.vol-bar--teal { background: linear-gradient(90deg, #7DD3D8, var(--teal)); }
+.vol-bar--amber { background: linear-gradient(90deg, #F0B040, var(--amber)); }
+.time-pct { font-family: var(--mono); font-size: 12px; font-weight: 600; min-width: 36px; text-align: right; color: var(--ink-50); }
+.time-row--hl { background: var(--amber-wash); border-radius: 10px; padding: 12px 12px; margin: 2px -12px; }
+.time-row--hl .time-name { color: var(--amber); }
+.time-row--hl .time-pct { color: var(--amber); }
+.clock-footer {
+  margin-top: 20px; font-size: 12px; color: var(--ink-30);
+  display: flex; align-items: center; gap: 8px;
+}
 
 /* ── Steps ── */
-.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 56px; }
-.step { background: var(--white); border: 1px solid var(--gray-200); padding: 28px 22px; border-radius: 3px; transition: box-shadow 0.2s; }
-.step:first-child { border-radius: 16px 3px 3px 16px; }
-.step:last-child  { border-radius: 3px 16px 16px 3px; }
-.step:hover { box-shadow: var(--shadow-md); }
-.step-icon { width: 40px; height: 40px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--primary); }
-.step h4 { font-family: Georgia, serif; font-size: 16px; color: var(--gray-900); margin-bottom: 8px; }
-.step p { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 64px; }
+.step-card {
+  background: var(--white); border: 1px solid var(--ink-08);
+  padding: 32px 24px; transition: all 0.3s;
+}
+.step-card:first-child { border-radius: 20px 4px 4px 20px; }
+.step-card:last-child { border-radius: 4px 20px 20px 4px; }
+.step-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.04); transform: translateY(-2px); }
+.step-ico {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--teal-ghost); display: flex; align-items: center;
+  justify-content: center; margin-bottom: 20px; color: var(--teal);
+}
+.step-card h4 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+.step-card p { font-size: 13px; color: var(--ink-50); line-height: 1.65; }
 
-/* Guarantee banner */
-.guarantee-banner { display: flex; align-items: center; gap: 14px; background: var(--success-light); border: 1px solid rgba(46,133,64,0.25); border-radius: var(--radius-lg); padding: 18px 22px; margin-top: 32px; max-width: 640px; margin-left: auto; margin-right: auto; }
-.guarantee-banner svg { color: var(--success); flex-shrink: 0; }
-.guarantee-banner p { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--primary-darker); line-height: 1.5; }
-.guarantee-banner strong { color: var(--success); }
+.guarantee-strip {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--forest-wash); border: 1px solid rgba(27,122,61,0.15);
+  border-radius: 16px; padding: 20px 24px; margin-top: 40px;
+  max-width: 660px; margin-left: auto; margin-right: auto;
+}
+.guarantee-strip svg { color: var(--forest); flex-shrink: 0; }
+.guarantee-strip p { font-size: 14px; color: var(--teal-deep); line-height: 1.55; }
+.guarantee-strip strong { color: var(--forest); }
 
-/* ── Pricing — 3-column ── */
-.pricing-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
-.pricing-card-3 { border: 2px solid var(--gray-200); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; background: var(--white); transition: all 0.2s; }
-.pricing-card-3:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.pricing-card-3.popular { border-color: var(--primary); border-width: 3px; box-shadow: 0 4px 24px rgba(0,124,137,0.18), var(--shadow-lg); position: relative; transform: scale(1.04); background: linear-gradient(180deg, var(--primary-light) 0%, var(--white) 40%); }
-.pricing-card-3.popular:hover { transform: scale(1.04) translateY(-3px); }
-.popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: var(--white); padding: 3px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-.pc3-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 10px; }
-.pc3-name { font-family: Georgia, serif; font-size: 32px; font-weight: 900; color: var(--gray-900); margin-bottom: 4px; line-height: 1; }
-.pc3-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
-.pc3-price { display: flex; align-items: flex-start; gap: 3px; margin-bottom: 2px; }
-.pc3-curr { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-muted); padding-top: 6px; }
-.pc3-amt { font-family: 'Inter', sans-serif; font-size: 52px; font-weight: 900; line-height: 1; color: var(--gray-900); letter-spacing: -2px; }
-.pc3-per { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); padding-top: 30px; }
-.pc3-trial { font-size: 12px; color: var(--success); font-weight: 600; margin-bottom: 20px; }
-.pc3-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; flex-grow: 1; }
-.pc3-features li { display: flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--gray-700); line-height: 1.4; }
-.pc3-check { width: 18px; height: 18px; background: var(--success-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--success); font-size: 10px; font-weight: 800; }
-.pc3-note { text-align: center; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+/* ── Pricing ── */
+.pricing-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 980px; margin: 0 auto; }
+.price-card {
+  border: 1.5px solid var(--ink-08); border-radius: 24px;
+  padding: 36px 28px; display: flex; flex-direction: column;
+  background: var(--white); transition: all .3s var(--ease);
+}
+.price-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+.price-card.featured {
+  border-color: var(--teal); border-width: 2px;
+  box-shadow: 0 4px 24px rgba(0,124,137,0.12);
+  position: relative; transform: scale(1.03);
+  background: linear-gradient(180deg, var(--teal-ghost) 0%, var(--white) 50%);
+}
+.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+.featured-tag {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: var(--teal); color: var(--white);
+  padding: 4px 16px; border-radius: 100px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+}
+.price-tier { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-30); margin-bottom: 12px; }
+.price-name { font-family: var(--serif); font-size: 34px; color: var(--ink); margin-bottom: 6px; }
+.price-amount { display: flex; align-items: flex-start; gap: 2px; margin-bottom: 4px; }
+.price-curr { font-size: 18px; font-weight: 600; color: var(--ink-30); padding-top: 6px; }
+.price-num { font-family: var(--serif); font-size: 56px; color: var(--ink); line-height: 1; }
+.price-per { font-size: 14px; color: var(--ink-30); padding-top: 34px; }
+.price-desc { font-size: 13px; color: var(--ink-50); margin-bottom: 24px; line-height: 1.55; }
+.price-trial { font-size: 12px; color: var(--forest); font-weight: 600; margin-bottom: 24px; }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; flex-grow: 1; }
+.price-features li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--ink-70); line-height: 1.4;
+}
+.price-check {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+  background: var(--forest-wash); color: var(--forest);
+  font-size: 10px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.price-note { text-align: center; font-size: 12px; color: var(--ink-30); margin-top: 10px; }
 
-/* ── ROI comparison ── */
-.roi-compare { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
-.roi-row { display: flex; flex-direction: column; gap: 6px; }
-.roi-row-header { display: flex; justify-content: space-between; font-family: 'Inter', sans-serif; font-size: 13px; }
-.roi-label { color: var(--text-muted); }
-.roi-val { font-weight: 800; font-variant-numeric: tabular-nums; }
-.roi-mp .roi-val { color: var(--danger); }
-.roi-co .roi-val { color: var(--success); }
-.roi-bar-track { height: 10px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
-.roi-bar-fill { height: 100%; border-radius: 99px; transform: scaleX(0); transform-origin: left; transition: transform 1.4s cubic-bezier(0.16,1,0.3,1); }
+/* ── ROI ── */
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.roi-compare { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.roi-row { display: flex; flex-direction: column; gap: 8px; }
+.roi-row-header { display: flex; justify-content: space-between; font-size: 13px; }
+.roi-label { color: var(--ink-50); }
+.roi-val { font-family: var(--mono); font-weight: 700; font-variant-numeric: tabular-nums; }
+.roi-mp .roi-val { color: var(--ember); }
+.roi-co .roi-val { color: var(--forest); }
+.roi-bar-track { height: 8px; background: var(--ink-04); border-radius: 99px; overflow: hidden; }
+.roi-bar-fill {
+  height: 100%; border-radius: 99px; transform: scaleX(0);
+  transform-origin: left; transition: transform 1.6s var(--ease);
+}
 .roi-bar-fill.animated { transform: scaleX(1); }
-.roi-mp .roi-bar-fill { background: var(--danger); }
-.roi-co .roi-bar-fill { background: var(--success); }
-.roi-verdict { margin-top: 16px; padding: 16px 18px; background: var(--primary-light); border: 1px solid var(--primary-lighter); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: 14px; color: var(--primary-darker); line-height: 1.6; }
-.roi-verdict strong { color: var(--primary); }
+.roi-mp .roi-bar-fill { background: linear-gradient(90deg, #E87060, var(--ember)); }
+.roi-co .roi-bar-fill { background: linear-gradient(90deg, #4CAF7A, var(--forest)); }
+.roi-verdict {
+  margin-top: 20px; padding: 20px; background: var(--teal-ghost);
+  border: 1px solid var(--teal-mist); border-radius: 14px;
+  font-size: 14px; color: var(--teal-deep); line-height: 1.7;
+}
+.roi-verdict strong { color: var(--teal); }
 
-/* ── Marketplaces badges ── */
-.mp-label { text-align: center; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px; }
-.mp-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.mp-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 9px 16px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--gray-700); transition: border-color 0.2s, box-shadow 0.15s; }
-.mp-badge:hover { border-color: var(--primary-lighter); box-shadow: var(--shadow-sm); }
-.mp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+/* Marketplaces */
+.mp-label {
+  text-align: center; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-30);
+  margin-bottom: 28px;
+}
+.mp-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.mp-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--ink-08);
+  border-radius: 100px; padding: 8px 18px;
+  font-size: 13px; font-weight: 500; color: var(--ink-50);
+  transition: all .2s;
+}
+.mp-pill:hover { border-color: var(--teal-mist); color: var(--teal); }
+.mp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
-/* Demo calendar */
-.demo-section { padding: 64px 0; background: var(--gray-50); text-align: center; }
-.demo-section h2 { margin-bottom: 12px; }
-.demo-section__embed { max-width: 800px; margin: 0 auto; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; box-shadow: var(--shadow-lg); }
-
-/* Footer */
-.footer { padding: 24px 0; border-top: 1px solid var(--gray-200); }
-.footer__inner { display: flex; align-items: center; justify-content: space-between; }
-.footer__brand img { height: 32px; width: auto; }
-.footer__meta { font-size: 11px; color: var(--gray-400); }
-.footer__meta a { color: var(--gray-500); }
-
-/* ── Product Steps (image + text) ── */
-.product-step { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 64px; }
+/* Product steps */
+.product-step { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 80px; }
 .product-step:last-child { margin-bottom: 0; }
-.product-step--reversed { direction: rtl; }
-.product-step--reversed > * { direction: ltr; }
-.step-num-tag { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.product-step__img { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--gray-200); transition: transform 0.3s ease; }
-.product-step__img:hover { transform: translateY(-4px); }
+.product-step--rev { direction: rtl; }
+.product-step--rev > * { direction: ltr; }
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ink); color: var(--white);
+  font-family: var(--serif); font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.product-step__img {
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.06);
+  border: 1px solid var(--ink-08); transition: transform .4s var(--ease);
+}
+.product-step__img:hover { transform: translateY(-6px); }
 .product-step__img img { width: 100%; display: block; }
 
-/* ── Logo bar grid (favicon style) ── */
-.logo-bar__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px 28px; max-width: 800px; margin: 0 auto; }
-.logo-bar__item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.65; transition: opacity 0.2s; }
-.logo-bar__item:hover { opacity: 1; }
-.logo-bar__icon { width: 72px; height: 72px; border-radius: 16px; background: var(--white); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); overflow: hidden; }
-.logo-bar__icon img { width: 50px; height: 50px; object-fit: contain; }
-.logo-bar__name { font-size: 12px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+/* Logo grid */
+.logo-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 24px 20px; max-width: 780px; margin: 0 auto;
+}
+.logo-item { display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.5; transition: opacity .3s; }
+.logo-item:hover { opacity: 1; }
+.logo-icon {
+  width: 64px; height: 64px; border-radius: 16px; background: var(--white);
+  border: 1px solid var(--ink-08); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04); overflow: hidden;
+}
+.logo-icon img { width: 42px; height: 42px; object-fit: contain; }
+.logo-name { font-size: 11px; font-weight: 500; color: var(--ink-30); white-space: nowrap; }
+
+/* Demo */
+.demo-section { padding: 80px 0; background: var(--ink-02); text-align: center; }
+.demo-section h2 { margin-bottom: 12px; }
+.demo-embed {
+  max-width: 820px; margin: 0 auto; background: var(--white);
+  border-radius: 20px; border: 1px solid var(--ink-08); overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.06);
+}
+
+/* Footer */
+.footer {
+  padding: 28px 0; border-top: 1px solid var(--ink-08);
+}
+.footer__inner { display: flex; align-items: center; justify-content: space-between; }
+.footer__brand img { height: 28px; width: auto; opacity: 0.5; }
+.footer__meta { font-size: 11px; color: var(--ink-30); }
+.footer__meta a { color: var(--ink-50); }
 
 /* ── Animations ── */
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.fade-up { opacity: 0; animation: fadeUp 0.65s cubic-bezier(0.16,1,0.3,1) forwards; }
-.d1 { animation-delay: 0.08s; } .d2 { animation-delay: 0.18s; } .d3 { animation-delay: 0.30s; } .d4 { animation-delay: 0.44s; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.anim { opacity: 0; animation: rise 0.8s var(--ease) forwards; }
+.a1 { animation-delay: 0.05s; } .a2 { animation-delay: 0.15s; }
+.a3 { animation-delay: 0.28s; } .a4 { animation-delay: 0.42s; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .hero-inner, .mystery-inner, .evening-inner { grid-template-columns: 1fr; }
-  .product-step, .product-step--reversed { grid-template-columns: 1fr; gap: 28px; direction: ltr; }
+  .hero-grid, .mystery-grid, .evening-grid, .roi-grid { grid-template-columns: 1fr; }
+  .product-step, .product-step--rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .steps-grid { grid-template-columns: repeat(2, 1fr); }
-  .pricing-3col { grid-template-columns: 1fr; max-width: 400px; }
-  .pricing-card-3.popular { transform: scale(1); }
+  .steps-row { grid-template-columns: repeat(2, 1fr); }
+  .pricing-cols { grid-template-columns: 1fr; max-width: 420px; }
+  .price-card.featured { transform: scale(1); }
   .score-card { display: none; }
-  .step:first-child { border-radius: 16px 3px 3px 16px; }
-  .step:nth-child(2) { border-radius: 3px 16px 16px 3px; }
-  .step:nth-child(3) { border-radius: 16px 3px 3px 16px; }
-  .step:last-child  { border-radius: 3px 16px 16px 3px; }
+  .step-card:first-child { border-radius: 20px 4px 4px 20px; }
+  .step-card:nth-child(2) { border-radius: 4px 20px 20px 4px; }
+  .step-card:nth-child(3) { border-radius: 20px 4px 4px 20px; }
+  .step-card:last-child { border-radius: 4px 20px 20px 4px; }
 }
 @media (max-width: 600px) {
   .stats-grid { grid-template-columns: 1fr 1fr; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .step:first-child, .step:last-child, .step:nth-child(2), .step:nth-child(3) { border-radius: 3px; }
-  section { padding: 56px 0; }
-  .footer__inner { flex-direction: column; gap: 6px; }
+  .steps-row { grid-template-columns: 1fr; }
+  .step-card, .step-card:first-child, .step-card:last-child,
+  .step-card:nth-child(2), .step-card:nth-child(3) { border-radius: 4px; }
+  section { padding: 64px 0; }
+  .footer__inner { flex-direction: column; gap: 8px; }
+  .logo-grid { grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 </head>
 <body>
 
-<!-- ── Nav ── -->
+<!-- Nav -->
 <nav>
   <div class="nav-logo"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
   <div class="nav-right">
-    <span id="navDealer"></span>
+    <span class="nav-dealer" id="navDealer"></span>
     <div class="lang-switch">
       <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
       <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
     </div>
-    <a href="#bookDemo" class="btn btn-primary" style="padding:9px 18px;font-size:13px" id="navCta">Audit gratuit</a>
+    <a href="#bookDemo" class="btn btn-primary" style="padding:10px 20px;font-size:13px">Audit gratuit</a>
   </div>
 </nav>
 
-<!-- ── Hero ── -->
+<!-- Hero -->
 <section class="hero" style="padding:0">
   <div class="container">
-    <div class="hero-inner">
+    <div class="hero-grid">
       <div>
-        <div class="hero-eyebrow fade-up">
-          <span class="eyebrow-dot"></span>
-          <span id="heroEyebrow">Rapport personnalisé</span>
+        <div class="eyebrow anim" style="display:flex;align-items:center;gap:8px">
+          <span style="width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite"></span>
+          Rapport personnalisé
         </div>
-        <h1 class="fade-up d1" id="heroH1">
-          Vos annonces<br>vous coûtent cher.<br>
-          <em>Voici ce qu'elles<br>vous rapportent.</em>
-        </h1>
-        <p class="hero-sub fade-up d2" id="heroSub">
-          On a analysé votre présence sur les marketplaces, testé votre concession en mystery shopper, et comparé vos performances aux meilleurs du marché. Les résultats sont sur cette page.
-        </p>
-        <div class="hero-actions fade-up d3">
-          <a href="#comment" class="btn btn-outline btn-lg" id="heroBtn">Voir comment ça marche</a>
+        <h1 class="anim a1">Vos annonces<br>vous coûtent cher.<br><em>Voici ce qu'elles<br>vous rapportent.</em></h1>
+        <p class="hero-sub anim a2">On a analysé votre présence sur les marketplaces, testé votre concession en mystery shopper, et comparé vos performances aux meilleurs du marché. Les résultats sont sur cette page.</p>
+        <div class="hero-actions anim a3">
+          <a href="aello-dealer-tour.html" class="btn btn-primary btn-lg" target="_blank">Voir comment ça marche →</a>
+          <a href="#bookDemo" class="btn btn-outline btn-lg">Réserver une démo</a>
         </div>
-        <p class="guarantee-note fade-up d4">
+        <p class="hero-trust anim a4">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span id="heroGuarantee">Audit gratuit — pas de carte bancaire — pas de contrat</span>
+          Audit gratuit — pas de carte bancaire — pas de contrat
         </p>
       </div>
-
-      <!-- Score Card (no "Votre score actuel", only Moyenne + Meilleur) -->
-      <div class="score-card fade-up d2">
-        <div class="score-card-label" id="scoreCardLabel">Score de réponse marketplace</div>
+      <div class="score-card anim a2">
+        <div class="score-card-label">Score de réponse marketplace</div>
         <div class="score-bars">
           <div class="score-row score-avg">
             <div class="score-row-header">
-              <span class="score-row-name" id="scoreAvgLabel">Moyenne concessionnaire FR</span>
+              <span class="score-row-name">Moyenne concessionnaire FR</span>
               <span class="score-row-val">52 / 100</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:52%"></div></div>
           </div>
           <div class="score-row score-best">
             <div class="score-row-header">
-              <span class="score-row-name" id="scoreBestLabel">Meilleur du marché</span>
+              <span class="score-row-name">Meilleur du marché</span>
               <span class="score-row-val">91 / 100</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Stats Strip ── -->
+<!-- Stats -->
 <section class="stats-section">
   <div class="container">
-    <div class="stats-grid" id="statsGrid">
-      <div class="stat-item stat-item--danger">
-        <div class="stat-num" id="statLeak">740 €</div>
-        <div class="stat-label" id="statLeakLabel">Messages d'acheteurs sans réponse ce mois</div>
-        <div class="stat-note" id="statLeakNote">Estimation typique — concessionnaire 50 annonces</div>
-      </div>
-      <div class="stat-item stat-item--warning">
-        <div class="stat-num" id="statTime">5h 20</div>
-        <div class="stat-label" id="statTimeLabel">Temps de réponse moyen — concessionnaire FR</div>
-        <div class="stat-note" id="statTimeNote">Meilleur du marché : moins de 15 min</div>
-      </div>
-      <div class="stat-item stat-item--blue">
-        <div class="stat-num" id="statListings">50</div>
-        <div class="stat-label" id="statListingsLabel">Annonces actives — exemple typique</div>
-        <div class="stat-note" id="statListingsNote">Sur 3 à 5 plateformes en moyenne</div>
-      </div>
-      <div class="stat-item stat-item--green">
-        <div class="stat-num">&lt; 2 min</div>
-        <div class="stat-label" id="statCopilotLabel">Temps de réponse avec Copilot</div>
-        <div class="stat-note" id="statCopilotNote">Réponse automatique, 24h/24 — même le dimanche</div>
-      </div>
+    <div class="stats-grid">
+      <div class="stat-item stat-item--danger"><div class="stat-num">740 €</div><div class="stat-label">Messages d'acheteurs sans réponse ce mois</div><div class="stat-note">Estimation typique — concessionnaire 50 annonces</div></div>
+      <div class="stat-item stat-item--warning"><div class="stat-num">5h 20</div><div class="stat-label">Temps de réponse moyen — concessionnaire FR</div><div class="stat-note">Meilleur du marché : moins de 15 min</div></div>
+      <div class="stat-item stat-item--blue"><div class="stat-num">50</div><div class="stat-label">Annonces actives — exemple typique</div><div class="stat-note">Sur 3 à 5 plateformes en moyenne</div></div>
+      <div class="stat-item stat-item--green"><div class="stat-num">&lt; 2 min</div><div class="stat-label">Temps de réponse avec Copilot</div><div class="stat-note">Réponse automatique, 24h/24 — même le dimanche</div></div>
     </div>
     <div class="stats-source">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
-      <span id="statsSourceText">Étude Aéllo — 500+ concessionnaires PL analysés en France, Mars 2026</span>
+      Étude Aéllo — 500+ concessionnaires PL analysés en France, Mars 2026
     </div>
   </div>
 </section>
 
-<!-- ── Mystery Shopper ── -->
-<section id="mystery" class="section-alt">
-  <div class="container">
-    <div class="mystery-inner">
-      <div>
-        <span class="section-eyebrow">Mystery Shopper</span>
-        <h2 class="section-title" id="mysteryTitle">On vous a contacté<br>en <em>acheteur</em>.</h2>
-        <p class="section-sub" id="mysterySub">Sur 500+ concessionnaires testés, voici ce qu'on a observé — la différence entre la réponse typique et ce que font les meilleurs.</p>
-
-        <div class="diff-card">
-          <h4 id="diffCardTitle">Les 4 différences qui comptent</h4>
-          <div class="diff-item">
-            <div class="diff-icon bad">✕</div>
-            <div>
-              <div class="diff-title" id="diff1Title">Délai de réponse : 6h 40</div>
-              <div class="diff-sub" id="diff1Sub">L'acheteur a probablement déjà contacté 3 autres concessions</div>
-            </div>
-          </div>
-          <div class="diff-item">
-            <div class="diff-icon bad">✕</div>
-            <div>
-              <div class="diff-title" id="diff2Title">Réponse générique sans personnalisation</div>
-              <div class="diff-sub" id="diff2Sub">Le véhicule n'est pas nommé, pas de disponibilité mentionnée</div>
-            </div>
-          </div>
-          <div class="diff-item">
-            <div class="diff-icon bad">✕</div>
-            <div>
-              <div class="diff-title" id="diff3Title">Aucune question posée à l'acheteur</div>
-              <div class="diff-sub" id="diff3Sub">Sans question, pas de conversation — pas de rendez-vous</div>
-            </div>
-          </div>
-          <div class="diff-item">
-            <div class="diff-icon good">✓</div>
-            <div>
-              <div class="diff-title" id="diff4Title">Avec Copilot : réponse en 2 min, personnalisée</div>
-              <div class="diff-sub" id="diff4Sub">Véhicule nommé, disponibilité confirmée, rendez-vous proposé</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="chat-bubble-wrap">
-        <div class="chat-group">
-          <div class="chat-label yours" id="chatYoursLabel">Réponse typique à une demande marketplace</div>
-          <div class="bubble yours" id="chatYoursMsg">Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.</div>
-          <div class="bubble-meta">
-            <span class="bubble-meta-dot" style="background:var(--warning)"></span>
-            <span id="chatYoursTime">Répondu après <strong style="color:var(--warning)">6h 40</strong></span>
-          </div>
-        </div>
-        <div class="chat-group">
-          <div class="chat-label best" id="chatBestLabel">Meilleure réponse observée sur le marché</div>
-          <div class="bubble best" id="chatBestMsg">Bonjour, merci pour votre message concernant le DAF XF 480 FT. Il est disponible immédiatement — révisé et prêt à rouler. Je suis disponible pour une visite ce week-end ou en semaine après 17h. Quel est le meilleur moment pour vous ? — Stéphane, Camions Sud-Ouest</div>
-          <div class="bubble-meta">
-            <span class="bubble-meta-dot" style="background:var(--success)"></span>
-            <span id="chatBestTime">Répondu en <strong style="color:var(--success)">11 minutes</strong></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Evening / 24h ── -->
-<section>
-  <div class="container">
-    <div class="evening-inner">
-      <div>
-        <span class="section-eyebrow" id="eveningEyebrow">Disponibilité 24h/24</span>
-        <h2 class="section-title" id="eveningTitle"><em>62% de vos messages</em><br>arrivent quand vous<br>n'êtes plus là.</h2>
-        <p class="section-sub" style="margin-bottom:24px" id="eveningSub1">Le soir. Le samedi. Le dimanche. C'est là que les acheteurs cherchent, depuis leur portable quand ils ne travaillent pas eux-mêmes.</p>
-        <p class="section-sub" style="margin-bottom:36px" id="eveningSub2">Copilot répond à leur place — immédiatement, avec une réponse adaptée à chaque annonce. Vous retrouvez le résumé le lundi matin avec les acheteurs déjà engagés.</p>
-      </div>
-      <div class="clock-visual">
-        <div class="clock-title" id="clockTitle">Volume de messages d'acheteurs par période</div>
-        <div class="time-row">
-          <span class="time-label">08h – 12h</span>
-          <div class="bar-wrap"><div class="vol-bar vol-bar--primary" style="width:0" data-w="43%"></div></div>
-          <span class="time-pct">18%</span>
-        </div>
-        <div class="time-row">
-          <span class="time-label">12h – 17h</span>
-          <div class="bar-wrap"><div class="vol-bar vol-bar--primary" style="width:0" data-w="48%"></div></div>
-          <span class="time-pct">20%</span>
-        </div>
-        <div class="time-row time-row--hl">
-          <span class="time-label">18h – 23h</span>
-          <div class="bar-wrap"><div class="vol-bar vol-bar--warning" style="width:0" data-w="100%"></div></div>
-          <span class="time-pct">42%</span>
-        </div>
-        <div class="time-row time-row--hl">
-          <span class="time-label">Weekend</span>
-          <div class="bar-wrap"><div class="vol-bar vol-bar--warning" style="width:0" data-w="48%"></div></div>
-          <span class="time-pct">20%</span>
-        </div>
-        <p class="clock-note">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span id="clockNote">62% arrivent en dehors de vos heures de travail</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Steps ── -->
-<section class="section-alt" id="comment">
-  <div class="container">
-    <div style="text-align:center">
-      <span class="section-eyebrow" id="stepsEyebrow">Mise en place</span>
-      <h2 class="section-title" style="max-width:560px;margin:0 auto 12px" id="stepsTitle">Opérationnel en <em>moins de 30 minutes</em>.</h2>
-      <p class="section-sub" style="margin:0 auto" id="stepsSub">Pas de formation. Pas de migration. Quatre étapes, c'est tout.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div>
-        <h4 id="step1Title">Identifiez vos failles</h4>
-        <p id="step1Desc">Votre audit révèle chaque manque — rapidité, qualité, suivi — sur toutes vos plateformes.</p>
-      </div>
-      <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></div>
-        <h4 id="step2Title">Connectez vos plateformes</h4>
-        <p id="step2Desc">Europe-Camions, LeBonCoin, Autoline — tous vos messages arrivent dans une seule boîte.</p>
-      </div>
-      <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
-        <h4 id="step3Title">Répondez en quelques secondes</h4>
-        <p id="step3Desc">Les templates remplissent le véhicule, le prix, la dispo automatiquement. Deux taps — réponse envoyée.</p>
-      </div>
-      <div class="step">
-        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
-        <h4 id="step4Title">Pilotez votre ROI plateforme</h4>
-        <p id="step4Desc">Chaque mois, vous savez ce que chaque abonnement vous rapporte. Décidez où investir, où couper.</p>
-      </div>
-    </div>
-    <div class="guarantee-banner">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-      <p id="guaranteeBanner"><strong>Garantie satisfait ou remboursé.</strong> Si votre score ne s'améliore pas en 30 jours, nous vous remboursons intégralement. Sans condition.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ── Pricing: 3 tiers ── -->
-<section id="essai">
+<!-- Copilot en Action — Animated Demo -->
+<section style="background:var(--ink-02)">
   <div class="container">
     <div style="text-align:center;margin-bottom:48px">
-      <span class="section-eyebrow" id="pricingEyebrow">Tarif</span>
-      <h2 class="section-title" id="pricingTitle">Commencez gratuitement.</h2>
-      <p class="section-sub" style="margin:0 auto" id="pricingSub">L'audit est gratuit — pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
+      <span class="eyebrow">Copilot en Action</span>
+      <h2>Un clic. Réponse <em>personnalisée</em> avec Aéllo.</h2>
+      <p class="section-sub" style="margin:12px auto 0">Regardez comment Copilot transforme votre réponse en une réponse gagnante — automatiquement.</p>
     </div>
-    <div class="pricing-3col">
-      <!-- AUDIT GRATUIT -->
-      <div class="pricing-card-3">
-        <div class="pc3-eyebrow" id="plan1Eyebrow">Audit Gratuit</div>
-        <div class="pc3-name" id="plan1Name">Gratuit</div>
-        <p class="pc3-desc" id="plan1Desc">On mystery-shoppe votre concession et on vous remet votre score personnalisé. Aucun engagement.</p>
-        <ul class="pc3-features">
-          <li><span class="pc3-check">✓</span> <span id="plan1F1">Mystery shop sur votre annonce principale</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan1F2">Score de réponse personnalisé</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan1F3">Comparaison avec les meilleurs du marché</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan1F4">Rapport livré sous 48h</span></li>
-        </ul>
-        <a href="#bookDemo" class="btn btn-outline btn-full" id="plan1Cta">Demander mon audit →</a>
-        <p class="pc3-note" id="plan1Note">Pas de carte bancaire requise</p>
-      </div>
-
-      <!-- COPILOT €99 -->
-      <div class="pricing-card-3 popular">
-        <div class="popular-badge" id="plan2Badge">Le plus populaire</div>
-        <div class="pc3-eyebrow" id="plan2Eyebrow">Copilot</div>
-        <div class="pc3-price">
-          <span class="pc3-curr">€</span>
-          <span class="pc3-amt">99</span>
-          <span class="pc3-per" id="plan2Per">/ mois</span>
+    <div class="demo-layout">
+      <div class="demo-inbox" id="demoInbox" style="position:relative;">
+        <!-- Lead bar -->
+        <div class="demo-inbox__bar">
+          <div class="demo-inbox__bar-avatar">MS</div>
+          <div class="demo-inbox__bar-info">
+            <div class="demo-inbox__bar-name">Max Schreiber</div>
+            <div class="demo-inbox__bar-vehicle">DAF XF 480 FT · Europe-Camions</div>
+          </div>
+          <div class="demo-inbox__bar-badge">Nouveau</div>
         </div>
-        <p class="pc3-desc" id="plan2Desc">Pour les concessionnaires jusqu'à 30 annonces actives sur 2 marketplaces.</p>
-        <div class="pc3-trial" id="plan2Trial">✓ 1 mois gratuit — sans carte bancaire</div>
-        <ul class="pc3-features">
-          <li><span class="pc3-check">✓</span> <span id="plan2F1">Jusqu'à 30 annonces actives</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan2F2">2 marketplaces connectées</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan2F3">Réponses automatiques nuit & weekend</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan2F4">Templates personnalisés par annonce</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan2F5">Rapport ROI mensuel par plateforme</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan2F6">Mise en place en moins de 30 minutes</span></li>
-        </ul>
-        <a href="#bookDemo" class="btn btn-primary btn-full" style="padding:16px;font-size:15px" id="plan2Cta">Démarrer 1 mois gratuit →</a>
-        <p class="pc3-note" id="plan2Note">Satisfait ou remboursé — 30 jours</p>
+        <!-- Their bad response — flies out -->
+        <div class="demo-inbox__their-msg" id="demoTheirMsg">
+          <div class="demo-inbox__msg-label" style="font-size:11px;font-weight:800;color:var(--ember);text-transform:uppercase;letter-spacing:0.06em;">Votre réponse actuelle (Mystery Shop)</div>
+          <div class="demo-inbox__msg-bubble">
+            <div class="demo-inbox__msg-text" id="demoOldResponse"></div>
+          </div>
+          <div class="demo-inbox__bad-overlay" id="demoBadTags"></div>
+        </div>
+        <!-- Composer -->
+        <div class="demo-inbox__composer" id="demoComposer" style="opacity:0;transition:opacity 0.8s ease;">
+          <div class="demo-inbox__msg-label" id="demoAelloLabel" style="font-size:11px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;opacity:0;transition:opacity 0.8s;">Votre réponse avec Aéllo</div>
+          <div class="demo-inbox__composer-row">
+            <div class="demo-inbox__template-btn" id="demoTemplateBtn">▾ Sélectionner un modèle...</div>
+            <div class="demo-inbox__lang-btn">FR</div>
+          </div>
+          <div class="demo-inbox__body empty" id="demoComposerBody">Rédigez votre réponse...</div>
+          <div class="demo-inbox__actions">
+            <div></div>
+            <div class="demo-inbox__send-btn" id="demoSendBtn">Envoyer</div>
+          </div>
+        </div>
+        <!-- Fake cursor -->
+        <div class="demo-cursor" id="demoCursor"><svg viewBox="0 0 24 24" fill="none"><path d="M5 3l14 8-6.5 2L9 19.5z" fill="#111" stroke="#fff" stroke-width="1.5"/></svg></div>
+        <!-- Sent overlay -->
+        <div class="demo-inbox__sent" id="demoSentOverlay">
+          <div class="demo-inbox__sent-icon">✔</div>
+          <div class="demo-inbox__sent-label">Réponse envoyée !</div>
+        </div>
       </div>
-
-      <!-- ENTERPRISE -->
-      <div class="pricing-card-3">
-        <div class="pc3-eyebrow" id="plan3Eyebrow">Enterprise</div>
-        <div class="pc3-name" id="plan3Name">Sur devis</div>
-        <p class="pc3-desc" id="plan3Desc">Pour les groupes, les réseaux multi-sites et les concessions avec plus de 30 annonces ou plus de 2 plateformes.</p>
-        <ul class="pc3-features">
-          <li><span class="pc3-check">✓</span> <span id="plan3F1">Annonces illimitées</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan3F2">Toutes les marketplaces</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan3F3">Intégration DMS sur mesure</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan3F4">Accompagnement dédié</span></li>
-          <li><span class="pc3-check">✓</span> <span id="plan3F5">Reporting multi-sites</span></li>
-        </ul>
-        <a href="#bookDemo" class="btn btn-outline btn-full" id="plan3Cta">Parler à Charles →</a>
-        <p class="pc3-note" id="plan3Note">Réponse sous 24h</p>
-      </div>
+      <!-- Annotation cards -->
+      <div class="demo-annots" id="demoAnnots"></div>
+    </div>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px;">
+      <a href="aello-dealer-tour.html" class="btn btn-primary btn-lg" target="_blank">Voir la visite complète Aéllo →</a>
+      <a href="#bookDemo" class="btn btn-outline btn-lg">Réserver une démo</a>
     </div>
   </div>
 </section>
 
-<!-- ── ROI Comparison ── -->
-<section class="section-alt">
+<!-- Evening -->
+<section>
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div class="evening-grid">
       <div>
-        <span class="section-eyebrow" id="roiEyebrow">Calcul simple</span>
-        <h2 class="section-title" style="margin-bottom:14px" id="roiTitle">Une année entière<br>= moins de la moitié<br>de la marge <em>d'un camion</em>.</h2>
-        <p class="section-sub" style="margin-bottom:0" id="roiSub">Vos abonnements marketplace vous coûtent entre €200 et €2 000 par mois. Copilot : €99/mois pour en tirer le maximum.</p>
-        <div class="roi-compare">
-          <div class="roi-row roi-mp">
-            <div class="roi-row-header">
-              <span class="roi-label" id="roiMpLabel">Abonnements marketplace (estimé)</span>
-              <span class="roi-val" id="roiMpVal">890 € / mois</span>
-            </div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" style="width:100%"></div></div>
-          </div>
-          <div class="roi-row roi-co">
-            <div class="roi-row-header">
-              <span class="roi-label">Aéllo Copilot</span>
-              <span class="roi-val">99 € / mois</span>
-            </div>
-            <div class="roi-bar-track"><div class="roi-bar-fill" style="width:11%"></div></div>
-          </div>
-          <div class="roi-verdict" id="roiVerdict">
-            Pour la première fois, vous saurez exactement ce que chaque plateforme vous rapporte. Et <strong>plus aucun message d'acheteur ne restera sans réponse</strong>, même le dimanche soir. 100+ concessionnaires PL en Europe l'utilisent déjà.
-          </div>
-        </div>
+        <span class="eyebrow">Disponibilité 24h/24</span>
+        <h2><em>62% de vos messages</em><br>arrivent quand vous<br>n'êtes plus là.</h2>
+        <p class="section-sub" style="margin-top:20px;margin-bottom:24px">Le soir. Le samedi. Le dimanche. C'est là que les acheteurs cherchent, depuis leur portable quand ils ne travaillent pas eux-mêmes.</p>
+        <p class="section-sub">Copilot répond à leur place — immédiatement, avec une réponse adaptée à chaque annonce. Vous retrouvez le résumé le lundi matin avec les acheteurs déjà engagés.</p>
       </div>
-      <div style="text-align:center">
-        <img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Copilot response" style="border-radius:16px;box-shadow:var(--shadow-xl);border:1px solid var(--gray-200);max-width:100%" loading="lazy">
+      <div class="clock-card">
+        <div class="clock-label">Volume de messages d'acheteurs par période</div>
+        <div class="time-row"><span class="time-name">08h – 12h</span><div class="bar-wrap"><div class="vol-bar vol-bar--teal" style="width:0" data-w="43%"></div></div><span class="time-pct">18%</span></div>
+        <div class="time-row"><span class="time-name">12h – 17h</span><div class="bar-wrap"><div class="vol-bar vol-bar--teal" style="width:0" data-w="48%"></div></div><span class="time-pct">20%</span></div>
+        <div class="time-row time-row--hl"><span class="time-name">18h – 23h</span><div class="bar-wrap"><div class="vol-bar vol-bar--amber" style="width:0" data-w="100%"></div></div><span class="time-pct">42%</span></div>
+        <div class="time-row time-row--hl"><span class="time-name">Weekend</span><div class="bar-wrap"><div class="vol-bar vol-bar--amber" style="width:0" data-w="48%"></div></div><span class="time-pct">20%</span></div>
+        <p class="clock-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>62% arrivent en dehors de vos heures de travail</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Marketplaces ── -->
-<section style="padding:48px 0">
-  <div class="container" style="text-align:center">
-    <p class="mp-label" id="mpLabel">Compatible avec toutes vos plateformes</p>
-    <div class="mp-grid" id="mpGrid">
-      <div class="mp-badge"><span class="mp-dot" style="background:#E85D04"></span>Europe-Camions</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#FF6B35"></span>LeBonCoin Pro</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#0077B6"></span>Autoline</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#2196F3"></span>TrucksNL</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#4CAF50"></span>Mascus</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#607D8B"></span>TruckScout24</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#9C27B0"></span>Truck1</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#FF9800"></span>MachineryZone</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#F44336"></span>Mobile.de</div>
-      <div class="mp-badge"><span class="mp-dot" style="background:#00BCD4"></span>BasWorld</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── BOOK A DEMO with Alexandre ── -->
-<section class="demo-section" id="bookDemo">
+<!-- Steps -->
+<section style="background:var(--ink-02)" id="comment">
   <div class="container">
-    <h2 class="fade-up" id="demoTitle">Réserver une démo</h2>
-    <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:32px;" class="fade-up" id="demoSub">Choisissez un créneau avec Alexandre pour une présentation personnalisée.</p>
-    <div class="demo-section__embed fade-up">
-      <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:12px;"></iframe>
+    <div style="text-align:center">
+      <span class="eyebrow">Mise en place</span>
+      <h2 style="max-width:520px;margin:0 auto 12px">Opérationnel en <em>moins de 30 minutes</em>.</h2>
+      <p class="section-sub" style="margin:0 auto">Pas de formation. Pas de migration. Quatre étapes, c'est tout.</p>
     </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg></div><h4>Identifiez vos failles</h4><p>Votre audit révèle chaque manque — rapidité, qualité, suivi — sur toutes vos plateformes.</p></div>
+      <div class="step-card"><div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></div><h4>Connectez vos plateformes</h4><p>Europe-Camions, LeBonCoin, Autoline — tous vos messages arrivent dans une seule boîte.</p></div>
+      <div class="step-card"><div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h4>Répondez en quelques secondes</h4><p>Les templates remplissent le véhicule, le prix, la dispo automatiquement. Deux taps — réponse envoyée.</p></div>
+      <div class="step-card"><div class="step-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h4>Pilotez votre ROI plateforme</h4><p>Chaque mois, vous savez ce que chaque abonnement vous rapporte. Décidez où investir, où couper.</p></div>
+    </div>
+    <div class="guarantee-strip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><p><strong>Garantie satisfait ou remboursé.</strong> Si votre score ne s'améliore pas en 30 jours, nous vous remboursons intégralement. Sans condition.</p></div>
   </div>
 </section>
 
-<!-- ── Voir. Corriger. Suivre. ── -->
-<section class="section-alt" style="border-top:1px solid var(--gray-200)">
+<!-- Pricing -->
+<section id="essai">
   <div class="container">
     <div style="text-align:center;margin-bottom:56px">
-      <h2 class="section-title">Voir. Corriger. Suivre.</h2>
+      <span class="eyebrow">Tarif</span>
+      <h2>Commencez gratuitement.</h2>
+      <p class="section-sub" style="margin:12px auto 0">L'audit est gratuit — pour toujours. Copilot est pour les concessionnaires qui veulent corriger ce qui ne fonctionne pas.</p>
     </div>
-
-    <!-- Step 1 -->
-    <div class="product-step">
-      <div class="product-step__text">
-        <div class="step-num-tag">1</div>
-        <h3 style="font-size:22px;margin-bottom:10px">Identifiez les failles.</h3>
-        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Votre audit gratuit révèle chaque faille dans votre processus de réponse — rapidité, qualité, suivi, sur toutes les plateformes.</p>
+    <div class="pricing-cols">
+      <div class="price-card">
+        <div class="price-tier">Audit Gratuit</div>
+        <div class="price-name">Gratuit</div>
+        <p class="price-desc">On mystery-shoppe votre concession et on vous remet votre score personnalisé. Aucun engagement.</p>
+        <ul class="price-features">
+          <li><span class="price-check">✓</span>Mystery shop sur votre annonce principale</li>
+          <li><span class="price-check">✓</span>Score de réponse personnalisé</li>
+          <li><span class="price-check">✓</span>Comparaison avec les meilleurs du marché</li>
+          <li><span class="price-check">✓</span>Rapport livré sous 48h</li>
+        </ul>
+        <a href="#bookDemo" class="btn btn-outline" style="width:100%">Demander mon audit →</a>
+        <p class="price-note">Pas de carte bancaire requise</p>
       </div>
-      <div class="product-step__img">
-        <img src="https://aello-copilot.com/images/lead_capture.gif" alt="Audit des leads" loading="lazy">
+      <div class="price-card featured">
+        <div class="featured-tag">Le plus populaire</div>
+        <div class="price-tier">Copilot</div>
+        <div class="price-amount"><span class="price-curr">€</span><span class="price-num">99</span><span class="price-per">/ mois</span></div>
+        <p class="price-desc">Pour les concessionnaires jusqu'à 30 annonces actives sur 2 marketplaces.</p>
+        <div class="price-trial">✓ 1 mois gratuit — sans carte bancaire</div>
+        <ul class="price-features">
+          <li><span class="price-check">✓</span>Jusqu'à 30 annonces actives</li>
+          <li><span class="price-check">✓</span>2 marketplaces connectées</li>
+          <li><span class="price-check">✓</span>Réponses automatiques nuit & weekend</li>
+          <li><span class="price-check">✓</span>Templates personnalisés par annonce</li>
+          <li><span class="price-check">✓</span>Rapport ROI mensuel par plateforme</li>
+          <li><span class="price-check">✓</span>Mise en place en moins de 30 minutes</li>
+        </ul>
+        <a href="#bookDemo" class="btn btn-primary" style="width:100%;padding:16px;font-size:15px">Démarrer 1 mois gratuit →</a>
+        <p class="price-note">Satisfait ou remboursé — 30 jours</p>
       </div>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="product-step product-step--reversed">
-      <div class="product-step__text">
-        <div class="step-num-tag">2</div>
-        <h3 style="font-size:22px;margin-bottom:10px">Corrigez en 30 secondes.</h3>
-        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Passez à Copilot : répondez depuis votre téléphone avec des templates intelligents. Deux taps — réponse personnalisée envoyée.</p>
-      </div>
-      <div class="product-step__img">
-        <img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Template de réponse" loading="lazy">
-      </div>
-    </div>
-
-    <!-- Step 3 -->
-    <div class="product-step">
-      <div class="product-step__text">
-        <div class="step-num-tag">3</div>
-        <h3 style="font-size:22px;margin-bottom:10px">Ne perdez plus jamais une demande.</h3>
-        <p style="font-size:15px;color:var(--text-muted);line-height:1.7">Des mystery shops mensuels suivent votre score. Observez vos temps de réponse baisser et vos ventes augmenter.</p>
-      </div>
-      <div class="product-step__img">
-        <img src="https://aello-copilot.com/images/vehicle_lead_scoring.gif" alt="Amélioration du score" loading="lazy">
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-name">Sur devis</div>
+        <p class="price-desc">Pour les groupes, les réseaux multi-sites et les concessions avec plus de 30 annonces ou plus de 2 plateformes.</p>
+        <ul class="price-features">
+          <li><span class="price-check">✓</span>Annonces illimitées</li>
+          <li><span class="price-check">✓</span>Toutes les marketplaces</li>
+          <li><span class="price-check">✓</span>Intégration DMS sur mesure</li>
+          <li><span class="price-check">✓</span>Accompagnement dédié</li>
+          <li><span class="price-check">✓</span>Reporting multi-sites</li>
+        </ul>
+        <a href="#bookDemo" class="btn btn-outline" style="width:100%">Parler à Charles →</a>
+        <p class="price-note">Réponse sous 24h</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Marketplace Logos ── -->
-<section style="padding:48px 0;border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);background:var(--gray-50)">
+<!-- ROI -->
+<section style="background:var(--ink-02)">
+  <div class="container">
+    <div class="roi-grid">
+      <div>
+        <span class="eyebrow">Calcul simple</span>
+        <h2 style="margin-bottom:16px">Une année entière<br>= moins de la moitié<br>de la marge <em>d'un camion</em>.</h2>
+        <p class="section-sub">Vos abonnements marketplace vous coûtent entre €200 et €2 000 par mois. Copilot : €99/mois pour en tirer le maximum.</p>
+        <div class="roi-compare">
+          <div class="roi-row roi-mp"><div class="roi-row-header"><span class="roi-label">Abonnements marketplace (estimé)</span><span class="roi-val">890 € / mois</span></div><div class="roi-bar-track"><div class="roi-bar-fill" style="width:100%"></div></div></div>
+          <div class="roi-row roi-co"><div class="roi-row-header"><span class="roi-label">Aéllo Copilot</span><span class="roi-val">99 € / mois</span></div><div class="roi-bar-track"><div class="roi-bar-fill" style="width:11%"></div></div></div>
+          <div class="roi-verdict">Pour la première fois, vous saurez exactement ce que chaque plateforme vous rapporte. Et <strong>plus aucun message d'acheteur ne restera sans réponse</strong>, même le dimanche soir. 100+ concessionnaires PL en Europe l'utilisent déjà.</div>
+        </div>
+      </div>
+      <div style="text-align:center"><img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Copilot" style="border-radius:20px;box-shadow:0 2px 4px rgba(0,0,0,0.04),0 12px 40px rgba(0,0,0,0.06);border:1px solid var(--ink-08);max-width:100%" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Marketplaces -->
+<section style="padding:56px 0">
+  <div class="container" style="text-align:center">
+    <p class="mp-label">Compatible avec toutes vos plateformes</p>
+    <div class="mp-grid">
+      <div class="mp-pill"><span class="mp-dot" style="background:#E85D04"></span>Europe-Camions</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#FF6B35"></span>LeBonCoin Pro</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#0077B6"></span>Autoline</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#2196F3"></span>TrucksNL</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#4CAF50"></span>Mascus</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#607D8B"></span>TruckScout24</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#9C27B0"></span>Truck1</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#FF9800"></span>MachineryZone</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#F44336"></span>Mobile.de</div>
+      <div class="mp-pill"><span class="mp-dot" style="background:#00BCD4"></span>BasWorld</div>
+    </div>
+  </div>
+</section>
+
+<!-- Demo -->
+<section class="demo-section" id="bookDemo">
+  <div class="container">
+    <h2>Réserver une démo</h2>
+    <p class="section-sub" style="text-align:center;margin:8px auto 36px">Choisissez un créneau avec Alexandre pour une présentation personnalisée.</p>
+    <div class="demo-embed">
+      <iframe src="https://meetings-eu1.hubspot.com/copilot/demo?uuid=64c4d7bb-c475-4617-b005-f139422397a2&embed=true" width="100%" height="700" frameborder="0" style="border-radius:20px;"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Voir. Corriger. Suivre. -->
+<section style="border-top:1px solid var(--ink-08);background:var(--ink-02)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:72px"><h2>Voir. Corriger. Suivre.</h2></div>
+    <div class="product-step"><div><div class="step-num">1</div><h3 style="margin-bottom:12px">Identifiez les failles.</h3><p class="section-sub">Votre audit gratuit révèle chaque faille dans votre processus de réponse — rapidité, qualité, suivi, sur toutes les plateformes.</p></div><div class="product-step__img"><img src="https://aello-copilot.com/images/lead_capture.gif" alt="Audit" loading="lazy"></div></div>
+    <div class="product-step product-step--rev"><div><div class="step-num">2</div><h3 style="margin-bottom:12px">Corrigez en 30 secondes.</h3><p class="section-sub">Passez à Copilot : répondez depuis votre téléphone avec des templates intelligents. Deux taps — réponse personnalisée envoyée.</p></div><div class="product-step__img"><img src="https://aello-copilot.com/images/vehicle_lead_engagement.gif" alt="Templates" loading="lazy"></div></div>
+    <div class="product-step"><div><div class="step-num">3</div><h3 style="margin-bottom:12px">Ne perdez plus jamais une demande.</h3><p class="section-sub">Des mystery shops mensuels suivent votre score. Observez vos temps de réponse baisser et vos ventes augmenter.</p></div><div class="product-step__img"><img src="https://aello-copilot.com/images/vehicle_lead_scoring.gif" alt="Score" loading="lazy"></div></div>
+  </div>
+</section>
+
+<!-- Logos -->
+<section style="padding:56px 0;border-top:1px solid var(--ink-08)">
   <div class="container" style="text-align:center">
     <p class="mp-label">Marketplaces supportées en France et en Europe</p>
-    <div class="logo-bar__grid fade-up" id="logoBarGrid"></div>
+    <div class="logo-grid" id="logoBarGrid"></div>
   </div>
 </section>
 
-<!-- ── Footer ── -->
+<!-- Footer -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer__inner">
-      <div class="footer__brand"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo Copilot"></div>
-      <div class="footer__meta">© 2026 Aéllo Sàrl · <a href="mailto:kyle@aello-copilot.com">kyle@aello-copilot.com</a></div>
-    </div>
-  </div>
+  <div class="container"><div class="footer__inner"><div class="footer__brand"><img src="https://aello-copilot.com/images/logo.svg" alt="Aéllo"></div><div class="footer__meta">© 2026 Aéllo Sàrl · <a href="mailto:kyle@aello-copilot.com">kyle@aello-copilot.com</a></div></div></div>
 </footer>
 
 <script>
 let currentLang = 'fr';
+(function(){const h=window.location.hostname,t=h.split('.').pop();if(t==='nl'||h.includes('.nl')){currentLang='nl';return}if(t==='fr'||h.includes('.fr')){currentLang='fr';return}const b=(navigator.language||'').toLowerCase();if(b.startsWith('nl'))currentLang='nl';else if(b.startsWith('en'))currentLang='en'})();
 
-// Auto-detect language
-(function detectLang() {
-  const host = window.location.hostname;
-  const tld = host.split('.').pop();
-  if (tld === 'nl' || host.includes('.nl')) { currentLang = 'nl'; return; }
-  if (tld === 'fr' || host.includes('.fr')) { currentLang = 'fr'; return; }
-  const bl = (navigator.language || '').toLowerCase();
-  if (bl.startsWith('nl')) { currentLang = 'nl'; return; }
-  if (bl.startsWith('en')) { currentLang = 'en'; return; }
-})();
+function setLang(l){currentLang=l;document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.getAttribute('data-lang')===l)});document.documentElement.lang=l;init()}
 
-const dealerData = {
-  dealer_name: "Garage Dumont",
-  dealer_city: "Lyon",
-  dealer_website: "garagedumont.fr",
-  total_listings: 50,
-  total_platforms: 3,
-  estimated_leads_per_month: 62,
-  mystery_shop_response_time: "6h 40",
-  mystery_shop_response_minutes: 400,
-  mystery_shop_platform: "Europe-Camions",
-  generated_date: "March 2026",
-  overall_score: 38,
-};
+const actualResponse = "Bonjour,\n\nLe véhicule est disponible. Contactez-nous pour plus d'informations.\n\nCordialement.";
 
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-  document.documentElement.lang = lang;
-  initAnimations();
+const aGradeResponse = "Bonjour Max,\n\nMerci pour votre intérêt pour le DAF XF 480 FT sur Europe-Camions.\n\nCe véhicule est disponible au prix de 68 500 € HT (TVA récupérable). Il totalise 320 000 km, mise en circulation 06/2021, dernier entretien DAF il y a 15 000 km.\n\nQuelques questions pour mieux vous aider :\n• Est-ce pour un renouvellement ou un ajout à votre flotte ?\n• Avez-vous besoin d'un financement ? Nous proposons du leasing à partir de 1 150 €/mois.\n\nJe peux vous envoyer le dossier complet (photos HD + historique) par WhatsApp — quel est votre numéro ?\n\nJean-Marc Dupont\nResponsable Commercial — 1FOTEAM\n06 12 34 56 78 | jean-marc@1foteam.fr\nwww.1foteam.fr";
+
+const badAnnotations = ["Aucun nom d'acheteur","Aucun véhicule mentionné","Aucun prix indiqué","Aucune prochaine étape","Aucune question de qualification","Aucun contact direct"];
+
+const annotData = [
+  { icon: "✔", title: "Utilise le nom de l'acheteur", desc: "Une salutation personnalisée crée immédiatement un lien." },
+  { icon: "✔", title: "Prix exact + caractéristiques", desc: "68 500 € HT avec km, année et historique d'entretien." },
+  { icon: "✔", title: "Questions de qualification", desc: "Renouvellement de flotte ? Financement ? La conversation reste vivante." },
+  { icon: "✔", title: "WhatsApp proposé", desc: "Contacte l'acheteur sur son canal préféré." },
+  { icon: "✔", title: "Signature complète", desc: "Téléphone, email, site web — facile de vous recontacter." },
+  { icon: "✔", title: "Prochaine étape claire", desc: "Propose d'envoyer les photos HD + dossier. Aucune impasse." },
+];
+
+let demoTimeouts = [];
+function demoTimeout(fn, ms) { const id = setTimeout(fn, ms); demoTimeouts.push(id); return id; }
+
+function moveCursor(el, targetEl, ox, oy) {
+  const inbox = document.getElementById('demoInbox');
+  const ir = inbox.getBoundingClientRect();
+  const tr = targetEl.getBoundingClientRect();
+  el.style.top = (tr.top - ir.top + (oy||10)) + 'px';
+  el.style.left = (tr.left - ir.left + (ox||10)) + 'px';
 }
 
-function initAnimations() {
-  // Score card bars
-  const scoreObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.bar-fill, .roi-bar-fill').forEach(b => b.classList.add('animated'));
-        e.target.querySelectorAll('.vol-bar[data-w]').forEach((b, i) => {
-          setTimeout(() => { b.style.transition = 'width 1.4s cubic-bezier(0.16,1,0.3,1)'; b.style.width = b.dataset.w; }, 150 + i * 200);
-        });
-        scoreObs.unobserve(e.target);
-      }
-    });
+function runDemoAnimation() {
+  demoTimeouts.forEach(id => clearTimeout(id));
+  demoTimeouts = [];
+  const theirMsg = document.getElementById('demoTheirMsg');
+  const composer = document.getElementById('demoComposer');
+  const templateBtn = document.getElementById('demoTemplateBtn');
+  const body = document.getElementById('demoComposerBody');
+  const sendBtn = document.getElementById('demoSendBtn');
+  const sentOverlay = document.getElementById('demoSentOverlay');
+  const cursor = document.getElementById('demoCursor');
+  const annots = document.querySelectorAll('.annot-card');
+
+  theirMsg.classList.remove('collapsed');
+  composer.style.opacity = '0';
+  templateBtn.classList.remove('selected');
+  templateBtn.innerHTML = '▾ Sélectionner un modèle...';
+  body.textContent = 'Rédigez votre réponse...';
+  body.classList.add('empty');
+  body.style.maxHeight = '300px';
+  sendBtn.classList.remove('sent');
+  sendBtn.textContent = 'Envoyer';
+  sentOverlay.classList.remove('visible');
+  cursor.classList.remove('visible');
+  annots.forEach(a => { a.classList.remove('visible'); a.classList.remove('emphasize'); });
+  const aelloLabel = document.getElementById('demoAelloLabel');
+  if (aelloLabel) aelloLabel.style.opacity = '0';
+
+  const badTags = document.querySelectorAll('[data-bad-idx]');
+  badTags.forEach((tag, i) => { tag.style.opacity = '0'; tag.style.transform = 'translateY(6px)';
+    demoTimeout(() => { tag.style.opacity = '1'; tag.style.transform = 'translateY(0)'; }, 600 + i * 400);
+  });
+  const t0 = 600 + badTags.length * 400 + 800;
+  demoTimeout(() => { theirMsg.classList.add('collapsed'); }, t0);
+  demoTimeout(() => { if (aelloLabel) aelloLabel.style.opacity = '1'; composer.style.opacity = '1'; }, t0 + 600);
+  demoTimeout(() => { cursor.classList.add('visible'); moveCursor(cursor, templateBtn, 40, 8); }, t0 + 1200);
+  demoTimeout(() => { templateBtn.classList.add('selected'); templateBtn.innerHTML = '✓ availability_truck - FR'; }, t0 + 1800);
+  demoTimeout(() => {
+    body.classList.remove('empty');
+    body.innerHTML = aGradeResponse.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')
+      .replace('Bonjour Max','<span class="demo-hl" data-annot="0">Bonjour Max</span>')
+      .replace('68 500','<span class="demo-hl" data-annot="1">68 500</span>')
+      .replace('320 000 km','<span class="demo-hl" data-annot="1">320 000 km</span>')
+      .replace('Quelques questions','<span class="demo-hl" data-annot="2">Quelques questions</span>')
+      .replace('WhatsApp','<span class="demo-hl" data-annot="3">WhatsApp</span>')
+      .replace('Jean-Marc Dupont','<span class="demo-hl" data-annot="4">Jean-Marc Dupont</span>')
+      .replace('dossier complet','<span class="demo-hl" data-annot="5">dossier complet</span>');
+  }, t0 + 2600);
+  demoTimeout(() => { cursor.classList.remove('visible'); }, t0 + 3200);
+  const aStart = t0 + 3600;
+  annots.forEach((a, i) => {
+    demoTimeout(() => {
+      body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active'));
+      body.querySelectorAll('[data-annot="'+i+'"]').forEach(el => {
+        el.classList.add('active');
+        const cb = document.getElementById('demoComposerBody');
+        if (cb && cb.contains(el)) cb.scrollTo({top: Math.max(0, el.offsetTop - cb.offsetTop - 40), behavior: 'smooth'});
+      });
+      a.classList.add('visible'); a.classList.add('emphasize');
+    }, aStart + i * 1200);
+    demoTimeout(() => { a.classList.remove('emphasize'); }, aStart + i * 1200 + 900);
+  });
+  const aEnd = aStart + annots.length * 1200 + 1000;
+  demoTimeout(() => { body.querySelectorAll('.demo-hl.active').forEach(el => el.classList.remove('active')); }, aEnd - 500);
+  demoTimeout(() => { cursor.classList.add('visible'); moveCursor(cursor, sendBtn, 30, 6); }, aEnd);
+  demoTimeout(() => { sendBtn.classList.add('sent'); sendBtn.textContent = '✔ Réponse envoyée !'; cursor.classList.remove('visible'); }, aEnd + 600);
+  demoTimeout(() => { sentOverlay.classList.add('visible'); }, aEnd + 900);
+  demoTimeout(() => { sentOverlay.classList.remove('visible'); }, aEnd + 1800);
+  demoTimeout(() => {
+    const el = document.getElementById('demoInbox');
+    if (el) { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) runDemoAnimation(); }
+  }, aEnd + 3500);
+}
+
+function initDemo() {
+  document.getElementById('demoOldResponse').textContent = actualResponse;
+  document.getElementById('demoBadTags').innerHTML = badAnnotations.map((a,i) =>
+    `<span class="demo-inbox__bad-tag" style="opacity:0;transition:opacity 0.5s ease,transform 0.4s ease;transform:translateY(6px);" data-bad-idx="${i}">✘ ${a}</span>`
+  ).join('');
+  const annotsEl = document.getElementById('demoAnnots');
+  annotsEl.innerHTML = annotData.map(a =>
+    `<div class="annot-card"><div class="annot-card__icon">${a.icon}</div><div class="annot-card__title">${a.title}</div><div class="annot-card__desc">${a.desc}</div></div>`
+  ).join('');
+  const demoObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { runDemoAnimation(); demoObs.unobserve(e.target); } });
   }, { threshold: 0.3 });
-  document.querySelectorAll('.score-card, .roi-compare, .clock-visual').forEach(el => scoreObs.observe(el));
-
-  // Stagger fade-in for items
-  const fio = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        fio.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.stat-item, .step, .diff-item, .mp-badge, .chat-group').forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(16px)';
-    el.style.transition = `opacity 0.55s ease ${i * 0.05}s, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s`;
-    fio.observe(el);
-  });
+  demoObs.observe(document.getElementById('demoInbox'));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Populate marketplace logo grid
-  const allPlatforms = [
-    { name: 'Europe-Camions', domain: 'europe-camions.com' },
-    { name: 'LeBonCoin', domain: 'leboncoin.fr' },
-    { name: 'LeBonCoin Pro', domain: 'leboncoinpro.fr' },
-    { name: 'Autoline', domain: 'autoline-eu.com' },
-    { name: 'Mascus', domain: 'mascus.com' },
-    { name: 'Truck1', domain: 'truck1.eu' },
-    { name: 'TrucksNL', domain: 'trucksnl.com' },
-    { name: 'MachineryTrader', domain: 'machinerytrader.com' },
-    { name: 'BasWorld', domain: 'basworld.com' },
-    { name: 'TruckScout24', domain: 'truckscout24.de' },
-    { name: 'MachineryFinder', domain: 'machineryfinder.com' },
-  ];
-  const logoGrid = document.getElementById('logoBarGrid');
-  if (logoGrid) {
-    logoGrid.innerHTML = allPlatforms.map(p => `
-      <div class="logo-bar__item">
-        <div class="logo-bar__icon"><img src="https://www.google.com/s2/favicons?domain=${p.domain}&sz=64" alt="${p.name}"></div>
-        <div class="logo-bar__name">${p.name}</div>
-      </div>
-    `).join('');
-  }
-  initAnimations();
+function init(){
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar-fill,.roi-bar-fill').forEach(b=>b.classList.add('animated'));e.target.querySelectorAll('.vol-bar[data-w]').forEach((b,i)=>{setTimeout(()=>{b.style.transition='width 1.6s cubic-bezier(0.16,1,0.3,1)';b.style.width=b.dataset.w},200+i*220)});io.unobserve(e.target)}})},{threshold:0.3});
+  document.querySelectorAll('.score-card,.roi-compare,.clock-card').forEach(el=>io.observe(el));
+  const fio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';fio.unobserve(e.target)}})},{threshold:0.1});
+  document.querySelectorAll('.stat-item,.step-card,.mp-pill,.product-step').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition=`opacity 0.6s ease ${i*0.04}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i*0.04}s`;fio.observe(el)});
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const ps=[{n:'Europe-Camions',d:'europe-camions.com'},{n:'LeBonCoin',d:'leboncoin.fr'},{n:'LeBonCoin Pro',d:'leboncoinpro.fr'},{n:'Autoline',d:'autoline-eu.com'},{n:'Mascus',d:'mascus.com'},{n:'Truck1',d:'truck1.eu'},{n:'TrucksNL',d:'trucksnl.com'},{n:'MachineryTrader',d:'machinerytrader.com'},{n:'BasWorld',d:'basworld.com'},{n:'TruckScout24',d:'truckscout24.de'},{n:'MachineryFinder',d:'machineryfinder.com'}];
+  const g=document.getElementById('logoBarGrid');
+  if(g)g.innerHTML=ps.map(p=>`<div class="logo-item"><div class="logo-icon"><img src="https://www.google.com/s2/favicons?domain=${p.d}&sz=64" alt="${p.n}"></div><div class="logo-name">${p.n}</div></div>`).join('');
+  initDemo();
+  init();
 });
 </script>
 </body>
